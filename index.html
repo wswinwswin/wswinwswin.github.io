@@ -504,6 +504,15 @@ body.locked{overflow:hidden}
 .price-admin-panel{margin-top:10px;font-size:.82rem;color:var(--muted);border:1px dashed var(--line);padding:12px 16px;max-width:660px;text-align:left}
 .price-admin-panel a{color:var(--accent);border-bottom:1px solid var(--accent-soft)}
 .price-admin-panel ol{margin:8px 0 0 20px;display:grid;gap:4px}
+/* ===== 海报栏 ===== */
+.poster-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:6px}
+.poster{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.poster img{display:block;width:100%;height:auto}
+.poster figcaption{padding:16px 18px;font-size:.86rem;color:var(--muted);line-height:1.75}
+.poster figcaption b{color:var(--ink)}
+.poster .icode{font-family:var(--font-mono);font-size:1rem;letter-spacing:.18em;color:var(--accent);border:1px dashed var(--line);border-radius:8px;padding:4px 12px;margin:0 4px;white-space:nowrap}
+.poster .igo{display:inline-block;margin-top:10px;color:var(--ink);border-bottom:1px solid var(--accent)}
+@media(max-width:760px){.poster-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -522,6 +531,7 @@ body.locked{overflow:hidden}
       <a href="#live"><span class="idx">04</span>直播</a>
       <a href="#pricing"><span class="idx">05</span>定价</a>
       <a href="#about"><span class="idx">06</span>关于我</a>
+      <a href="#posters"><span class="idx">07</span>海报栏</a>
     </nav>
     <div class="mast-ctl">
       <span class="clock" id="clock" aria-hidden="true">--:--:--</span>
@@ -986,6 +996,27 @@ body.locked{overflow:hidden}
           <span class="plat-arr">↗</span>
         </a>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="posters">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-idx">07</span>
+      <h2 class="sec-title">海报栏</h2>
+      <span class="sec-rule"></span>
+      <span class="sec-meta">POSTERS</span>
+    </div>
+    <div class="poster-grid">
+      <figure class="poster">
+        <img src="poster-muse-ig.png" alt="Muse 邀请海报（竖版）：扫码加入 Muse，填写邀请码 KFKHN7" width="1080" height="1350" loading="lazy" decoding="async" />
+        <figcaption><b>加入 Muse，填我的邀请码。</b>扫码打开 <a class="igo" href="https://muse.ai/join" target="_blank" rel="noopener">muse.ai/join ↗</a>，加入后 48 小时内在设置里填写邀请码 <span class="icode">KFKHN7</span>，双方各得 tokens。竖版海报，适合发朋友圈 / 小红书。</figcaption>
+      </figure>
+      <figure class="poster">
+        <img src="poster-muse-fb.png" alt="Muse 邀请海报（横版）：扫码加入 Muse，填写邀请码 KFKHN7" width="1200" height="630" loading="lazy" decoding="async" />
+        <figcaption><b>加入 Muse，填我的邀请码。</b>扫码打开 <a class="igo" href="https://muse.ai/join" target="_blank" rel="noopener">muse.ai/join ↗</a>，加入后 48 小时内在设置里填写邀请码 <span class="icode">KFKHN7</span>，双方各得 tokens。横版海报，适合发 Facebook / 公众号。</figcaption>
+      </figure>
     </div>
   </div>
 </section>
