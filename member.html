@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>会员专区 ｜ wiswin</title>
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<style>
+:root{--ink:#1c1a17;--muted:#7a7268;--paper:#fbfbf7;--card:#ffffff;--line:#e8e2d6;--lime:#c9f24e;--lime-d:#a8d63a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--paper);color:var(--ink);line-height:1.75}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--line)}
+.topbar a{color:var(--ink);text-decoration:none;font-size:.95rem}
+.brand{font-weight:800;font-size:1.15rem}.brand em{font-style:normal;background:var(--lime);padding:2px 8px;border-radius:6px;margin-right:8px}
+.hero{text-align:center;padding:56px 0 30px}
+.hero h1{font-size:2rem;margin-bottom:10px}
+.hero p{color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:32px 28px;max-width:480px;margin:0 auto;box-shadow:0 8px 30px rgba(60,50,30,.06)}
+.card h2{font-size:1.25rem;margin-bottom:6px}
+.card .hint{color:var(--muted);font-size:.9rem;margin-bottom:20px}
+.field input{width:100%;padding:14px 16px;font-size:1.05rem;border:2px solid var(--line);border-radius:10px;letter-spacing:2px;text-transform:uppercase}
+.field input:focus{outline:none;border-color:var(--lime-d)}
+.btn{display:block;width:100%;margin-top:16px;padding:14px;background:var(--ink);color:#fff;border:none;border-radius:10px;font-size:1.05rem;cursor:pointer}
+.btn:hover{background:#000}
+.err{color:#c0392b;font-size:.9rem;margin-top:12px;min-height:1.4em}
+.howto{margin-top:22px;font-size:.88rem;color:var(--muted);background:var(--paper);border:1px dashed var(--line);border-radius:10px;padding:14px 16px}
+#memberView{display:none;padding:10px 0 80px}
+.mebar{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:26px 0}
+.mebar .who b{color:var(--lime-d)}
+.linkbtn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.9rem;text-decoration:underline}
+.course{margin-top:34px}
+.course h2{font-size:1.4rem;margin-bottom:4px}.cmeta{display:block;font-size:.85rem;color:var(--muted);font-weight:400;margin-top:4px}
+.lesson{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-top:12px;overflow:hidden}
+.lesson summary{padding:16px 18px;cursor:pointer;font-weight:700;list-style:none;display:flex;align-items:center;gap:10px}
+.lesson summary::-webkit-details-marker{display:none}
+.lesson summary:hover{background:#f7f5ec}
+.lesson.locked{padding:16px 18px;color:#a09a8e;display:flex;align-items:center;gap:10px;cursor:not-allowed;background:#f5f3ec}
+.ln{flex:none;font-size:.8rem;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:2px 8px}
+.badge{flex:none;font-size:.75rem;border-radius:20px;padding:2px 10px;margin-left:auto}
+.badge.ok{background:var(--lime);color:#1c1a17}.badge.soon{background:#eee9db;color:#a09a8e}
+.lesson-body{padding:4px 22px 26px;border-top:1px dashed var(--line)}
+.lesson-body h3{margin:22px 0 8px;font-size:1.12rem}
+.lesson-body h4{margin:18px 0 6px}
+.lesson-body p{margin:10px 0}
+.lesson-body ul,.lesson-body ol{margin:10px 0 10px 22px}
+.lesson-body li{margin:6px 0}
+.lesson-body blockquote{background:#f4f1e6;border-left:4px solid var(--lime-d);padding:12px 16px;margin:14px 0;border-radius:0 8px 8px 0;color:#4a4438}
+.foot{text-align:center;color:var(--muted);font-size:.85rem;padding:40px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a href="index.html">← 返回首页</a>
+    <span class="brand"><em>W</em>会员专区</span>
+  </div>
+
+  <div id="loginView">
+    <div class="hero"><h1>会员专区</h1><p>凭会员码进入，开始你的课程</p></div>
+    <div class="card">
+      <h2>输入会员码</h2>
+      <p class="hint">不区分大小写。微信付费报名后找顺理成章领取。</p>
+      <div class="field"><input id="codeInput" placeholder="WISWIN-XXXX" autocomplete="off"></div>
+      <button class="btn" id="loginBtn">进入专区</button>
+      <p class="err" id="errMsg"></p>
+      <div class="howto">还没有会员码？<br>1. 在首页「定价」区选择课程，加微信报名<br>2. 付款后微信领取你的专属会员码<br>3. 回到这里输入会员码，开始学习</div>
+    </div>
+  </div>
+
+  <div id="memberView">
+    <div class="mebar">
+      <span class="who">欢迎回来，<b id="memberName">学员</b> · 会员码 <span id="memberCode" style="font-family:monospace"></span></span>
+      <button class="linkbtn" id="logoutBtn">退出登录</button>
+    </div>
+    <section class="course">
+<h2>AI 入门课<span class="cmeta">¥39.9 入门档 · 8 课</span></h2>
+<details class="lesson" id="l-ai-1">
+<summary><span class="ln">第1课</span>选对你的第一个 AI 工具<span class="badge ok">可学</span></summary>
+<div class="lesson-body"><h2>第1课：选对你的第一个 AI 工具</h2>
+<h3>这一课结束，你手里有什么</h3>
+<p>手机上装好 1 个主力 AI 应用，发出第一条有效提问，拿到能直接用的回答。从此告别&quot;听说过 AI 但没用过&quot;。</p>
+<h3>先搞清一件事：AI 工具分两类</h3>
+<ul><li>对话类（问问题、写东西、查资料）：豆包、DeepSeek、Kimi、通义千问、文小言</li><li>国外三个：ChatGPT、Claude、Gemini，能力强但要网络门槛，新手先不碰</li></ul>
+<p>新手第一个工具，记住结论：豆包或 DeepSeek 二选一。理由三条：免费、中文理解好、手机电脑都能用。</p>
+<h3>免费额度说明</h3>
+<p>上面五个国产工具，基础对话全部免费，不限条数放心用。付费会员（去广告、更快、更长文档）属于&quot;用上瘾了再考虑&quot;，本课不需要花一分钱。国外 ChatGPT 有免费版、Plus 约 20 美元/月，以官方页面为准，新手阶段不用管。</p>
+<h3>步骤一：装好（3 分钟）</h3>
+<ol><li>应用商店搜「豆包」（或「DeepSeek」），认准开发商：豆包是字节跳动，DeepSeek 是杭州深度求索，别下到山寨的</li><li>手机号登录</li><li>进主界面，点新对话，完事</li></ol>
+<h3>步骤二：发出第一条有效提问（5 分钟）</h3>
+<p>别问&quot;你好&quot;，问个真问题。复制下面这个模板，把括号换成你的情况：</p>
+<blockquote>我是（一句话介绍自己，比如：在县城开母婴店的宝妈）。我想（你的目标，比如：每天发一条朋友圈宣传店铺），但我（你的困难，比如：不知道写什么）。请帮我写 3 条朋友圈文案，每条 50 字以内，口语化，带一句行动号召。</blockquote>
+<p>点发送。看回答能不能直接用——大概率能。</p>
+<h3>步骤三：验证它靠不靠谱（2 分钟）</h3>
+<p>同一问题换个问法再问一次，对比两次回答。如果核心意思一致，说明这事 AI 拿手；如果两次说的不一样，说明这事 AI 不稳，重要决定别直接信。</p>
+<h3>避坑清单（新手必看）</h3>
+<ol><li>别一上来买会员：免费版足够用到第 6 课，钱花在刀刃上</li><li>别发隐私：身份证号、银行卡、密码、公司机密，一个字都别往对话框里打</li><li>AI 会一本正经地胡说八道：数字、政策、医疗法律类回答，自己再核实一遍</li><li>别下山寨 App：认准开发商，应用商店看下载量和评分</li><li>别贪多：先把一个用熟，再碰第二个，同时下五个等于都没用</li></ol>
+<h3>作业</h3>
+<p>用上面的模板，问 1 个你自己的真问题，把 AI 的回答截图存好。第 2 课教你怎么提问能让回答质量翻倍。</p>
+<h3>普通人怎么用</h3>
+<p>每天把 1 个真问题丢给 AI：写东西、做决定、查资料、学技能。一周下来，你会发现自己离不开它——这就是第 8 课搞钱的前提：你先成为会用 AI 的人。</p></div></details>
+<details class="lesson" id="l-ai-2">
+<summary><span class="ln">第2课</span>提问的正确姿势<span class="badge ok">可学</span></summary>
+<div class="lesson-body"><h2>第2课：提问的正确姿势（4 要素）</h2>
+<h3>这一课结束，你手里有什么</h3>
+<p>一套 4 要素提问法，同一问题用上之后，AI 的回答质量肉眼可见地变好。从&quot;能用&quot;到&quot;好用&quot;，差的就是这一课。</p>
+<h3>为什么你问不出好答案</h3>
+<p>不是 AI 笨，是问题太糙。&quot;帮我写个文案&quot;——写给谁看、多少字、什么语气，全没说，AI 只能瞎猜。好问题 = 把背景信息喂够。</p>
+<h3>4 要素：角色 / 背景 / 要求 / 示例</h3>
+<ul><li>角色：让 AI 当谁。&quot;你是一名有 10 年经验的母婴店店主&quot;</li><li>背景：前因后果。&quot;我在县城开母婴店，主要靠宝妈老客户转介绍，最近客流少了&quot;</li><li>要求：格式、字数、语气。&quot;写 3 条朋友圈文案，每条 50 字以内，口语化，结尾带一句行动号召&quot;</li><li>示例：给一个参考。&quot;参考这个风格：&#x27;今日到店有礼，宝妈们冲！&#x27;&quot;</li></ul>
+<h3>对比演示（同一任务）</h3>
+<p>差提问：「帮我写朋友圈文案」</p>
+<p>→ AI 回：泛泛而谈的 3 条，套谁家店都行，用不了。</p>
+<p>好提问：「你是一名有 10 年经验的母婴店店主。我在县城开母婴店，靠宝妈老客户转介绍，最近客流少了。请写 3 条朋友圈文案，每条 50 字以内，口语化，结尾带行动号召。参考风格：&quot;今日到店有礼，宝妈们冲！&quot;」</p>
+<p>→ AI 回：贴着你的店写的，改两个字就能发。</p>
+<h3>万能模板（背下来）</h3>
+<blockquote>你是一名[角色]。背景是[背景]。请帮我[任务]，要求[格式/字数/语气]。参考示例：[示例]</blockquote>
+<p>四个空填上，90% 的日常问题够用了。</p>
+<h3>进阶：追问</h3>
+<p>第一版不满意别重问，用追问改：</p>
+<ul><li>「再给我 3 个版本，语气更口语化」</li><li>「第 2 条展开成 200 字，加个真实感强的开头」</li><li>大任务拆两步：「先列大纲」→「把第 2 点展开写」</li></ul>
+<h3>避坑清单</h3>
+<ol><li>问题太泛：「怎么写文案」「怎么赚钱」这种，神仙也答不好，先缩小范围</li><li>一次问 5 件事：拆开问，回答质量差 3 倍</li><li>把 AI 当搜索引擎：今天的新闻、实时价格，它可能瞎编，重要信息自己核实</li><li>问完不追问：第一版只是草稿，追问 2 轮才是成品</li></ol>
+<h3>作业</h3>
+<p>用 4 要素重写第 1 课你问的那个问题，对比前后两次回答，把好的存下来。</p>
+<h3>普通人怎么用</h3>
+<p>记住万能模板，套到任何问题上：写请假条、做旅行计划、给孩子讲题、跟客户谈判。提问能力 = AI 时代的识字能力，这一课是后面 6 课的地基。</p></div></details>
+<details class="lesson" id="l-ai-3">
+<summary><span class="ln">第3课</span>AI 写作<span class="badge ok">可学</span></summary>
+<div class="lesson-body"><h2>第3课：AI 写作（朋友圈 / 公众号 / 短视频文案）</h2>
+<h3>这一课结束，你手里有什么</h3>
+<p>3 种可直接发的文案：朋友圈短文案、公众号开头、60 秒短视频口播稿。写作是 AI 最稳的应用，学会这课每天省 1 小时。</p>
+<h3>动笔前先定两件事</h3>
+<p>写之前先想清楚：写给谁看？想让对方干什么？这两句想不清，AI 写得再顺也是废稿。套第 2 课模板时，把这两句写进&quot;背景&quot;里。</p>
+<h3>朋友圈文案：短、口语、有钩子</h3>
+<p>模板：</p>
+<blockquote>你是一名[身份]。请写 3 条朋友圈文案，主题是[主题]，每条 50 字以内，口语化，像跟朋友聊天，结尾带一句行动号召（进店/私信/点赞）。</blockquote>
+<p>追问改稿：「第 1 条太硬了，改软一点」「加个具体数字」「换成宝妈的语气」</p>
+<h3>公众号开头：3 秒定生死</h3>
+<p>读者只给开头 3 秒，钩子三选一，让 AI 各写一个备选：</p>
+<ul><li>悬念式：「上周，一个宝妈靠一条朋友圈，多卖了 40 罐奶粉」</li><li>痛点式：「你是不是也这样：文案想半小时，发出去了没人理」</li><li>数字式：「3 句话，让你的朋友圈转化率翻倍」</li></ul>
+<p>模板：</p>
+<blockquote>请为这篇文章写 3 个开头，每种风格各 1 个：悬念式、痛点式、数字式。主题是[主题]，读者是[人群]，每段不超过 80 字。</blockquote>
+<h3>短视频口播稿：写成能直接念的</h3>
+<p>关键指令：「写成能直接对着镜头念的稿子，短句、口语、有停顿感，60 秒约 220 字」</p>
+<p>模板：</p>
+<blockquote>请写一条 60 秒短视频口播稿，主题是[主题]。要求：短句口语，像跟朋友说话；开头 3 秒有钩子；结尾一句行动号召（关注/评论）。220 字左右，标出停顿处。</blockquote>
+<h3>改稿指令库（背下来）</h3>
+<ul><li>「更口语化，去掉书面语」</li><li>「加个真实感强的具体例子」</li><li>「删掉所有套话，直接说事」</li><li>「压缩到 100 字以内」</li><li>「换成[人群]听得懂的话」</li></ul>
+<h3>避坑清单</h3>
+<ol><li>AI 味必删：「在这个快节奏的时代」「总而言之」「首先其次最后」——出现就删，这是被读者一眼识破的 AI 味</li><li>一稿就用：第一版永远是草稿，至少追问改 2 轮</li><li>长文直接发：超过 500 字的，分段检查事实和逻辑，AI 会在长文里悄悄编细节</li><li>数字和政策：AI 给的数字、优惠政策，自己核实一遍再发</li></ol>
+<h3>作业</h3>
+<p>写 1 条朋友圈文案 + 1 条 60 秒口播稿，按本课流程走完（模板 → 追问 2 轮 → 删 AI 味）。发出来之前自己念一遍，拗口就再改。</p>
+<h3>普通人怎么用</h3>
+<p>写作是 AI 投入产出比最高的应用：朋友圈、工作总结、请假条、孩子家长会发言稿，全都能套这套流程。先从每天 1 条朋友圈练起，手感一周就出来。</p></div></details>
+<div class="lesson locked"><span class="ln">第4课</span>AI 做图入门<span class="badge soon">制作中</span></div>
+<div class="lesson locked"><span class="ln">第5课</span>AI 做短视频<span class="badge soon">制作中</span></div>
+<div class="lesson locked"><span class="ln">第6课</span>AI 办公提效<span class="badge soon">制作中</span></div>
+<div class="lesson locked"><span class="ln">第7课</span>避坑指南<span class="badge soon">制作中</span></div>
+<div class="lesson locked"><span class="ln">第8课</span>用 AI 搞钱的 3 条路<span class="badge soon">制作中</span></div>
+</section><section class="course">
+<h2>剪映问候语视频课<span class="cmeta">¥19.9 入门档 · 8 课</span></h2>
+<details class="lesson" id="l-jy-1">
+<summary><span class="ln">第1课</span>10 秒早安视频，从零到发布<span class="badge ok">可学</span></summary>
+<div class="lesson-body"><h2>第1课：10 秒早安视频，从零到发布</h2>
+<h3>这一课结束，你手里有什么</h3>
+<p>一条 10 秒竖屏早安视频：梦幻粉彩花卉背景 + 花朵缓动 +「早安 / good morning」双语排版 + 背景音乐，无配音。直接能发视频号。</p>
+<p>成品 5 条标准（以后每条都按这个验）：</p>
+<ol><li>9:16 竖屏，1080×1920</li><li>时长 ≤ 10 秒</li><li>背景梦幻粉彩花卉</li><li>文字：早安（中文）+ good morning（细手写体英文），位置避开遮挡区</li><li>无真人配音，有 BGM</li></ol>
+<h3>准备工作（5 分钟）</h3>
+<ul><li>手机版剪映，免费版够用，本课不用任何会员功能</li><li>素材：一段 10 秒以上的粉彩花卉视频，或一张高清花卉图</li></ul>
+<p>- 免费渠道：Pexels、Pixabay，搜 pastel flowers / pink blossom，可商用，下载前看一眼授权页</p>
+<p>- 偷懒办法：剪映素材库直接搜「花海」「樱花」，平台内素材发视频号一般没问题</p>
+<h3>步骤一：建项目，定画布</h3>
+<ol><li>剪映 → 开始创作 → 选花卉素材 → 添加</li><li>比例 → 9:16（素材本身是竖屏就不用调；横屏素材用裁剪居中取竖构图，先构图再裁）</li><li>把素材右端拖到 10 秒整</li></ol>
+<h3>步骤二：背景动起来</h3>
+<ul><li>视频素材：直接可用。想更梦幻，加「特效 → 画面特效 → 梦幻 → 柔光/光斑」，强度 30 左右，别过</li><li>图片素材：「动画 → 组合动画 → 缓慢推进/缓缓放大」，时长拉满 10 秒</li><li>避坑：特效别堆，超过 2 个就显脏</li></ul>
+<h3>步骤三：加花朵点缀（可选，但推荐）</h3>
+<ul><li>「画中画 → 新增画中画」，加一张花瓣 PNG（Pexels 找 transparent PNG，或剪映贴纸搜「花瓣」）</li><li>「动画 → 组合动画 → 缓慢飘落」，不透明度 80%</li><li>避坑：花瓣别超过 3 片，多了抢字</li></ul>
+<h3>步骤四：上文字（本课核心）</h3>
+<p>排版直接抄这个，爆款早安视频基本都是这个结构：</p>
+<ul><li>中文「早安」：放画面上 1/3 处，字号 80–100，加粗圆体或书法体，白色 + 轻微阴影</li><li>英文「good morning」：放「早安」下方，细手写体（剪映字体 → 手写分类 → 找细线条的英文手写体），字号 40–50，白色，不加粗</li><li>颜色：白色通用；粉色背景可试深粉，但先保证对比度，字看不清一切白搭</li><li>入场动画：「动画 → 入场 → 渐显/上滑」，时长 1 秒</li><li>安全区：文字别进底部 1/4（视频号标题栏 + 操作栏占位）和右侧（点赞按钮区），居中偏上最稳</li><li>避坑：英文千万别用粗黑体，质感全毁；中英文别一样大，中文是主角</li></ul>
+<h3>步骤五：配音乐</h3>
+<ul><li>「音频 → 音乐」，搜「清晨」「治愈」「钢琴」，选 10 秒以上、情绪舒缓的</li><li>音量拉到 40–60%，音乐是氛围，不是主角</li><li>「音频 → 淡化」，淡入淡出各 1 秒</li><li>无配音是刻意设计：问候视频靠画面 + 文字，配音反而多余</li><li>版权提醒：剪映自带音乐在抖音 / 剪映生态内用最稳；发视频号优先选带「可商用」标签的，或用无版权音乐</li></ul>
+<h3>步骤六：导出</h3>
+<ul><li>分辨率 1080×1920，帧率 30，清晰度选「较高」（别选低，会糊）</li><li>导出后检查一遍：时长、文字位置、音乐音量</li></ul>
+<h3>步骤七：发视频号</h3>
+<ul><li>标题公式：早安 + 一句短文案 + #话题。例：「早安，新的一天温柔以待 #早安 #治愈系」</li><li>封面：选文字最清晰那一帧</li><li>发布时间：早上 6:00–8:00，早安流量高峰</li><li>每天 1 条，连续发 7 天再看数据</li></ul>
+<h3>避坑清单（新手必看）</h3>
+<ol><li>时长超 10 秒：完播率掉，直接影响推流</li><li>文字放底部：被标题栏和按钮挡，白做</li><li>特效堆满：花里胡哨 = 廉价，克制</li><li>横屏硬裁：花被切一半，先构图再裁</li><li>音乐声大：问候视频音乐只做氛围</li><li>三天打鱼：这类号靠日更，前 7 天别断</li></ol>
+<h3>作业</h3>
+<p>按上面步骤做 1 条 10 秒早安视频并导出成片。下一课讲素材库搭建，教你一次攒够 30 天的背景素材。</p>
+<h3>普通人怎么用</h3>
+<p>每天早上花 15 分钟做一条发视频号，0 成本起号。跑通一条爆款句式后，复制 10 个号就是矩阵——这也是第 8 课要讲的玩法。</p></div></details>
+<details class="lesson" id="l-jy-2">
+<summary><span class="ln">第2课</span>花卉背景素材库搭建<span class="badge ok">可学</span></summary>
+<div class="lesson-body"><h2>第2课：花卉背景素材库搭建（一次备齐 30 天）</h2>
+<h3>这一课结束，你手里有什么</h3>
+<p>一个分类归档的背景素材库：30 段以上 10 秒+的花卉视频/图片，按季节、节日、色系分好类，够你日更一个月不断粮。</p>
+<h3>备料公式</h3>
+<p>日更 1 条 × 30 天 = 至少 30 段背景，多备 20% 冗余（有些拍出来不能用）。目标：40 段。</p>
+<h3>渠道一：免费可商用网站（主力）</h3>
+<ul><li>Pexels、Pixabay：搜 pastel flowers / cherry blossom / tulip field / peony</li><li>筛选标准：时长 10 秒以上、竖屏优先、清晰度 1080p 起</li><li>下载前看一眼授权页，确认可商用（这两家大部分是 CC0，随便用）</li><li>避坑：别用带人脸的素材，别用影视剧截图</li></ul>
+<h3>渠道二：剪映自带素材库（最快）</h3>
+<ul><li>剪映 → 素材库 → 搜「花海」「樱花」「晨雾花」</li><li>优点：不用下载，直接套用；缺点：用的人多，容易撞款</li><li>跨平台发布（发视频号）优先选标注可商用的，或混着用降低重复率</li></ul>
+<h3>渠道三：自己拍（零版权风险，最推荐）</h3>
+<ul><li>手机就行，开 4K 录 10 秒：自家阳台的花、小区绿化、公园花坛</li><li>顺光拍，镜头贴近花，缓慢横移 3 秒就有电影感</li><li>零版权、零撞款，长期做号这是护城河</li></ul>
+<h3>步骤：搜 → 下 → 筛 → 存</h3>
+<ol><li>按「季节 / 节日 / 色系」三维建文件夹：比如 <code>春季-粉色系</code>、<code>节日-春节-红色系</code></li><li>命名规范：<code>日期-主题-色系</code>，例：<code>1002-樱花-粉</code></li><li>每段看一遍：虚焦的删、抖动的删、水印的删</li><li>在剪映里建一个「背景库」草稿，把顺眼的 10 段先导进去，用时直接复制</li></ol>
+<h3>避坑清单</h3>
+<ol><li>横屏硬当竖屏用：先裁再看，别等加了字才发现构图歪了</li><li>素材来路不明：微信群转发的、短视频里录屏的，版权都是雷</li><li>只备 7 天：断更一次，号就凉一半，一次备 30 天</li><li>不分类：几百段堆在一起，找一段 10 分钟，等于没备</li></ol>
+<h3>作业</h3>
+<p>攒 7 段背景，按命名规范存好，发一条成品检验（套用第 1 课的排版）。</p>
+<h3>普通人怎么用</h3>
+<p>抽一个周末下午 2 小时，一次备齐 30 天素材。之后每天只花 15 分钟：选背景 → 套文字模板 → 配音乐 → 发布。把&quot;找素材&quot;这个最耗时的环节一次性干掉，日更才坚持得下去。</p></div></details>
+<details class="lesson" id="l-jy-3">
+<summary><span class="ln">第3课</span>文字排版美学<span class="badge ok">可学</span></summary>
+<div class="lesson-body"><h2>第3课：文字排版美学（问候视频的核心竞争力）</h2>
+<h3>这一课结束，你手里有什么</h3>
+<p>一套排版标准：字体、字号、配色、安全区、中英搭配，做出来的字&quot;一看就贵&quot;。背景大家都差不多，字排得好你就赢了。</p>
+<h3>字体：先选对性格</h3>
+<ul><li>中文标题：圆体 / 书法体 = 亲和温暖（问候赛道首选）；粗黑体 = 利落有力（节日祝福可用）</li><li>英文：永远细手写体，剪映字体 → 手写分类 → 找线条细的</li><li>别用：默认宋体 + 加粗（又土又糊）、花里胡哨的艺术体（看不清）</li><li>剪映换字体：选中文字 → 字体 → 分类里挑；记得字号和描边要跟着调</li></ul>
+<h3>字号层级（三级就够）</h3>
+<ul><li>主标题（早安/晚安）：80–100</li><li>英文副标题（good morning）：40–50，永远比中文小一号</li><li>装饰小字（日期/祝福短句）：24–30，放角落</li><li>避坑：全屏一样大 = 没重点；小字小于 20 手机上看不清</li></ul>
+<h3>配色：三招万能</h3>
+<ol><li>白字 + 轻微阴影：90% 的背景通用，先无脑用这个</li><li>深色字 + 浅色描边：背景太亮（白色花海）时用</li><li>吸管取色：用剪映取色器从背景里吸一朵花的颜色做字色，画面瞬间和谐</li></ol>
+<ul><li>避坑：一屏超过 2 种颜色、花字渐变彩虹色，加一个删一个</li></ul>
+<h3>安全区（刻在脑子里）</h3>
+<ul><li>底部 1/4：禁区，视频号标题栏 + 操作栏占位，字放这等于没放</li><li>右侧：禁区，点赞评论按钮区</li><li>顶部：标题区，少放字</li><li>安全做法：所有文字居中偏上，左右留边</li></ul>
+<h3>中英搭配（爆款固定结构）</h3>
+<ul><li>中文是主角，英文是点缀，位置永远中文上、英文下</li><li>英文永远小一号、细一号，和中文一样大就抢戏</li><li>中英文之间留 20–30px 间距，挤在一起显乱</li></ul>
+<h3>对齐与行距</h3>
+<ul><li>单行标题：居中</li><li>两行以上：居中 + 行距 1.2–1.4，字别贴在一起</li><li>动画：入场用渐显 / 上滑，时长 1 秒；别用弹跳、旋转、打字机（廉价感重灾区）</li></ul>
+<h3>廉价感自查清单</h3>
+<ul><li>[ ] 英文用了粗黑体</li><li>[ ] 一屏 3 种以上颜色</li><li>[ ] 文字进了底部/右侧禁区</li><li>[ ] 特效字体 + 描边 + 阴影全开</li><li>[ ] 中英文一样大</li></ul>
+<p>中一条就改，中两条重做。</p>
+<h3>作业</h3>
+<p>把第 1 课的成品按本课标准重排一版：换字体、调层级、查安全区。前后对比截图存好，这是你排版进步的证据。</p>
+<h3>普通人怎么用</h3>
+<p>问候视频拼到最后拼的是排版——背景素材人人都能下，字排得好坏一眼分高下。这套标准套用到任何短视频封面、朋友圈海报都管用。</p></div></details>
+<div class="lesson locked"><span class="ln">第4课</span>让画面动起来<span class="badge soon">制作中</span></div>
+<div class="lesson locked"><span class="ln">第5课</span>音乐与节奏<span class="badge soon">制作中</span></div>
+<div class="lesson locked"><span class="ln">第6课</span>批量生产<span class="badge soon">制作中</span></div>
+<div class="lesson locked"><span class="ln">第7课</span>视频号发布与养号<span class="badge soon">制作中</span></div>
+<div class="lesson locked"><span class="ln">第8课</span>问候语矩阵玩法<span class="badge soon">制作中</span></div>
+</section>
+    <p class="foot">新课程边更边发 · 有问题微信直接问</p>
+  </div>
+</div>
+<script>
+const LS_KEY = 'wiswin_member';
+const $ = id => document.getElementById(id);
+
+async function fetchCodes() {
+  const r = await fetch('members.json', {cache: 'no-store'});
+  if (!r.ok) throw new Error('code list unavailable');
+  const j = await r.json();
+  return j.codes || [];
+}
+function matchCode(codes, input) {
+  input = input.trim().toUpperCase();
+  return codes.find(c => String(c.code || '').toUpperCase() === input);
+}
+function checkExpiry(rec) {
+  if (rec.expire) {
+    const end = new Date(rec.expire + 'T23:59:59');
+    if (end < new Date()) return false;
+  }
+  return true;
+}
+function showMember(rec) {
+  $('loginView').style.display = 'none';
+  $('memberView').style.display = 'block';
+  $('memberName').textContent = rec.name || '学员';
+  $('memberCode').textContent = rec.code;
+  window.scrollTo(0, 0);
+}
+function showLogin(msg) {
+  $('memberView').style.display = 'none';
+  $('loginView').style.display = 'block';
+  if (msg) $('errMsg').textContent = msg;
+}
+async function tryLogin(savedCode) {
+  const input = savedCode !== undefined ? savedCode : $('codeInput').value;
+  $('errMsg').textContent = '';
+  if (!input || !input.trim()) { showLogin('请先输入会员码'); return; }
+  let codes;
+  try { codes = await fetchCodes(); }
+  catch (e) { showLogin('网络开小差了，刷新再试一次'); return; }
+  const rec = matchCode(codes, input);
+  if (!rec) { try { localStorage.removeItem(LS_KEY); } catch(e) {} showLogin('会员码不正确，请检查后重试'); return; }
+  if (!checkExpiry(rec)) { try { localStorage.removeItem(LS_KEY); } catch(e) {} showLogin('该会员码已过期，微信联系顺理成章续费'); return; }
+  try { localStorage.setItem(LS_KEY, rec.code); } catch(e) {}
+  showMember(rec);
+}
+$('loginBtn').addEventListener('click', () => tryLogin());
+$('codeInput').addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
+$('logoutBtn').addEventListener('click', () => { try { localStorage.removeItem(LS_KEY); } catch(e) {} showLogin(); });
+(function init() {
+  let saved = null;
+  try { saved = localStorage.getItem(LS_KEY); } catch(e) {}
+  if (saved) tryLogin(saved);
+})();
+</script>
+</body>
+</html>
