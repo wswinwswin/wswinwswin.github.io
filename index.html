@@ -7,6 +7,7 @@
 <meta name="description" content="wiswin 的个人网站：AI 教学、短视频教程、AI 资讯与直播。资讯与教程全免费，付费课程正式开售。" />
 <link rel="icon" href="logo.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<!-- 访问统计代码位：把 Cloudflare Web Analytics / 百度统计的 JS 代码粘贴到这一行下面 -->
 <title>wiswin ｜ AI 教学 × 短视频 × AI 资讯</title>
 <style>
 /* ============================================================
@@ -518,6 +519,35 @@ body.locked{overflow:hidden}
 .poster .icode{font-family:var(--font-mono);font-size:1rem;letter-spacing:.18em;color:var(--accent);border:1px dashed var(--line);border-radius:8px;padding:4px 12px;margin:0 4px;white-space:nowrap}
 .poster .igo{display:inline-block;margin-top:10px;color:var(--ink);border-bottom:1px solid var(--accent)}
 @media(max-width:760px){.poster-grid{grid-template-columns:1fr}}
+/* syllabus */
+.syllabus{margin-top:34px;border:1px solid var(--line);border-radius:14px;padding:22px;background:var(--surface)}
+.syl-note{color:var(--muted);font-size:.88rem;margin:10px 0 18px;line-height:1.8}
+.syl-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.syl-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.syl-top h5{font-size:1.02rem}
+.syl-plan{font-size:.75rem;color:var(--accent);font-family:var(--font-mono)}
+.syl-lessons{list-style:none;display:grid;gap:8px;margin:0;padding:0}
+.syl-lessons li{display:flex;align-items:center;gap:10px;font-size:.88rem;border:1px solid var(--line);border-radius:10px;padding:9px 12px}
+.syl-lessons li b{font-family:var(--font-mono);font-size:.72rem;color:var(--muted);white-space:nowrap}
+.syl-lessons li span{flex:1;line-height:1.5}
+.syl-lessons li i{font-style:normal;font-size:.7rem;border-radius:999px;padding:2px 10px;white-space:nowrap}
+.syl-lessons li.done i{color:var(--accent);border:1px solid var(--accent)}
+.syl-lessons li.todo{opacity:.6}
+.syl-lessons li.todo i{color:var(--faint);border:1px dashed var(--line)}
+/* wall */
+.wall-empty{border:1px dashed var(--line);border-radius:14px;padding:46px 24px;text-align:center;background:var(--surface)}
+.wall-big{font-family:var(--font-serif);font-size:1.35rem;font-weight:800;margin:0 0 10px;color:var(--ink)}
+.wall-empty p{color:var(--muted);margin:0}
+.wall-empty .go-link{margin-top:16px}
+/* faq */
+.faq-list{display:grid;gap:10px;max-width:880px}
+.faq{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:0 18px}
+.faq summary{cursor:pointer;padding:15px 0;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--ink)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--font-mono);color:var(--accent);font-size:1.15rem;flex:none}
+.faq[open] summary::after{content:"–"}
+.faq p{color:var(--muted);font-size:.9rem;line-height:1.85;padding:0 0 16px;margin:0}
+@media(max-width:760px){.syl-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -538,6 +568,8 @@ body.locked{overflow:hidden}
       <a href="#pricing"><span class="idx">05</span>定价</a>
       <a href="#about"><span class="idx">06</span>关于我</a>
       <a href="#posters"><span class="idx">07</span>海报栏</a>
+      <a href="#wall"><span class="idx">08</span>学员评价</a>
+      <a href="#faq"><span class="idx">09</span>常见问题</a>
     </nav>
     <div class="mast-ctl">
       <span class="clock" id="clock" aria-hidden="true">--:--:--</span>
@@ -931,6 +963,39 @@ body.locked{overflow:hidden}
           <a class="go-link" href="#about">↓ 加微信咨询报名</a>
         </div>
         <p class="price-basis"><span class="bk">定价依据</span>影视飓风 AI 实战课 ¥49（B站 / 抖音 · 10 万+份）、影视飓风剪辑课 ¥49（10 万+份）、小报童提示词专栏 ¥39、AI 训练营 ¥1580～¥3980、线下短视频训练营 ¥1980。</p>
+
+        <div class="syllabus">
+          <div class="track-head"><span class="track-idx">SYLLABUS</span><h4>课程大纲 · 两门入门课持续更新中</h4><span class="track-rule"></span></div>
+          <p class="syl-note">报名后加微信领取：已更新章节先学，新章节边更边发，一次报名、跟到完结。</p>
+          <div class="syl-grid">
+            <div class="syl">
+              <div class="syl-top"><h5>《AI 入门课》8 课</h5><span class="syl-plan">含在 AI 教学入门档 ¥39.9</span></div>
+              <ol class="syl-lessons">
+                <li class="done"><b>第 1 课</b><span>选对你的第一个 AI 工具</span><i>已更新</i></li>
+                <li class="done"><b>第 2 课</b><span>提问的正确姿势</span><i>已更新</i></li>
+                <li class="done"><b>第 3 课</b><span>AI 写作：朋友圈 / 公众号 / 口播稿</span><i>已更新</i></li>
+                <li class="todo"><b>第 4 课</b><span>AI 做图入门</span><i>制作中</i></li>
+                <li class="todo"><b>第 5 课</b><span>AI 做短视频</span><i>制作中</i></li>
+                <li class="todo"><b>第 6 课</b><span>AI 办公提效</span><i>制作中</i></li>
+                <li class="todo"><b>第 7 课</b><span>避坑指南：幻觉 / 隐私 / 付费陷阱</span><i>制作中</i></li>
+                <li class="todo"><b>第 8 课</b><span>用 AI 搞钱的 3 条路</span><i>制作中</i></li>
+              </ol>
+            </div>
+            <div class="syl">
+              <div class="syl-top"><h5>《剪映问候语视频课》8 课</h5><span class="syl-plan">含在剪映入门档 ¥19.9</span></div>
+              <ol class="syl-lessons">
+                <li class="done"><b>第 1 课</b><span>10 秒早安视频，从零到发布</span><i>已更新</i></li>
+                <li class="done"><b>第 2 课</b><span>花卉背景素材库搭建</span><i>已更新</i></li>
+                <li class="done"><b>第 3 课</b><span>文字排版美学</span><i>已更新</i></li>
+                <li class="todo"><b>第 4 课</b><span>让画面动起来：关键帧入门</span><i>制作中</i></li>
+                <li class="todo"><b>第 5 课</b><span>音乐与节奏：BGM 挑选与卡点</span><i>制作中</i></li>
+                <li class="todo"><b>第 6 课</b><span>批量生产：一小时做 7 条</span><i>制作中</i></li>
+                <li class="todo"><b>第 7 课</b><span>视频号发布与养号</span><i>制作中</i></li>
+                <li class="todo"><b>第 8 课</b><span>问候语矩阵玩法与变现</span><i>制作中</i></li>
+              </ol>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1025,6 +1090,61 @@ body.locked{overflow:hidden}
         <div class="poster-frame tall"><img src="poster-muse-ig.png" alt="Muse 邀请海报（竖版）：扫码加入 Muse，填写邀请码 KFKHN7" width="1080" height="1350" loading="lazy" decoding="async" /></div>
         <figcaption><span class="slot">竖版位 · 9:16</span><br /><b>加入 Muse，填我的邀请码。</b>扫码打开 <a class="igo" href="https://muse.ai/join" target="_blank" rel="noopener">muse.ai/join ↗</a>，加入后 48 小时内在设置里填写邀请码 <span class="icode">KFKHN7</span>，双方各得 tokens。适合发朋友圈 / 小红书。</figcaption>
       </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 WALL ============ -->
+<section class="section" id="wall">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-idx">08</span>
+      <h2 class="sec-title">学员评价</h2>
+      <span class="sec-rule"></span>
+      <span class="sec-meta">WALL</span>
+    </div>
+    <div class="wall-empty">
+      <p class="wall-big">这面墙，虚位以待。</p>
+      <p>第一批学员的故事收集中 —— 学完来晒作业，你的评价会挂在这里。</p>
+      <a class="go-link" href="#pricing">↓ 先看课程</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 FAQ ============ -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-idx">09</span>
+      <h2 class="sec-title">常见问题</h2>
+      <span class="sec-rule"></span>
+      <span class="sec-meta">FAQ</span>
+    </div>
+    <div class="faq-list">
+      <details class="faq" open>
+        <summary>课程是怎么交付的？</summary>
+        <p>图文教程，按课持续更新。报名后加微信领取：已更新的章节先学，新章节边更边发，一次报名、跟到完结。</p>
+      </details>
+      <details class="faq">
+        <summary>零基础能学吗？</summary>
+        <p>能。两门入门课都是从零开始：AI 课从"装好第一个 AI 工具"起步，剪映课从"做出第一条 10 秒视频"起步，不讲黑话、不背概念。</p>
+      </details>
+      <details class="faq">
+        <summary>每天要花多少时间？</summary>
+        <p>每天 10–30 分钟。跟着教程做一遍就行，不堆理论，学完就能用。</p>
+      </details>
+      <details class="faq">
+        <summary>需要电脑吗？</summary>
+        <p>不需要。一部手机全搞定，剪映和 AI 工具都有手机版。</p>
+      </details>
+      <details class="faq">
+        <summary>网站上的资讯和教程真的免费吗？</summary>
+        <p>真的。AI 资讯解读和实战教程永久免费、持续更新。付费的只有两门体系课。</p>
+      </details>
+      <details class="faq">
+        <summary>买之前能先试试吗？</summary>
+        <p>能。加微信免费试听，听完觉得值再决定。报名、咨询统一走微信。</p>
+      </details>
     </div>
   </div>
 </section>
