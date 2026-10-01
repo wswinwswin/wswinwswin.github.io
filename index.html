@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="color-scheme" content="light dark" />
 <meta name="description" content="wiswin 的个人网站：AI 教学、短视频教程、AI 资讯与直播。资讯与教程全免费，付费课程正式开售。" />
-<link rel="icon" href="data:," />
+<link rel="icon" href="logo.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
 <title>wiswin ｜ AI 教学 × 短视频 × AI 资讯</title>
 <style>
 /* ============================================================
@@ -71,7 +72,8 @@ a{color:inherit;text-decoration:none}
   max-width:var(--wrap);margin:0 auto;padding:0 clamp(20px,4vw,48px);
   display:flex;align-items:center;gap:28px;min-height:64px;
 }
-.brand{display:flex;align-items:baseline;gap:10px;white-space:nowrap}
+.brand{display:flex;align-items:center;gap:10px;white-space:nowrap}
+.brand-mark{width:34px;height:34px;flex:none}
 .brand b{font-family:var(--font-serif);font-weight:900;font-size:21px;letter-spacing:.02em}
 .brand .sep{color:var(--faint);font-family:var(--font-mono);font-size:12px}
 .brand small{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--muted)}
@@ -524,6 +526,7 @@ body.locked{overflow:hidden}
 <header class="masthead">
   <div class="mast-inner">
     <a class="brand" href="#top" aria-label="回到首页">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true"><rect x="4" y="4" width="56" height="56" rx="14" fill="#c9f24e"/><path d="M15 21 L24.5 43 L32 27 L39.5 43 L49 21" fill="none" stroke="#10130a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <b>wiswin</b><span class="sep">/</span>
       <small>AI 教学 · 短视频 · AI 资讯</small>
     </a>
