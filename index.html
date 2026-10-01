@@ -988,12 +988,7 @@ body.locked{overflow:hidden}
           <span class="plat-tx"><b>Facebook</b><span class="plat-sub">wiswin 的主页</span></span>
           <span class="plat-arr">↗</span>
         </a>
-        <div class="plat soon">
-          <span class="plat-ic"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M6.7 5.8h10.6a2.7 2.7 0 0 1 2.7 2.7v8.2a2.7 2.7 0 0 1-2.7 2.7H6.7A2.7 2.7 0 0 1 4 16.7V8.5a2.7 2.7 0 0 1 2.7-2.7zM8.9 11a1.05 2.1 0 1 0 2.1 0 1.05 2.1 0 1 0-2.1 0zM13 11a1.05 2.1 0 1 0 2.1 0 1.05 2.1 0 1 0-2.1 0z"/><path d="M7.4 6.4L4.9 3.2M16.6 6.4l2.5-3.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
-          <span class="plat-tx"><b>B站</b><span class="soon-tag">待补充 · 直播/视频</span></span>
-        </div>
       </div>
-      <p class="follow-note">B站账号正在整理中，上线后第一时间在这里补充。</p>
     </div>
   </div>
 </section>
@@ -1009,7 +1004,7 @@ body.locked{overflow:hidden}
       <a href="#about">微信 · 扫码添加</a>
       <a href="#about">视频号 · 扫码关注</a>
       <a href="https://www.facebook.com/profile.php?id=61570598503268" target="_blank" rel="noopener">Facebook ↗</a>
-      <span class="pending">B站 · 待补充</span>
+      
     </div>
     <div class="foot-inner">
       <p>© 2026 WISWIN — 资讯与教程全免费 · 付费课程已开售</p>
@@ -1205,7 +1200,6 @@ body.locked{overflow:hidden}
     clock.textContent = p(d.getMonth()+1) + "-" + p(d.getDate()) + " " + p(d.getHours()) + ":" + p(d.getMinutes()) + ":" + p(d.getSeconds());
   }
   tick(); setInterval(tick, 1000);
-
 
   /* ---------- tutorial filter ---------- */
   var chips = Array.prototype.slice.call(document.querySelectorAll(".chip")),
