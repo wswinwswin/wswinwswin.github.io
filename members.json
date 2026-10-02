@@ -1,11 +1,11 @@
 {
   "codes": [
     {
-      "code": "WISWIN-DEMO",
+      "code": "WSWIN-DEMO",
       "name": "体验码",
       "contact": "",
       "expire": "2026-12-31"
     }
   ],
-  "note": "wiswin 在 GitHub 网页上编辑此文件管理会员：code 是会员码（建议格式 WISWIN-4位字母数字，如 WISWIN-7K2Q），name 是学员备注名，contact 可填微信号/邮箱，expire 是到期日（格式 YYYY-MM-DD）。删除整行即注销该会员。改完点 Commit，1分钟内生效。"
+  "note": "wswin 在 GitHub 网页上编辑此文件管理会员：code 是会员码（建议格式 WSWIN-4位字母数字，如 WSWIN-7K2Q），name 是学员备注名，contact 可填微信号/邮箱，expire 是到期日（格式 YYYY-MM-DD）。删除整行即注销该会员。改完点 Commit，1分钟内生效。"
 }

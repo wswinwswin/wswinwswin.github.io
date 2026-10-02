@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>会员专区 ｜ wiswin</title>
+<title>会员专区 ｜ wswin</title>
 <link rel="icon" href="logo.svg" type="image/svg+xml">
 <style>
 :root{--ink:#1c1a17;--muted:#7a7268;--paper:#fbfbf7;--card:#ffffff;--line:#e8e2d6;--lime:#c9f24e;--lime-d:#a8d63a}
@@ -61,7 +61,7 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
     <div class="card">
       <h2>输入会员码</h2>
       <p class="hint">不区分大小写。微信付费报名后找顺理成章领取。</p>
-      <div class="field"><input id="codeInput" placeholder="WISWIN-XXXX" autocomplete="off"></div>
+      <div class="field"><input id="codeInput" placeholder="WSWIN-XXXX" autocomplete="off"></div>
       <button class="btn" id="loginBtn">进入专区</button>
       <p class="err" id="errMsg"></p>
       <div class="howto">还没有会员码？<br>1. 在首页「定价」区选择课程，加微信报名<br>2. 付款后微信领取你的专属会员码<br>3. 回到这里输入会员码，开始学习</div>
@@ -248,7 +248,7 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
   </div>
 </div>
 <script>
-const LS_KEY = 'wiswin_member';
+const LS_KEY = 'wswin_member';
 const $ = id => document.getElementById(id);
 
 async function fetchCodes() {
