@@ -1598,9 +1598,17 @@ function initPromoFloat(){
   var box = document.getElementById("promoFloat");
   if (!box || sessionStorage.getItem("promoClosed")) return;
   var shown = false;
+  var vid = document.getElementById("promoVideo");
+  function tryPlay(){
+    if (!vid) return;
+    try {
+      var p = vid.play();
+      if (p && p.catch) p.catch(function(){ /* 自动播放被拦截时保持海报图 */ });
+    } catch(e){}
+  }
   function show(){
     if (shown) return;
-    shown = true; box.classList.add("show");
+    shown = true; box.classList.add("show"); tryPlay();
   }
   window.addEventListener("scroll", function(){ if (window.scrollY > 500) show(); }, {passive:true});
   setTimeout(show, 6000);
@@ -1610,6 +1618,11 @@ function initPromoFloat(){
   });
   box.querySelector(".promo-cta").addEventListener("click", function(){
     box.classList.remove("show");
+  });
+  /* 微信内置浏览器需等 JSBridge 就绪才允许播放；点视频也可手动播放 */
+  document.addEventListener("WeixinJSBridgeReady", tryPlay, false);
+  if (vid) vid.addEventListener("click", function(){
+    if (vid.paused) tryPlay(); else vid.pause();
   });
 }
 if (document.readyState === "loading") {
@@ -1621,7 +1634,7 @@ if (document.readyState === "loading") {
 <!-- floating course promo -->
 <aside class="promo-float" id="promoFloat" aria-label="课程推荐">
   <button class="promo-close" id="promoClose" aria-label="关闭">✕</button>
-  <video src="promo-45plus.mp4" muted loop playsinline autoplay preload="metadata" aria-label="45岁以上AI视频课程宣传片"></video>
+  <video id="promoVideo" src="promo-45plus.mp4" poster="promo-45plus-poster.jpg" muted loop playsinline webkit-playsinline="true" x5-playsinline="true" x5-video-player-type="h5" autoplay preload="auto" aria-label="45岁以上AI视频课程宣传片"></video>
   <div class="promo-body">
     <p class="promo-kicker">45+ · AI 零基础可学</p>
     <p class="promo-title">同龄人都在学 AI，你还在等什么？</p>
