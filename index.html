@@ -176,6 +176,22 @@ a{color:inherit;text-decoration:none}
 }
 
 /* ============================================================
+   INVITE BAND
+   ============================================================ */
+.invite{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface)}
+.invite-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:22px;padding-bottom:22px}
+.invite-kicker{font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;color:var(--muted);display:flex;align-items:center;gap:10px;margin:0 0 10px}
+.invite-kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none}
+.invite-msg{font-size:.98rem;color:var(--ink-2);line-height:1.8;max-width:46em;margin:0}
+.invite-msg strong{color:var(--ink);font-weight:700}
+.invite-act{display:flex;align-items:center;gap:14px;flex:none}
+.invite-code{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:15px;letter-spacing:.18em;color:var(--ink);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:10px 16px;cursor:pointer}
+.invite-code:hover{border-style:solid}
+.invite-copyhint{font-size:11px;letter-spacing:.12em;color:var(--muted);border-left:1px solid var(--line);padding-left:10px}
+.invite-go{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--accent-ink);font-size:13px;font-weight:700;letter-spacing:.08em;border-radius:8px;padding:11px 20px;text-decoration:none}
+@media(max-width:760px){.invite-inner{flex-direction:column;align-items:flex-start}}
+
+/* ============================================================
    SECTION FRAME
    ============================================================ */
 .section{padding:clamp(60px,8vw,104px) 0;border-top:1px solid var(--line)}
@@ -633,6 +649,20 @@ body.locked{overflow:hidden}
     </div>
   </div>
 </section>
+
+<!-- ============ INVITE ============ -->
+<aside class="invite" aria-label="Muse 好友邀请">
+  <div class="wrap invite-inner">
+    <div class="invite-copy">
+      <p class="invite-kicker"><span class="dot"></span>INVITE · 好友邀请</p>
+      <p class="invite-msg">快来看看你的个人 AI 智能体 <strong>Muse</strong>——加入后 <strong>48 小时内</strong>在「设置」里兑现邀请码，我们<strong>各得 10 亿</strong> Muse 词元。</p>
+    </div>
+    <div class="invite-act">
+      <button class="invite-code" id="inviteCodeBtn" data-code="KFKHN7" aria-label="复制邀请码 KFKHN7"><span>KFKHN7</span><span class="invite-copyhint" id="inviteCopyHint">复制</span></button>
+      <a class="invite-go" href="https://muse.ai/join" target="_blank" rel="noopener">去领取 →</a>
+    </div>
+  </div>
+</aside>
 
 <!-- ============ 01 NEWS ============ -->
 <section class="section" id="news">
@@ -1395,6 +1425,25 @@ body.locked{overflow:hidden}
     root.setAttribute("data-theme", root.getAttribute("data-theme") === "dark" ? "light" : "dark");
     syncLabel();
   });
+
+  /* ---------- invite code copy ---------- */
+  var inviteBtn = document.getElementById("inviteCodeBtn"),
+      inviteHint = document.getElementById("inviteCopyHint");
+  if (inviteBtn) {
+    inviteBtn.addEventListener("click", function(){
+      var code = inviteBtn.getAttribute("data-code");
+      function done(){ inviteHint.textContent = "已复制"; setTimeout(function(){ inviteHint.textContent = "复制"; }, 1600); }
+      function fallback(){
+        var ta = document.createElement("textarea");
+        ta.value = code; document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); done(); } catch(e){}
+        document.body.removeChild(ta);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).then(done, fallback);
+      } else { fallback(); }
+    });
+  }
 
   /* ---------- clock (device time) ---------- */
   var clock = document.getElementById("clock");
