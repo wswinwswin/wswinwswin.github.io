@@ -1594,7 +1594,7 @@ body.locked{overflow:hidden}
   if (t && pn) t.addEventListener("click", function(e){ e.preventDefault(); pn.hidden = !pn.hidden; });
 })();
 /* ---------- floating course promo ---------- */
-(function(){
+function initPromoFloat(){
   var box = document.getElementById("promoFloat");
   if (!box || sessionStorage.getItem("promoClosed")) return;
   var shown = false;
@@ -1611,7 +1611,12 @@ body.locked{overflow:hidden}
   box.querySelector(".promo-cta").addEventListener("click", function(){
     box.classList.remove("show");
   });
-})();
+}
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initPromoFloat);
+} else {
+  initPromoFloat();
+}
 </script>
 <!-- floating course promo -->
 <aside class="promo-float" id="promoFloat" aria-label="课程推荐">
