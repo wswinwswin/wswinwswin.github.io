@@ -596,6 +596,21 @@ body.locked{overflow:hidden}
 .faq[open] summary::after{content:"–"}
 .faq p{color:var(--muted);font-size:.9rem;line-height:1.85;padding:0 0 16px;margin:0}
 @media(max-width:760px){.syl-grid{grid-template-columns:1fr}}
+/* ===== floating course promo video ===== */
+.promo-float{position:fixed;right:18px;bottom:18px;width:330px;max-width:calc(100vw - 36px);z-index:90;
+  background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);
+  overflow:hidden;transform:translateY(24px);opacity:0;pointer-events:none;transition:transform .5s var(--ease),opacity .5s var(--ease)}
+.promo-float.show{transform:none;opacity:1;pointer-events:auto}
+.promo-float video{display:block;width:100%;aspect-ratio:16/9;background:#000}
+.promo-body{padding:14px 16px 16px}
+.promo-kicker{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;color:var(--accent);margin:0 0 8px}
+.promo-title{font-size:1.02rem;font-weight:800;line-height:1.5;margin:0 0 6px;color:var(--ink)}
+.promo-sub{font-size:.82rem;color:var(--muted);line-height:1.7;margin:0 0 12px}
+.promo-cta{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--accent-ink);
+  font-size:13px;font-weight:700;letter-spacing:.06em;border-radius:8px;padding:10px 18px}
+.promo-close{position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;border:0;cursor:pointer;
+  background:rgba(0,0,0,.55);color:#fff;font-size:15px;line-height:1;display:flex;align-items:center;justify-content:center}
+@media(max-width:760px){.promo-float{right:12px;bottom:12px;left:12px;width:auto}}
 </style>
 </head>
 <body>
@@ -1578,6 +1593,36 @@ body.locked{overflow:hidden}
   var t = document.getElementById("priceAdminToggle"), pn = document.getElementById("priceAdminPanel");
   if (t && pn) t.addEventListener("click", function(e){ e.preventDefault(); pn.hidden = !pn.hidden; });
 })();
+/* ---------- floating course promo ---------- */
+(function(){
+  var box = document.getElementById("promoFloat");
+  if (!box || sessionStorage.getItem("promoClosed")) return;
+  var shown = false;
+  function maybeShow(){
+    if (shown) return;
+    if (window.scrollY > 500) { shown = true; box.classList.add("show"); }
+  }
+  window.addEventListener("scroll", maybeShow, {passive:true});
+  setTimeout(maybeShow, 6000);
+  document.getElementById("promoClose").addEventListener("click", function(){
+    box.classList.remove("show");
+    sessionStorage.setItem("promoClosed", "1");
+  });
+  box.querySelector(".promo-cta").addEventListener("click", function(){
+    box.classList.remove("show");
+  });
+})();
 </script>
+<!-- floating course promo -->
+<aside class="promo-float" id="promoFloat" aria-label="课程推荐">
+  <button class="promo-close" id="promoClose" aria-label="关闭">✕</button>
+  <video src="promo-45plus.mp4" muted loop playsinline autoplay preload="metadata" aria-label="45岁以上AI视频课程宣传片"></video>
+  <div class="promo-body">
+    <p class="promo-kicker">45+ · AI 零基础可学</p>
+    <p class="promo-title">同龄人都在学 AI，你还在等什么？</p>
+    <p class="promo-sub">专为 45 岁以上打造，AI 辅导编辑视频，每天 10 分钟，带你玩转退休生活。</p>
+    <a class="promo-cta" href="#pricing">了解课程 →</a>
+  </div>
+</aside>
 </body>
 </html>
