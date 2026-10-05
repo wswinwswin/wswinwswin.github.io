@@ -478,6 +478,12 @@ a.plat:hover .plat-arr{color:var(--accent);transform:translate(2px,-2px)}
 .foot-soc a{color:var(--ink-2);transition:color .25s}
 .foot-soc a:hover{color:var(--accent)}
 .foot-soc .pending{color:var(--faint)}
+.foot-stats{
+  display:flex;align-items:center;gap:8px 18px;flex-wrap:wrap;
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;
+  margin-bottom:24px;padding-bottom:22px;border-bottom:1px solid var(--line);color:var(--ink-2)}
+.foot-stats-k{color:var(--faint);letter-spacing:.2em}
+.foot-stats b{color:var(--accent);font-weight:700}
 .foot-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
 .foot-inner p{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--faint)}
 
@@ -1251,6 +1257,10 @@ body.locked{overflow:hidden}
       <a href="https://www.facebook.com/profile.php?id=61570598503268" target="_blank" rel="noopener">Facebook ↗</a>
       
     </div>
+    <div class="foot-stats" id="footStats" hidden>
+      <span class="foot-stats-k">STATS</span>
+      <span id="footStatsText">加载中…</span>
+    </div>
     <div class="foot-inner">
       <p>© 2026 WSWIN — 资讯与教程全免费 · 付费课程已开售</p>
       <p>内容更新于 2026-10-01</p>
@@ -1643,6 +1653,30 @@ if (document.readyState === "loading") {
 } else {
   initPromoFloat();
 }
+/* 页脚访问统计：每天自动更新的 stats/visitors.json */
+(function(){
+  function render(){
+    var box = document.getElementById("footStats");
+    var el = document.getElementById("footStatsText");
+    if (!box || !el) return;
+    fetch("stats/visitors.json", {cache: "no-store"}).then(function(r){
+      if (!r.ok) throw 0; return r.json();
+    }).then(function(d){
+      var L = d.latest || {};
+      var top = function(o){
+        var best = null, bn = -1;
+        for (var k in (o || {})) { if (o[k] > bn) { bn = o[k]; best = k; } }
+        return best ? " · 主要来自" + best : "";
+      };
+      el.innerHTML = "过去24小时访问 <b>" + (L.sessions || 0) + "</b> 次 · 访客 <b>" +
+        (L.users || 0) + "</b> 人" + top(L.byChannel);
+      box.hidden = false;
+    }).catch(function(){ /* 静默：无数据时不显示 */ });
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", render);
+  } else { render(); }
+})();
 </script>
 <!-- floating course promo -->
 <aside class="promo-float" id="promoFloat" aria-label="课程推荐">
