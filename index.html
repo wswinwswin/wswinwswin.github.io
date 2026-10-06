@@ -621,11 +621,20 @@ body.locked{overflow:hidden}
 @media(max-width:760px){.promo-float{right:12px;bottom:12px;left:12px;width:auto}}
 </style>
 <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "ysqwtveaif");
+    // 自访排除：带 ?self=1 打开一次，本浏览器以后不再计入统计；?self=0 恢复统计
+    (function(){
+        try{
+            var q = new URLSearchParams(location.search);
+            if(q.get('self') === '1'){ localStorage.setItem('wswin_no_track','1'); }
+            if(q.get('self') === '0'){ localStorage.removeItem('wswin_no_track'); }
+            if(localStorage.getItem('wswin_no_track') === '1'){ return; }
+        }catch(e){}
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "ysqwtveaif");
+    })();
 </script>
 </head>
 <body>
