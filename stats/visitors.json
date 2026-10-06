@@ -1,14 +1,18 @@
 {
- "updated": "2026-10-05T10:17:22+08:00",
+ "updated": "2026-10-07T06:59:04+08:00",
  "latest": {
-  "date": "2026-10-04",
+  "date": "2026-10-06",
   "period": "过去24小时",
-  "sessions": 0,
-  "users": 0,
-  "activeMinutes": 0,
+  "sessions": 4,
+  "users": 2,
+  "activeMinutes": 38,
   "byChannel": {},
   "byDevice": {},
-  "byCountry": {},
+  "byCountry": {
+   "United States": 2,
+   "Netherlands": 1,
+   "Singapore": 1
+  },
   "bySource": {}
  },
  "history": [
@@ -16,6 +20,11 @@
    "date": "2026-10-04",
    "sessions": 0,
    "users": 0
+  },
+  {
+   "date": "2026-10-06",
+   "sessions": 4,
+   "users": 2
   }
  ]
 }
