@@ -1,19 +1,66 @@
 {
- "updated": "2026-10-07T06:59:04+08:00",
+ "updated": "2026-10-07T07:21:00+08:00",
  "latest": {
   "date": "2026-10-06",
   "period": "过去24小时",
-  "sessions": 4,
+  "sessions": 5,
   "users": 2,
-  "activeMinutes": 38,
+  "activeMinutes": 35,
   "byChannel": {},
-  "byDevice": {},
-  "byCountry": {
-   "United States": 2,
-   "Netherlands": 1,
-   "Singapore": 1
+  "byDevice": {
+   "PC": 5
   },
-  "bySource": {}
+  "byCountry": {
+   "Singapore": 2,
+   "United States": 2,
+   "Netherlands": 1
+  },
+  "bySource": {},
+  "byBrowser": {
+   "Chrome": 5
+  },
+  "byOS": {
+   "Windows": 5
+  },
+  "topPages": [
+   {
+    "url": "https://wswin.dpdns.org/",
+    "visits": 4
+   },
+   {
+    "url": "http://wswin.dpdns.org/",
+    "visits": 1
+   }
+  ],
+  "referrers": [],
+  "issues": {
+   "deadClicks": {
+    "count": 0,
+    "sessionsPct": 0
+   },
+   "rageClicks": {
+    "count": 0,
+    "sessionsPct": 0
+   },
+   "errorClicks": {
+    "count": 0,
+    "sessionsPct": 0
+   },
+   "quickbackClicks": {
+    "count": 0,
+    "sessionsPct": 0
+   },
+   "scriptErrors": {
+    "count": 0,
+    "sessionsPct": 0
+   },
+   "excessiveScroll": {
+    "count": 0,
+    "sessionsPct": 0
+   },
+   "avgScrollDepth": 18
+  },
+  "pageDetails": []
  },
  "history": [
   {
@@ -23,7 +70,7 @@
   },
   {
    "date": "2026-10-06",
-   "sessions": 4,
+   "sessions": 5,
    "users": 2
   }
  ]
