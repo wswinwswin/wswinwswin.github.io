@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>warm touch｜温暖触手可及</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#f4f7f3;
+      --paper:#ffffff;
+      --paper-soft:#eaf2eb;
+      --ink:#13251b;
+      --muted:#52645a;
+      --line:#c9d7cc;
+      --green:#145c3a;
+      --green-2:#0c4329;
+      --orange:#b84b20;
+      --orange-soft:#ffeadc;
+      --gold:#e6a832;
+      --shadow:0 16px 36px rgba(26,62,40,.10);
+      --focus:#0066cc;
+    }
+    @media (prefers-color-scheme:dark){
+      :root{
+        --bg:#0d1712;
+        --paper:#14231b;
+        --paper-soft:#1a3124;
+        --ink:#f3f7f3;
+        --muted:#b9cabe;
+        --line:#365242;
+        --green:#62c58a;
+        --green-2:#9addb2;
+        --orange:#ff9a6e;
+        --orange-soft:#4c261c;
+        --gold:#f2bf54;
+        --shadow:0 16px 36px rgba(0,0,0,.28);
+        --focus:#77b8ff;
+      }
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;font-size:18px}
+    body{
+      margin:0;
+      font-family:"Noto Sans SC",system-ui,sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.65;
+      overflow-x:hidden;
+    }
+    body.large{font-size:1.16rem}
+    button,a{font:inherit}
+    button{color:inherit}
+    a{color:inherit}
+    :focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+    .skip{position:absolute;left:1rem;top:-5rem;background:var(--paper);padding:.7rem 1rem;z-index:100;border-radius:8px}
+    .skip:focus{top:1rem}
+    .topbar{
+      position:sticky;top:0;z-index:30;
+      display:flex;align-items:center;justify-content:space-between;gap:1rem;
+      padding:.65rem max(1rem,calc((100vw - 1160px)/2));
+      background:color-mix(in srgb,var(--paper) 92%,transparent);
+      border-bottom:1px solid var(--line);
+      backdrop-filter:blur(10px);
+    }
+    .trustline{display:flex;align-items:center;gap:.55rem;font-weight:700;font-size:.92rem}
+    .trustline svg{width:1.2rem;height:1.2rem;color:var(--green)}
+    .size-toggle{display:flex;gap:.35rem;background:var(--paper-soft);padding:.25rem;border-radius:10px}
+    .size-toggle button{border:0;background:transparent;padding:.45rem .65rem;border-radius:7px;font-weight:700;cursor:pointer}
+    .size-toggle button[aria-pressed="true"]{background:var(--paper);box-shadow:0 2px 8px rgba(0,0,0,.1);color:var(--green-2)}
+    main{max-width:1160px;margin:auto;padding:0 1.15rem 6rem}
+    .hero{
+      display:grid;grid-template-columns:1.18fr .82fr;gap:2.2rem;align-items:center;
+      min-height:510px;padding:4.8rem 0 3.3rem;
+    }
+    .brandline{display:flex;align-items:center;gap:.7rem;margin-bottom:1rem;color:var(--green-2);font-size:1.08rem;font-weight:900;letter-spacing:.02em}
+    .brandline span{padding:.2rem .55rem;border-left:2px solid var(--gold);color:var(--muted);font-size:.83rem;font-weight:700;letter-spacing:0}
+    .hero h1{font-family:"Noto Serif SC",serif;font-size:clamp(2.65rem,5.7vw,5.1rem);line-height:1.1;letter-spacing:-.04em;margin:0 0 1.25rem;max-width:9.5em}
+    .hero h1 em{font-style:normal;color:var(--orange);position:relative;white-space:nowrap}
+    .hero h1 em:after{content:"";position:absolute;left:0;right:0;bottom:.02em;height:.12em;background:var(--gold);border-radius:9px;opacity:.75;z-index:-1}
+    .hero p{font-size:1.18rem;color:var(--muted);max-width:36rem;margin:0 0 1.7rem}
+    .hero-actions{display:flex;gap:.75rem;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;min-height:50px;padding:.65rem 1.05rem;border-radius:10px;border:2px solid var(--green-2);font-weight:800;text-decoration:none;cursor:pointer;background:var(--green-2);color:var(--bg)}
+    @media (prefers-color-scheme:light){.btn{color:#fff}}
+    .btn.secondary{background:transparent;color:var(--green-2)}
+    .hero-mark{position:relative;min-height:350px;display:grid;place-items:center}
+    .halo{position:absolute;width:320px;height:320px;border-radius:50%;background:var(--orange-soft);right:0;top:18px}
+    .phone{position:relative;width:230px;background:var(--paper);border:8px solid var(--ink);border-radius:34px;padding:28px 14px 18px;box-shadow:var(--shadow);transform:rotate(2deg)}
+    .phone:before{content:"";position:absolute;top:8px;left:50%;transform:translateX(-50%);width:56px;height:6px;border-radius:9px;background:var(--ink)}
+    .phone-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+    .phone-item{min-height:74px;padding:10px 6px;border-radius:14px;background:var(--paper-soft);display:grid;place-items:center;text-align:center;font-size:.72rem;font-weight:800;color:var(--green-2)}
+    .phone-item:last-child{grid-column:1/-1;background:var(--orange-soft);color:var(--orange)}
+    .phone-item svg{width:28px;height:28px}
+    .promise{position:absolute;left:-10px;bottom:12px;background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow);padding:.7rem .9rem;border-radius:10px;font-size:.8rem;font-weight:700;transform:rotate(-3deg)}
+    .promise b{display:block;color:var(--green-2);font-size:1.25rem;line-height:1.2}
+    .quicknav{margin:0 0 4rem;padding:1rem;background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:18px;display:grid;grid-template-columns:repeat(5,1fr);gap:.65rem}
+    .quicknav a{display:flex;flex-direction:column;align-items:center;gap:.45rem;padding:.8rem .35rem;text-decoration:none;font-weight:800;border-radius:12px;color:var(--green-2)}
+    .quicknav a:hover{background:var(--paper-soft)}
+    .quicknav svg{width:30px;height:30px}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:1rem;margin:0 0 1.4rem}
+    .section-head h2{font-family:"Noto Serif SC",serif;font-size:clamp(2rem,4vw,3.3rem);line-height:1.2;margin:0}
+    .section-head p{max-width:30rem;margin:0;color:var(--muted)}
+    .services{display:grid;grid-template-columns:repeat(12,1fr);gap:1rem;margin-bottom:5rem}
+    .service{position:relative;overflow:hidden;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:1.4rem;min-height:250px}
+    .service:nth-child(1){grid-column:span 7;background:var(--green-2);color:var(--bg)}
+    @media (prefers-color-scheme:light){.service:nth-child(1){color:#fff}}
+    .service:nth-child(2){grid-column:span 5}
+    .service:nth-child(3),.service:nth-child(4),.service:nth-child(5){grid-column:span 4}
+    .service-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.8rem;margin-bottom:1rem}
+    .service-icon{width:52px;height:52px;display:grid;place-items:center;border-radius:14px;background:var(--paper-soft);color:var(--green-2)}
+    .service:first-child .service-icon{background:rgba(255,255,255,.14);color:inherit}
+    .service-icon svg{width:31px;height:31px}
+    .tag{display:inline-flex;align-items:center;gap:.35rem;padding:.25rem .55rem;border-radius:999px;background:var(--orange-soft);color:var(--orange);font-size:.75rem;font-weight:800;white-space:nowrap}
+    .service:first-child .tag{background:#ffe2b4;color:#6c2e06}
+    .tag:before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+    .service h3{font-size:1.45rem;margin:.2rem 0 .5rem}
+    .service p{color:var(--muted);margin:0 0 1rem}
+    .service:first-child p{color:color-mix(in srgb,currentColor 78%,transparent)}
+    .entry-list{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:.45rem}
+    .entry-list li{font-size:.82rem;padding:.28rem .55rem;background:var(--paper-soft);border-radius:7px;font-weight:650}
+    .service:first-child .entry-list li{background:rgba(255,255,255,.13)}
+    .linkbtn{border:0;background:none;padding:.7rem 0 0;color:inherit;text-decoration:underline;text-underline-offset:4px;font-weight:800;cursor:pointer}
+    .pilot{display:grid;grid-template-columns:.85fr 1.15fr;gap:1rem;align-items:stretch;margin-bottom:5rem}
+    .pilot-copy{background:var(--orange-soft);padding:1.8rem;border-radius:18px}
+    .pilot-copy .number{font-family:"Noto Serif SC",serif;font-size:4.7rem;line-height:.9;color:var(--orange);font-weight:900}
+    .pilot-copy h2{font-family:"Noto Serif SC",serif;font-size:2rem;line-height:1.25;margin:.65rem 0}
+    .pilot-copy p{margin:.5rem 0;color:var(--muted)}
+    .checkin{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:1.6rem}
+    .checkin h3{font-size:1.4rem;margin:0 0 .3rem}
+    .checkin>p{margin:0 0 1.2rem;color:var(--muted)}
+    .question{margin:1rem 0}
+    .question strong{display:block;margin-bottom:.45rem}
+    .choice-row{display:flex;flex-wrap:wrap;gap:.5rem}
+    .choice{border:2px solid var(--line);background:var(--paper);padding:.55rem .8rem;border-radius:9px;cursor:pointer;font-weight:700}
+    .choice[aria-pressed="true"]{border-color:var(--green);background:var(--paper-soft);color:var(--green-2)}
+    .checkin-actions{display:flex;align-items:center;gap:.65rem;margin-top:1.2rem;flex-wrap:wrap}
+    .note{font-size:.8rem;color:var(--muted)}
+    .result{display:none;margin-top:1rem;padding:1rem;background:var(--paper-soft);border-radius:12px}
+    .result.show{display:block}
+    .result strong{display:block;color:var(--green-2);font-size:1.15rem;margin-bottom:.25rem}
+    .knowledge{margin:0 0 5rem;scroll-margin-top:5rem}
+    .knowledge-intro{font-size:1rem;color:var(--muted);max-width:42rem;margin:.45rem 0 0}
+    .knowledge-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+    .article-card{background:var(--paper);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+    .article-card summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:154px 1fr;gap:1.15rem;align-items:center;padding:1rem}
+    .article-card summary::-webkit-details-marker{display:none}
+    .article-card summary:after{content:"展开阅读 ＋";color:var(--green-2);font-size:.82rem;font-weight:800;grid-column:2}
+    .article-card[open] summary:after{content:"收起文章 －"}
+    .article-figure{height:132px;border-radius:13px;overflow:hidden;background:var(--paper-soft);display:grid;place-items:center}
+    .article-figure svg{width:100%;height:100%;display:block}
+    .article-card h3{font-family:"Noto Serif SC",serif;font-size:1.38rem;line-height:1.35;margin:0 0 .4rem}
+    .article-card .lead{margin:0;color:var(--muted);font-size:.92rem;line-height:1.55}
+    .article-body{border-top:1px solid var(--line);padding:1.2rem 1.3rem 1.4rem;font-size:1.06rem;line-height:1.85}
+    .article-body p{margin:0 0 .85rem}
+    .article-body p:last-child{margin-bottom:0}
+    .takeaway{background:var(--paper-soft);padding:.75rem .9rem;border-radius:10px;font-weight:700;color:var(--green-2)}
+    .knowledge-note{margin:1rem 0 0;padding:1rem 1.1rem;background:var(--paper-soft);border-radius:12px;color:var(--muted);font-size:.87rem}
+    .knowledge-note a{color:var(--green-2);font-weight:700;text-underline-offset:3px}
+    .health-links{display:flex;gap:.75rem;flex-wrap:wrap;align-items:center}
+    .wechat{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:1.7rem;margin-bottom:5rem}
+    .wechat-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.2rem}
+    .wechat h2{font-family:"Noto Serif SC",serif;font-size:2rem;margin:0 0 .35rem}
+    .wechat p{margin:0;color:var(--muted)}
+    .wechat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .wechat-card{display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:center;background:var(--paper-soft);padding:1.2rem;border-radius:14px}
+    .wx-placeholder{width:84px;height:84px;border:2px dashed var(--green);display:grid;place-items:center;border-radius:12px;color:var(--green-2);font-size:.72rem;font-weight:800;text-align:center;line-height:1.3}
+    .wechat-card h3{margin:0 0 .25rem;font-size:1.15rem}
+    .wechat-card p{font-size:.88rem}
+    .roadmap{margin-bottom:3rem}
+    .roadmap h2{font-family:"Noto Serif SC",serif;font-size:2rem;margin:0 0 1.2rem}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .step{background:var(--paper);border-top:5px solid var(--green);padding:1.3rem;border-radius:0 0 14px 14px}
+    .step:nth-child(2){border-color:var(--gold)}
+    .step:nth-child(3){border-color:var(--orange)}
+    .step small{font-weight:800;color:var(--muted)}
+    .step h3{margin:.35rem 0 .5rem;font-size:1.2rem}
+    .step p{margin:0;color:var(--muted);font-size:.9rem}
+    footer{border-top:1px solid var(--line);padding:1.5rem 0 0;display:flex;justify-content:space-between;gap:1rem;color:var(--muted);font-size:.84rem}
+    dialog{width:min(600px,calc(100vw - 2rem));border:1px solid var(--line);border-radius:18px;background:var(--paper);color:var(--ink);padding:0;box-shadow:0 22px 60px rgba(0,0,0,.3)}
+    dialog::backdrop{background:rgba(5,18,10,.65)}
+    .dialog-inner{padding:1.5rem}
+    .dialog-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
+    .dialog-head h2{margin:0;font-family:"Noto Serif SC",serif;font-size:1.7rem}
+    .close{width:44px;height:44px;border:1px solid var(--line);border-radius:10px;background:var(--paper-soft);cursor:pointer;font-size:1.25rem}
+    .requirements{padding-left:1.25rem}
+    .requirements li{margin:.7rem 0}
+    .status-box{padding:1rem;background:var(--orange-soft);border-radius:12px;color:var(--ink)}
+    .mobile-dock{display:none}
+    @media (max-width:820px){
+      html{font-size:17px}
+      .hero{grid-template-columns:1fr;min-height:auto;padding:3rem 0 2.2rem;gap:1.2rem}
+      .hero h1{font-size:clamp(2.55rem,12vw,4.1rem)}
+      .hero-mark{min-height:300px}
+      .halo{width:270px;height:270px;right:50%;transform:translateX(60%)}
+      .phone{width:210px}
+      .quicknav{grid-template-columns:repeat(5,1fr);padding:.6rem;gap:.2rem}
+      .quicknav a{font-size:.74rem;padding:.7rem .15rem}
+      .quicknav svg{width:26px;height:26px}
+      .section-head{align-items:start;flex-direction:column}
+      .service,.service:nth-child(n){grid-column:1/-1;min-height:auto}
+      .knowledge-grid{grid-template-columns:1fr}
+      .pilot{grid-template-columns:1fr}
+      .wechat-grid,.steps{grid-template-columns:1fr}
+      footer{flex-direction:column}
+    }
+    @media (max-width:520px){
+      body{padding-bottom:76px}
+      main{padding-left:.9rem;padding-right:.9rem}
+      .topbar{padding:.55rem .8rem}
+      .trustline span{display:none}
+      .quicknav{display:none}
+      .hero{padding-top:2.3rem}
+      .hero-mark{min-height:286px}
+      .promise{left:0}
+      .section-head{margin-top:3.4rem}
+      .service{padding:1.15rem}
+      .article-card summary{grid-template-columns:1fr;padding:.85rem}
+      .article-card summary:after{grid-column:1}
+      .article-figure{height:154px}
+      .article-body{padding:1rem;font-size:1.02rem}
+      .wechat{padding:1.1rem}
+      .wechat-head{flex-direction:column}
+      .wechat-card{grid-template-columns:1fr;text-align:center}
+      .wx-placeholder{margin:auto}
+      .mobile-dock{position:fixed;display:grid;grid-template-columns:repeat(5,1fr);left:0;right:0;bottom:0;z-index:40;background:var(--paper);border-top:1px solid var(--line);padding:.4rem .25rem max(.4rem,env(safe-area-inset-bottom));box-shadow:0 -6px 20px rgba(0,0,0,.12)}
+      .mobile-dock a{display:flex;flex-direction:column;align-items:center;gap:.15rem;text-decoration:none;font-size:.66rem;font-weight:800;color:var(--green-2)}
+      .mobile-dock svg{width:23px;height:23px}
+    }
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">跳到主要内容</a>
+  <div class="topbar" aria-label="阅读设置">
+    <div class="trustline">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 4.5 6v5c0 4.8 3 8.3 7.5 10 4.5-1.7 7.5-5.2 7.5-10V6L12 3Z"/><path d="m8.6 12 2.2 2.2 4.7-5"/></svg>
+      <span><b>warm touch</b> · 温暖触手可及</span>
+    </div>
+    <div class="size-toggle" role="group" aria-label="字号大小">
+      <button id="normalSize" aria-pressed="true">标准字</button>
+      <button id="largeSize" aria-pressed="false">大字</button>
+    </div>
+  </div>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <div class="brandline">warm touch <span>温暖触手可及</span></div>
+        <h1 id="hero-title">家里的事，<em>慢一点</em>，也能办得明白</h1>
+        <p>健康、邻里、陪伴、好物和出行，五类服务放在一个清楚的入口里。先从简单、能用的部分开始，再一步一步接通社区、商家和微信。</p>
+        <div class="hero-actions">
+          <a class="btn" href="#services">看看五项服务</a>
+          <a class="btn secondary" href="#wechat">微信怎么接入</a>
+        </div>
+      </div>
+      <div class="hero-mark" aria-hidden="true">
+        <div class="halo"></div>
+        <div class="phone">
+          <div class="phone-grid">
+            <div class="phone-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h4l2-5 4 10 2-5h4"/><path d="M12 21C5 17 3 13.2 3 9.5A4.5 4.5 0 0 1 11 6a4.5 4.5 0 0 1 8 3.5C19 13.2 17 17 12 21Z"/></svg>健康</div>
+            <div class="phone-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V10l9-7 9 7v11"/><path d="M8 21v-7h8v7"/></svg>社区</div>
+            <div class="phone-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 14a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z"/><path d="M8 10h8M8 14h5"/></svg>聊天</div>
+            <div class="phone-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 4 2 2 2 9h10l3-7H6"/><circle cx="9" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg>购物</div>
+            <div class="phone-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19h16M6 17l1-8h10l1 8"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/><path d="m9 13 2 2 4-4"/></svg>旅游</div>
+          </div>
+        </div>
+        <div class="promise"><b>5 个入口</b>一次看懂</div>
+      </div>
+    </section>
+
+    <nav class="quicknav" aria-label="五项服务快速入口">
+      <a href="#health"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h4l2-5 4 10 2-5h4"/><path d="M12 21C5 17 3 13.2 3 9.5A4.5 4.5 0 0 1 11 6a4.5 4.5 0 0 1 8 3.5C19 13.2 17 17 12 21Z"/></svg>健康</a>
+      <a href="#community"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 21V10l9-7 9 7v11"/><path d="M8 21v-7h8v7"/></svg>社区</a>
+      <a href="#chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 14a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z"/></svg>聊天</a>
+      <a href="#shop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m3 4 2 2 2 9h10l3-7H6"/><circle cx="9" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg>购物</a>
+      <a href="#travel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19h16M6 17l1-8h10l1 8"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg>旅游</a>
+    </nav>
+
+    <section id="services" aria-labelledby="services-title">
+      <div class="section-head">
+        <h2 id="services-title">五类服务，一眼找到</h2>
+        <p>每个板块先把入口和边界搭清楚。能在页面内运行的先运行，需要合作资源的如实标注。</p>
+      </div>
+      <div class="services">
+        <article class="service" id="health">
+          <div class="service-top">
+            <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h4l2-5 4 10 2-5h4"/><path d="M12 21C5 17 3 13.2 3 9.5A4.5 4.5 0 0 1 11 6a4.5 4.5 0 0 1 8 3.5C19 13.2 17 17 12 21Z"/></svg></div>
+            <span class="tag">可先体验</span>
+          </div>
+          <h3>健康监护</h3>
+          <p>先从看得懂、用得上的健康知识和轻量关怀记录开始；设备数据与提醒功能，等后端和合规服务接通后再上。</p>
+          <ul class="entry-list"><li>健康知识库</li><li>今日状态</li><li>家属关注</li><li>设备接入</li></ul>
+          <div class="health-links"><a class="linkbtn" href="#knowledge">打开健康知识库 →</a><a class="linkbtn" href="#pilot">试试今日状态记录 →</a></div>
+        </article>
+
+        <article class="service" id="community">
+          <div class="service-top">
+            <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 21V10l9-7 9 7v11"/><path d="M8 21v-7h8v7"/><path d="M5 8V4h4"/></svg></div>
+            <span class="tag">即将开通</span>
+          </div>
+          <h3>社区智联</h3>
+          <p>把社区通知、活动报名、邻里互助和上门服务汇成一个入口。</p>
+          <ul class="entry-list"><li>社区公告</li><li>兴趣活动</li><li>邻里互助</li><li>便民服务</li></ul>
+          <button class="linkbtn open-info" data-service="社区智联">查看接通条件 →</button>
+        </article>
+
+        <article class="service" id="chat">
+          <div class="service-top">
+            <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 14a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z"/><path d="M8 10h8M8 14h5"/></svg></div>
+            <span class="tag">即将开通</span>
+          </div>
+          <h3>老年聊天</h3>
+          <p>大字、语音优先的陪伴入口，重点加入反诈提醒和家属协同。</p>
+          <ul class="entry-list"><li>语音陪伴</li><li>兴趣群聊</li><li>反诈提示</li></ul>
+          <button class="linkbtn open-info" data-service="老年聊天">查看接通条件 →</button>
+        </article>
+
+        <article class="service" id="shop">
+          <div class="service-top">
+            <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m3 4 2 2 2 9h10l3-7H6"/><circle cx="9" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg></div>
+            <span class="tag">即将开通</span>
+          </div>
+          <h3>安心购物</h3>
+          <p>只放看得懂、问得到、售后有着落的适老产品，不用复杂的促销套路。</p>
+          <ul class="entry-list"><li>适老严选</li><li>子女代看</li><li>清楚售后</li></ul>
+          <button class="linkbtn open-info" data-service="安心购物">查看接通条件 →</button>
+        </article>
+
+        <article class="service" id="travel">
+          <div class="service-top">
+            <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19h16M6 17l1-8h10l1 8"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/><path d="m9 13 2 2 4-4"/></svg></div>
+            <span class="tag">即将开通</span>
+          </div>
+          <h3>舒心旅游</h3>
+          <p>围绕慢节奏、小团、少走路、有人照应，展示真正适合长辈的线路。</p>
+          <ul class="entry-list"><li>慢游线路</li><li>同行结伴</li><li>子女代订</li></ul>
+          <button class="linkbtn open-info" data-service="舒心旅游">查看接通条件 →</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="knowledge" id="knowledge" aria-labelledby="knowledge-title">
+      <div class="section-head">
+        <div>
+          <h2 id="knowledge-title">健康知识库</h2>
+          <p class="knowledge-intro">六篇常用小知识，点开就能读。字大、段落短，遇到拿不准的情况，及时问医生或药师。</p>
+        </div>
+      </div>
+      <div class="knowledge-grid">
+        <details class="article-card">
+          <summary>
+            <div class="article-figure">
+              <svg viewBox="0 0 240 150" role="img" aria-label="长辈在家安静测量血压的温馨示意图">
+                <rect width="240" height="150" fill="#dcebdd"/><circle cx="48" cy="43" r="22" fill="#efb48f"/><path d="M25 122c5-38 14-55 28-55s25 18 31 55" fill="#c85f38"/><path d="M30 34c8-22 39-22 44 3-11-7-31-7-44-3Z" fill="#eef1e9"/><rect x="104" y="42" width="75" height="58" rx="9" fill="#fff" stroke="#145c3a" stroke-width="4"/><path d="M123 73h12l7-13 9 27 8-14h11" fill="none" stroke="#c85f38" stroke-width="4"/><path d="M83 88c20-7 30-3 38 8" fill="none" stroke="#145c3a" stroke-width="8" stroke-linecap="round"/><circle cx="203" cy="34" r="14" fill="#e6a832" opacity=".75"/>
+              </svg>
+            </div>
+            <div><h3>高血压日常管理</h3><p class="lead">把测量、吃药和生活习惯做稳，比盯着一次数字更重要。</p></div>
+          </summary>
+          <div class="article-body">
+            <p>量血压前先安静坐几分钟，刚运动、喝浓茶咖啡、吸烟或情绪激动时先缓一缓。坐着测量时，背部有支撑，双脚平放，手臂与心脏大致同高；尽量固定时间、固定手臂，用合适尺寸的袖带。</p>
+            <p>医生让长期服用的降压药，要按时按量吃。不要因为今天数字正常就自行停药，也不要看见一次偏高便加倍服药。把早晚血压、心率和不舒服的感觉写在纸上，复诊时带给医生看。</p>
+            <p>饭菜少咸一点，腌菜、酱料和加工食品少吃；活动要量力而行，散步、太极都可以。若血压明显异常并伴胸痛、气短、剧烈头痛、说话不清或一侧肢体无力，应立即呼叫急救。</p>
+            <p class="takeaway">记住：看趋势，不追一次数字；药怎么调，交给医生。</p>
+          </div>
+        </details>
+
+        <details class="article-card">
+          <summary>
+            <div class="article-figure">
+              <svg viewBox="0 0 240 150" role="img" aria-label="蔬菜、主食和鱼肉搭配成一餐的温馨示意图">
+                <rect width="240" height="150" fill="#fff0df"/><circle cx="120" cy="76" r="57" fill="#fff" stroke="#d8c6ad" stroke-width="4"/><path d="M120 20a56 56 0 0 0-50 81h50Z" fill="#71a66f"/><path d="M120 20v81h50a56 56 0 0 0-50-81Z" fill="#e7b34b"/><path d="M70 101a56 56 0 0 0 100 0Z" fill="#ef9a73"/><path d="M89 45c15 8 24 19 31 31M151 41c-12 13-20 25-25 38" stroke="#fff" stroke-width="4" opacity=".75"/><circle cx="39" cy="35" r="10" fill="#c85f38"/><path d="M31 29c8-8 16-7 20 0" stroke="#145c3a" stroke-width="4" fill="none"/>
+              </svg>
+            </div>
+            <div><h3>糖尿病饮食注意</h3><p class="lead">不是“什么都不能吃”，而是定时、定量、搭配着吃。</p></div>
+          </summary>
+          <div class="article-body">
+            <p>三餐尽量规律，不要长时间空腹后猛吃一顿。主食可以粗细搭配，但杂粮也含碳水，不能无限量。每餐先想好份量：蔬菜多一些，鱼、蛋、瘦肉或豆制品适量，主食按医生或营养师给的方案来。</p>
+            <p>水果不要用果汁代替，甜饮料、糕点和“无糖”点心也不能随意吃；“无糖”不等于没有淀粉和热量。血糖监测要和吃饭、用药、活动放在一起看，记下异常前后发生了什么，比只记一个数字更有用。</p>
+            <p>如果出现心慌、手抖、出汗、明显饥饿或发懵，要警惕低血糖。人清醒且能吞咽时可及时补充含糖食物，并按平时医生教的方法复测；若意识不清，不要强行喂水喂食，应立即求助。</p>
+            <p class="takeaway">记住：吃得规律、搭配合理，比盲目忌口更稳妥。</p>
+          </div>
+        </details>
+
+        <details class="article-card">
+          <summary>
+            <div class="article-figure">
+              <svg viewBox="0 0 240 150" role="img" aria-label="月光下卧室安静舒适的睡眠示意图">
+                <rect width="240" height="150" fill="#dfe8e7"/><path d="M0 112h240v38H0z" fill="#94b69e"/><rect x="49" y="79" width="142" height="48" rx="10" fill="#fff"/><path d="M45 126V70h13v56M191 126V85h12v41" stroke="#145c3a" stroke-width="6"/><rect x="64" y="84" width="51" height="22" rx="10" fill="#f2c19d"/><path d="M100 107h86v20H100z" fill="#c85f38"/><path d="M167 21a27 27 0 1 0 24 42 32 32 0 0 1-24-42Z" fill="#e6a832"/><circle cx="56" cy="28" r="3" fill="#fff"/><circle cx="107" cy="41" r="3" fill="#fff"/><circle cx="208" cy="81" r="3" fill="#fff"/>
+              </svg>
+            </div>
+            <div><h3>老年人睡眠改善</h3><p class="lead">先把作息和白天活动调顺，不急着把希望都压在安眠药上。</p></div>
+          </summary>
+          <div class="article-body">
+            <p>每天尽量在相近时间起床，白天接触自然光，做一些适合自己的活动。午睡不宜太晚或太久，晚上困了再上床。卧室保持安静、昏暗和舒适；睡前少喝浓茶咖啡，少刷让人兴奋的视频。</p>
+            <p>躺了很久还睡不着，可以先起身，在柔和灯光下听轻音乐或读几页书，困了再回床。不要反复看钟，也别因一晚没睡好就整天补觉。安眠药可能引起头晕、跌倒等问题，只能按医生交代服用。</p>
+            <p>如果失眠持续影响白天精神，或出现大声打鼾、睡觉憋气、晨起头痛、腿部难受总想动，要尽早就医。家属提供的睡眠观察，往往比长辈自己感受到的更完整。</p>
+            <p class="takeaway">记住：固定起床时间，往往比强迫自己早睡更容易坚持。</p>
+          </div>
+        </details>
+
+        <details class="article-card">
+          <summary>
+            <div class="article-figure">
+              <svg viewBox="0 0 240 150" role="img" aria-label="装有扶手和夜灯的安全居家环境示意图">
+                <rect width="240" height="150" fill="#e7f0e3"/><path d="M38 20h164v112H38z" fill="#fff"/><path d="M62 132V66h55v66M117 132V50h59v82" fill="#d7e2d8" stroke="#145c3a" stroke-width="4"/><circle cx="155" cy="86" r="4" fill="#c85f38"/><path d="M45 111h58" stroke="#e6a832" stroke-width="8" stroke-linecap="round"/><path d="M131 67h28v7h-28z" fill="#c85f38"/><path d="M79 54v-22M68 42h22" stroke="#145c3a" stroke-width="5" stroke-linecap="round"/><circle cx="80" cy="41" r="18" fill="#f5cc75" opacity=".45"/>
+              </svg>
+            </div>
+            <div><h3>居家跌倒预防</h3><p class="lead">防跌倒不靠“小心点”三个字，要把家里的危险一处处改掉。</p></div>
+          </summary>
+          <div class="article-body">
+            <p>先清出一条不绕、不绊的通道：电线靠墙固定，小地毯要撤掉或加防滑底，地上的水及时擦干。卧室到卫生间沿途留夜灯；卫生间装稳固扶手和防滑垫，常用物品放在不用踮脚、弯腰的位置。</p>
+            <p>鞋要合脚、防滑、包住后跟，别穿松垮拖鞋走动。起床或起身别太急，先坐稳再站。平时在安全条件下练腿力和平衡；如果近期走路发飘、常头晕，或一年内跌倒过，应请医生评估视力、用药和身体功能。</p>
+            <p>真的摔倒后，先别急着拉起。若剧烈疼痛、肢体变形、不能活动，或出现头晕呕吐、意识不清，应保持安全姿势并呼叫急救，等待专业人员处理。</p>
+            <p class="takeaway">记住：灯亮、路清、地不滑，扶手装在真正用得上的地方。</p>
+          </div>
+        </details>
+
+        <details class="article-card">
+          <summary>
+            <div class="article-figure">
+              <svg viewBox="0 0 240 150" role="img" aria-label="长辈穿暖衣在冬日阳光下散步的温馨示意图">
+                <rect width="240" height="150" fill="#dce9ef"/><circle cx="193" cy="31" r="20" fill="#f3bd4d"/><path d="M0 119c43-14 79-8 116 2 43 12 82 7 124-5v34H0Z" fill="#fff"/><circle cx="90" cy="47" r="19" fill="#efb48f"/><path d="M70 47c2-23 37-30 42 0-12-7-29-7-42 0Z" fill="#eef1e9"/><path d="M57 116c5-34 15-54 34-54s31 21 37 54" fill="#c85f38"/><path d="M75 68c13 12 28 12 41 0" stroke="#f3bd4d" stroke-width="10"/><path d="M61 92 42 112M122 92l17 20" stroke="#145c3a" stroke-width="7" stroke-linecap="round"/><path d="M166 93c12-11 24-11 36 0" stroke="#94b69e" stroke-width="5" fill="none"/>
+              </svg>
+            </div>
+            <div><h3>冬季保健要点</h3><p class="lead">保暖、喝水、慢起慢走，冷天里把节奏放稳一些。</p></div>
+          </summary>
+          <div class="article-body">
+            <p>早晚温差大，衣服分层穿更方便增减，头颈、腰背和脚部尤其要保暖。刚起床时先在床边坐稳，活动一下手脚再走；外出先看路面，雨雪结冰时宁可改天，鞋底要防滑。</p>
+            <p>天气冷也要主动喝水，不要等口渴才喝；饮食保持多样，不能只靠大鱼大肉“进补”。晴朗、空气状况合适时，可在较暖和的时段散步，活动前先热身，觉得胸闷、气短、头晕就马上停下。</p>
+            <p>洗澡水别太烫，时间别太长，浴室注意通风和防滑。使用电热毯、取暖器要远离易燃物；煤炉、燃气取暖更要防一氧化碳中毒，不能为了保暖把通风口全堵住。</p>
+            <p class="takeaway">记住：冬天不是越热越好，暖得稳、走得稳、呼吸顺最重要。</p>
+          </div>
+        </details>
+
+        <details class="article-card">
+          <summary>
+            <div class="article-figure">
+              <svg viewBox="0 0 240 150" role="img" aria-label="药盒、清单和水杯整齐摆放的合理用药示意图">
+                <rect width="240" height="150" fill="#f5e8df"/><rect x="34" y="42" width="100" height="75" rx="10" fill="#fff" stroke="#145c3a" stroke-width="4"/><path d="M52 63h18M52 80h51M52 97h39" stroke="#94b69e" stroke-width="5" stroke-linecap="round"/><path d="m108 60 5 5 10-12" stroke="#c85f38" stroke-width="4" fill="none"/><rect x="152" y="62" width="45" height="55" rx="8" fill="#dcebdd" stroke="#145c3a" stroke-width="4"/><path d="M158 81h33" stroke="#c85f38" stroke-width="5"/><path d="M171 35h30v24h-30z" fill="#e6a832"/><path d="M177 35v-8h18v8" stroke="#145c3a" stroke-width="4" fill="none"/>
+              </svg>
+            </div>
+            <div><h3>合理用药常识</h3><p class="lead">药多的时候，更需要一张清楚的清单和固定的核对习惯。</p></div>
+          </summary>
+          <div class="article-body">
+            <p>把处方药、非处方药、中成药、保健品都写进同一张清单，记上名称、剂量、每天几次和为什么吃。看不同科室时主动出示，能减少重复用药和相互影响。药盒与说明书尽量一起保存，不用散装瓶冒充原包装。</p>
+            <p>按医嘱用药，不自行加量、减量或停药；漏服后不要想当然地一次吃双倍。服药时间、能不能掰开、是否需要空腹，每种药都可能不同，拿不准就问医生或药师。保健品不能替代药物，也要告诉医生。</p>
+            <p>出现皮疹、呼吸困难、明显头晕、跌倒、黑便等异常，应及时就医并带上药品或清单。定期请医生或药师检查一次整套用药，已经不用的药和过期药及时清理。</p>
+            <p class="takeaway">记住：一张药单随身带，改药之前先问清。</p>
+          </div>
+        </details>
+      </div>
+      <p class="knowledge-note">内容参考：国家卫生健康委老年健康核心信息、<a href="https://www.nhc.gov.cn/lljks/c100157/202607/7cae804062c84015882b477004b05c6d.shtml" target="_blank" rel="noopener">老年合理用药促进行动</a>与<a href="https://m.gmw.cn/2026-04/16/content_1304420654.htm" target="_blank" rel="noopener">《中国老年人膳食指南（2022）》相关科普</a>。文章用于日常健康教育，不能代替诊断、处方或急救指导。</p>
+    </section>
+
+    <section class="pilot" id="pilot" aria-labelledby="pilot-title">
+      <div class="pilot-copy">
+        <div class="number">01</div>
+        <h2 id="pilot-title">第一个能跑的轻功能</h2>
+        <p>不用账号、不留资料，先体验一次简单的“今日状态记录”。这不是医疗诊断，只是帮助长辈和家人把感受说清楚。</p>
+      </div>
+      <div class="checkin" aria-label="今日状态记录">
+        <h3>今天感觉怎么样？</h3>
+        <p>点选最接近的状态，系统会生成一条关怀建议。</p>
+        <div class="question" data-question="精神">
+          <strong>精神状态</strong>
+          <div class="choice-row">
+            <button class="choice" aria-pressed="false" data-value="不错">不错</button>
+            <button class="choice" aria-pressed="false" data-value="一般">一般</button>
+            <button class="choice" aria-pressed="false" data-value="有点乏">有点乏</button>
+          </div>
+        </div>
+        <div class="question" data-question="胃口">
+          <strong>吃饭胃口</strong>
+          <div class="choice-row">
+            <button class="choice" aria-pressed="false" data-value="正常">正常</button>
+            <button class="choice" aria-pressed="false" data-value="少一些">少一些</button>
+            <button class="choice" aria-pressed="false" data-value="没胃口">没胃口</button>
+          </div>
+        </div>
+        <div class="question" data-question="心情">
+          <strong>今天心情</strong>
+          <div class="choice-row">
+            <button class="choice" aria-pressed="false" data-value="舒心">舒心</button>
+            <button class="choice" aria-pressed="false" data-value="平常">平常</button>
+            <button class="choice" aria-pressed="false" data-value="闷闷的">闷闷的</button>
+          </div>
+        </div>
+        <div class="checkin-actions">
+          <button class="btn" id="makeResult">生成关怀建议</button>
+          <span class="note">仅本次打开期间有效，不会保存</span>
+        </div>
+        <div class="result" id="result" role="status" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="wechat" id="wechat" aria-labelledby="wechat-title">
+      <div class="wechat-head">
+        <div><h2 id="wechat-title">微信入口，给长辈少一步</h2><p>先预留两个最顺手的入口，确定账号后再放真实二维码和服务。</p></div>
+        <span class="tag">等待账号信息</span>
+      </div>
+      <div class="wechat-grid">
+        <article class="wechat-card">
+          <div class="wx-placeholder">公众号<br>二维码位</div>
+          <div><h3>公众号</h3><p>用于健康内容、社区通知、活动预告和服务提醒。</p></div>
+        </article>
+        <article class="wechat-card">
+          <div class="wx-placeholder">小程序<br>入口位</div>
+          <div><h3>微信小程序</h3><p>用于登录、家属绑定、预约、购物和订单等完整操作。</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="roadmap" aria-labelledby="roadmap-title">
+      <h2 id="roadmap-title">从框架到闭环</h2>
+      <div class="steps">
+        <article class="step"><small>第一步 · 现在</small><h3>把入口讲明白</h3><p>五个板块、适老界面、微信接入位和诚实的开通状态已经成形。</p></article>
+        <article class="step"><small>第二步 · 接资源</small><h3>挑一个真实场景</h3><p>优先接入一个社区、一批长辈或一个服务合作方，验证真实需求。</p></article>
+        <article class="step"><small>第三步 · 跑闭环</small><h3>服务完成再扩张</h3><p>从发布信息、用户使用到服务交付和反馈，跑通一条再复制到其他板块。</p></article>
+      </div>
+    </section>
+
+    <footer>
+      <span><b>warm touch</b> · 温暖触手可及</span>
+      <span>健康信息仅作日常关怀参考，不能替代医生诊断；紧急情况请联系当地急救服务。</span>
+    </footer>
+  </main>
+
+  <nav class="mobile-dock" aria-label="移动端服务导航">
+    <a href="#health"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h4l2-5 4 10 2-5h4"/></svg>健康</a>
+    <a href="#community"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V10l9-7 9 7v11"/></svg>社区</a>
+    <a href="#chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 14a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z"/></svg>聊天</a>
+    <a href="#shop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 4 2 2 2 9h10l3-7H6"/></svg>购物</a>
+    <a href="#travel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19h16M6 17l1-8h10l1 8"/></svg>旅游</a>
+  </nav>
+
+  <dialog id="serviceDialog" aria-labelledby="dialogTitle">
+    <div class="dialog-inner">
+      <div class="dialog-head"><h2 id="dialogTitle">接通条件</h2><button class="close" aria-label="关闭">×</button></div>
+      <div id="dialogBody"></div>
+    </div>
+  </dialog>
+
+  <script>
+    (function(){
+      var body=document.body;
+      var normal=document.getElementById('normalSize');
+      var large=document.getElementById('largeSize');
+      normal.addEventListener('click',function(){body.classList.remove('large');normal.setAttribute('aria-pressed','true');large.setAttribute('aria-pressed','false')});
+      large.addEventListener('click',function(){body.classList.add('large');large.setAttribute('aria-pressed','true');normal.setAttribute('aria-pressed','false')});
+
+      document.querySelectorAll('.choice').forEach(function(btn){
+        btn.addEventListener('click',function(){
+          btn.parentElement.querySelectorAll('.choice').forEach(function(other){other.setAttribute('aria-pressed','false')});
+          btn.setAttribute('aria-pressed','true');
+        });
+      });
+
+      document.getElementById('makeResult').addEventListener('click',function(){
+        var picked=document.querySelectorAll('.choice[aria-pressed="true"]');
+        var result=document.getElementById('result');
+        if(picked.length<3){result.innerHTML='<strong>还差一点</strong>请把三项状态都选好，再生成建议。';result.classList.add('show');return;}
+        var values=Array.from(picked).map(function(x){return x.dataset.value});
+        var concern=values.some(function(v){return ['有点乏','没胃口','闷闷的'].indexOf(v)>-1});
+        result.innerHTML=concern?'<strong>今天多关心一下自己</strong>先休息、喝些温水，也可以告诉家人今天的感受。如果不舒服持续或加重，请尽快联系医生。':'<strong>今天状态不错</strong>保持规律吃饭和适量活动，晚上也记得按时休息。可以把这份好状态告诉家人。';
+        result.classList.add('show');
+      });
+
+      var data={
+        '社区智联':['需要确定首个试点社区与管理方','需要社区公告、活动与服务的真实来源','报名、上门服务等功能需要账号与后端'],
+        '老年聊天':['AI 对话需要模型服务与安全审核','语音功能需要录音授权与服务接入','群聊、家属绑定和反诈提醒需要账号系统'],
+        '安心购物':['需要确定严选标准和真实供应商','支付、订单、售后需要合规交易系统','健康类商品宣传需要资质与内容审核'],
+        '舒心旅游':['需要真实线路、价格和合作旅行社','需核实适老设施、保险与紧急保障','预订、退款和合同需要持牌服务方承接']
+      };
+      var dialog=document.getElementById('serviceDialog');
+      document.querySelectorAll('.open-info').forEach(function(btn){
+        btn.addEventListener('click',function(){
+          var name=btn.dataset.service;
+          document.getElementById('dialogTitle').textContent=name+' · 接通条件';
+          document.getElementById('dialogBody').innerHTML='<div class="status-box"><strong>当前状态：即将开通</strong><br>框架入口已就位，未接入真实服务前不会模拟下单、报名或对话。</div><ol class="requirements">'+data[name].map(function(x){return '<li>'+x+'</li>'}).join('')+'</ol>';
+          dialog.showModal();
+        });
+      });
+      dialog.querySelector('.close').addEventListener('click',function(){dialog.close()});
+      dialog.addEventListener('click',function(e){if(e.target===dialog)dialog.close()});
+    })();
+  </script>
+</body>
+</html>
