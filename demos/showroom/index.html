@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>带货样板间 ShowRoom｜商家演示站</title>
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#0a0e14;--panel:#111820;--panel-2:#17212a;--line:#263540;
+      --text:#eef7f7;--muted:#9cafb6;--cyan:#48d9d4;--cyan-soft:#123837;
+      --orange:#ff8a4c;--orange-soft:#402419;--green:#65d59f;--green-soft:#163429;
+      --yellow:#ffd166;--yellow-soft:#3c3118;--red:#ff8187;--red-soft:#3c2023;
+      --shadow:0 22px 70px rgba(0,0,0,.28);
+    }
+    @media (prefers-color-scheme:light){
+      :root{
+        --bg:#0e141b;--panel:#151e27;--panel-2:#1b2731;--line:#30414d;
+        --text:#f4fbfb;--muted:#b0c1c7;--cyan:#5ae2dd;--cyan-soft:#173f3e;
+        --orange:#ff9258;--orange-soft:#47291d;--green:#72dda9;--green-soft:#19392d;
+        --yellow:#ffdb77;--yellow-soft:#43371d;--red:#ff8b90;--red-soft:#432529;
+        --shadow:0 22px 70px rgba(0,0,0,.34);
+      }
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:96px}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;line-height:1.6}
+    button,a{font:inherit}
+    button{color:inherit}
+    a{color:inherit;text-decoration:none}
+    .shell{width:min(1180px,calc(100% - 40px));margin:auto}
+    .demo-banner{background:var(--orange);color:#fff;text-align:center;padding:10px 18px;font-size:14px;font-weight:750;letter-spacing:.02em}
+    .topbar{position:sticky;top:0;z-index:20;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(16px)}
+    nav{min-height:66px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .nav-context{font-weight:800;font-size:15px;white-space:nowrap}
+    .nav-context span{color:var(--cyan)}
+    .nav-links{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+    .nav-links a{padding:8px 12px;border-radius:8px;color:var(--muted);font-size:14px;font-weight:650}
+    .nav-links a:hover,.nav-links a:focus-visible{background:var(--panel-2);color:var(--text);outline:none}
+    main{padding:56px 0 80px}
+    section{margin-bottom:82px}
+    .hero{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(280px,.7fr);gap:32px;align-items:end;margin-bottom:36px}
+    .kicker{display:inline-flex;align-items:center;gap:8px;color:var(--cyan);font-size:13px;font-weight:800;margin:0 0 12px}
+    .kicker:before{content:"";width:28px;height:2px;background:var(--cyan)}
+    h1{font-size:clamp(34px,5vw,64px);line-height:1.04;letter-spacing:-.045em;margin:0;max-width:780px}
+    .hero p{margin:0;color:var(--muted);font-size:16px;padding-bottom:6px}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:24px}
+    .section-head h2{font-size:clamp(27px,4vw,40px);line-height:1.1;letter-spacing:-.03em;margin:0}
+    .section-head p{margin:0;color:var(--muted);max-width:560px}
+    .grid{display:grid;gap:16px}
+    .metrics{grid-template-columns:repeat(4,1fr)}
+    .card{background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:14px}
+    .metric{padding:22px 22px 20px;position:relative;overflow:hidden}
+    .metric:after{content:"";position:absolute;right:-18px;bottom:-26px;width:76px;height:76px;border:14px solid var(--cyan-soft);border-radius:50%}
+    .metric:nth-child(even):after{border-color:var(--orange-soft)}
+    .label{color:var(--muted);font-size:14px;font-weight:650}
+    .value{font-size:clamp(28px,4vw,42px);font-weight:850;letter-spacing:-.04em;margin:10px 0 5px;line-height:1}
+    .demo-chip{display:inline-flex;vertical-align:middle;margin-left:7px;padding:3px 7px;border-radius:999px;background:var(--orange-soft);color:var(--orange);font-size:10px;font-weight:850;letter-spacing:.03em;white-space:nowrap}
+    .dashboard-lower{grid-template-columns:.9fr 1.1fr;margin-top:16px}
+    .panel{padding:26px}
+    .panel-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px}
+    .panel-title h3{font-size:18px;margin:0}
+    .panel-title small{color:var(--muted)}
+    .funnel{display:grid;gap:10px}
+    .funnel-row{display:grid;grid-template-columns:82px 1fr auto;gap:12px;align-items:center}
+    .funnel-track{height:10px;background:var(--panel-2);border-radius:999px;overflow:hidden}
+    .funnel-fill{height:100%;background:var(--cyan);border-radius:inherit}
+    .funnel-row:nth-child(3) .funnel-fill,.funnel-row:nth-child(4) .funnel-fill{background:var(--orange)}
+    .funnel-row strong{font-variant-numeric:tabular-nums;min-width:118px;text-align:right}
+    .platform-bars{display:grid;gap:15px}
+    .bar-row{display:grid;grid-template-columns:88px minmax(90px,1fr) 126px;gap:14px;align-items:center}
+    .bar-track{height:12px;background:var(--panel-2);position:relative;border-radius:3px;overflow:hidden}
+    .bar-fill{position:absolute;inset:0 auto 0 0;background:var(--cyan)}
+    .bar-row:nth-child(even) .bar-fill{background:var(--orange)}
+    .bar-row strong{text-align:right;font-size:14px;font-variant-numeric:tabular-nums}
+    .workflow-wrap{overflow:hidden}
+    .workflow{display:grid;grid-template-columns:repeat(5,1fr);gap:0;padding:8px}
+    .flow-step{position:relative;border:0;background:transparent;padding:22px 16px 18px;text-align:left;cursor:pointer;min-height:136px}
+    .flow-step:not(:last-child):after{content:"→";position:absolute;right:-8px;top:44px;color:var(--cyan);font-weight:900;font-size:24px}
+    .flow-no{display:block;color:var(--cyan);font:800 12px ui-monospace,SFMono-Regular,Menlo,monospace;margin-bottom:12px}
+    .flow-step strong{display:block;font-size:17px;line-height:1.3;margin-right:8px}
+    .flow-step small{display:block;color:var(--muted);margin-top:8px}
+    .flow-step[aria-expanded="true"]{background:var(--panel-2);border-radius:10px}
+    .flow-step:focus-visible{outline:2px solid var(--cyan);outline-offset:-2px}
+    .flow-detail{border-top:1px solid var(--line);padding:26px;display:grid;grid-template-columns:1fr 1fr auto;gap:26px;align-items:start}
+    .detail-block span{display:block;color:var(--muted);font-size:12px;font-weight:800;margin-bottom:5px}
+    .detail-block p{margin:0}
+    .status{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border-radius:8px;font-size:12px;font-weight:850;white-space:nowrap}
+    .status:before{content:"";width:7px;height:7px;background:currentColor;border-radius:50%}
+    .status.live{background:var(--green-soft);color:var(--green)}
+    .status.wait{background:var(--yellow-soft);color:var(--yellow)}
+    .status.build{background:var(--red-soft);color:var(--red)}
+    .table-card{overflow:hidden}
+    table{width:100%;border-collapse:collapse}
+    th,td{text-align:left;padding:18px 20px;border-bottom:1px solid var(--line);vertical-align:middle}
+    th{background:var(--panel-2);color:var(--muted);font-size:12px;font-weight:800}
+    td{font-size:14px}
+    tbody tr:last-child td{border-bottom:0}
+    .platform-name{font-weight:800}
+    .freq{white-space:nowrap}
+    .tabs{display:flex;gap:6px;padding:8px;background:var(--panel-2);border-radius:12px;margin-bottom:18px;overflow:hidden}
+    .tab{flex:1;border:0;background:transparent;color:var(--muted);padding:11px 12px;border-radius:8px;font-size:13px;font-weight:800;cursor:pointer}
+    .tab[aria-selected="true"]{background:var(--panel);color:var(--text);box-shadow:0 5px 18px rgba(0,0,0,.12)}
+    .tab:focus-visible{outline:2px solid var(--cyan)}
+    .demo-content{min-height:380px;padding:30px}
+    .tab-panel[hidden]{display:none}
+    .product-intro{display:flex;gap:18px;align-items:center;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+    .product-mark{width:58px;height:58px;display:grid;place-items:center;background:var(--orange-soft);color:var(--orange);border-radius:14px;font:900 22px ui-monospace,monospace}
+    .product-intro h3{margin:0 0 4px;font-size:21px}
+    .product-intro p{margin:0;color:var(--muted)}
+    .copy-title{font-size:25px;line-height:1.35;margin:0 0 16px}
+    .copy-body{max-width:820px;margin:0;color:var(--muted)}
+    .script-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:16px}
+    .script-box{background:var(--panel-2);padding:20px;border-radius:10px}
+    .script-box h4,.plan-item h4,.talk-step h4{margin:0 0 9px;font-size:14px;color:var(--cyan)}
+    .script-box p{margin:0}
+    .script-box ul{margin:0;padding-left:20px;color:var(--muted)}
+    .distribution{display:grid;gap:0}
+    .plan-item{display:grid;grid-template-columns:110px 1fr 96px;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);align-items:center}
+    .plan-item:last-child{border:0}
+    .plan-item h4{color:var(--text);margin:0}
+    .plan-item p{margin:0;color:var(--muted)}
+    .plan-item time{text-align:right;font-weight:800;color:var(--orange)}
+    .talk-track{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:talk}
+    .talk-step{background:var(--panel-2);padding:20px;border-radius:10px;counter-increment:talk}
+    .talk-step h4:before{content:"0" counter(talk) " / ";color:var(--orange)}
+    .talk-step p{margin:0;color:var(--muted);font-size:14px}
+    .expectations{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .expect{background:var(--panel-2);padding:20px;border-radius:10px}
+    .expect strong{display:block;font-size:28px;margin:8px 0 5px}
+    .expect small{color:var(--muted)}
+    .disclaimer{margin-top:24px;padding:14px 16px;background:var(--orange-soft);color:var(--orange);font-size:13px;font-weight:750;border-radius:8px}
+    .live-stage{display:grid;grid-template-columns:minmax(280px,.86fr) minmax(0,1.14fr);min-height:640px;overflow:hidden;background:#071016;border-color:#21414b}
+    .host-pane{position:relative;min-height:640px;background:linear-gradient(155deg,#112831 0%,#09161d 55%,#061016 100%);overflow:hidden}
+    .host-pane:before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(72,217,212,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(72,217,212,.055) 1px,transparent 1px);background-size:38px 38px;mask-image:linear-gradient(to bottom,#000,transparent 78%)}
+    .live-topline{position:absolute;z-index:3;left:22px;right:22px;top:20px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .live-badge{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;background:var(--red);color:#1b090b;border-radius:7px;font-size:12px;font-weight:900}
+    .live-badge:before{content:"";width:7px;height:7px;background:#fff;border-radius:50%}
+    .viewer-count{font-size:12px;font-weight:750;color:#d7eff0;background:rgba(4,13,18,.68);padding:6px 9px;border:1px solid rgba(72,217,212,.24);border-radius:7px}
+    .host-visual{position:absolute;inset:58px 0 0;display:flex;justify-content:center;align-items:flex-end}
+    .host-visual img{width:100%;height:100%;object-fit:cover;object-position:center 18%;filter:saturate(.92) contrast(1.05)}
+    .host-visual:after{content:"";position:absolute;inset:auto 0 0;height:45%;background:linear-gradient(transparent,#061016 92%)}
+    .host-caption{position:absolute;z-index:3;left:22px;right:22px;bottom:20px}
+    .host-caption strong{display:block;font-size:21px}.host-caption span{color:#b7ced2;font-size:13px}
+    .live-console{display:grid;grid-template-rows:auto minmax(0,1fr) auto;background:#091219;min-width:0}
+    .console-head{padding:22px 24px;border-bottom:1px solid #20343c;display:flex;justify-content:space-between;align-items:center;gap:16px}
+    .console-head h3{margin:0;font-size:18px}.console-state{color:var(--green);font-size:12px;font-weight:800}
+    .console-body{display:grid;grid-template-columns:1.05fr .95fr;min-height:0}
+    .script-feed{position:relative;border-right:1px solid #20343c;padding:24px;overflow:hidden;min-height:360px}
+    .script-feed h4,.chat-panel h4{margin:0 0 16px;color:var(--muted);font-size:12px;letter-spacing:.06em}
+    .teleprompter-window{height:310px;overflow:hidden;mask-image:linear-gradient(transparent,#000 12%,#000 88%,transparent)}
+    .teleprompter-track{display:grid;gap:13px;animation:talk-scroll 18s linear infinite}
+    .talk-line{padding:14px 15px;border:1px solid #20343c;background:#0f1c24;border-radius:9px;color:#c7d9dc;font-size:14px}
+    .talk-line.active{border-color:rgba(72,217,212,.65);background:#10282c;color:#f0ffff}.talk-line b{color:var(--cyan);margin-right:7px}
+    .chat-panel{padding:24px;min-width:0}.chat-stream{display:grid;gap:12px}
+    .chat-item{font-size:13px;line-height:1.45;color:#b8cbd0}.chat-item b{color:var(--cyan);font-weight:800;margin-right:6px}.chat-item:nth-child(even) b{color:var(--orange)}
+    .product-live-card{margin:0 24px 24px;padding:17px;background:#111e26;border:1px solid #29434e;border-radius:11px;display:grid;grid-template-columns:58px 1fr auto;gap:14px;align-items:center}
+    .tissue-box{width:58px;height:48px;border-radius:8px;background:linear-gradient(145deg,#f4f1e9,#c8d5d4);position:relative;box-shadow:inset 0 -10px 0 rgba(11,25,32,.1)}
+    .tissue-box:before{content:"";position:absolute;width:25px;height:30px;left:17px;top:-18px;background:#fff;border-radius:45% 55% 8px 8px;transform:rotate(-7deg)}
+    .product-live-card h4{margin:0 0 3px;font-size:15px}.product-live-card p{margin:0;color:var(--muted);font-size:12px}.product-price{font-size:18px;font-weight:900;color:var(--orange);text-align:right}.product-price .demo-chip{display:block;margin:5px 0 0 auto}
+    .host-explain{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .explain-card{padding:25px}.explain-card.wide{grid-column:1/-1}.explain-index{font:800 12px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--cyan);display:block;margin-bottom:12px}.explain-card h3{margin:0 0 10px;font-size:20px}.explain-card p{margin:0;color:var(--muted)}
+    .loop-rail{margin-top:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.loop-node{padding:12px 10px;border-top:2px solid var(--cyan);background:var(--panel-2);font-size:12px;font-weight:800}.loop-node:nth-child(even){border-color:var(--orange)}
+    .schedule-card{background:#091219;border-color:#29434e;padding:28px}
+    .schedule-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:22px}
+    .schedule-heading h3{margin:0 0 6px}.schedule-heading p{max-width:720px}
+    .schedule-cycle{flex:0 0 auto;padding:7px 10px;border:1px solid rgba(72,217,212,.42);border-radius:7px;color:var(--cyan);font:850 12px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.06em}
+    .schedule-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;counter-reset:shift}
+    .shift-card{position:relative;min-width:0;padding:18px 15px 16px;background:#0f1c24;border-top:2px solid var(--cyan);counter-increment:shift}
+    .shift-card:nth-child(even){border-color:var(--orange)}
+    .shift-card:before{content:"0" counter(shift);position:absolute;right:13px;top:13px;color:#4e6770;font:800 11px ui-monospace,SFMono-Regular,Menlo,monospace}
+    .shift-card time{display:block;color:var(--cyan);font:850 13px ui-monospace,SFMono-Regular,Menlo,monospace;margin-bottom:14px;padding-right:28px}
+    .shift-card:nth-child(even) time{color:var(--orange)}
+    .shift-card strong{display:block;font-size:17px;margin-bottom:2px}.shift-card .shift-slot{display:block;color:var(--muted);font-size:12px;margin-bottom:13px}
+    .shift-card p{margin:0;color:#d6e5e7;font-size:13px;line-height:1.5}.shift-card p span{display:block;color:var(--muted);font-size:11px;font-weight:800;margin-bottom:3px}
+    .schedule-foot{display:flex;align-items:center;gap:9px;margin:18px 0 0;color:var(--muted);font-size:13px}.schedule-foot:before{content:"";width:26px;height:1px;background:var(--orange)}
+    .compliance-list{margin:17px 0 0;padding:0;list-style:none;display:grid;gap:10px}.compliance-list li{display:grid;grid-template-columns:16px 1fr;gap:9px;color:var(--muted);font-size:14px}.compliance-list li:before{content:"✓";color:var(--green);font-weight:900}
+    .category-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:8px;background:var(--panel-2);border:1px solid var(--line);border-radius:12px;margin-bottom:18px}
+    .category-choice{position:relative;min-width:0;border:0;background:transparent;color:var(--muted);padding:14px 12px;border-radius:8px;font-size:13px;line-height:1.35;font-weight:850;cursor:pointer;text-align:center}
+    .category-choice small{display:block;margin-top:3px;font-size:10px;color:inherit;font-weight:750}
+    .category-choice[aria-pressed="true"]{background:var(--panel);color:var(--text);box-shadow:0 5px 18px rgba(0,0,0,.15)}
+    .category-choice[data-category="daily"][aria-pressed="true"]{color:var(--cyan)}
+    .category-choice:not([data-category="daily"]):after{content:"招商中";display:inline-flex;margin-left:6px;padding:2px 5px;border-radius:5px;background:var(--orange-soft);color:var(--orange);font-size:9px;font-weight:900;vertical-align:1px}
+    .category-choice:focus-visible{outline:2px solid var(--cyan);outline-offset:1px}
+    .category-panel[hidden]{display:none}
+    .subcategory-board{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:14px;overflow:hidden}
+    .subcategory-row{display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line)}
+    .subcategory-row:last-child{border-bottom:0}
+    .subcategory-label{display:flex;align-items:baseline;gap:8px}
+    .subcategory-label strong{font-size:14px}.subcategory-label span{color:var(--muted);font:750 10px ui-monospace,SFMono-Regular,Menlo,monospace}
+    .subcategory-products{display:flex;flex-wrap:wrap;gap:7px}
+    .product-choice{min-width:0;border:1px solid transparent;background:var(--panel-2);color:var(--muted);padding:9px 12px;border-radius:7px;font-size:12px;line-height:1.35;font-weight:800;cursor:pointer}
+    .product-choice[aria-pressed="true"]{background:var(--cyan-soft);color:var(--cyan);border-color:rgba(72,217,212,.28)}
+    .product-choice:focus-visible{outline:2px solid var(--cyan);outline-offset:1px}
+    .recruit-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:center;padding:34px;border-color:#59412e;background:linear-gradient(135deg,var(--panel) 0%,#1b1a1a 100%);transition:border-color .2s ease}
+    .recruit-card:hover,.recruit-card:focus-visible{border-color:var(--orange);outline:none}
+    .recruit-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:16px}.recruit-status{display:inline-flex;padding:5px 9px;border-radius:6px;background:var(--orange);color:#211006;font-size:11px;font-weight:950;letter-spacing:.04em}.recruit-code{color:var(--muted);font:750 11px ui-monospace,SFMono-Regular,Menlo,monospace}
+    .recruit-copy h3{margin:0 0 8px;font-size:clamp(25px,4vw,36px);letter-spacing:-.025em}.recruit-copy p{margin:0;color:var(--muted)}.recruit-copy .recruit-examples{margin-top:18px;color:var(--text);font-size:13px}.recruit-copy .recruit-examples span{color:var(--cyan);font-weight:850;margin-right:8px}
+    .recruit-cta{min-width:150px;padding:15px 18px;border-left:1px solid #68442d;color:var(--orange);font-weight:850}.recruit-cta span{display:block;color:var(--muted);font-size:11px;font-weight:700;margin-top:3px}
+    .ad-lines{display:grid;gap:10px;margin:0 0 18px}.ad-line{padding:14px 16px;background:var(--panel-2);border-radius:8px;font-size:17px;font-weight:800}.ad-line:before{content:"广告语";display:inline-block;margin-right:10px;color:var(--orange);font-size:10px;letter-spacing:.04em;vertical-align:2px}
+    .claim-note{margin:0;color:var(--muted);font-size:13px}
+    .stage-note{margin-top:16px;padding:16px 18px;border-radius:9px;background:var(--cyan-soft);color:#bff5f1;font-weight:750;font-size:14px}
+
+    .vision-lead{margin-bottom:30px;max-width:920px}.vision-lead h1{max-width:900px}.vision-lead>p:last-child{margin:18px 0 0;color:var(--muted);font-size:18px;max-width:760px}
+    .vision-grid{grid-template-columns:repeat(3,1fr);margin-bottom:18px}.vision-card{padding:26px}.vision-card .vision-no{display:block;color:var(--cyan);font:800 12px ui-monospace,SFMono-Regular,Menlo,monospace;margin-bottom:22px}.vision-card:nth-child(2) .vision-no{color:var(--orange)}.vision-card h3{font-size:23px;margin:0 0 10px}.vision-card p{margin:0;color:var(--muted)}
+    .path{padding:26px}.path-title{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-bottom:22px}.path-title h3{margin:0;font-size:19px}.path-title span{color:var(--muted);font-size:13px}.path-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0}.path-step{position:relative;padding:21px 34px 18px 18px;border-top:2px solid var(--line);background:var(--panel-2)}.path-step:first-child{border-color:var(--orange)}.path-step:not(:last-child):after{content:"→";position:absolute;right:10px;top:22px;color:var(--cyan);font-size:22px;font-weight:900}.path-step b{display:block;color:var(--orange);font-size:12px;margin-bottom:8px}.path-step h3{margin:0 0 8px;font-size:18px}.path-step p{margin:0;color:var(--muted);font-size:14px}
+    .partner-value{grid-template-columns:repeat(4,1fr);margin-bottom:20px}.partner-card{padding:23px}.partner-card span{color:var(--cyan);font:800 12px ui-monospace,SFMono-Regular,Menlo,monospace}.partner-card h3{margin:13px 0 8px;font-size:19px}.partner-card p{margin:0;color:var(--muted);font-size:14px}.partner-card:nth-child(even) span{color:var(--orange)}
+    .cooperation-stack{display:grid;gap:20px}.subhead{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:16px}.subhead h3{margin:0;font-size:21px}.subhead p{margin:0;color:var(--muted);font-size:13px}.coop-table td:first-child{font-weight:850;font-size:16px}.qa-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.qa{padding:20px;background:var(--panel-2);border-radius:10px}.qa:last-child{grid-column:1/-1}.qa h4{margin:0 0 7px;color:var(--cyan);font-size:14px}.qa p{margin:0;color:var(--muted);font-size:14px}.entry-card{padding:25px}.entry-list{list-style:none;margin:18px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:11px}.entry-list li{display:grid;grid-template-columns:20px 1fr;gap:9px;color:var(--muted)}.entry-list li:before{content:"✓";color:var(--green);font-weight:900}.entry-list strong{color:var(--text)}
+    @keyframes talk-scroll{0%,12%{transform:translateY(0)}45%,57%{transform:translateY(-88px)}88%,100%{transform:translateY(-176px)}}
+    footer{border-top:1px solid var(--line);padding:28px 0 42px;color:var(--muted);font-size:13px}
+    footer .shell{display:flex;justify-content:space-between;gap:20px}
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr;align-items:start}.metrics{grid-template-columns:repeat(2,1fr)}
+      .dashboard-lower{grid-template-columns:1fr}.workflow{grid-template-columns:1fr 1fr}
+      .flow-step:not(:last-child):after{content:"↘"}.flow-detail{grid-template-columns:1fr 1fr}.flow-detail .status{justify-self:start}
+      .talk-track,.expectations{grid-template-columns:1fr 1fr}
+      .live-stage{grid-template-columns:1fr}.host-pane{min-height:570px}.console-body{grid-template-columns:1fr 1fr}.host-explain{grid-template-columns:1fr 1fr}
+      .schedule-grid{grid-template-columns:repeat(2,1fr)}.shift-card:last-child{grid-column:1/-1}.category-nav{grid-template-columns:repeat(2,1fr)}
+      .vision-grid{grid-template-columns:1fr}.partner-value{grid-template-columns:1fr 1fr}.path-grid{grid-template-columns:1fr}.path-step:not(:last-child):after{content:"↓";top:auto;right:18px;bottom:-16px;z-index:2}
+    }
+    @media(max-width:680px){
+      .shell{width:min(100% - 24px,1180px)}.demo-banner{text-align:left;font-size:12px}.topbar{position:relative}
+      nav{padding:12px 0;align-items:flex-start;flex-direction:column}.nav-links{justify-content:flex-start;margin-left:-8px}.nav-links a{padding:6px 8px;font-size:12px}
+      main{padding-top:38px}section{margin-bottom:62px}.hero{gap:18px}.section-head{align-items:flex-start;flex-direction:column}.section-head p{font-size:14px}
+      .metrics{grid-template-columns:1fr 1fr;gap:10px}.metric{padding:17px}.metric .label{font-size:12px}.value{font-size:27px}.demo-chip{display:flex;width:max-content;margin:8px 0 0}
+      .panel{padding:20px}.funnel-row{grid-template-columns:58px 1fr}.funnel-row strong{grid-column:2;text-align:left;min-width:0;font-size:13px}.bar-row{grid-template-columns:72px 1fr}.bar-row strong{grid-column:2;text-align:left}
+      .workflow{grid-template-columns:1fr;padding:8px}.flow-step{min-height:0;padding:17px}.flow-step:not(:last-child):after{content:"↓";right:20px;top:auto;bottom:-11px}.flow-detail{grid-template-columns:1fr;padding:22px}
+      .table-card{background:transparent;border:0;box-shadow:none}table,tbody{display:block}thead{display:none}tr{display:block;background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:12px;padding:10px 16px}td{display:grid;grid-template-columns:92px 1fr;padding:9px 0;border-bottom:1px solid var(--line)}td:before{content:attr(data-label);font-size:11px;color:var(--muted);font-weight:800}.freq{white-space:normal}tbody tr:last-child td{border-bottom:1px solid var(--line)}tbody tr td:last-child{border-bottom:0}
+      .tabs{display:grid;grid-template-columns:1fr 1fr}.tab:last-child{grid-column:1/-1}.demo-content{padding:21px;min-height:480px}.product-intro{align-items:flex-start}.script-grid{grid-template-columns:1fr}.plan-item{grid-template-columns:76px 1fr}.plan-item time{grid-column:2;text-align:left}.talk-track,.expectations{grid-template-columns:1fr}.copy-title{font-size:21px}
+      .host-pane{min-height:520px}.console-body{grid-template-columns:1fr}.script-feed{border-right:0;border-bottom:1px solid #20343c}.chat-panel{padding-bottom:28px}.product-live-card{grid-template-columns:50px 1fr}.product-price{grid-column:2;text-align:left}.product-price .demo-chip{margin-left:0}.host-explain{grid-template-columns:1fr}.explain-card.wide{grid-column:auto}.loop-rail{grid-template-columns:1fr 1fr}
+      .schedule-card{padding:21px}.schedule-heading{flex-direction:column;margin-bottom:18px}.schedule-grid{grid-template-columns:1fr}.shift-card:last-child{grid-column:auto}.category-nav{grid-template-columns:1fr 1fr;gap:6px}.category-choice{padding:11px 8px;font-size:11px}.category-choice:not([data-category="daily"]):after{display:block;width:max-content;margin:4px auto 0}.subcategory-row{grid-template-columns:1fr;gap:9px;padding:13px}.product-choice{font-size:11px;padding:9px 10px}.recruit-card{grid-template-columns:1fr;padding:22px;gap:24px}.recruit-cta{border-left:0;border-top:1px solid #68442d;padding:14px 0 0}.ad-line{font-size:15px}
+      .vision-lead>p:last-child{font-size:16px}.partner-value,.qa-grid,.entry-list{grid-template-columns:1fr}.qa:last-child{grid-column:auto}.path-title,.subhead{align-items:flex-start;flex-direction:column}.vision-card,.path,.entry-card{padding:20px}
+      footer .shell{flex-direction:column;gap:5px}
+    }
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.teleprompter-track{animation:none}}
+  </style>
+</head>
+<body>
+  <div class="demo-banner">本页所有数据均为演示用模拟数据，非真实战绩</div>
+  <header class="topbar">
+    <nav class="shell" aria-label="页面导航">
+      <div class="nav-context">闭环能力 <span>演示总览</span></div>
+      <div class="nav-links">
+        <a href="#vision">平台愿景</a><a href="#dashboard">数据看板</a><a href="#workflow">闭环流程</a><a href="#matrix">矩阵调度</a><a href="#studio">数字人直播</a><a href="#demo">产品演示</a><a href="#cooperation">厂家合作</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="shell">
+
+    <section id="vision" aria-labelledby="vision-title">
+      <div class="vision-lead"><p class="kicker">平台愿景</p><h1 id="vision-title">小而快的自动化电商平台</h1><p>模式像淘宝拼多多，规模更小，但自动化、数字化、更快。</p></div>
+      <div class="grid vision-grid">
+        <article class="card vision-card"><span class="vision-no">01 / 自动化</span><h3>让机器跑完整条链路</h3><p>AI 写脚本 → 自动剪辑 → 矩阵自动发布 → 数字人自动直播，全链路机器跑。</p></article>
+        <article class="card vision-card"><span class="vision-no">02 / 数字化</span><h3>每一步都进入数据中台</h3><p>选品 → 生产 → 发布 → 直播 → 订单 → 复购，全链路数据进中台。</p></article>
+        <article class="card vision-card"><span class="vision-no">03 / 快</span><h3>用速度验证，用模型复制</h3><p>新品 48 小时上架开卖，爆款模型 7 天复制到新品类。</p></article>
+      </div>
+      <article class="card path">
+        <div class="path-title"><h3>三阶段平台路径</h3><span>先验证分发效率，再沉淀订单与商家能力</span></div>
+        <div class="path-grid">
+          <div class="path-step"><b>阶段一 · 现在</b><h3>分发平台</h3><p>分销带货赚佣金，样板间验证。</p></div>
+          <div class="path-step"><b>阶段二</b><h3>自有商城</h3><p>小程序 / 网站商城 + 微信支付，订单到人。</p></div>
+          <div class="path-step"><b>阶段三</b><h3>商家入驻平台</h3><p>商家自主上架，AI 自动带货，平台抽佣。</p></div>
+        </div>
+      </article>
+    </section>
+
+    <section id="dashboard" aria-labelledby="dashboard-title">
+      <div class="hero">
+        <div><p class="kicker">数据看板开场</p><h1 id="dashboard-title">让每一条内容，都能追到一笔订单</h1></div>
+        <p>从内容生产、跨平台分发到直播承接与成交回流，把分散动作收进一套可复盘、可放大的带货系统。</p>
+      </div>
+
+      <div class="grid metrics" aria-label="全平台演示数据总览">
+        <article class="card metric"><div class="label">总曝光</div><div class="value">128.6万</div><span class="demo-chip">演示数据</span></article>
+        <article class="card metric"><div class="label">总互动</div><div class="value">8.42万</div><span class="demo-chip">演示数据</span></article>
+        <article class="card metric"><div class="label">总订单</div><div class="value">3,286</div><span class="demo-chip">演示数据</span></article>
+        <article class="card metric"><div class="label">总 GMV</div><div class="value">¥18.7万</div><span class="demo-chip">演示数据</span></article>
+      </div>
+
+      <div class="grid dashboard-lower">
+        <article class="card panel">
+          <div class="panel-title"><h3>转化漏斗</h3><small>全平台汇总 · 演示数据</small></div>
+          <div class="funnel">
+            <div class="funnel-row"><span>曝光</span><div class="funnel-track"><div class="funnel-fill" style="width:100%"></div></div><strong>1,286,000 <i class="demo-chip">演示数据</i></strong></div>
+            <div class="funnel-row"><span>互动</span><div class="funnel-track"><div class="funnel-fill" style="width:68%"></div></div><strong>84,200 <i class="demo-chip">演示数据</i></strong></div>
+            <div class="funnel-row"><span>点击</span><div class="funnel-track"><div class="funnel-fill" style="width:44%"></div></div><strong>21,460 <i class="demo-chip">演示数据</i></strong></div>
+            <div class="funnel-row"><span>下单</span><div class="funnel-track"><div class="funnel-fill" style="width:24%"></div></div><strong>3,286 <i class="demo-chip">演示数据</i></strong></div>
+          </div>
+        </article>
+        <article class="card panel">
+          <div class="panel-title"><h3>平台曝光对比</h3><small>曝光量 · 演示数据</small></div>
+          <div class="platform-bars">
+            <div class="bar-row"><span>快手</span><div class="bar-track"><div class="bar-fill" style="width:92%"></div></div><strong>41.2万 <i class="demo-chip">演示数据</i></strong></div>
+            <div class="bar-row"><span>小红书</span><div class="bar-track"><div class="bar-fill" style="width:76%"></div></div><strong>33.8万 <i class="demo-chip">演示数据</i></strong></div>
+            <div class="bar-row"><span>抖音</span><div class="bar-track"><div class="bar-fill" style="width:62%"></div></div><strong>27.1万 <i class="demo-chip">演示数据</i></strong></div>
+            <div class="bar-row"><span>今日头条</span><div class="bar-track"><div class="bar-fill" style="width:35%"></div></div><strong>15.4万 <i class="demo-chip">演示数据</i></strong></div>
+            <div class="bar-row"><span>微信视频号</span><div class="bar-track"><div class="bar-fill" style="width:26%"></div></div><strong>11.1万 <i class="demo-chip">演示数据</i></strong></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="workflow" aria-labelledby="workflow-title">
+      <div class="section-head"><div><p class="kicker">闭环流程</p><h2 id="workflow-title">五个环节，一条数据链</h2></div><p>点击任一环节，查看输入、输出和建设状态。系统先把流程跑通，再用真实回流数据持续优化内容与选品。</p></div>
+      <article class="card workflow-wrap">
+        <div class="workflow" role="list">
+          <button class="flow-step" aria-expanded="true" data-step="0"><span class="flow-no">STEP 01</span><strong>AI 文案生产</strong><small>卖点拆解 · 平台适配</small></button>
+          <button class="flow-step" aria-expanded="false" data-step="1"><span class="flow-no">STEP 02</span><strong>视频 / 图文生产</strong><small>脚本 · 画面 · 口播</small></button>
+          <button class="flow-step" aria-expanded="false" data-step="2"><span class="flow-no">STEP 03</span><strong>矩阵发布</strong><small>多平台 · 分时段</small></button>
+          <button class="flow-step" aria-expanded="false" data-step="3"><span class="flow-no">STEP 04</span><strong>数字人直播</strong><small>话术 · 场控 · 承接</small></button>
+          <button class="flow-step" aria-expanded="false" data-step="4"><span class="flow-no">STEP 05</span><strong>分销出单 → 数据回流</strong><small>成交 · 归因 · 复盘</small></button>
+        </div>
+        <div class="flow-detail" id="flow-detail" aria-live="polite"></div>
+      </article>
+    </section>
+
+    <section id="matrix" aria-labelledby="matrix-title">
+      <div class="section-head"><div><p class="kicker">矩阵调度台</p><h2 id="matrix-title">一个主题，五种平台表达</h2></div><p>账号状态与内容节奏一屏可见；待注册平台完成用户侧开户后，即可接入同一生产与复盘链路。</p></div>
+      <article class="card table-card">
+        <table>
+          <thead><tr><th>平台</th><th>账号</th><th>定位</th><th>内容类型</th><th>日更频率</th><th>状态</th></tr></thead>
+          <tbody>
+            <tr><td data-label="平台" class="platform-name">快手</td><td data-label="账号">现有账号（拟转型）</td><td data-label="定位">高性价比居家好物</td><td data-label="内容类型">短视频 / 直播切片</td><td data-label="日更频率" class="freq">每日 2 条 <span class="demo-chip">演示数据</span></td><td data-label="状态"><span class="status live">运营中</span></td></tr>
+            <tr><td data-label="平台" class="platform-name">小红书</td><td data-label="账号">wswin空间视觉</td><td data-label="定位">wswin空间视觉 · 设计+AI<br><small>用 AI 重新设计空间。10 分钟出效果图，装修不踩坑。</small></td><td data-label="内容类型">图文 / 短视频</td><td data-label="日更频率" class="freq">每日 1 条 <span class="demo-chip">演示数据</span></td><td data-label="状态"><span class="status live">运营中</span></td></tr>
+            <tr><td data-label="平台" class="platform-name">抖音</td><td data-label="账号">待用户注册</td><td data-label="定位">家庭刚需测评</td><td data-label="内容类型">短视频 / 数字人直播</td><td data-label="日更频率" class="freq">每日 3 条 <span class="demo-chip">演示数据</span></td><td data-label="状态"><span class="status wait">待注册</span></td></tr>
+            <tr><td data-label="平台" class="platform-name">今日头条</td><td data-label="账号">待用户注册</td><td data-label="定位">实用生活攻略</td><td data-label="内容类型">文章 / 微头条</td><td data-label="日更频率" class="freq">每日 2 条 <span class="demo-chip">演示数据</span></td><td data-label="状态"><span class="status wait">待注册</span></td></tr>
+            <tr><td data-label="平台" class="platform-name">微信视频号</td><td data-label="账号">待用户注册</td><td data-label="定位">家庭消费顾问</td><td data-label="内容类型">短视频 / 直播</td><td data-label="日更频率" class="freq">每日 1 条 <span class="demo-chip">演示数据</span></td><td data-label="状态"><span class="status wait">待注册</span></td></tr>
+          </tbody>
+        </table>
+      </article>
+    </section>
+
+    <section id="studio" aria-labelledby="studio-title">
+      <div class="section-head"><div><p class="kicker">数字人直播间</p><h2 id="studio-title">把脚本、商品与互动放进同一个场</h2></div><p>以下为样板间演示界面：虚拟主播形象、循环话术、商品卡与互动弹幕共同呈现直播承接链路。</p></div>
+      <article class="card live-stage" aria-label="数字人带货直播间演示界面">
+        <div class="host-pane">
+          <div class="live-topline"><span class="live-badge">演示直播</span><span class="viewer-count">观看 3.2 万 <i class="demo-chip">演示数据</i> · 点赞 8.6 万 <i class="demo-chip">演示数据</i></span></div>
+          <div class="host-visual"><img src="assets/digital-host.png" alt="深色直播间中的 AI 虚拟主播立绘" /></div>
+          <div class="host-caption"><strong>数字人主播 · 小唯</strong><span>AI 虚拟形象｜样板间演示</span></div>
+        </div>
+        <div class="live-console">
+          <div class="console-head"><h3>直播控制台</h3><span class="console-state">● 话术轮播中</span></div>
+          <div class="console-body">
+            <div class="script-feed">
+              <h4>直播话术滚动区</h4>
+              <div class="teleprompter-window" aria-label="循环直播话术">
+                <div class="teleprompter-track">
+                  <div class="talk-line active"><b>正在播报</b>家里抽纸别等见底才补，客厅、餐桌、床头一次配齐，用起来更顺手。</div>
+                  <div class="talk-line"><b>卖点讲解</b>先看清包装规格与到手数量，再按家里的使用位置安排，不多囤也不临时缺。</div>
+                  <div class="talk-line"><b>场景演示</b>做饭擦手、饭后清洁、处理小水渍，都是每天会遇到的真实使用场景。</div>
+                  <div class="talk-line"><b>互动承接</b>对规格、发货和售后有疑问，可以在评论区提问，由场控核对后回复。</div>
+                  <div class="talk-line active"><b>重新轮播</b>家里抽纸别等见底才补，客厅、餐桌、床头一次配齐，用起来更顺手。</div>
+                </div>
+              </div>
+            </div>
+            <aside class="chat-panel" aria-label="模拟实时互动弹幕">
+              <h4>实时互动弹幕 · 模拟</h4>
+              <div class="chat-stream">
+                <div class="chat-item"><b>晚风</b>家庭装一共有多少包？</div>
+                <div class="chat-item"><b>小唯场控</b>以商品卡实时规格为准，下单前请确认详情。</div>
+                <div class="chat-item"><b>小城生活</b>湿水后容易破吗？</div>
+                <div class="chat-item"><b>小唯场控</b>直播会展示使用效果，不做超出实测的承诺。</div>
+                <div class="chat-item"><b>晴天</b>已加入购物车。</div>
+              </div>
+            </aside>
+          </div>
+          <div class="product-live-card">
+            <div class="tissue-box" aria-hidden="true"></div>
+            <div><h4>家庭装抽纸</h4><p>日常高频消耗｜规格以商品详情为准</p></div>
+            <div class="product-price">¥19.9 <span class="demo-chip">演示数据</span></div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="host-logic" aria-labelledby="host-logic-title">
+      <div class="section-head"><div><p class="kicker">数字人说明</p><h2 id="host-logic-title">数字人负责稳定表达，真人负责判断与合规</h2></div><p>样板间先演示完整界面和运行逻辑；接入真实账号、商品与平台规则后，再进入正式直播验证。</p></div>
+      <div class="host-explain">
+        <article class="card explain-card">
+          <span class="explain-index">形象生成</span>
+          <h3>即梦生成数字人</h3>
+          <p>先在即梦确定主播形象、口型与场景，再把商品资料拆成可循环、可替换的话术模块；同一角色保持外观与表达一致。</p>
+        </article>
+        <article class="card explain-card">
+          <span class="explain-index">轮播逻辑</span>
+          <h3>24 小时循环承接 <i class="demo-chip">演示数据</i></h3>
+          <p>按“开场留人—需求提问—卖点演示—规格确认—答疑回环”编排内容；运行时根据商品、时段和互动信号切换模块，并保留人工接管入口。</p>
+          <div class="loop-rail" aria-label="直播轮播逻辑"><span class="loop-node">开场留人</span><span class="loop-node">卖点演示</span><span class="loop-node">规格确认</span><span class="loop-node">答疑回环</span></div>
+        </article>
+        <article class="card explain-card wide schedule-card">
+          <span class="explain-index">跨平台轮播排班表</span>
+          <div class="schedule-heading">
+            <div><h3>一个数字人 IP，每日五平台巡播</h3><p>共用一套商品话术底稿，按时段切换平台，并针对各平台用户习惯微调节奏与承接方式。</p></div>
+            <span class="schedule-cycle">24H 循环</span>
+          </div>
+          <div class="schedule-grid" aria-label="数字人每日五平台巡播时段">
+            <div class="shift-card"><time>08:00–12:00</time><strong>抖音</strong><span class="shift-slot">早间档</span><p><span>话术微调</span>重节奏逼单</p></div>
+            <div class="shift-card"><time>12:00–16:00</time><strong>快手</strong><span class="shift-slot">午间档</span><p><span>话术微调</span>重唠嗑信任</p></div>
+            <div class="shift-card"><time>16:00–20:00</time><strong>小红书</strong><span class="shift-slot">下午档</span><p><span>话术微调</span>重种草调性</p></div>
+            <div class="shift-card"><time>20:00–24:00</time><strong>微信视频号</strong><span class="shift-slot">黄金档</span><p><span>话术微调</span>重私域转化</p></div>
+            <div class="shift-card"><time>00:00–08:00</time><strong>今日头条</strong><span class="shift-slot">深夜录播档</span><p><span>话术微调</span>重资讯挂载</p></div>
+          </div>
+          <p class="schedule-foot">24:00 后切入深夜录播，次日 08:00 回到抖音早间档，形成完整日循环。</p>
+        </article>
+        <article class="card explain-card wide">
+          <span class="explain-index">合规边界</span>
+          <h3>无人直播不是“无人负责”</h3>
+          <p>正式上线前须逐个平台核对最新直播规范与数字人要求，不把演示界面直接当作真实开播能力。</p>
+          <ul class="compliance-list">
+            <li>按平台要求标识 AI 生成内容或数字人身份，避免让观众误认为真人实时出镜。</li>
+            <li>配置真人场控与应急接管，及时处理投诉、异常互动、违规提示和直播中断。</li>
+            <li>商品规格、价格、库存、发货与售后只使用商家可核验信息，不虚构优惠或效果。</li>
+            <li>不循环误导性话术，不规避平台对录播、挂机、低质重复内容和无人值守直播的限制。</li>
+          </ul>
+          <div class="stage-note">当前为样板间阶段：展示数字人直播间的界面与业务逻辑，不代表已在任何平台开启真实直播。</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="demo" aria-labelledby="demo-title">
+      <div class="section-head"><div><p class="kicker">产品演示区</p><h2 id="demo-title">按类目组织，按单品跑完完整闭环</h2></div><p>先切换一级类目；日用百货已按四个子类完成 8 款样板，待入驻类目直接对接厂家合作。</p></div>
+      <div class="category-nav" aria-label="产品类目切换">
+        <button class="category-choice" type="button" aria-pressed="true" data-category="daily">日用百货<small>已有 8 款 · 完整展示</small></button>
+        <button class="category-choice" type="button" aria-pressed="false" data-category="home">家居家纺</button>
+        <button class="category-choice" type="button" aria-pressed="false" data-category="baby">母婴用品</button>
+        <button class="category-choice" type="button" aria-pressed="false" data-category="appliance">小家电</button>
+      </div>
+
+      <div class="category-panel" data-category-panel="daily">
+        <div class="subcategory-board" aria-label="日用百货 4 个子类与 8 款演示产品">
+          <div class="subcategory-row">
+            <div class="subcategory-label"><strong>纸品</strong><span>1 款</span></div>
+            <div class="subcategory-products"><button class="product-choice" type="button" aria-pressed="true" data-product="tissue">抽纸 / 卷纸</button></div>
+          </div>
+          <div class="subcategory-row">
+            <div class="subcategory-label"><strong>清洁洗护</strong><span>4 款</span></div>
+            <div class="subcategory-products">
+              <button class="product-choice" type="button" aria-pressed="false" data-product="laundry">洗衣凝珠 / 洗衣液</button>
+              <button class="product-choice" type="button" aria-pressed="false" data-product="detergent">洗洁精</button>
+              <button class="product-choice" type="button" aria-pressed="false" data-product="towel">洗脸巾</button>
+              <button class="product-choice" type="button" aria-pressed="false" data-product="toothbrush">软毛牙刷</button>
+            </div>
+          </div>
+          <div class="subcategory-row">
+            <div class="subcategory-label"><strong>厨房日用</strong><span>2 款</span></div>
+            <div class="subcategory-products">
+              <button class="product-choice" type="button" aria-pressed="false" data-product="trash">垃圾袋</button>
+              <button class="product-choice" type="button" aria-pressed="false" data-product="wrap">保鲜膜 / 保鲜袋</button>
+            </div>
+          </div>
+          <div class="subcategory-row">
+            <div class="subcategory-label"><strong>服装</strong><span>1 款</span></div>
+            <div class="subcategory-products"><button class="product-choice" type="button" aria-pressed="false" data-product="socks">中老年袜</button></div>
+          </div>
+        </div>
+      <div class="tabs" role="tablist" aria-label="产品演示内容">
+        <button class="tab" role="tab" aria-selected="true" aria-controls="copy" id="tab-copy">商品文案</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="script" id="tab-script">短视频脚本</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="distribution" id="tab-distribution">分发计划</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="live" id="tab-live">直播话术</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="forecast" id="tab-forecast">数据预期</button>
+      </div>
+      <article class="card demo-content">
+        <div class="product-intro"><div class="product-mark" id="product-mark">纸</div><div><h3 id="product-name">抽纸（家庭装）</h3><p id="product-meta">示例商品｜围绕“日常高频、全家适用、囤货省心”建立内容主线</p></div></div>
+        <div class="tab-panel" role="tabpanel" id="copy" aria-labelledby="tab-copy">
+          <div id="copy-content">
+            <h3 class="copy-title">家里抽纸别等用完才补：一提放三处，客厅、餐桌、床头都顺手</h3>
+            <p class="copy-body">做饭擦手、孩子洒水、饭后清洁，抽纸几乎天天都要用。家庭装的价值不是堆数量，而是把高频消耗品提前放到真正需要的位置。纸张触感柔和，干擦不易掉屑，日常沾水擦拭也不容易破。一次备齐，少跑几趟超市，也不用临时翻箱倒柜。</p>
+          </div>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="script" aria-labelledby="tab-script" hidden>
+          <div class="script-grid" id="script-content">
+            <div class="script-box"><h4>开场钩子</h4><p>“你家抽纸是不是总在最需要的时候，刚好只剩一个空袋？”</p></div>
+            <div class="script-box"><h4>口播主线</h4><p>别只在客厅放一包。家庭装拆开后，餐桌、床头、洗手台各放一包，拿起来更顺手。日常擦手、擦桌、清理小水渍都能用，提前囤一提，省下的其实是反复补货的时间。</p></div>
+            <div class="script-box" style="grid-column:1/-1"><h4>分镜</h4><ul><li>空抽纸袋特写，手伸进去却没纸</li><li>家庭装开箱，一次排开多个使用点</li><li>餐桌污渍、手部水渍、床头取纸三个快切</li><li>纸张湿水后拉扯展示，再回到整齐收纳画面</li><li>结尾给出“按空间备纸”的购买理由</li></ul></div>
+          </div>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="distribution" aria-labelledby="tab-distribution" hidden>
+          <div class="distribution" id="distribution-content">
+            <div class="plan-item"><h4>快手</h4><p>真实家庭场景短视频，突出实用与囤货理由</p><time>19:30 <span class="demo-chip">演示数据</span></time></div>
+            <div class="plan-item"><h4>小红书</h4><p>“家里三处抽纸位”图文清单，强调收纳与使用体验</p><time>12:20 <span class="demo-chip">演示数据</span></time></div>
+            <div class="plan-item"><h4>抖音</h4><p>问题钩子短视频，湿水测试画面承接卖点</p><time>20:10 <span class="demo-chip">演示数据</span></time></div>
+            <div class="plan-item"><h4>今日头条</h4><p>家庭日用品补货攻略，图文解释如何按空间配置</p><time>08:40 <span class="demo-chip">演示数据</span></time></div>
+            <div class="plan-item"><h4>视频号</h4><p>生活经验口播，接入晚间家庭用品直播</p><time>18:50 <span class="demo-chip">演示数据</span></time></div>
+          </div>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="live" aria-labelledby="tab-live" hidden>
+          <div class="talk-track" id="live-content">
+            <div class="talk-step"><h4>开场</h4><p>“每天都要用的东西，别等最后一包见底才想起来补。”快速呈现家庭高频场景。</p></div>
+            <div class="talk-step"><h4>卖点</h4><p>围绕触感、韧性、使用位置与囤货便利逐项演示，不夸大产品能力。</p></div>
+            <div class="talk-step"><h4>促单</h4><p>“需要给客厅、餐桌、床头一次配齐的，现在看清规格与到手数量再下单。”</p></div>
+            <div class="talk-step"><h4>答疑</h4><p>回答尺寸、张数、包装、发货和售后；不确定的信息不代替商家承诺。</p></div>
+          </div>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="forecast" aria-labelledby="tab-forecast" hidden>
+          <div class="expectations" id="forecast-content">
+            <div class="expect"><span>预计播放</span><strong>8.6万 <i class="demo-chip">演示数据</i></strong><small>五平台累计</small></div>
+            <div class="expect"><span>预计点击率</span><strong>2.8% <i class="demo-chip">演示数据</i></strong><small>内容到商品页</small></div>
+            <div class="expect"><span>预计转化率</span><strong>8.5% <i class="demo-chip">演示数据</i></strong><small>点击到下单</small></div>
+            <div class="expect"><span>预计订单</span><strong>205 <i class="demo-chip">演示数据</i></strong><small>本轮分发合计</small></div>
+          </div>
+          <div class="disclaimer">以上预期仅用于展示看板结构与复盘口径，均为演示模拟数据，不构成销量承诺。</div>
+        </div>
+      </article>
+      </div>
+
+      <div class="category-panel" data-category-panel="home" hidden>
+        <a class="card recruit-card" href="#cooperation" aria-label="家居家纺招商中，前往厂家合作区">
+          <div class="recruit-copy">
+            <div class="recruit-eyebrow"><span class="recruit-status">招商中</span><span class="recruit-code">CATEGORY 02</span></div>
+            <h3>家居家纺</h3>
+            <p>该类目虚位以待，厂家入驻即享AI矩阵带货</p>
+            <p class="recruit-examples"><span>子类示例</span>床品套件 · 毛巾浴巾 · 收纳用品 · 居家布艺</p>
+          </div>
+          <div class="recruit-cta">前往厂家合作区 →<span>查看合作模式与准入门槛</span></div>
+        </a>
+      </div>
+
+      <div class="category-panel" data-category-panel="baby" hidden>
+        <a class="card recruit-card" href="#cooperation" aria-label="母婴用品招商中，前往厂家合作区">
+          <div class="recruit-copy">
+            <div class="recruit-eyebrow"><span class="recruit-status">招商中</span><span class="recruit-code">CATEGORY 03</span></div>
+            <h3>母婴用品</h3>
+            <p>该类目虚位以待，厂家入驻即享AI矩阵带货</p>
+            <p class="recruit-examples"><span>子类示例</span>纸尿裤 · 奶瓶餐具 · 婴童清洁 · 出行用品</p>
+          </div>
+          <div class="recruit-cta">前往厂家合作区 →<span>查看合作模式与准入门槛</span></div>
+        </a>
+      </div>
+
+      <div class="category-panel" data-category-panel="appliance" hidden>
+        <a class="card recruit-card" href="#cooperation" aria-label="小家电招商中，前往厂家合作区">
+          <div class="recruit-copy">
+            <div class="recruit-eyebrow"><span class="recruit-status">招商中</span><span class="recruit-code">CATEGORY 04</span></div>
+            <h3>小家电</h3>
+            <p>该类目虚位以待，厂家入驻即享AI矩阵带货</p>
+            <p class="recruit-examples"><span>子类示例</span>电热水壶 · 空气炸锅 · 挂烫机 · 除螨仪</p>
+          </div>
+          <div class="recruit-cta">前往厂家合作区 →<span>查看合作模式与准入门槛</span></div>
+        </a>
+      </div>
+    </section>
+
+    <section id="cooperation" aria-labelledby="cooperation-title">
+      <div class="section-head"><div><p class="kicker">厂家合作</p><h2 id="cooperation-title">给产品厂家的合作方案</h2></div><p>厂家专注生产与发货，平台负责内容、矩阵、直播、成交与动销数据回流。</p></div>
+      <div class="grid partner-value">
+        <article class="card partner-card"><span>01</span><h3>走量</h3><p>五平台矩阵 + 双轨直播，吃掉富余产能。</p></article>
+        <article class="card partner-card"><span>02</span><h3>数据反哺生产</h3><p>动销数据指导排产，不再盲目生产。</p></article>
+        <article class="card partner-card"><span>03</span><h3>零库存风险</h3><p>代销模式，卖一单结一单。</p></article>
+        <article class="card partner-card"><span>04</span><h3>品牌增值</h3><p>白牌做包装 + 内容，从代工厂变品牌货。</p></article>
+      </div>
+      <div class="cooperation-stack">
+        <article class="card table-card coop-table">
+          <div class="panel subhead"><h3>三种合作模式</h3><p>从低门槛试销到深度联合品牌</p></div>
+          <table><thead><tr><th>合作模式</th><th>厂家提供</th><th>平台负责</th><th>结算方式</th></tr></thead><tbody>
+            <tr><td data-label="合作模式">代销</td><td data-label="厂家提供">出厂价 + 一件代发</td><td data-label="平台负责">我方全矩阵带货</td><td data-label="结算方式">T+7 结算</td></tr>
+            <tr><td data-label="合作模式">包销</td><td data-label="厂家提供">专属价 + 产能保障</td><td data-label="平台负责">承诺月销量</td><td data-label="结算方式">月结阶梯价</td></tr>
+            <tr><td data-label="合作模式">贴牌 OEM</td><td data-label="厂家提供">按规格生产</td><td data-label="平台负责">我方做品牌 + 全渠道</td><td data-label="结算方式">预付 30% + 尾款</td></tr>
+          </tbody></table>
+        </article>
+        <article class="card panel">
+          <div class="subhead"><h3>厂家五问五答</h3><p>把合作前最关心的问题先说清楚</p></div>
+          <div class="qa-grid">
+            <div class="qa"><h4>能走多少量？</h4><p>首月保底测试量如 500 单，达标谈包销。</p></div>
+            <div class="qa"><h4>账期多久？</h4><p>代销 T+7，包销月结，单单可查。</p></div>
+            <div class="qa"><h4>退货谁承担？</h4><p>质量问题厂家担，无理由退货我方担。</p></div>
+            <div class="qa"><h4>没品牌能卖吗？</h4><p>能，白牌 + 内容包装。</p></div>
+            <div class="qa"><h4>要不要进场费？</h4><p>代销零进场费。</p></div>
+          </div>
+        </article>
+        <article class="card entry-card">
+          <div class="subhead"><h3>厂家准入门槛</h3><p>满足基础条件即可进入首轮测品</p></div>
+          <ul class="entry-list">
+            <li><span><strong>品类：</strong>日用百货、家居家纺、母婴用品、小家电</span></li>
+            <li><span><strong>价格：</strong>出厂价有 30%+ 毛利空间</span></li>
+            <li><span><strong>资质：</strong>有质检报告</span></li>
+            <li><span><strong>履约：</strong>支持一件代发，48 小时发货</span></li>
+            <li><span><strong>复购：</strong>能配合包裹卡优先</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer><div class="shell"><span>演示范围：内容生产 → 矩阵分发 → 直播承接 → 成交回流</span><span>所有量化结果均标注为演示数据</span></div></footer>
+
+  <script>
+    (function(){
+      var flowData=[
+        {input:'商品资料、目标人群、核心卖点、平台规范',output:'标题、正文、口播稿、评论区引导',status:'已具备',cls:'live'},
+        {input:'平台文案、商品素材、品牌视觉要求',output:'短视频分镜、图文清单、直播切片模板',status:'已具备',cls:'live'},
+        {input:'成品内容、账号权限、发布时间表',output:'五平台差异化内容与发布记录',status:'需用户操作',cls:'wait'},
+        {input:'商品卡、直播脚本、数字人形象与场景',output:'稳定开播、循环讲品、实时答疑承接',status:'待建设',cls:'build'},
+        {input:'平台订单、流量、互动与商品数据',output:'归因看板、选品复盘、下一轮内容优化',status:'待建设',cls:'build'}
+      ];
+      var detail=document.getElementById('flow-detail');
+      var steps=[].slice.call(document.querySelectorAll('.flow-step'));
+      function renderFlow(i){
+        var d=flowData[i];
+        detail.innerHTML='<div class="detail-block"><span>输入</span><p>'+d.input+'</p></div><div class="detail-block"><span>输出</span><p>'+d.output+'</p></div><span class="status '+d.cls+'">'+d.status+'</span>';
+        steps.forEach(function(s,n){s.setAttribute('aria-expanded',n===i?'true':'false')});
+      }
+      steps.forEach(function(s,i){s.addEventListener('click',function(){renderFlow(i)})});
+      renderFlow(0);
+
+      var tabs=[].slice.call(document.querySelectorAll('[role="tab"]'));
+      var panels=[].slice.call(document.querySelectorAll('[role="tabpanel"]'));
+      function selectTab(tab){
+        tabs.forEach(function(t){t.setAttribute('aria-selected',t===tab?'true':'false')});
+        panels.forEach(function(p){p.hidden=p.id!==tab.getAttribute('aria-controls')});
+      }
+      tabs.forEach(function(tab,idx){
+        tab.addEventListener('click',function(){selectTab(tab)});
+        tab.addEventListener('keydown',function(e){
+          if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+            e.preventDefault();var dir=e.key==='ArrowRight'?1:-1;var next=tabs[(idx+dir+tabs.length)%tabs.length];selectTab(next);next.focus();
+          }
+        });
+      });
+
+      var categoryButtons=[].slice.call(document.querySelectorAll('.category-choice'));
+      var categoryPanels=[].slice.call(document.querySelectorAll('[data-category-panel]'));
+      function selectCategory(key){
+        categoryButtons.forEach(function(button){button.setAttribute('aria-pressed',button.getAttribute('data-category')===key?'true':'false')});
+        categoryPanels.forEach(function(panel){panel.hidden=panel.getAttribute('data-category-panel')!==key});
+      }
+      categoryButtons.forEach(function(button,index){
+        button.addEventListener('click',function(){selectCategory(button.getAttribute('data-category'))});
+        button.addEventListener('keydown',function(e){
+          if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+            e.preventDefault();var dir=e.key==='ArrowRight'?1:-1;var next=categoryButtons[(index+dir+categoryButtons.length)%categoryButtons.length];selectCategory(next.getAttribute('data-category'));next.focus();
+          }
+        });
+      });
+
+      var productData={
+        tissue:{mark:'纸',name:'抽纸（家庭装）',meta:'示例商品｜围绕“日常高频、全家适用、囤货省心”建立内容主线',copyTitle:'家里抽纸别等用完才补：一提放三处，客厅、餐桌、床头都顺手',copyBody:'做饭擦手、孩子洒水、饭后清洁，抽纸几乎天天都要用。家庭装的价值不是堆数量，而是把高频消耗品提前放到真正需要的位置。纸张触感柔和，干擦不易掉屑，日常沾水擦拭也不容易破。一次备齐，少跑几趟超市，也不用临时翻箱倒柜。',script:[['开场钩子','“你家抽纸是不是总在最需要的时候，刚好只剩一个空袋？”'],['口播主线','别只在客厅放一包。家庭装拆开后，餐桌、床头、洗手台各放一包，拿起来更顺手。日常擦手、擦桌、清理小水渍都能用，提前囤一提，省下的其实是反复补货的时间。'],['分镜','空抽纸袋特写，手伸进去却没纸；家庭装开箱，一次排开多个使用点；餐桌污渍、手部水渍、床头取纸三个快切；纸张湿水后拉扯展示，再回到整齐收纳画面；结尾给出“按空间备纸”的购买理由。']],live:[['开场','“每天都要用的东西，别等最后一包见底才想起来补。”快速呈现家庭高频场景。'],['卖点','围绕触感、韧性、使用位置与囤货便利逐项演示，不夸大产品能力。'],['促单','“需要给客厅、餐桌、床头一次配齐的，现在看清规格与到手数量再下单。”'],['答疑','回答尺寸、张数、包装、发货和售后；不确定的信息不代替商家承诺。']],theme:'家庭抽纸真实使用'},
+        laundry:{mark:'洗',name:'洗衣凝珠 / 洗衣液',meta:'示例商品｜围绕“省量、洁净、留香体验”建立内容主线',ads:['一颗搞定一桶衣，省水又省心','留香72小时','浓缩8倍一瓶顶三瓶'],script:[['开场钩子','一桶衣服到底该倒多少洗衣液？先用“一颗一桶”的省心场景留住用户。'],['卖点演示','展示凝珠冷水入桶、衣物清洗与取出过程，把浓缩、溶解与留香卖点逐一呈现。'],['收尾促单','镜头回到单次用量与组合装，口播“一颗不到一块钱，买二送一”。']],live:[['开场','8倍浓缩，一颗洗8件。'],['介绍','冷水速溶，不残留。'],['逼单','一颗不到一块钱，买二送一。']],theme:'洗衣用量与洁净效果'},
+        trash:{mark:'袋',name:'垃圾袋（加厚抽绳）',meta:'示例商品｜围绕“加厚承重、抽绳封口、日常囤货”建立内容主线',ads:['加厚不穿底，抽绳一拉就走','9块9一百只用到明年'],script:[['开场钩子','垃圾袋一提就漏？用湿垃圾承重场景直接切入。'],['卖点演示','展示加厚袋身、装载过程与抽绳封口动作，突出收口不脏手。'],['收尾促单','拉起整袋走向门口，口播“9.9一百只”。']],live:[['开场','加厚两倍，随便装。'],['介绍','抽绳一拉就封口，拎走不脏手。'],['逼单','9.9一百只。']],theme:'垃圾袋承重与抽绳封口'},
+        towel:{mark:'巾',name:'一次性洗脸巾',meta:'示例商品｜围绕“干湿两用、洁面卸妆、独立取用”建立内容主线',ads:['一巾两用洗脸卸妆都行','毛巾用三年螨虫陪你三年'],script:[['开场钩子','一条反复使用的毛巾，多久才真正洗一次？'],['卖点演示','用干擦、湿敷与卸妆三个镜头展示一巾多用，重点交代材质与尺寸。'],['收尾促单','展示整包抽取与收纳，口播“一大包200抽”。']],live:[['开场','纯棉加厚，干湿两用。'],['介绍','一张解决全脸，洗脸、卸妆都能用。'],['逼单','一大包200抽。']],theme:'洗脸巾干湿两用'},
+        socks:{mark:'袜',name:'袜子（中老年款）',meta:'示例商品｜围绕“宽口不勒、透气吸汗、稳妥穿着”建立内容主线',ads:['宽口不勒脚爸妈穿得住','纯棉透气一天不臭脚'],script:[['开场钩子','爸妈坐久了，袜口是不是总勒出一圈印？'],['卖点演示','近景展示高腰宽口、袜口弹性与面料纹理，再切换久坐和走动场景。'],['收尾促单','摆出10双组合装，口播“一双两块多”。']],live:[['开场','高腰宽口，久坐不勒。'],['介绍','精梳棉透气吸汗。'],['逼单','10双装，一双两块多。']],theme:'中老年袜口与透气体验'},
+        wrap:{mark:'鲜',name:'保鲜膜 / 保鲜袋',meta:'示例商品｜围绕“点断好撕、密封防串味、厨房省事”建立内容主线',ads:['一撕即断不用找牙咬','剩菜罩上它串味说拜拜'],script:[['开场钩子','保鲜膜总是越扯越乱？先拍一段失败撕膜，再切点断式操作。'],['卖点演示','展示点断、覆盖碗盘与冰箱收纳，突出好撕、贴合与防串味。'],['收尾促单','整齐放入冰箱，口播“买二送一”。']],live:[['开场','点断式好撕，不连带。'],['介绍','加厚保鲜，三天新鲜。'],['逼单','买二送一。']],theme:'保鲜膜点断与密封收纳'},
+        detergent:{mark:'净',name:'洗洁精',meta:'示例商品｜围绕“去油、省量、厨房多场景”建立内容主线',ads:['一滴洗一池油腻秒化开','食品级配方洗果蔬也放心'],script:[['开场钩子','油腻锅碗用热水还洗不净？先看冷水去油测试。'],['卖点演示','一滴入水后展示餐具去油过程，并交代配方、容量与适用范围。'],['收尾促单','镜头落到大桶装与单次用量，口播“大桶装用半年”。']],live:[['开场','一滴去油，冷水化开。'],['介绍','食品级配方，按商品说明核验适用范围。'],['逼单','大桶装，用半年。']],theme:'洗洁精冷水去油'},
+        toothbrush:{mark:'刷',name:'牙刷（软毛 / 中老年款）',meta:'示例商品｜围绕“软毛护龈、稳握手柄、家庭常备”建立内容主线',ads:['万根软毛牙龈出血说再见','爸妈的牙得用软的护'],script:[['开场钩子','刷完牙总觉得牙龈不舒服？先从刷毛软硬与握持感讲起。'],['卖点演示','近景展示磨尖软毛密度、防滑手柄与中老年握持场景。'],['收尾促单','排开10支组合装，口播“一支一块多”。']],live:[['开场','万根磨尖软毛，不伤龈。'],['介绍','防滑手柄，老人握得稳。'],['逼单','10支装，一支一块多。']],theme:'软毛牙刷与稳握体验'}
+      };
+      var productButtons=[].slice.call(document.querySelectorAll('.product-choice'));
+      var productMark=document.getElementById('product-mark');
+      var productName=document.getElementById('product-name');
+      var productMeta=document.getElementById('product-meta');
+      var copyContent=document.getElementById('copy-content');
+      var scriptContent=document.getElementById('script-content');
+      var distributionContent=document.getElementById('distribution-content');
+      var liveContent=document.getElementById('live-content');
+      var planTimes=['19:30','12:20','20:10','08:40','18:50'];
+      var planPlatforms=['快手','小红书','抖音','今日头条','视频号'];
+      var planModes=['真实家庭场景演示，突出实用与性价比','使用清单与细节图，突出场景和体验','快节奏痛点开场，承接核心卖点测试','选购要点图文，挂载可核验商品信息','生活经验口播，接入晚间数字人直播'];
+      function renderProducts(key){
+        var item=productData[key];
+        productMark.textContent=item.mark;productName.textContent=item.name;productMeta.textContent=item.meta;
+        if(key==='tissue'){
+          copyContent.innerHTML='<h3 class="copy-title">'+item.copyTitle+'</h3><p class="copy-body">'+item.copyBody+'</p>';
+        }else{
+          copyContent.innerHTML='<h3 class="copy-title">产品广告语</h3><div class="ad-lines">'+item.ads.map(function(line){return '<div class="ad-line">'+line+'</div>'}).join('')+'</div><p class="claim-note">广告语为样板间演示底稿；正式发布前须按商品详情核验倍数、时效、配方、数量、价格与促销信息。</p>';
+        }
+        scriptContent.innerHTML=item.script.map(function(part,index){return '<div class="script-box"'+(index===2?' style="grid-column:1/-1"':'')+'><h4>'+part[0]+'</h4><p>'+part[1]+'</p></div>'}).join('');
+        if(key==='tissue'){
+          distributionContent.innerHTML='<div class="plan-item"><h4>快手</h4><p>真实家庭场景短视频，突出实用与囤货理由</p><time>19:30 <span class="demo-chip">演示数据</span></time></div><div class="plan-item"><h4>小红书</h4><p>“家里三处抽纸位”图文清单，强调收纳与使用体验</p><time>12:20 <span class="demo-chip">演示数据</span></time></div><div class="plan-item"><h4>抖音</h4><p>问题钩子短视频，湿水测试画面承接卖点</p><time>20:10 <span class="demo-chip">演示数据</span></time></div><div class="plan-item"><h4>今日头条</h4><p>家庭日用品补货攻略，图文解释如何按空间配置</p><time>08:40 <span class="demo-chip">演示数据</span></time></div><div class="plan-item"><h4>视频号</h4><p>生活经验口播，接入晚间家庭用品直播</p><time>18:50 <span class="demo-chip">演示数据</span></time></div>';
+        }else{
+          distributionContent.innerHTML=planPlatforms.map(function(platform,index){return '<div class="plan-item"><h4>'+platform+'</h4><p>'+item.theme+'｜'+planModes[index]+'</p><time>'+planTimes[index]+' <span class="demo-chip">演示数据</span></time></div>'}).join('');
+        }
+        liveContent.innerHTML=item.live.map(function(part){return '<div class="talk-step"><h4>'+part[0]+'</h4><p>'+part[1]+'</p></div>'}).join('');
+        productButtons.forEach(function(button){button.setAttribute('aria-pressed',button.getAttribute('data-product')===key?'true':'false')});
+      }
+      productButtons.forEach(function(button,index){
+        button.addEventListener('click',function(){renderProducts(button.getAttribute('data-product'))});
+        button.addEventListener('keydown',function(e){
+          if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+            e.preventDefault();var dir=e.key==='ArrowRight'?1:-1;var next=productButtons[(index+dir+productButtons.length)%productButtons.length];renderProducts(next.getAttribute('data-product'));next.focus();
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
