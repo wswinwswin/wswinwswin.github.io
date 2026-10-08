@@ -1,38 +1,49 @@
 {
- "updated": "2026-10-07T07:21:00+08:00",
+ "updated": "2026-10-08T07:02:11+08:00",
  "latest": {
-  "date": "2026-10-06",
+  "date": "2026-10-07",
   "period": "过去24小时",
-  "sessions": 5,
-  "users": 2,
-  "activeMinutes": 35,
+  "sessions": 6,
+  "users": 5,
+  "activeMinutes": 23,
   "byChannel": {},
   "byDevice": {
-   "PC": 5
+   "Mobile": 3,
+   "PC": 3
   },
   "byCountry": {
    "Singapore": 2,
-   "United States": 2,
-   "Netherlands": 1
+   "China": 2,
+   "Japan": 1,
+   "United Arab Emirates": 1
   },
   "bySource": {},
   "byBrowser": {
-   "Chrome": 5
+   "Chrome": 3,
+   "ChromeMobile": 2,
+   "MobileSafari": 1
   },
   "byOS": {
-   "Windows": 5
+   "IOS": 3,
+   "Windows": 2,
+   "Linux": 1
   },
   "topPages": [
    {
     "url": "https://wswin.dpdns.org/",
-    "visits": 4
+    "visits": 5
    },
    {
     "url": "http://wswin.dpdns.org/",
     "visits": 1
    }
   ],
-  "referrers": [],
+  "referrers": [
+   {
+    "url": "l.meta.ai",
+    "sessions": 1
+   }
+  ],
   "issues": {
    "deadClicks": {
     "count": 0,
@@ -58,9 +69,49 @@
     "count": 0,
     "sessionsPct": 0
    },
-   "avgScrollDepth": 18
+   "avgScrollDepth": 34
   },
-  "pageDetails": []
+  "pageDetails": [
+   {
+    "url": "https://wswin.dpdns.org/",
+    "sessions": 5,
+    "users": 4,
+    "activeTime": 20,
+    "scrollDepth": 26.2,
+    "deadClicks": 0,
+    "rageClicks": 0,
+    "errorClicks": 0,
+    "quickbackClicks": 0,
+    "scriptErrors": 0,
+    "excessiveScroll": 0
+   },
+   {
+    "url": "http://wswin.dpdns.org/",
+    "sessions": 1,
+    "users": 1,
+    "activeTime": 13,
+    "scrollDepth": 7,
+    "deadClicks": 0,
+    "rageClicks": 0,
+    "errorClicks": 0,
+    "quickbackClicks": 0,
+    "scriptErrors": 0,
+    "excessiveScroll": 0
+   },
+   {
+    "url": "https://wswin.dpdns.org/?self=1",
+    "sessions": 1,
+    "users": 1,
+    "activeTime": 21,
+    "scrollDepth": 100,
+    "deadClicks": 0,
+    "rageClicks": 0,
+    "errorClicks": 0,
+    "quickbackClicks": 0,
+    "scriptErrors": 0,
+    "excessiveScroll": 0
+   }
+  ]
  },
  "history": [
   {
@@ -72,6 +123,11 @@
    "date": "2026-10-06",
    "sessions": 5,
    "users": 2
+  },
+  {
+   "date": "2026-10-07",
+   "sessions": 6,
+   "users": 5
   }
  ]
 }
