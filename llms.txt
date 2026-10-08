@@ -1,0 +1,26 @@
+# wswin（wswin.dpdns.org）
+
+> wswin 的个人网站：面向普通人的 AI 与短视频教学（AI 入门课、剪映问候语视频课，分免费与付费会员区）、每日 AI 资讯，以及两大平台的对外演示——老年健康服务平台 warm touch 与带货样板间 ShowRoom。
+
+## 教学课程
+
+- [AI 入门课与剪映课（会员区）](https://wswin.dpdns.org/member.html)：AI 入门 8 课与剪映问候语视频课 8 课，前 3 课免费，第 4 课起付费；另有会员服务与价格说明
+- [每日 AI 资讯](https://wswin.dpdns.org/)：每天精选 5 条普通人用得上的 AI 新能力、新工具，标注日期、来源与原文
+
+## 平台演示（合作洽谈）
+
+- [warm touch 老年健康平台演示](https://wswin.dpdns.org/demos/warmtouch/)：专为老年人设计的健康生活服务平台（吃药提醒、健康档案、智能穿戴提醒、子女远程查看、防骗守护）
+- [warm touch 城市独家授权合作方案](https://wswin.dpdns.org/demos/warmtouch-partner.html)：城市独家授权、双方分工、收费结构与红线条款（草案）
+- [带货样板间 ShowRoom 演示](https://wswin.dpdns.org/demos/showroom/)：面向商家的 AI 内容生产与分销样板间
+- [两平台利弊分析](https://wswin.dpdns.org/demos/analysis.html)：两个平台的定位、现状与风险，公开说明
+
+## 内容账号
+
+- 快手「老来乐健康唠嗑」（快手号 laolaile8994）：每天一条中老年健康小知识
+- 微信公众号 wswin.code、视频号「威圣汶铖」：AI 教学与每日资讯
+- 小红书「wswin空间视觉」：AI 空间设计内容
+
+## 关于
+
+- 本站由 wswin 个人运营；品牌 wswin，用户本人 wiswin（建筑学背景、曾任设计院院长）
+- 合作联系：经本站页面预留方式联系
