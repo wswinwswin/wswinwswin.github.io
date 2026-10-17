@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://wswin.dpdns.org/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://wswin.dpdns.org/member.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wswin.dpdns.org/demos/showroom/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wswin.dpdns.org/demos/warmtouch/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wswin.dpdns.org/demos/analysis.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wswin.dpdns.org/warmtouch-partner.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+</urlset>
