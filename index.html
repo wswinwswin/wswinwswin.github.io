@@ -714,7 +714,7 @@ body.locked{overflow:hidden}
       <span class="sec-idx">01</span>
       <h2 class="sec-title">AI 资讯</h2>
       <span class="sec-rule"></span>
-      <span class="sec-meta">10-17 · 每日更新 · 本期 6 篇</span>
+      <span class="sec-meta">10-17 · 每日更新 · 本期 7 篇</span>
     </div>
 
     <article class="lead" data-open="art-n1" data-type="news" tabindex="0" role="button" aria-label="阅读：AI 做 3D 游戏有人跑通了：大模型写代码，T">
@@ -774,6 +774,16 @@ body.locked{overflow:hidden}
         <div>
           <h4>让 AI 免费读小红书、B站、推特：开源 Agent Reach 给 AI 配上眼睛</h4>
           <p class="exc">想让 AI 去网上查点东西，经常四处碰壁：总结 YouTube 视频拿不到字幕，搜推特评价 API 要付费，看一眼小红书必须登录。三个平台三道门槛，根子是同一个——AI 没有眼睛。</p>
+          <div class="card-meta" style="margin-top:12px"><span>2026-10-17</span></div>
+        </div>
+        <span class="arrow">→</span>
+      </article>
+
+      <article class="news-row" data-open="art-n7" data-type="news" tabindex="0" role="button" aria-label="阅读：Obsidian 写公众号不用再排两遍版了：Qi">
+        <div class="thumb"><img src="daily-20261017-07.webp" alt="Obsidian 写公众号不用再排两遍版了：Qiaomu Publish 一键发" width="700" height="440" loading="lazy" decoding="async" /></div>
+        <div>
+          <h4>Obsidian 写公众号不用再排两遍版了：Qiaomu Publish 一键发草稿箱</h4>
+          <p class="exc">用 Obsidian 写公众号的人都有这个痛：文章在 Obsidian 里写好了，还得复制到公众号编辑器，重新调标题、行距、引用和代码块，再单独做一张封面。同一篇东西，排版做两遍。</p>
           <div class="card-meta" style="margin-top:12px"><span>2026-10-17</span></div>
         </div>
         <span class="arrow">→</span>
@@ -1408,6 +1418,17 @@ body.locked{overflow:hidden}
   
 </template>
 
+<template id="art-n7" data-title="Obsidian 写公众号不用再排两遍版了：Qiaomu Publish 一键发草稿箱"
+  data-date="2026-10-17" data-cat="AI 资讯" data-time="约 2 分钟" data-img="daily-20261017-07.webp">
+  <p>用 Obsidian 写公众号的人都有这个痛：文章在 Obsidian 里写好了，还得复制到公众号编辑器，重新调标题、行距、引用和代码块，再单独做一张封面。同一篇东西，排版做两遍。</p>
+  <p>向阳乔木（@vista8）新开源的 Obsidian 插件 Qiaomu Publish 就是解决这件事的：在 Obsidian 里写完，右边直接按公众号的样子实时预览，42 个内置主题随便换，正文、列表、引用、表格、代码一起变。调完排版，点一下就能把文章连封面一起发到公众号草稿箱；最终点发布还是在公众号后台手动完成，插件不代发。</p>
+  <p>几个实在的细节：没有配图的笔记会自动生成标题封面，文字、背景、字体都能调；技术文章的代码高亮、MathJax 公式、Mermaid 图会自动转成图片，不用手动截图；再次发送默认更新原来的草稿，不会越积越多。发草稿需要公众号的 AppID、AppSecret 和 IP 白名单，直连调不通的可以用作者提供的中转或自建桥接。</p>
+  <p>实话也说一句：作者帖子里写&quot;发公众号、X、小红书&quot;，但目前仓库 README 里只支持公众号草稿箱，X 和小红书还没影，别按三平台去理解。</p>
+  <p>这是他继&quot;乔木剪藏&quot;之后的又一个插件（昨天咱们介绍过剪藏那款），MIT 开源，目前 18 个 star，刚发布三周，算早期项目。</p>
+  <p>普通人怎么用：平时用 Obsidian 写东西、又发公众号的人，装上就能省掉&quot;复制过去重排一遍&quot;的功夫；不连公众号也能先用预览和排版功能。观望党可以等它再迭代几个版本。</p>
+  
+</template>
+
 <template id="art-t1" data-title="提示词不会写？这 37 个短语先抄下来"
   data-date="2026-09-30" data-cat="AI 教程 · 提示词" data-time="约 5 分钟" data-img="img-20.webp">
   <p>很多人用 ChatGPT 还停留在"想一想""总结一下"，一位博主说得直接：这太浪费了。据她分享，只要在指令最后多加一句话，回答质量就能明显提升——她整理了 30 个这样的短语。</p>
@@ -1597,7 +1618,7 @@ body.locked{overflow:hidden}
       rPrev = document.getElementById("rPrev"),
       rNext = document.getElementById("rNext");
   var ORDER = {
-    news: ["art-n1","art-n2","art-n3","art-n4","art-n5","art-n6"],
+    news: ["art-n1","art-n2","art-n3","art-n4","art-n5","art-n6","art-n7"],
     tutorial: ["art-t1","art-t2","art-t3","art-t4","art-t5","art-t6","art-t7","art-t8"]
   };
   var curType = "news", curIdx = 0;
