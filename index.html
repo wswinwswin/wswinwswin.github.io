@@ -714,7 +714,7 @@ body.locked{overflow:hidden}
       <span class="sec-idx">01</span>
       <h2 class="sec-title">AI 资讯</h2>
       <span class="sec-rule"></span>
-      <span class="sec-meta">10-17 · 每日更新 · 本期 5 篇</span>
+      <span class="sec-meta">10-17 · 每日更新 · 本期 6 篇</span>
     </div>
 
     <article class="lead" data-open="art-n1" data-type="news" tabindex="0" role="button" aria-label="阅读：AI 做 3D 游戏有人跑通了：大模型写代码，T">
@@ -764,6 +764,16 @@ body.locked{overflow:hidden}
         <div>
           <h4>Anthropic 请了一队&quot;审计员&quot;进自己办公室：查 Claude 的风险，查完想发就发</h4>
           <p class="exc">10 月 15 日，Anthropic 宣布：请独立评估机构 METR 的 6 名研究员进驻公司，给他们&quot;员工级&quot;访问权限，查 Claude 的风险。</p>
+          <div class="card-meta" style="margin-top:12px"><span>2026-10-17</span></div>
+        </div>
+        <span class="arrow">→</span>
+      </article>
+
+      <article class="news-row" data-open="art-n6" data-type="news" tabindex="0" role="button" aria-label="阅读：让 AI 免费读小红书、B站、推特：开源 Age">
+        <div class="thumb"><img src="daily-20261017-06.webp" alt="让 AI 免费读小红书、B站、推特：开源 Agent Reach 给 AI 配上" width="700" height="440" loading="lazy" decoding="async" /></div>
+        <div>
+          <h4>让 AI 免费读小红书、B站、推特：开源 Agent Reach 给 AI 配上眼睛</h4>
+          <p class="exc">想让 AI 去网上查点东西，经常四处碰壁：总结 YouTube 视频拿不到字幕，搜推特评价 API 要付费，看一眼小红书必须登录。三个平台三道门槛，根子是同一个——AI 没有眼睛。</p>
           <div class="card-meta" style="margin-top:12px"><span>2026-10-17</span></div>
         </div>
         <span class="arrow">→</span>
@@ -1388,6 +1398,16 @@ body.locked{overflow:hidden}
   
 </template>
 
+<template id="art-n6" data-title="让 AI 免费读小红书、B站、推特：开源 Agent Reach 给 AI 配上眼睛"
+  data-date="2026-10-17" data-cat="AI 资讯" data-time="约 1 分钟" data-img="daily-20261017-06.webp">
+  <p>想让 AI 去网上查点东西，经常四处碰壁：总结 YouTube 视频拿不到字幕，搜推特评价 API 要付费，看一眼小红书必须登录。三个平台三道门槛，根子是同一个——AI 没有眼睛。</p>
+  <p>X 上的 @denziideng 推荐了一个开源项目 Agent Reach，专门解决这件事：一个 CLI 工具，零 API 费，让 AI 直接读推特、Reddit、YouTube、GitHub、B站、小红书。</p>
+  <p>这个项目最值得看的是它的工程思路。每个平台都是&quot;首选+备选&quot;多后端：某条路断了自动换下一条，你无感；一条 doctor 命令体检 16 个渠道，通不通、差什么凭据，一屏看清。凭据只存本机（权限 600），不上传不外传，代码开源可查。</p>
+  <p>这条帖子 10 月 16 日发出后互动不错：29 回复、122 转帖、561 喜欢、740 书签，约 3.5 万查看。评论区不少人是在找&quot;让 AI 读国内平台&quot;方案的——小红书和 B站的读取能力是它最抓人的点。</p>
+  <p>普通人怎么用：经常让 AI 搜集网上信息的人（做选题、看评价、扒教程），装一个 Agent Reach，把&quot;读网页&quot;这件事交给它；日常查资料时直接告诉 AI 去读某条小红书笔记或 B站视频，不用再手动复制粘贴。</p>
+  
+</template>
+
 <template id="art-t1" data-title="提示词不会写？这 37 个短语先抄下来"
   data-date="2026-09-30" data-cat="AI 教程 · 提示词" data-time="约 5 分钟" data-img="img-20.webp">
   <p>很多人用 ChatGPT 还停留在"想一想""总结一下"，一位博主说得直接：这太浪费了。据她分享，只要在指令最后多加一句话，回答质量就能明显提升——她整理了 30 个这样的短语。</p>
@@ -1577,7 +1597,7 @@ body.locked{overflow:hidden}
       rPrev = document.getElementById("rPrev"),
       rNext = document.getElementById("rNext");
   var ORDER = {
-    news: ["art-n1","art-n2","art-n3","art-n4","art-n5"],
+    news: ["art-n1","art-n2","art-n3","art-n4","art-n5","art-n6"],
     tutorial: ["art-t1","art-t2","art-t3","art-t4","art-t5","art-t6","art-t7","art-t8"]
   };
   var curType = "news", curIdx = 0;
