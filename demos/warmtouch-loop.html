@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>warm touch · 城市合伙人业务闭环演示</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { height:100%; overflow:hidden; }
+  body {
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+    background:#FFF9F0; color:#2B2118;
+    display:flex; align-items:center; justify-content:center;
+  }
+  #stage { width:100vw; height:100vh; position:relative; overflow:hidden; }
+  .screen {
+    position:absolute; inset:0; display:flex; flex-direction:column;
+    justify-content:center; align-items:center; text-align:center;
+    padding:6vh 8vw; opacity:0; transform:translateY(30px) scale(.985);
+    transition:opacity .7s ease, transform .7s ease; pointer-events:none;
+  }
+  .screen.active { opacity:1; transform:none; pointer-events:auto; }
+  .kicker {
+    font-size:clamp(14px,1.6vw,20px); letter-spacing:.5em; color:#C77B3F;
+    margin-bottom:2.5vh; font-weight:600;
+  }
+  h1 { font-size:clamp(34px,5.2vw,72px); font-weight:800; line-height:1.25; margin-bottom:2.5vh; }
+  h1 .hl { color:#E0661F; }
+  .sub { font-size:clamp(17px,2.2vw,28px); color:#6B5B4C; line-height:1.7; max-width:62ch; }
+  .points { display:flex; gap:2.2vw; margin-top:4.5vh; flex-wrap:wrap; justify-content:center; }
+  .point {
+    background:#fff; border:1px solid #F0E2CE; border-radius:18px;
+    padding:2.6vh 2.2vw; min-width:200px; max-width:300px; flex:1 1 200px;
+    box-shadow:0 10px 30px rgba(200,140,70,.10);
+    transform:translateY(24px); opacity:0;
+  }
+  .screen.active .point { animation:rise .7s ease forwards; }
+  .screen.active .point:nth-child(1){animation-delay:.35s}
+  .screen.active .point:nth-child(2){animation-delay:.5s}
+  .screen.active .point:nth-child(3){animation-delay:.65s}
+  .screen.active .point:nth-child(4){animation-delay:.8s}
+  @keyframes rise { to { transform:none; opacity:1; } }
+  .point .ic { font-size:clamp(28px,3.4vw,46px); margin-bottom:1.2vh; }
+  .point .t { font-size:clamp(16px,1.9vw,24px); font-weight:700; margin-bottom:.8vh; }
+  .point .d { font-size:clamp(13px,1.5vw,18px); color:#7A6A58; line-height:1.65; }
+  .bignum {
+    font-size:clamp(60px,9vw,130px); font-weight:800; color:#F3E4CC;
+    line-height:1; margin-bottom:1vh; user-select:none;
+  }
+  /* 顶部进度 */
+  #progress { position:absolute; top:0; left:0; height:5px; background:#E0661F; width:0%; z-index:20; transition:width .2s linear; }
+  #topbar {
+    position:absolute; top:0; left:0; right:0; z-index:15;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:2.2vh 3vw; font-size:14px; color:#A08B70; letter-spacing:.15em;
+  }
+  #dots { position:absolute; bottom:3.2vh; left:0; right:0; display:flex; gap:12px; justify-content:center; z-index:15; }
+  #dots button {
+    width:11px; height:11px; border-radius:50%; border:none; cursor:pointer;
+    background:#E4D3B8; transition:all .3s;
+  }
+  #dots button.on { background:#E0661F; transform:scale(1.35); }
+  #hint { position:absolute; bottom:3vh; right:3vw; font-size:13px; color:#B89F7E; z-index:15; }
+  #cover .logo {
+    font-size:clamp(20px,2.4vw,30px); letter-spacing:.35em; color:#C77B3F; margin-bottom:3vh; font-weight:600;
+  }
+  #cover h1 { font-size:clamp(44px,7vw,96px); }
+  #cover .go {
+    margin-top:5vh; font-size:clamp(16px,2vw,24px); color:#fff; background:#E0661F;
+    border:none; border-radius:999px; padding:1.8vh 4vw; cursor:pointer; font-weight:700;
+    box-shadow:0 12px 30px rgba(224,102,31,.35); transition:transform .2s;
+  }
+  #cover .go:hover { transform:scale(1.05); }
+  .footnote { margin-top:3.5vh; font-size:clamp(12px,1.4vw,16px); color:#A08B70; }
+  /* 闭环圆图 */
+  #loopwrap { margin-top:3vh; }
+  #loopwrap svg { width:min(58vh,72vw); height:auto; }
+  .loopnode { fill:#fff; stroke:#E8CFA6; stroke-width:2; }
+  .looplabel { font-size:15px; font-weight:700; fill:#2B2118; text-anchor:middle; }
+  .loopsub { font-size:11px; fill:#8A765E; text-anchor:middle; }
+  .flowline { fill:none; stroke:#E0661F; stroke-width:3; stroke-dasharray:10 8; opacity:.85; animation:dash 1.2s linear infinite; }
+  @keyframes dash { to { stroke-dashoffset:-36; } }
+  .cta {
+    margin-top:4vh; display:flex; gap:2vw; flex-wrap:wrap; justify-content:center;
+  }
+  .cta .cell {
+    background:#2B2118; color:#FFF3E2; border-radius:16px; padding:2.2vh 2.6vw; min-width:210px;
+    transform:translateY(24px); opacity:0;
+  }
+  .screen.active .cta .cell { animation:rise .7s ease forwards; }
+  .screen.active .cta .cell:nth-child(1){animation-delay:.4s}
+  .screen.active .cta .cell:nth-child(2){animation-delay:.55s}
+  .screen.active .cta .cell:nth-child(3){animation-delay:.7s}
+  .cta .cell .n { font-size:clamp(22px,2.8vw,36px); font-weight:800; color:#F5B04C; }
+  .cta .cell .l { font-size:clamp(13px,1.5vw,18px); margin-top:.6vh; opacity:.85; }
+  #replay {
+    position:absolute; bottom:2.6vh; left:3vw; z-index:15; font-size:14px; color:#A08B70;
+    background:none; border:1px solid #E4D3B8; border-radius:999px; padding:.7vh 1.4vw; cursor:pointer;
+  }
+  #replay:hover { border-color:#E0661F; color:#E0661F; }
+  @media (max-aspect-ratio:1/1){ .points{ gap:3vh; } .point{ min-width:70vw; } }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="progress"></div>
+  <div id="topbar"><span>warm touch · 城市合伙人</span><span id="pageno"></span></div>
+
+  <!-- 0 封面 -->
+  <section class="screen active" id="cover">
+    <div class="logo">warm touch</div>
+    <div class="kicker">城市合伙人 · 招商演示</div>
+    <h1>一个转起来的<br><span class="hl">老年健康闭环</span></h1>
+    <p class="sub">您负责在本地把老人服务好，我们负责让系统永远好用。<br>下面 6 步，看一个城市是怎么跑通的。</p>
+    <button class="go" id="startBtn">▶ 开始演示</button>
+    <p class="footnote">约 1 分钟 · 可点击圆点跳转 · 左右键翻页</p>
+  </section>
+
+  <!-- 1 获客 -->
+  <section class="screen">
+    <div class="bignum">01</div>
+    <div class="kicker">第一步 · 获客</div>
+    <h1>从<span class="hl">社区</span>把老人接进来</h1>
+    <div class="points">
+      <div class="point"><div class="ic">🏘️</div><div class="t">街道 / 社区 / 物业</div><div class="d">合伙人跑本地关系，线下活动落地，政府只认本地主体</div></div>
+      <div class="point"><div class="ic">📱</div><div class="t">扫码即用</div><div class="d">微信小程序，无需下载，一屏一事，大字大钮</div></div>
+      <div class="point"><div class="ic">🪝</div><div class="t">钩子：每日早安</div><div class="d">当天免费看、免费转发，钩子引流；往期存档 + 净版下载，9.9/19.9 会员沉淀</div></div>
+    </div>
+  </section>
+
+  <!-- 2 服务 -->
+  <section class="screen">
+    <div class="bignum">02</div>
+    <div class="kicker">第二步 · 服务</div>
+    <h1>五大板块，<span class="hl">每天</span>触达老人</h1>
+    <div class="points">
+      <div class="point"><div class="ic">❤️</div><div class="t">健康监护</div><div class="d">用药提醒 · 健康档案 · 穿戴异常提醒</div></div>
+      <div class="point"><div class="ic">🏡</div><div class="t">社区智联</div><div class="d">一键连家庭医生 · 社区活动 · 邻里互助</div></div>
+      <div class="point"><div class="ic">💬</div><div class="t">小暖陪伴</div><div class="d">AI 聊天陪伴 · 防骗守护 · 96110 预警</div></div>
+      <div class="point"><div class="ic">🛒</div><div class="t">购物 · 旅游</div><div class="d">严选健康产品 · 老年慢游线路，子女可代付</div></div>
+    </div>
+  </section>
+
+  <!-- 3 信任 -->
+  <section class="screen">
+    <div class="bignum">03</div>
+    <div class="kicker">第三步 · 信任</div>
+    <h1>让<span class="hl">子女</span>放心，老人才留得住</h1>
+    <div class="points">
+      <div class="point"><div class="ic">👨‍👩‍👧</div><div class="t">子女远程看</div><div class="d">用药、健康动态经老人授权后同步给子女</div></div>
+      <div class="point"><div class="ic">🛡️</div><div class="t">防骗守护</div><div class="d">三不一多原则，风险关键词自动预警并建议打 96110</div></div>
+      <div class="point"><div class="ic">🔒</div><div class="t">数据红线</div><div class="d">健康数据归老人本人，合伙人不碰原始数据，加密存储</div></div>
+    </div>
+    <p class="footnote">信任 → 留存 → 口碑裂变，一个社区带起整个街道</p>
+  </section>
+
+  <!-- 4 变现 -->
+  <section class="screen">
+    <div class="bignum">04</div>
+    <div class="kicker">第四步 · 变现</div>
+    <h1>三条收入线，<span class="hl">细水长流</span></h1>
+    <div class="points">
+      <div class="point"><div class="ic">🌅</div><div class="t">会员费</div><div class="d">每日早安会员 9.9 元/月 · 19.9 元/年，当天免费看</div></div>
+      <div class="point"><div class="ic">🤝</div><div class="t">服务订单</div><div class="d">陪诊 · 体检 · 家政 · 助浴，本地持牌服务商履约</div></div>
+      <div class="point"><div class="ic">🌿</div><div class="t">健康产品</div><div class="d">四道关准入：证照审核 · 清单管理 · 商家担责 · 投诉下架</div></div>
+    </div>
+    <p class="footnote">平台只做提醒、记录与连接，不诊断、不开方，医疗责任在履约方</p>
+  </section>
+
+  <!-- 5 分账 -->
+  <section class="screen">
+    <div class="bignum">05</div>
+    <div class="kicker">第五步 · 分账</div>
+    <h1>平台自动分账，<span class="hl">不用对账</span></h1>
+    <div class="points">
+      <div class="point"><div class="ic">💰</div><div class="t">会员费 30%</div><div class="d">归城市合伙人</div></div>
+      <div class="point"><div class="ic">🧾</div><div class="t">服务订单 20%</div><div class="d">归城市合伙人</div></div>
+      <div class="point"><div class="ic">📦</div><div class="t">健康产品 15%</div><div class="d">归城市合伙人</div></div>
+    </div>
+    <p class="footnote">全国统一锁价、不议价 · 本城运营数据看板实时可见 · 通过平台支付通道自动分账</p>
+  </section>
+
+  <!-- 6 复制 -->
+  <section class="screen">
+    <div class="bignum">06</div>
+    <div class="kicker">第六步 · 复制</div>
+    <h1>跑通一个城，<span class="hl">复制</span>下一个城</h1>
+    <div id="loopwrap">
+      <svg viewBox="0 0 520 340">
+        <defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#E0661F"/></marker></defs>
+        <path class="flowline" marker-end="url(#arr)" d="M260,52 C360,52 430,110 430,170 C430,232 360,288 262,288"/>
+        <path class="flowline" marker-end="url(#arr)" d="M238,288 C140,288 90,232 90,170 C90,110 160,52 258,52"/>
+        <g><circle class="loopnode" cx="260" cy="52" r="34"/><text class="looplabel" x="260" y="50">获客</text><text class="loopsub" x="260" y="66">社区扫码</text></g>
+        <g><circle class="loopnode" cx="408" cy="122" r="34"/><text class="looplabel" x="408" y="120">服务</text><text class="loopsub" x="408" y="136">五大板块</text></g>
+        <g><circle class="loopnode" cx="408" cy="238" r="34"/><text class="looplabel" x="408" y="236">信任</text><text class="loopsub" x="408" y="252">子女放心</text></g>
+        <g><circle class="loopnode" cx="260" cy="288" r="34"/><text class="looplabel" x="260" y="286">变现</text><text class="loopsub" x="260" y="302">三条收入</text></g>
+        <g><circle class="loopnode" cx="112" cy="238" r="34"/><text class="looplabel" x="112" y="236">分账</text><text class="loopsub" x="112" y="252">自动到账</text></g>
+        <g><circle class="loopnode" cx="112" cy="122" r="34"/><text class="looplabel" x="112" y="120">复制</text><text class="loopsub" x="112" y="136">样板→全国</text></g>
+      </svg>
+    </div>
+    <div class="cta">
+      <div class="cell"><div class="n">12 万</div><div class="l">城市独家授权（样板跑通后 36 万）</div></div>
+      <div class="cell"><div class="n">2.4 万/年</div><div class="l">系统维护 · 版本升级 · 内容供给</div></div>
+      <div class="cell"><div class="n">零硬件</div><div class="l">只需手机 + 电脑，服务器全归平台</div></div>
+    </div>
+    <p class="footnote">定价与条款以正式合同为准 · 演示站 wswin.dpdns.org/demos/warmtouch/</p>
+  </section>
+
+  <div id="dots"></div>
+  <button id="replay">↻ 重播</button>
+  <div id="hint">← → 翻页 · 空格 播放/暂停</div>
+</div>
+<script>
+(function(){
+  var screens = Array.prototype.slice.call(document.querySelectorAll('.screen'));
+  var dots = document.getElementById('dots');
+  var bar = document.getElementById('progress');
+  var pageno = document.getElementById('pageno');
+  var idx = 0, timer = null, playing = false;
+  var Dwell = 6500; // 每屏停留
+  screens.forEach(function(_, i){
+    var b = document.createElement('button');
+    b.setAttribute('aria-label','第'+(i+1)+'屏');
+    b.onclick = function(){ go(i); pause(); };
+    dots.appendChild(b);
+  });
+  var dotBtns = dots.children;
+  function render(){
+    screens.forEach(function(s,i){ s.classList.toggle('active', i===idx); });
+    Array.prototype.forEach.call(dotBtns, function(d,i){ d.classList.toggle('on', i===idx); });
+    pageno.textContent = (idx+1) + ' / ' + screens.length;
+    bar.style.width = '0%';
+  }
+  function tick(){
+    var start = Date.now();
+    clearInterval(timer);
+    timer = setInterval(function(){
+      var p = (Date.now()-start)/Dwell;
+      if(p>=1){ go((idx+1)%screens.length); return; }
+      bar.style.width = (p*100)+'%';
+    }, 100);
+  }
+  function go(i){ idx=i; render(); if(playing) tick(); }
+  function play(){ playing=true; tick(); }
+  function pause(){ playing=false; clearInterval(timer); bar.style.width='0%'; }
+  document.getElementById('startBtn').onclick = function(){ go(1); play(); };
+  document.getElementById('replay').onclick = function(){ go(0); pause(); };
+  document.addEventListener('keydown', function(e){
+    if(e.key==='ArrowRight'){ go((idx+1)%screens.length); pause(); }
+    else if(e.key==='ArrowLeft'){ go((idx-1+screens.length)%screens.length); pause(); }
+    else if(e.key===' '){ e.preventDefault(); playing?pause():play(); }
+  });
+  // 触屏滑动
+  var tx=null;
+  document.getElementById('stage').addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});
+  document.getElementById('stage').addEventListener('touchend',function(e){
+    if(tx===null) return; var dx=e.changedTouches[0].clientX-tx; tx=null;
+    if(dx<-50){ go((idx+1)%screens.length); pause(); }
+    else if(dx>50){ go((idx-1+screens.length)%screens.length); pause(); }
+  },{passive:true});
+  render();
+})();
+</script>
+</body>
+</html>
