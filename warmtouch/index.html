@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#133C2A">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="warm touch 银铃">
+<title>warm touch 银铃 · 社区商城与食堂</title>
+<style>
+:root{
+  --green:#133C2A; --green2:#43795F; --green3:#EAF2EC;
+  --cream:#F4F0E4; --bg:#F7F5EE; --card:#FFFFFF;
+  --ink:#22301F; --gray:#5C6B5E; --mid:#8A9A8C;
+  --price:#C2410C; --amber:#E8930C; --red:#C62828;
+  --shadow:0 2px 14px rgba(19,60,42,.10);
+  --r:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{font-family:'PingFang SC','Microsoft YaHei','Noto Sans CJK SC',sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.55}
+#app{max-width:520px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;background:var(--bg);position:relative}
+/* ── 顶部品牌栏 ── */
+header{background:var(--green);color:#fff;padding:14px 18px 16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:30}
+header img{width:52px;height:52px;border-radius:12px;object-fit:cover;background:var(--cream)}
+.brand-fallback{width:52px;height:52px;border-radius:12px;background:var(--cream);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:26px}
+header .bt{flex:1}
+header .bt .n{font-size:21px;font-weight:700;letter-spacing:.5px}
+header .bt .s{font-size:13.5px;opacity:.85;margin-top:1px}
+header .back{display:none;background:rgba(255,255,255,.16);border:none;color:#fff;font-size:16px;padding:9px 14px;border-radius:999px;cursor:pointer}
+header .back.show{display:block}
+/* ── 内容 ── */
+main{flex:1;overflow-y:auto;padding:16px 16px 96px}
+.screen{display:none}
+.screen.active{display:block}
+/* ── 首页 ── */
+.hello{font-size:19px;font-weight:600;margin:2px 2px 12px}
+.entry-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.entry{border-radius:var(--r);padding:20px 16px;color:#fff;cursor:pointer;box-shadow:var(--shadow);border:none;text-align:left;width:100%}
+.entry .ic{font-size:38px;margin-bottom:8px}
+.entry .t{font-size:21px;font-weight:700}
+.entry .d{font-size:14px;opacity:.88;margin-top:3px}
+.entry.shop{background:linear-gradient(135deg,var(--green2),var(--green))}
+.entry.canteen{background:linear-gradient(135deg,#D9820B,var(--amber))}
+.sec-title{font-size:19px;font-weight:700;margin:18px 2px 10px;display:flex;justify-content:space-between;align-items:baseline}
+.sec-title a{font-size:15px;color:var(--green2);font-weight:500;cursor:pointer}
+/* ── 商品卡 ── */
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pcard{background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);cursor:pointer}
+.pcard .thumb{height:104px;display:flex;align-items:center;justify-content:center;font-size:52px}
+.pcard .inf{padding:10px 12px 12px}
+.pcard .nm{font-size:17.5px;font-weight:600;line-height:1.35;min-height:47px}
+.pcard .sp{font-size:13.5px;color:var(--mid);margin-top:2px}
+.prow{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+.price{color:var(--price);font-size:20px;font-weight:700}
+.price small{font-size:13px;font-weight:500}
+.ori{color:var(--mid);font-size:13px;text-decoration:line-through;margin-left:5px}
+.addbtn{background:var(--green);color:#fff;border:none;border-radius:999px;font-size:16px;font-weight:600;padding:9px 16px;cursor:pointer;min-height:42px}
+.addbtn:active{background:var(--green2)}
+/* ── 分类 ── */
+.cats{display:flex;gap:9px;overflow-x:auto;padding:2px 2px 12px;scrollbar-width:none}
+.cats::-webkit-scrollbar{display:none}
+.cat{flex:0 0 auto;border:1.5px solid var(--green2);color:var(--green);background:#fff;border-radius:999px;padding:10px 18px;font-size:16.5px;cursor:pointer}
+.cat.on{background:var(--green);color:#fff}
+.searchbar{display:flex;gap:9px;margin-bottom:12px}
+.searchbar input{flex:1;border:1.5px solid #D8DECF;border-radius:999px;padding:12px 18px;font-size:16.5px;background:#fff;outline:none}
+.searchbar button{background:var(--green);color:#fff;border:none;border-radius:999px;padding:0 20px;font-size:16.5px;cursor:pointer}
+/* ── 食堂 ── */
+.meal-tabs{display:flex;gap:9px;margin-bottom:14px}
+.meal-tab{flex:1;text-align:center;padding:13px 0;border-radius:12px;background:#fff;border:1.5px solid #D8DECF;font-size:17.5px;cursor:pointer;font-weight:600;color:var(--ink)}
+.meal-tab.on{background:var(--amber);border-color:var(--amber);color:#fff}
+.dish{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:14px;margin-bottom:12px;display:flex;gap:13px}
+.dish .thumb{width:86px;height:86px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:44px;flex:0 0 auto}
+.dish .inf{flex:1}
+.dish .nm{font-size:18.5px;font-weight:700}
+.dish .tags{margin-top:4px}
+.tag{display:inline-block;background:var(--green3);color:var(--green);font-size:13px;border-radius:6px;padding:2px 8px;margin-right:6px}
+.tag.warn{background:#FDEBD2;color:#9A6206}
+.dish .ds{font-size:14px;color:var(--gray);margin-top:4px}
+.notice{background:#FFF8E8;border:1.5px solid #F0DFAE;border-radius:12px;padding:12px 14px;font-size:15px;color:#7A5A12;margin-bottom:14px}
+/* ── 购物车/结算行 ── */
+.citem{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:13px 14px;margin-bottom:11px;display:flex;gap:12px;align-items:center}
+.citem .thumb{width:62px;height:62px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:32px;flex:0 0 auto}
+.citem .inf{flex:1}
+.citem .nm{font-size:17px;font-weight:600}
+.citem .sp{font-size:13.5px;color:var(--mid)}
+.qty{display:flex;align-items:center;gap:4px}
+.qty button{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--green2);background:#fff;color:var(--green);font-size:19px;cursor:pointer}
+.qty .n{min-width:30px;text-align:center;font-size:17px;font-weight:600}
+.totalbar{position:fixed;left:50%;transform:translateX(-50%);bottom:78px;width:min(520px,100%);padding:10px 16px;display:flex;gap:12px;align-items:center;background:transparent;z-index:20}
+.totalbar .box{flex:1;display:flex;align-items:center;gap:12px;background:#fff;border-radius:999px;box-shadow:0 4px 20px rgba(19,60,42,.18);padding:8px 8px 8px 18px}
+.totalbar .sum{flex:1;font-size:16px}
+.totalbar .sum b{color:var(--price);font-size:21px}
+.gopay{background:var(--green);color:#fff;border:none;border-radius:999px;font-size:17.5px;font-weight:700;padding:13px 24px;cursor:pointer}
+.empty{text-align:center;color:var(--mid);padding:52px 0;font-size:17px}
+.empty .ic{font-size:52px;margin-bottom:10px}
+/* ── 表单/选项 ── */
+.fgroup{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:16px;margin-bottom:12px}
+.fgroup .ft{font-size:17px;font-weight:700;margin-bottom:10px}
+.opt{display:flex;align-items:center;gap:10px;padding:13px 12px;border:1.5px solid #E1E6D8;border-radius:12px;margin-bottom:9px;cursor:pointer;font-size:16.5px}
+.opt.on{border-color:var(--green);background:var(--green3)}
+.opt .grow{flex:1}
+.fgroup input[type=text],.fgroup input[type=tel]{width:100%;border:1.5px solid #D8DECF;border-radius:12px;padding:13px 14px;font-size:16.5px;outline:none;margin-bottom:9px;background:#fff}
+.bigbtn{display:block;width:100%;background:var(--green);color:#fff;border:none;border-radius:14px;font-size:19px;font-weight:700;padding:16px;cursor:pointer;margin-top:6px}
+.bigbtn.amber{background:var(--amber)}
+.bigbtn.ghost{background:#fff;color:var(--green);border:1.5px solid var(--green2)}
+/* ── 订单 ── */
+.ocard{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:14px 16px;margin-bottom:11px}
+.ocard .oh{display:flex;justify-content:space-between;font-size:14.5px;color:var(--gray);margin-bottom:6px}
+.ocard .oi{font-size:16.5px}
+.ocard .ot{display:flex;justify-content:space-between;margin-top:7px;font-size:16px}
+.ocard .ot b{color:var(--price)}
+.badge{display:inline-block;font-size:13px;border-radius:6px;padding:2px 9px;background:var(--green3);color:var(--green);font-weight:600}
+.badge.food{background:#FDEBD2;color:#9A6206}
+/* ── 我的 ── */
+.balance{background:linear-gradient(135deg,var(--green2),var(--green));color:#fff;border-radius:var(--r);padding:20px;box-shadow:var(--shadow);margin-bottom:14px}
+.balance .bl{font-size:15px;opacity:.85}
+.balance .bv{font-size:36px;font-weight:800;margin:4px 0 12px}
+.balance .bv small{font-size:17px;font-weight:500}
+.balance button{background:#fff;color:var(--green);border:none;border-radius:999px;padding:11px 22px;font-size:16.5px;font-weight:700;cursor:pointer;margin-right:9px}
+.menu-it{background:var(--card);border-radius:12px;box-shadow:var(--shadow);padding:17px 16px;margin-bottom:10px;display:flex;align-items:center;gap:12px;font-size:17.5px;cursor:pointer}
+.menu-it .ic{font-size:23px}
+.menu-it .ar{margin-left:auto;color:var(--mid)}
+/* ── 详情 ── */
+.dthumb{height:210px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:104px;margin-bottom:14px}
+.dcard{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:18px}
+.dcard .nm{font-size:22px;font-weight:700}
+.dcard .ds{font-size:16px;color:var(--gray);margin-top:10px;line-height:1.7}
+/* ── 成功 ── */
+.success{text-align:center;padding:46px 10px}
+.success .ic{font-size:74px}
+.success .t{font-size:23px;font-weight:700;margin:12px 0 6px}
+.success .d{color:var(--gray);font-size:16.5px;margin-bottom:22px}
+/* ── 底部导航 ── */
+nav.bnav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(520px,100%);background:#fff;border-top:1px solid #E4E8DC;display:flex;z-index:40;padding-bottom:env(safe-area-inset-bottom)}
+.bnav-item{flex:1;text-align:center;padding:9px 0 11px;cursor:pointer;color:var(--gray);font-size:14.5px;position:relative}
+.bnav-item .ic{font-size:25px;line-height:1.15}
+.bnav-item.on{color:var(--green);font-weight:700}
+.bnav-item .bdg{position:absolute;top:4px;right:calc(50% - 21px);background:var(--red);color:#fff;font-size:12px;min-width:20px;height:20px;border-radius:10px;display:none;align-items:center;justify-content:center;padding:0 5px}
+.bnav-item .bdg.show{display:flex}
+#toast{position:fixed;left:50%;bottom:160px;transform:translateX(-50%) translateY(20px);background:rgba(24,34,22,.92);color:#fff;font-size:16px;padding:12px 22px;border-radius:999px;opacity:0;pointer-events:none;transition:.25s;z-index:99;max-width:88vw;text-align:center}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.about{text-align:center;color:var(--mid);font-size:14px;padding:20px 0 4px;line-height:1.7}
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <img src="https://wswin.dpdns.org/demos/warmtouch-logo.jpg" alt="warm touch" onerror="this.outerHTML='&lt;div class=&quot;brand-fallback&quot;&gt;🌳&lt;/div&gt;'">
+    <div class="bt">
+      <div class="n">warm touch 银铃</div>
+      <div class="s">社区商城 · 社区食堂，陪您过好每一天</div>
+    </div>
+    <button class="back" id="btn-back" onclick="goBack()">‹ 返回</button>
+  </header>
+  <main id="content">
+    <!-- 首页 -->
+    <section class="screen" id="s-home">
+      <div class="hello" id="hello-line">您好，今天想办点啥？</div>
+      <div class="entry-grid">
+        <button class="entry shop" onclick="nav('shop')">
+          <div class="ic">🛒</div><div class="t">社区商城</div><div class="d">油盐酱醋茶，送到家</div>
+        </button>
+        <button class="entry canteen" onclick="nav('canteen')">
+          <div class="ic">🍲</div><div class="t">社区食堂</div><div class="d">今日菜单，订餐充值</div>
+        </button>
+      </div>
+      <div class="sec-title">今日食堂 · 午餐 <a onclick="nav('canteen')">看全天菜单 ›</a></div>
+      <div id="home-dishes"></div>
+      <div class="sec-title">邻居们都在买 <a onclick="nav('shop')">去商城 ›</a></div>
+      <div class="pgrid" id="home-hot"></div>
+      <div class="about">warm touch 银铃 · 为社区长辈服务<br>商城与食堂均为演示版，支付开通后正式营业</div>
+    </section>
+
+    <!-- 商城 -->
+    <section class="screen" id="s-shop">
+      <div class="searchbar">
+        <input type="text" id="q" placeholder="搜一搜：酱油、龙井、花生油…">
+        <button onclick="doSearch()">搜索</button>
+      </div>
+      <div class="cats" id="cats"></div>
+      <div class="pgrid" id="plist"></div>
+    </section>
+
+    <!-- 商品详情 -->
+    <section class="screen" id="s-detail"><div id="detail-box"></div></section>
+
+    <!-- 食堂 -->
+    <section class="screen" id="s-canteen">
+      <div class="notice">📍 社区食堂 · 一楼东侧 &nbsp;|&nbsp; 营业：早 7:00 · 午 11:00 · 晚 17:00<br>订餐后凭订单号到食堂取餐，也可送餐到家（本小区免费）。</div>
+      <div class="meal-tabs" id="meal-tabs"></div>
+      <div id="dish-list"></div>
+    </section>
+
+    <!-- 购物车（商城+订餐合并结算） -->
+    <section class="screen" id="s-cart"><div id="cart-box"></div></section>
+
+    <!-- 结算 -->
+    <section class="screen" id="s-checkout"><div id="checkout-box"></div></section>
+
+    <!-- 订单 -->
+    <section class="screen" id="s-orders"><div id="orders-box"></div></section>
+
+    <!-- 我的 -->
+    <section class="screen" id="s-profile">
+      <div class="balance">
+        <div class="bl">🍲 食堂账户余额（可用于订餐，也可在商城付款）</div>
+        <div class="bv">¥<span id="bal-val">0.00</span><small> 元</small></div>
+        <button onclick="topup(100)">充 100 元</button>
+        <button onclick="topup(200)">充 200 元</button>
+      </div>
+      <div class="menu-it" onclick="nav('orders')"><span class="ic">🧾</span>我的订单<span class="ar">›</span></div>
+      <div class="menu-it" onclick="nav('cart')"><span class="ic">🛒</span>购物车<span class="ar">›</span></div>
+      <div class="menu-it" onclick="editAddr()"><span class="ic">🏠</span>收货地址：<span id="addr-line" style="color:var(--gray);font-size:15.5px">未填写</span><span class="ar">›</span></div>
+      <div class="menu-it" onclick="showToast('客服热线（演示）：400-000-0000，工作时间 8:00–20:00')"><span class="ic">☎️</span>联系客服<span class="ar">›</span></div>
+      <div class="menu-it" onclick="showToast('warm touch 银铃 · 社区版 v1.0')"><span class="ic">🌳</span>关于银铃<span class="ar">›</span></div>
+      <div class="about">有困难找子女帮忙，或到社区服务站找工作人员<br>大字大按钮，看不清可以放大手机字体</div>
+    </section>
+
+    <!-- 成功 -->
+    <section class="screen" id="s-success"><div id="success-box"></div></section>
+  </main>
+
+  <div class="totalbar" id="totalbar" style="display:none">
+    <div class="box">
+      <div class="sum">合计 <b id="total-sum">¥0</b></div>
+      <button class="gopay" onclick="nav('checkout')">去结算</button>
+    </div>
+  </div>
+
+  <nav class="bnav">
+    <div class="bnav-item" id="bn-home" onclick="nav('home')"><div class="ic">🏠</div>首页</div>
+    <div class="bnav-item" id="bn-shop" onclick="nav('shop')"><div class="ic">🛒</div>商城</div>
+    <div class="bnav-item" id="bn-canteen" onclick="nav('canteen')"><div class="ic">🍲</div>食堂</div>
+    <div class="bnav-item" id="bn-cart" onclick="nav('cart')"><div class="ic">🧺</div>购物车<span class="bdg" id="cart-bdg">0</span></div>
+    <div class="bnav-item" id="bn-profile" onclick="nav('profile')"><div class="ic">👤</div>我的</div>
+  </nav>
+  <div id="toast"></div>
+</div>
+
+<script>
+/* ════════ 商品数据（沿用原店 21 件） ════════ */
+const PRODUCTS = [
+  {id:0, cat:'oil', name:'冷压初榨橄榄油', spec:'500ml / 有机认证', desc:'产自西班牙安达卢西亚山地橄榄园，冷压工艺（≤27°C）萃取，酸度<0.2%，特级初榨标准。适合凉拌、低温烹饪。', price:128, ori:158, unit:'瓶', icon:'🫒', bg:'#FFF3E0', sales:486},
+  {id:1, cat:'oil', name:'古法压榨花生油', spec:'5L / 传统工艺', desc:'选用河南高油酸花生，石磨古法压榨，不添加防腐剂和增味剂，花生香气浓郁，适合炒菜、炸制。', price:156, ori:0, unit:'桶', icon:'🥜', bg:'#FFF3E0', sales:312},
+  {id:2, cat:'oil', name:'有机冷榨亚麻籽油', spec:'500ml / Omega-3', desc:'内蒙古有机亚麻籽低温冷榨，富含α-亚麻酸（Omega-3）。建议凉拌、拌饭，不宜高温加热。', price:98, ori:0, unit:'瓶', icon:'🌾', bg:'#FFF3E0', sales:228},
+  {id:3, cat:'oil', name:'有机椰子油', spec:'500ml / 初榨', desc:'菲律宾有机椰子农场出品，新鲜椰肉低温离心萃取，天然椰香，含中链脂肪酸（MCT），烘焙、烹饪两用。', price:88, ori:108, unit:'瓶', icon:'🥥', bg:'#FFF3E0', sales:175},
+  {id:4, cat:'salt', name:'深层矿物海盐', spec:'500g / 精制细盐', desc:'深海采盐，阳光天然蒸发结晶，含钾、镁、钙等微量元素，细腻均匀，不含人工抗结剂。', price:45, ori:0, unit:'袋', icon:'🌊', bg:'#E3F2FD', sales:395},
+  {id:5, cat:'salt', name:'喜马拉雅粉盐', spec:'500g / 研磨罐装', desc:'产自喜马拉雅山脉古海床矿藏，富含天然矿物质，带研磨器，现磨现用，适合煎炒、沙拉。', price:68, ori:0, unit:'罐', icon:'🏔️', bg:'#E3F2FD', sales:289},
+  {id:6, cat:'salt', name:'天然竹盐', spec:'200g / 九次烧制', desc:'传统工艺，海盐入青竹黄土封口，松木火烧制九次，矿物质浓缩，味道圆润微甘。', price:88, ori:0, unit:'瓶', icon:'🎋', bg:'#E3F2FD', sales:156},
+  {id:7, cat:'salt', name:'地中海海盐花', spec:'125g / 盐花', desc:'法国卡马格盐田表层手工打捞的盐结晶，细薄脆嫩，入口即化，味道鲜美不过咸。', price:128, ori:0, unit:'瓶', icon:'❄️', bg:'#E3F2FD', sales:98},
+  {id:8, cat:'sauce', name:'有机头道酱油', spec:'500ml / 非转基因', desc:'有机非转基因大豆古法酿造，发酵180天以上，头道生抽，不添加味精、防腐剂及人工色素。', price:58, ori:0, unit:'瓶', icon:'🫙', bg:'#FFEBEE', sales:423},
+  {id:9, cat:'sauce', name:'手工黄豆酱', spec:'350g / 传统发酵', desc:'东北非转基因黄豆，陶缸自然发酵120天，豆香浓郁，是炸酱面、炒菜、腌肉的好调料。', price:45, ori:0, unit:'罐', icon:'🫘', bg:'#FFEBEE', sales:267},
+  {id:10, cat:'sauce', name:'有机黑芝麻酱', spec:'350g / 石磨研磨', desc:'云南有机黑芝麻低温石磨，细腻醇香，适合拌面、蘸料、涮锅。油脂分离属正常现象，搅匀即可。', price:68, ori:0, unit:'罐', icon:'⚫', bg:'#FFEBEE', sales:198},
+  {id:11, cat:'sauce', name:'传统蚝油', spec:'280g / 天然发酵', desc:'广东阳江新鲜生蚝长时间熬制浓缩，天然蚝汁含量高，鲜味浓郁自然。', price:38, ori:0, unit:'瓶', icon:'🦪', bg:'#FFEBEE', sales:356},
+  {id:12, cat:'vinegar', name:'12年陈酿镇江香醋', spec:'500ml / 固态发酵', desc:'镇江老厂传统固态分层发酵，陶缸陈酿12年，香气醇正，酸而不烈，回味微甜。', price:88, ori:108, unit:'瓶', icon:'🍶', bg:'#FBE9E7', sales:334},
+  {id:13, cat:'vinegar', name:'有机苹果醋', spec:'500ml / 带母发酵', desc:'云南高原有机苹果自然发酵，保留天然醋母，未过滤未灭菌，可稀释饮用或调味。', price:68, ori:0, unit:'瓶', icon:'🍎', bg:'#FBE9E7', sales:245},
+  {id:14, cat:'vinegar', name:'手工糯米醋', spec:'500ml / 传统酿造', desc:'优质糯米传统酿造，自然发酵60天以上，色泽金黄，口感温和，酸度适中带天然甜香。', price:45, ori:0, unit:'瓶', icon:'🍚', bg:'#FBE9E7', sales:189},
+  {id:15, cat:'vinegar', name:'山西老陈醋', spec:'1L / 三年陈酿', desc:'山西老陈醋基地出品，高粱、大麦、豌豆为原料，五道古法工艺，陈酿3年，色浓香醇。', price:128, ori:0, unit:'瓶', icon:'🏮', bg:'#FBE9E7', sales:412},
+  {id:16, cat:'tea', name:'明前西湖龙井', spec:'50g / 一级产区', desc:'杭州西湖核心产区（狮峰山、龙井村），清明前手工采摘一芽一叶，铁锅手工炒制，鲜爽回甘。', price:268, ori:320, unit:'盒', icon:'🍃', bg:'#F1F8E9', sales:156},
+  {id:17, cat:'tea', name:'高山碧螺春', spec:'50g / 洞庭山产', desc:'苏州太湖洞庭东山出品，清明前采摘，卷曲似螺，白毫丰富，香气浓郁带花果香。', price:188, ori:0, unit:'盒', icon:'🌀', bg:'#F1F8E9', sales:134},
+  {id:18, cat:'tea', name:'安溪铁观音', spec:'100g / 特级清香型', desc:'福建安溪感德茶区，高山茶园，传统半发酵工艺，茶汤金黄，花香持久，七泡有余香。', price:158, ori:0, unit:'盒', icon:'⚙️', bg:'#F1F8E9', sales:198},
+  {id:19, cat:'tea', name:'云南古树普洱', spec:'357g / 饼茶', desc:'西双版纳勐海茶区百年古茶树原料，手工石磨压制饼茶，生普，自然陈化，越存越香。', price:298, ori:0, unit:'饼', icon:'🫓', bg:'#F1F8E9', sales:89},
+  {id:20, cat:'tea', name:'茉莉花茶', spec:'150g / 七窨工艺', desc:'福鼎白茶为基，广西横县伏天茉莉鲜花七次窨制，花香茶香融合，汤色清黄，鲜灵甘甜。', price:55, ori:68, unit:'盒', icon:'🌸', bg:'#F1F8E9', sales:423},
+];
+const CATS = [
+  {id:'all', name:'全部'}, {id:'oil', name:'有机油'}, {id:'salt', name:'天然盐'},
+  {id:'sauce', name:'精选酱'}, {id:'vinegar', name:'传统醋'}, {id:'tea', name:'名优茶'},
+];
+/* ════════ 食堂菜单（社区食堂价，适老搭配） ════════ */
+const MEALS = [ {id:'breakfast', name:'早餐'}, {id:'lunch', name:'午餐'}, {id:'dinner', name:'晚餐'} ];
+const DISHES = [
+  {id:'b1', meal:'breakfast', name:'小米南瓜粥 + 水煮蛋', desc:'小米南瓜慢熬，配一颗水煮蛋，暖胃好消化。', price:5, icon:'🥣', bg:'#FFF6E0', tags:['软烂','暖胃']},
+  {id:'b2', meal:'breakfast', name:'鲜肉小馄饨', desc:'皮薄馅大，汤里加紫菜虾皮，鲜香不腻。', price:6, icon:'🍲', bg:'#FFF6E0', tags:['高蛋白']},
+  {id:'b3', meal:'breakfast', name:'豆浆 + 菜肉包', desc:'现磨豆浆一杯，菜肉包两个，经典搭配。', price:5.5, icon:'🥛', bg:'#FFF6E0', tags:['经典']},
+  {id:'b4', meal:'breakfast', name:'燕麦牛奶 + 全麦面包', desc:'燕麦牛奶热饮，配全麦面包两片，膳食纤维足。', price:6.5, icon:'🍞', bg:'#FFF6E0', tags:['高纤维']},
+  {id:'l1', meal:'lunch', name:'番茄炖牛腩饭', desc:'牛腩炖得软烂入味，番茄开胃，配时蔬和米饭。', price:15, icon:'🍛', bg:'#FDEBD2', tags:['软烂','高蛋白']},
+  {id:'l2', meal:'lunch', name:'清蒸鲈鱼套餐', desc:'鲈鱼清蒸少油，配青菜、米饭和一碗例汤。', price:16, icon:'🐟', bg:'#FDEBD2', tags:['低脂','护心脑']},
+  {id:'l3', meal:'lunch', name:'香菇滑鸡饭', desc:'鸡腿肉去骨切块，香菇提鲜，少盐少油。', price:13, icon:'🍗', bg:'#FDEBD2', tags:['少盐']},
+  {id:'l4', meal:'lunch', name:'家常豆腐套餐', desc:'豆腐煎炖入味，配木耳青菜，素净下饭。', price:11, icon:'🍱', bg:'#FDEBD2', tags:['素食','好消化']},
+  {id:'l5', meal:'lunch', name:'冬瓜排骨汤 + 杂粮饭', desc:'排骨冬瓜汤清淡祛湿，杂粮饭一份。', price:14, icon:'🍚', bg:'#FDEBD2', tags:['清淡']},
+  {id:'d1', meal:'dinner', name:'山药排骨粥', desc:'山药健脾，排骨粥稠糯，晚上吃不胀肚。', price:9, icon:'🥣', bg:'#EFE7F7', tags:['软烂','助眠']},
+  {id:'d2', meal:'dinner', name:'青菜香菇面', desc:'手擀面配青菜香菇，清汤少油，暖和。', price:8, icon:'🍜', bg:'#EFE7F7', tags:['清淡']},
+  {id:'d3', meal:'dinner', name:'蒸南瓜 + 小米粥', desc:'老南瓜清蒸，小米粥一碗，清甜养胃。', price:7, icon:'🎃', bg:'#EFE7F7', tags:['养胃']},
+  {id:'d4', meal:'dinner', name:'虾仁蒸蛋 + 时蔬饭', desc:'蒸蛋嫩滑，虾仁提鲜，配小份时蔬饭。', price:12, icon:'🍤', bg:'#EFE7F7', tags:['高蛋白','嫩滑']},
+];
+
+/* ════════ 状态（本机存储，注册开通后接服务器） ════════ */
+const LS = {
+  get(k, d){ try{ const v = localStorage.getItem('wt_'+k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
+  set(k, v){ localStorage.setItem('wt_'+k, JSON.stringify(v)); }
+};
+const state = {
+  screen:'home', prev:'home', cat:'all', meal:'lunch', kw:'',
+  cart: LS.get('cart', []),            // {kind:'goods'|'dish', id, qty}
+  orders: LS.get('orders', []),        // {no, time, items, total, pay, kind}
+  balance: LS.get('balance', 0),
+  addr: LS.get('addr', ''),
+  detailId: null, payMethod:'balance', mealWay:'dinein'
+};
+function saveAll(){ LS.set('cart', state.cart); LS.set('orders', state.orders); LS.set('balance', state.balance); LS.set('addr', state.addr); }
+const fmt = n => '¥' + (Math.round(n*100)/100).toString().replace(/\.0+$/,'').replace(/(\.\d)0$/,'$1');
+function findItem(kind, id){ return kind==='goods' ? PRODUCTS.find(p=>p.id===id) : DISHES.find(d=>d.id===id); }
+function cartCount(){ return state.cart.reduce((s,c)=>s+c.qty,0); }
+function cartTotal(){ return state.cart.reduce((s,c)=>{ const it=findItem(c.kind,c.id); return it ? s+it.price*c.qty : s; },0); }
+
+/* ════════ 导航 ════════ */
+const BACKABLE = ['detail','checkout','success'];
+function nav(screen){
+  state.prev = state.screen; state.screen = screen;
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('s-'+screen).classList.add('active');
+  document.getElementById('content').scrollTop = 0;
+  document.querySelectorAll('.bnav-item').forEach(b=>b.classList.remove('on'));
+  const map = {home:'bn-home', shop:'bn-shop', canteen:'bn-canteen', cart:'bn-cart', profile:'bn-profile', orders:'bn-profile'};
+  if(map[screen]) document.getElementById(map[screen]).classList.add('on');
+  document.getElementById('btn-back').classList.toggle('show', BACKABLE.includes(screen));
+  document.getElementById('totalbar').style.display = (screen==='cart' && state.cart.length) ? 'block' : 'none';
+  if(screen==='home') renderHome();
+  if(screen==='shop') renderShop();
+  if(screen==='canteen') renderCanteen();
+  if(screen==='cart') renderCart();
+  if(screen==='checkout') renderCheckout();
+  if(screen==='orders') renderOrders();
+  if(screen==='profile') renderProfile();
+  updateBadge();
+}
+function goBack(){ nav(state.prev && state.prev!==state.screen ? state.prev : 'home'); }
+function updateBadge(){
+  const n = cartCount(), b = document.getElementById('cart-bdg');
+  b.textContent = n; b.classList.toggle('show', n>0);
+  const ts = document.getElementById('total-sum'); if(ts) ts.textContent = fmt(cartTotal());
+}
+let toastTimer;
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(()=>t.classList.remove('show'), 2400);
+}
+
+/* ════════ 渲染：首页 ════════ */
+function pcard(p){
+  return `<div class="pcard" onclick="showDetail(${p.id})">
+    <div class="thumb" style="background:${p.bg}">${p.icon}</div>
+    <div class="inf"><div class="nm">${p.name}</div><div class="sp">${p.spec} · 已售${p.sales}</div>
+    <div class="prow"><div><span class="price">${fmt(p.price)}</span>${p.ori?`<span class="ori">${fmt(p.ori)}</span>`:''}</div>
+    <button class="addbtn" onclick="event.stopPropagation();addToCart('goods',${p.id})">加入</button></div></div></div>`;
+}
+function dishRow(d){
+  return `<div class="dish"><div class="thumb" style="background:${d.bg}">${d.icon}</div>
+    <div class="inf"><div class="nm">${d.name}</div>
+    <div class="tags">${d.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+    <div class="ds">${d.desc}</div>
+    <div class="prow"><span class="price">${fmt(d.price)}</span>
+    <button class="addbtn" onclick="addToCart('dish','${d.id}')">订一份</button></div></div></div>`;
+}
+function renderHome(){
+  const h = new Date().getHours();
+  document.getElementById('hello-line').textContent = h<11 ? '早上好，早餐已经备好了' : h<17 ? '您好，今天想办点啥？' : '晚上好，晚餐清淡点更舒服';
+  document.getElementById('home-dishes').innerHTML = DISHES.filter(d=>d.meal==='lunch').slice(0,2).map(dishRow).join('');
+  document.getElementById('home-hot').innerHTML = [...PRODUCTS].sort((a,b)=>b.sales-a.sales).slice(0,4).map(pcard).join('');
+}
+/* ════════ 渲染：商城 ════════ */
+function renderShop(){
+  document.getElementById('cats').innerHTML = CATS.map(c=>`<button class="cat ${state.cat===c.id?'on':''}" onclick="setCat('${c.id}')">${c.name}</button>`).join('');
+  let list = PRODUCTS.filter(p => (state.cat==='all' || p.cat===state.cat));
+  if(state.kw) list = list.filter(p => (p.name+p.spec).includes(state.kw));
+  document.getElementById('plist').innerHTML = list.length ? list.map(pcard).join('') : '<div class="empty"><div class="ic">🔍</div>没找到，换个词试试</div>';
+}
+function setCat(id){ state.cat = id; renderShop(); }
+function doSearch(){ state.kw = document.getElementById('q').value.trim(); renderShop(); if(state.kw) showToast('为您找到相关商品'); }
+function showDetail(id){
+  const p = PRODUCTS.find(x=>x.id===id); state.detailId = id;
+  document.getElementById('detail-box').innerHTML = `
+    <div class="dthumb" style="background:${p.bg}">${p.icon}</div>
+    <div class="dcard"><div class="nm">${p.name}</div>
+    <div class="sp" style="color:var(--mid);margin-top:4px">${p.spec} · 已售 ${p.sales} 件</div>
+    <div class="prow" style="margin-top:12px"><span class="price" style="font-size:27px">${fmt(p.price)}<small> / ${p.unit}</small></span>${p.ori?`<span class="ori">${fmt(p.ori)}</span>`:''}</div>
+    <div class="ds">${p.desc}</div>
+    <button class="bigbtn" onclick="addToCart('goods',${p.id});nav('cart')">加入购物车</button>
+    <button class="bigbtn ghost" onclick="nav('shop')">再看看别的</button></div>`;
+  nav('detail');
+}
+/* ════════ 渲染：食堂 ════════ */
+function renderCanteen(){
+  document.getElementById('meal-tabs').innerHTML = MEALS.map(m=>`<button class="meal-tab ${state.meal===m.id?'on':''}" onclick="setMeal('${m.id}')">${m.name}</button>`).join('');
+  document.getElementById('dish-list').innerHTML = DISHES.filter(d=>d.meal===state.meal).map(dishRow).join('');
+}
+function setMeal(id){ state.meal = id; renderCanteen(); }
+/* ════════ 购物车 ════════ */
+function addToCart(kind, id){
+  const row = state.cart.find(c=>c.kind===kind && c.id===id);
+  if(row) row.qty++; else state.cart.push({kind, id, qty:1});
+  saveAll(); updateBadge();
+  const it = findItem(kind,id);
+  showToast(kind==='dish' ? `已订：${it.name}，去购物车结算` : `已加入购物车：${it.name}`);
+  if(state.screen==='cart') renderCart();
+}
+function setQty(kind, id, delta){
+  const row = state.cart.find(c=>c.kind===kind && c.id===id);
+  if(!row) return;
+  row.qty += delta;
+  if(row.qty<=0) state.cart = state.cart.filter(c=>c!==row);
+  saveAll(); updateBadge(); renderCart();
+  document.getElementById('totalbar').style.display = state.cart.length ? 'block' : 'none';
+}
+function renderCart(){
+  const box = document.getElementById('cart-box');
+  document.getElementById('total-sum').textContent = fmt(cartTotal());
+  if(!state.cart.length){
+    box.innerHTML = '<div class="empty"><div class="ic">🧺</div>购物车是空的<br><br><button class="addbtn" onclick="nav(\'shop\')">去商城逛逛</button> &nbsp;<button class="addbtn" style="background:var(--amber)" onclick="nav(\'canteen\')">看看今日菜单</button></div>';
+    return;
+  }
+  box.innerHTML = '<div class="sec-title" style="margin-top:2px">购物车</div>' + state.cart.map(c=>{
+    const it = findItem(c.kind, c.id); if(!it) return '';
+    return `<div class="citem"><div class="thumb" style="background:${it.bg}">${it.icon}</div>
+      <div class="inf"><div class="nm">${it.name} ${c.kind==='dish'?'<span class="badge food">食堂</span>':''}</div>
+      <div class="sp">${fmt(it.price)} × ${c.qty}</div></div>
+      <div class="qty"><button onclick="setQty('${c.kind}','${c.id}',-1)">−</button><span class="n">${c.qty}</span><button onclick="setQty('${c.kind}','${c.id}',1)">＋</button></div></div>`;
+  }).join('') + '<div style="height:70px"></div>';
+}
+/* ════════ 结算 ════════ */
+function renderCheckout(){
+  const box = document.getElementById('checkout-box');
+  const total = cartTotal();
+  const hasDish = state.cart.some(c=>c.kind==='dish');
+  const hasGoods = state.cart.some(c=>c.kind==='goods');
+  box.innerHTML = `<div class="sec-title" style="margin-top:2px">确认订单</div>
+    <div class="fgroup"><div class="ft">订单内容</div>
+      ${state.cart.map(c=>{ const it=findItem(c.kind,c.id); return `<div class="opt" style="cursor:default"><span>${it.icon} ${it.name}</span><span class="grow"></span><span>×${c.qty}</span><b>${fmt(it.price*c.qty)}</b></div>`; }).join('')}
+      <div style="text-align:right;font-size:17px;margin-top:6px">合计 <b style="color:var(--price);font-size:21px">${fmt(total)}</b></div></div>
+    ${hasDish ? `<div class="fgroup"><div class="ft">就餐方式</div>
+      <div class="opt ${state.mealWay==='dinein'?'on':''}" onclick="state.mealWay='dinein';renderCheckout()"><span>🍽️</span><span class="grow">到食堂吃（凭订单号取餐）</span></div>
+      <div class="opt ${state.mealWay==='delivery'?'on':''}" onclick="state.mealWay='delivery';renderCheckout()"><span>🛵</span><span class="grow">送餐到家（本小区免费）</span></div></div>`:''}
+    ${hasGoods ? `<div class="fgroup"><div class="ft">收货地址</div>
+      <input type="text" id="addr-in" placeholder="例如：3号楼2单元501，张奶奶收" value="${state.addr.replace(/"/g,'&quot;')}">
+      <div style="font-size:14px;color:var(--mid)">商城商品送到这个地址；食堂送餐也用它。</div></div>`:''}
+    <div class="fgroup"><div class="ft">付款方式</div>
+      <div class="opt ${state.payMethod==='balance'?'on':''}" onclick="state.payMethod='balance';renderCheckout()"><span>🍲</span><span class="grow">食堂余额付款（余额 ${fmt(state.balance)}）</span></div>
+      <div class="opt ${state.payMethod==='wechat'?'on':''}" onclick="state.payMethod='wechat';renderCheckout()"><span>💬</span><span class="grow">微信支付</span><span style="color:var(--mid);font-size:14px">注册开通后可用</span></div>
+      <div class="opt ${state.payMethod==='alipay'?'on':''}" onclick="state.payMethod='alipay';renderCheckout()"><span>🅰️</span><span class="grow">支付宝</span><span style="color:var(--mid);font-size:14px">注册开通后可用</span></div></div>
+    <button class="bigbtn" onclick="placeOrder()">确认下单 · ${fmt(total)}</button>
+    <div style="height:20px"></div>`;
+}
+function placeOrder(){
+  const total = cartTotal();
+  if(!state.cart.length) return;
+  if(state.payMethod!=='balance'){ showToast('支付通道等平台注册完成后开通，先用食堂余额试试'); return; }
+  if(state.balance < total){ showToast('食堂余额不够，去「我的」充值后再下单'); return; }
+  const addrIn = document.getElementById('addr-in');
+  if(addrIn){ state.addr = addrIn.value.trim(); }
+  state.balance = Math.round((state.balance - total)*100)/100;
+  const no = 'WT' + Date.now().toString().slice(-8);
+  const items = state.cart.map(c=>{ const it=findItem(c.kind,c.id); return {name:it.name, qty:c.qty, price:it.price, kind:c.kind}; });
+  const hasDish = state.cart.some(c=>c.kind==='dish'), hasGoods = state.cart.some(c=>c.kind==='goods');
+  state.orders.unshift({ no, time:new Date().toLocaleString('zh-CN',{hour12:false}), items, total,
+    kind: hasDish&&hasGoods ? '商城+食堂' : hasDish ? '食堂订餐' : '商城购物',
+    extra: hasDish ? (state.mealWay==='dinein' ? '到食堂取餐' : '送餐到家') : '送货上门' });
+  state.cart = [];
+  saveAll(); updateBadge();
+  document.getElementById('totalbar').style.display = 'none';
+  document.getElementById('success-box').innerHTML = `<div class="success"><div class="ic">✅</div>
+    <div class="t">下单成功！</div>
+    <div class="d">订单号：${no}<br>${hasDish ? '食堂正在备餐，' + (state.mealWay==='dinein' ? '请到一楼食堂凭订单号取餐' : '稍后送到您家') : '商城会尽快把商品送到您家'}<br>已从食堂余额扣除 ${fmt(total)}</div>
+    <button class="bigbtn" onclick="nav('orders')">看我的订单</button>
+    <button class="bigbtn ghost" onclick="nav('home')">回首页</button></div>`;
+  nav('success');
+}
+/* ════════ 订单 ════════ */
+function renderOrders(){
+  const box = document.getElementById('orders-box');
+  if(!state.orders.length){ box.innerHTML = '<div class="empty"><div class="ic">🧾</div>还没有订单</div>'; return; }
+  box.innerHTML = '<div class="sec-title" style="margin-top:2px">我的订单</div>' + state.orders.map(o=>`
+    <div class="ocard"><div class="oh"><span>订单号 ${o.no}</span><span>${o.time}</span></div>
+    <div class="oi">${o.items.map(i=>`${i.name} ×${i.qty}`).join('、')}</div>
+    <div class="ot"><span><span class="badge ${o.kind.includes('食堂')?'food':''}">${o.kind}</span> ${o.extra||''}</span><b>${fmt(o.total)}</b></div></div>`).join('');
+}
+/* ════════ 我的 ════════ */
+function renderProfile(){
+  document.getElementById('bal-val').textContent = state.balance.toFixed(2);
+  document.getElementById('addr-line').textContent = state.addr || '未填写';
+}
+function topup(n){
+  state.balance = Math.round((state.balance + n)*100)/100;
+  saveAll(); renderProfile();
+  showToast(`已充值 ${fmt(n)}（演示充值，正式开通后为真实支付）`);
+}
+function editAddr(){
+  const v = prompt('填写收货地址（小区、楼号、姓名）：', state.addr);
+  if(v!==null){ state.addr = v.trim(); saveAll(); renderProfile(); showToast('地址已保存'); }
+}
+/* ════════ 启动 ════════ */
+nav('home');
+</script>
+</body>
+</html>
