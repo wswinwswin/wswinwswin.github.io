@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI 绘画智库 | wswin</title>
+<meta name="description" content="AI 生图、修图、设计：指哪画哪，创意落地。wswin AI 智库「AI 绘画」主题聚合，共 12 篇，持续更新。" />
+<link rel="canonical" href="https://wswin.dpdns.org/topics/ai-image.html" />
+<meta property="og:title" content="AI 绘画智库 | wswin" />
+<meta property="og:description" content="AI 生图、修图、设计：指哪画哪，创意落地。wswin AI 智库「AI 绘画」主题聚合，共 12 篇，持续更新。" />
+<style>
+/* ============================================================
+   WSWIN — dark editorial tech aesthetic
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --font-mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  --font-serif:"Songti SC","STSong","SimSun","Noto Serif SC",serif;
+  --font-sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+  --wrap:1180px;
+  --ease:cubic-bezier(.22,.61,.21,1);
+}
+html[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0a0c0e; --bg-2:#0e1114; --surface:#121518; --surface-2:#171b20;
+  --ink:#eff2ee; --ink-2:#c6ccc9; --muted:#8b9291; --faint:#5d6463;
+  --line:rgba(255,255,255,.09); --line-soft:rgba(255,255,255,.055);
+  --accent:#c9f24e; --accent-ink:#10130a; --accent-soft:rgba(201,242,78,.12);
+  --img-veil:rgba(8,10,12,.28);
+  --shadow:0 30px 60px -30px rgba(0,0,0,.7);
+}
+html[data-theme="light"]{
+  color-scheme:light;
+  --bg:#f7f7f3; --bg-2:#fbfbF7; --surface:#ffffff; --surface-2:#f0f0ea;
+  --ink:#14171a; --ink-2:#3d434a; --muted:#6d747b; --faint:#a3a9b0;
+  --line:rgba(16,20,24,.12); --line-soft:rgba(16,20,24,.06);
+  --accent:#55750a; --accent-ink:#f7fbe9; --accent-soft:rgba(85,117,10,.1);
+  --img-veil:rgba(247,247,243,.0);
+  --shadow:0 30px 60px -34px rgba(20,24,28,.28);
+}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:var(--font-sans); font-size:16px; line-height:1.75;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--accent);color:var(--accent-ink)}
+
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+.mono{font-family:var(--font-mono)}
+.serif{font-family:var(--font-serif)}
+
+/* motion: kept to hover states, reader transitions and pulses only — content always visible on load */
+
+/* ============================================================
+   MASTHEAD
+   ============================================================ */
+.masthead{
+  position:sticky;top:0;z-index:60;
+  background:color-mix(in srgb,var(--bg) 86%,transparent);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.mast-inner{
+  max-width:var(--wrap);margin:0 auto;padding:0 clamp(20px,4vw,48px);
+  display:flex;align-items:center;gap:28px;min-height:64px;
+}
+.brand{display:flex;align-items:center;gap:10px;white-space:nowrap}
+.brand-mark{width:34px;height:34px;flex:none}
+.brand b{font-family:var(--font-serif);font-weight:900;font-size:21px;letter-spacing:.02em}
+.brand .sep{color:var(--faint);font-family:var(--font-mono);font-size:12px}
+.brand small{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--muted)}
+.nav{display:flex;gap:2px;margin-left:auto;font-size:13px}
+.nav a{
+  font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;color:var(--muted);
+  padding:8px 12px;position:relative;white-space:nowrap;transition:color .25s;
+}
+.nav a .idx{color:var(--faint);margin-right:5px;font-size:10px}
+.nav a::after{
+  content:"";position:absolute;left:12px;right:12px;bottom:4px;height:1px;
+  background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease);
+}
+.nav a:hover{color:var(--ink)}
+.nav a:hover::after,.nav a.active::after{transform:scaleX(1)}
+.nav a.active{color:var(--ink)}
+.mast-ctl{display:flex;align-items:center;gap:14px;border-left:1px solid var(--line);padding-left:16px}
+.clock{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:.1em;white-space:nowrap}
+.theme-btn{
+  display:flex;align-items:center;gap:7px;background:none;border:1px solid var(--line);
+  color:var(--muted);font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;
+  padding:7px 12px;border-radius:100px;cursor:pointer;transition:all .25s;
+}
+.theme-btn:hover{border-color:var(--accent);color:var(--ink)}
+@media(max-width:900px){
+  .mast-inner{flex-wrap:wrap;gap:6px 16px;padding-top:12px;padding-bottom:12px}
+  .nav{order:3;width:100%;margin:0;flex-wrap:wrap}
+  .nav a{padding:6px 10px 6px 0}
+  .nav a::after{left:0;right:10px}
+  .clock{display:none}
+}
+
+/* ============================================================
+   HERO — bio spotlight
+   ============================================================ */
+.hero{position:relative;padding:clamp(64px,9vw,120px) 0 clamp(56px,7vw,88px);overflow:hidden}
+.hero::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:
+    repeating-linear-gradient(to right,var(--line-soft) 0 1px,transparent 1px clamp(48px,6vw,88px)),
+    repeating-linear-gradient(to bottom,var(--line-soft) 0 1px,transparent 1px clamp(48px,6vw,88px));
+  mask-image:linear-gradient(to bottom,#000 0%,transparent 78%);
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,transparent 78%);
+  opacity:.7;
+}
+.hero-inner{position:relative}
+.kicker{
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;color:var(--muted);
+  display:flex;align-items:center;gap:12px;margin-bottom:30px;
+}
+.kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none}
+.kicker .line{flex:1;height:1px;background:var(--line);max-width:280px}
+.hero h1{
+  font-family:var(--font-serif);font-weight:900;
+  font-size:clamp(2.4rem,6.4vw,4.6rem);line-height:1.22;letter-spacing:.01em;
+  max-width:16em;margin-bottom:28px;
+}
+.hero h1 .hl{color:var(--accent)}
+.hero .lede{
+  font-size:clamp(1.02rem,1.6vw,1.2rem);color:var(--ink-2);line-height:1.9;
+  max-width:44em;margin-bottom:42px;
+}
+.hero .lede strong{color:var(--ink);font-weight:700}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);background:var(--surface)}
+.stat{padding:26px 8px 22px;text-align:center;position:relative}
+.stat+.stat::before{content:"";position:absolute;left:0;top:22%;bottom:22%;width:1px;background:var(--line)}
+.stat b{display:block;font-family:var(--font-serif);font-weight:700;font-size:clamp(1.5rem,2.6vw,2.1rem);line-height:1;color:var(--ink)}
+.stat b em{font-style:normal;color:var(--accent);font-size:.72em}
+.stat span{display:block;margin-top:10px;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.14em;color:var(--muted)}
+.hero-foot{margin-top:34px;display:flex;align-items:center;gap:18px}
+.go-link{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--font-mono);font-size:12px;letter-spacing:.16em;color:var(--ink);
+  border-bottom:1px solid var(--accent);padding-bottom:6px;transition:gap .25s var(--ease);
+}
+.go-link:hover{gap:16px}
+@media(max-width:760px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(3)::before{display:none}
+  .stat:nth-child(3),.stat:nth-child(4){border-top:1px solid var(--line)}
+}
+
+/* ============================================================
+   INVITE BAND
+   ============================================================ */
+.invite{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface)}
+.invite-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:22px;padding-bottom:22px}
+.invite-kicker{font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;color:var(--muted);display:flex;align-items:center;gap:10px;margin:0 0 10px}
+.invite-kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none}
+.invite-msg{font-size:.98rem;color:var(--ink-2);line-height:1.8;max-width:46em;margin:0}
+.invite-msg strong{color:var(--ink);font-weight:700}
+.invite-act{display:flex;align-items:center;gap:14px;flex:none}
+.invite-code{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:15px;letter-spacing:.18em;color:var(--ink);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:10px 16px;cursor:pointer}
+.invite-code:hover{border-style:solid}
+.invite-copyhint{font-size:11px;letter-spacing:.12em;color:var(--muted);border-left:1px solid var(--line);padding-left:10px}
+.invite-go{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--accent-ink);font-size:13px;font-weight:700;letter-spacing:.08em;border-radius:8px;padding:11px 20px;text-decoration:none}
+@media(max-width:760px){.invite-inner{flex-direction:column;align-items:flex-start}}
+
+/* ============================================================
+   SECTION FRAME
+   ============================================================ */
+.section{padding:clamp(60px,8vw,104px) 0;border-top:1px solid var(--line)}
+.sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:44px}
+.sec-idx{font-family:var(--font-mono);font-size:12px;letter-spacing:.2em;color:var(--faint);flex:none}
+.sec-title{font-family:var(--font-serif);font-weight:900;font-size:clamp(1.7rem,3.4vw,2.5rem);letter-spacing:.01em;white-space:nowrap}
+.sec-rule{flex:1;height:1px;background:var(--line);margin-bottom:8px}
+.sec-meta{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;color:var(--muted);text-align:right;white-space:nowrap}
+@media(max-width:640px){.sec-meta{display:none}}
+
+/* ---------- news lead ---------- */
+.lead{
+  display:grid;grid-template-columns:1.35fr 1fr;gap:0;
+  border:1px solid var(--line);background:var(--surface);overflow:hidden;
+  cursor:pointer;transition:border-color .35s,box-shadow .35s;
+  margin-bottom:44px;
+}
+.lead:hover{border-color:color-mix(in srgb,var(--accent) 55%,var(--line));box-shadow:var(--shadow)}
+.lead-img{position:relative;overflow:hidden;min-height:320px;background:var(--surface-2)}
+.lead-img img{width:100%;height:100%;object-fit:cover;aspect-ratio:16/10;display:block;transition:transform .8s var(--ease)}
+.lead:hover .lead-img img{transform:scale(1.035)}
+.lead-img::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to right,transparent 62%,var(--img-veil))}
+.tag{
+  display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
+  font-family:var(--font-mono);font-size:10.5px;letter-spacing:.18em;
+  color:var(--accent-ink);background:var(--accent);
+  padding:6px 12px;border-radius:2px;font-weight:500;
+}
+.lead-body{padding:clamp(28px,4vw,52px);display:flex;flex-direction:column;justify-content:center;gap:16px;min-width:0}
+.lead-body .tag{align-self:flex-start}
+.lead-body h3{font-family:var(--font-serif);font-weight:700;font-size:clamp(1.35rem,2.6vw,1.9rem);line-height:1.5;line-break:strict;text-wrap:pretty}
+.lead-body p{color:var(--muted);font-size:.95rem;line-height:1.85;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-break:strict}
+.card-meta{display:flex;align-items:center;gap:6px 16px;flex-wrap:wrap;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--faint);margin-top:auto;padding-top:4px}
+.card-meta a.demo-btn{display:inline-flex;align-items:center;background:var(--accent);color:var(--accent-ink);font-weight:800;font-size:16px;padding:12px 24px;border-radius:999px;letter-spacing:.02em;line-height:1.2}
+.card-meta a.demo-btn:hover{filter:brightness(1.06)}
+.card-meta a.drill{display:inline-flex;align-items:center;border:1.5px solid var(--ink);color:var(--ink);font-weight:700;font-size:13px;padding:8px 18px;border-radius:999px;letter-spacing:.02em;line-height:1.2}
+.card-meta a.drill:hover{background:var(--ink);color:var(--bg)}
+.card-meta .rm{color:var(--bg);background:var(--ink);font-weight:700;padding:3px 12px;border-radius:999px}
+
+.card-meta a{color:var(--faint)}
+.read-more{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;color:var(--ink);
+  display:inline-flex;align-items:center;gap:10px;margin-top:2px;font-weight:700;
+  border:1.5px solid var(--ink);padding:8px 16px;border-radius:999px}
+.read-more i{font-style:normal;transition:transform .25s var(--ease)}
+.lead:hover .read-more i{transform:translateX(6px)}
+@media(max-width:760px){
+  .lead{grid-template-columns:1fr;margin-bottom:32px}
+  .lead-img{min-height:0;aspect-ratio:16/9}
+  .lead-img img{aspect-ratio:16/9}
+  .lead-img::after{background:linear-gradient(to bottom,transparent 62%,var(--img-veil))}
+  .lead-body{padding:22px 20px;gap:12px}
+  .lead-body h3{font-size:1.28rem}
+}
+
+/* ---------- news list ---------- */
+.news-list{border-top:1px solid var(--line)}
+.news-row{
+  display:grid;grid-template-columns:188px minmax(0,1fr) auto;gap:26px;align-items:center;
+  padding:24px 0;border-bottom:1px solid var(--line);cursor:pointer;
+  transition:background-color .3s,border-color .3s;
+}
+.news-row:hover{border-bottom-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+.news-row>*{min-width:0}
+.news-row .thumb{overflow:hidden;aspect-ratio:16/10;background:var(--surface-2);flex:none}
+.news-row .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease)}
+.news-row:hover .thumb img{transform:scale(1.05)}
+.news-row h4{font-family:var(--font-serif);font-weight:700;font-size:1.16rem;line-height:1.55;margin-bottom:8px;line-break:strict;text-wrap:pretty}
+.news-row .exc{color:var(--muted);font-size:.9rem;line-height:1.75;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-break:strict}
+.news-row .arrow{
+  font-family:var(--font-mono);color:var(--faint);font-size:20px;width:44px;height:44px;
+  border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;
+  transition:border-color .3s,color .3s,transform .3s var(--ease);
+}
+.news-row:hover .arrow{border-color:var(--accent);color:var(--accent);transform:translateX(4px)}
+@media(max-width:760px){
+  .news-row{grid-template-columns:112px minmax(0,1fr);gap:16px;padding:20px 0}
+  .news-row .arrow{display:none}
+  .news-row h4{font-size:1.02rem;margin-bottom:6px}
+  .news-row .exc{font-size:.85rem}
+  .news-row .card-meta{font-size:10px;gap:4px 12px}
+}
+
+/* ---------- tutorial cards ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px}
+.chip{
+  font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;
+  border:1px solid var(--line);background:transparent;color:var(--muted);
+  padding:9px 20px;border-radius:100px;cursor:pointer;transition:all .25s;
+}
+.chip .n{color:var(--faint);font-size:10.5px;margin-left:6px}
+.chip:hover{border-color:var(--accent);color:var(--ink)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.chip.on .n{color:var(--accent-ink);opacity:.65}
+.tut-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.tut-card{
+  border:1px solid var(--line);background:var(--surface);overflow:hidden;cursor:pointer;
+  transition:border-color .3s,transform .35s var(--ease),box-shadow .35s;
+  display:flex;flex-direction:column;
+}
+.tut-card:hover{border-color:color-mix(in srgb,var(--accent) 50%,var(--line));transform:translateY(-4px);box-shadow:var(--shadow)}
+.tut-card.hide{display:none}
+.tut-img{overflow:hidden;aspect-ratio:16/10;position:relative}
+.tut-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.tut-card:hover .tut-img img{transform:scale(1.045)}
+.tut-cat{
+  position:absolute;left:16px;bottom:0;
+  font-family:var(--font-mono);font-size:10.5px;letter-spacing:.16em;
+  background:var(--bg);border:1px solid var(--line);border-bottom:none;color:var(--accent);
+  padding:7px 13px 5px;border-radius:3px 3px 0 0;
+}
+.tut-body{padding:26px 28px 24px;display:flex;flex-direction:column;gap:12px;flex:1}
+.tut-body h4{font-family:var(--font-serif);font-weight:700;font-size:1.22rem;line-height:1.5}
+.tut-body .exc{color:var(--muted);font-size:.91rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tut-body .card-meta{margin-top:14px;padding-top:16px;border-top:1px solid var(--line-soft)}
+@media(max-width:760px){.tut-grid{grid-template-columns:1fr}}
+
+/* ---------- LIVE ---------- */
+.live-box{
+  border:1px solid var(--line);background:var(--bg-2);
+  padding:clamp(32px,5vw,64px);position:relative;overflow:hidden;
+}
+.live-status{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;color:var(--accent);
+  border:1px solid color-mix(in srgb,var(--accent) 40%,var(--line));
+  padding:9px 18px;border-radius:100px;margin-bottom:28px;
+}
+.live-status .pulse{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.live-box h3{font-family:var(--font-serif);font-weight:900;font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:16px}
+.live-box .sub{color:var(--muted);max-width:52em;margin-bottom:40px;font-size:1.02rem}
+.live-plans{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.live-plan{background:var(--bg-2);padding:30px 28px;transition:background .3s}
+.live-plan:hover{background:var(--surface)}
+.live-plan .no{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;color:var(--faint);display:block;margin-bottom:14px}
+.live-plan h5{font-family:var(--font-serif);font-size:1.12rem;font-weight:700;margin-bottom:10px}
+.live-plan p{color:var(--muted);font-size:.88rem}
+@media(max-width:760px){.live-plans{grid-template-columns:1fr}}
+
+/* ---------- ABOUT ---------- */
+.about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:start}
+.about-left .hook{
+  font-family:var(--font-serif);font-weight:700;font-size:clamp(1.5rem,3vw,2.1rem);
+  line-height:1.5;margin-bottom:28px;
+}
+.about-left .hook em{font-style:normal;color:var(--accent)}
+.about-left p{color:var(--ink-2);margin-bottom:20px;line-height:2}
+.about-left p strong{color:var(--ink)}
+.about-facts{border:1px solid var(--line);background:var(--surface)}
+.fact{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:20px 26px}
+.fact+.fact{border-top:1px solid var(--line)}
+.fact .k{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--muted)}
+.fact .v{font-family:var(--font-serif);font-weight:700;font-size:1.05rem;text-align:right}
+.fact .v em{font-style:normal;color:var(--accent)}
+.about-facts .foot{padding:22px 26px;border-top:1px solid var(--line)}
+.gh-link{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-mono);font-size:12.5px;letter-spacing:.08em;
+  border-bottom:1px solid var(--accent);padding-bottom:4px;
+}
+.gh-link:hover{color:var(--accent)}
+@media(max-width:860px){.about-grid{grid-template-columns:1fr;gap:40px}}
+
+/* ---------- PRICING ---------- */
+.price-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+.price{border:1px solid var(--line);background:var(--surface);padding:clamp(28px,4vw,44px);display:flex;flex-direction:column}
+.price.free{border-top:2px solid var(--accent)}
+.price-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+.tag-ghost{
+  display:inline-flex;align-items:center;
+  font-family:var(--font-mono);font-size:10.5px;letter-spacing:.18em;
+  color:var(--muted);border:1px solid var(--line);padding:6px 12px;border-radius:2px;
+}
+.price-code{font-size:10.5px;letter-spacing:.2em;color:var(--faint)}
+.price h3{font-family:var(--font-serif);font-weight:700;font-size:1.45rem;margin-bottom:10px}
+.price-sub{color:var(--muted);font-size:.95rem;margin-bottom:16px}
+.price-list{list-style:none;flex:1}
+.price-list li{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-top:1px solid var(--line-soft);font-size:.96rem}
+.price-list li i{font-style:normal;color:var(--accent);font-family:var(--font-mono);font-weight:500}
+.price-list li em{display:block;font-style:normal;font-size:.84rem;color:var(--muted);margin-top:4px}
+.price-list li b{margin-left:auto;font-weight:400;font-size:10.5px;letter-spacing:.1em;color:var(--faint);white-space:nowrap;padding-top:3px;font-family:var(--font-mono)}
+.price-foot{margin-top:26px;padding-top:24px;border-top:1px solid var(--line)}
+.price-foot p{font-size:.9rem;color:var(--muted);margin-bottom:16px}
+.price-foot .go-link{margin-bottom:0}
+
+/* ---------- PAID zone: tracks / tiers / combo ---------- */
+.track{margin-top:10px}
+.track+.track{margin-top:30px}
+.track-head{display:flex;align-items:baseline;gap:14px;margin-bottom:4px}
+.track-idx{font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;color:var(--faint);flex:none}
+.track-head h4{font-family:var(--font-serif);font-weight:900;font-size:1.26rem;white-space:nowrap}
+.track-rule{flex:1;height:1px;background:var(--line);margin-bottom:5px}
+.tier{padding:21px 0 23px;border-top:1px solid var(--line-soft)}
+.tier-row{display:flex;justify-content:space-between;align-items:flex-start;gap:18px}
+.tier-label{
+  display:inline-block;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.16em;
+  color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 45%,transparent);
+  padding:4px 11px;border-radius:2px;margin-bottom:9px;
+}
+.tier-row h5{font-family:var(--font-serif);font-weight:700;font-size:1.13rem;line-height:1.5}
+.tier-inc{color:var(--ink-2);font-size:.92rem;margin-top:7px;line-height:1.8}
+.tier-price{font-family:var(--font-serif);font-weight:900;font-size:1.68rem;white-space:nowrap;line-height:1.2;flex:none;padding-top:2px}
+.tier-price em{font-style:normal;font-size:.8rem;color:var(--muted);font-family:var(--font-sans);font-weight:400}
+.tier-facts{margin-top:15px}
+.tier-facts div{display:flex;gap:14px;font-size:.9rem;line-height:1.75;padding:4px 0}
+.tier-facts dt{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.15em;color:var(--muted);white-space:nowrap;flex:none;width:72px;padding-top:3px}
+.tier-facts dd{color:var(--ink-2)}
+.combo{
+  margin-top:30px;border:1px solid color-mix(in srgb,var(--accent) 55%,var(--line));
+  background:var(--accent-soft);padding:26px 28px;
+}
+.combo-top{display:flex;align-items:baseline;gap:14px;margin-bottom:10px}
+.combo-top h4{font-family:var(--font-serif);font-weight:900;font-size:1.14rem}
+.combo-row{display:flex;justify-content:space-between;align-items:center;gap:18px}
+.combo-inc{font-size:.92rem;color:var(--ink-2);line-height:1.8}
+.combo-price{display:flex;align-items:baseline;gap:12px;white-space:nowrap;flex:none}
+.combo-price b{font-family:var(--font-serif);font-weight:900;font-size:1.68rem;color:var(--accent)}
+.combo-price s{font-family:var(--font-mono);font-size:11.5px;color:var(--faint)}
+.combo-price .save{
+  font-family:var(--font-mono);font-size:10.5px;letter-spacing:.12em;font-weight:500;
+  color:var(--accent-ink);background:var(--accent);padding:4px 10px;border-radius:2px;
+}
+.price-basis{margin-top:26px;font-size:.8rem;color:var(--faint);line-height:1.95}
+.price-basis .bk{
+  font-family:var(--font-mono);font-size:10.5px;letter-spacing:.16em;color:var(--muted);
+  border:1px solid var(--line);padding:3px 11px;border-radius:2px;margin-right:10px;white-space:nowrap;
+}
+@media(max-width:520px){
+  .tier-price{font-size:1.42rem}
+  .combo-row{flex-direction:column;align-items:flex-start;gap:12px}
+}
+@media(max-width:860px){.price-grid{grid-template-columns:1fr}}
+
+/* ---------- FOLLOW ---------- */
+.follow{margin-top:72px}
+.follow-head{display:flex;align-items:baseline;gap:18px;margin-bottom:30px}
+.follow-kicker{font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;color:var(--faint);flex:none}
+.follow-title{font-family:var(--font-serif);font-weight:900;font-size:clamp(1.4rem,2.8vw,1.9rem);white-space:nowrap}
+.follow-rule{flex:1;height:1px;background:var(--line);margin-bottom:8px}
+.plat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.plat{background:var(--surface);padding:26px;display:flex;align-items:center;gap:18px;transition:background .3s}
+a.plat:hover{background:var(--surface-2)}
+.plat-ic{
+  width:46px;height:46px;border:1px solid var(--line);border-radius:12px;
+  display:flex;align-items:center;justify-content:center;color:var(--ink);flex:none;
+  transition:all .3s;
+}
+.plat-ic svg{width:22px;height:22px;display:block}
+a.plat:hover .plat-ic{border-color:var(--accent);color:var(--accent)}
+.plat.soon .plat-ic{color:var(--faint)}
+.plat-tx{min-width:0}
+.plat-tx b{display:block;font-size:.98rem;font-weight:700}
+.plat-sub{
+  display:block;font-family:var(--font-mono);font-size:11px;letter-spacing:.02em;
+  color:var(--muted);margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.soon-tag{
+  display:inline-block;margin-top:8px;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.14em;
+  color:var(--faint);border:1px solid var(--line);border-radius:100px;padding:4px 12px;
+}
+.plat-arr{margin-left:auto;font-family:var(--font-mono);color:var(--faint);font-size:17px;flex:none;transition:all .3s var(--ease)}
+a.plat:hover .plat-arr{color:var(--accent);transform:translate(2px,-2px)}
+.follow-note{margin-top:22px;font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;color:var(--faint)}
+/* wechat card: icon + QR + caption */
+.wechat-card{
+  display:flex;align-items:center;gap:22px;
+  border:1px solid var(--line);background:var(--surface);
+  padding:clamp(24px,3.5vw,32px);margin-bottom:22px;
+}
+.wechat-card .plat-tx b{font-size:1.05rem}
+.wechat-qrcode{margin-left:auto;flex:none;text-align:center}
+.wechat-qrcode img{width:158px;height:auto;border:1px solid var(--line);border-radius:6px;background:#fff}
+.wechat-cap{display:block;margin-top:10px;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.16em;color:var(--muted)}
+@media(max-width:560px){
+  .wechat-card{flex-wrap:wrap}
+  .wechat-qrcode{margin:6px auto 0}
+  .wechat-qrcode img{width:190px}
+}
+@media(max-width:900px){.plat-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.plat{padding:18px 16px;gap:13px}.plat-ic{width:40px;height:40px;border-radius:10px}.plat-ic svg{width:19px;height:19px}}
+
+/* ---------- FOOTER ---------- */
+.footer{border-top:1px solid var(--line);padding:36px 0 48px}
+.foot-soc{
+  display:flex;align-items:center;gap:8px 18px;flex-wrap:wrap;
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;
+  margin-bottom:24px;padding-bottom:22px;border-bottom:1px solid var(--line);
+}
+.foot-soc-k{color:var(--faint);letter-spacing:.2em}
+.foot-soc a{color:var(--ink-2);transition:color .25s}
+.foot-soc a:hover{color:var(--accent)}
+.foot-soc .pending{color:var(--faint)}
+.foot-stats{
+  display:flex;align-items:center;gap:8px 18px;flex-wrap:wrap;
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;
+  margin-bottom:24px;padding-bottom:22px;border-bottom:1px solid var(--line);color:var(--ink-2)}
+.foot-stats-k{color:var(--faint);letter-spacing:.2em}
+.foot-stats b{color:var(--accent);font-weight:700}
+.foot-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.foot-inner p{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--faint)}
+
+/* ============================================================
+   READER
+   ============================================================ */
+.reader{
+  position:fixed;inset:0;z-index:100;display:none;
+  background:color-mix(in srgb,var(--bg) 82%,transparent);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+}
+.reader.open{display:block;animation:rin .28s var(--ease)}
+@keyframes rin{from{opacity:0}to{opacity:1}}
+.reader-card{
+  position:absolute;inset:clamp(12px,3vw,40px);max-width:860px;margin:0 auto;
+  background:var(--surface);border:1px solid var(--line);overflow-y:auto;
+  animation:cup .35s var(--ease);box-shadow:var(--shadow);
+}
+@keyframes cup{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.reader-top{
+  position:sticky;top:0;background:color-mix(in srgb,var(--surface) 92%,transparent);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  display:flex;align-items:center;gap:16px;padding:16px 20px;border-bottom:1px solid var(--line);z-index:2;
+}
+.reader-top .crumb{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--muted)}
+.reader-close{
+  margin-left:auto;width:40px;height:40px;border:1px solid var(--line);border-radius:50%;
+  background:none;color:var(--ink);font-size:18px;cursor:pointer;line-height:1;
+  display:flex;align-items:center;justify-content:center;transition:all .25s;
+}
+.reader-close:hover{border-color:var(--accent);color:var(--accent);transform:rotate(90deg)}
+.reader-img{width:100%;aspect-ratio:21/9;object-fit:cover}
+.reader-body{padding:clamp(28px,5vw,60px);max-width:680px;margin:0 auto}
+.reader-body h2{font-family:var(--font-serif);font-weight:900;font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.5;margin:14px 0 16px;line-break:strict;text-wrap:pretty}
+.reader-body .rmeta{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;color:var(--muted);margin-bottom:30px;padding-bottom:22px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:6px 16px}
+.reader-body .rbody p{color:var(--ink-2);line-height:2.05;margin-bottom:1.5em;font-size:1.02rem;line-break:strict;text-align:justify}
+.reader-body .rbody a{color:var(--accent);border-bottom:1px solid var(--accent-soft);padding-bottom:1px}
+.reader-body .rbody a:hover{border-bottom-color:var(--accent);background:var(--accent-soft)}
+.reader-nav{display:flex;justify-content:space-between;gap:14px;margin-top:44px;padding-top:26px;border-top:1px solid var(--line)}
+.rnav-btn{
+  background:none;border:1px solid var(--line);color:var(--ink);
+  font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;
+  padding:12px 18px;cursor:pointer;max-width:46%;text-align:left;transition:all .25s;
+  display:flex;flex-direction:column;gap:6px;
+}
+.rnav-btn small{font-size:10px;letter-spacing:.16em;color:var(--faint)}
+.rnav-btn span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--font-sans);font-size:.9rem}
+.rnav-btn:hover{border-color:var(--accent)}
+.rnav-btn.next{text-align:right;align-items:flex-end}
+.rnav-btn.off{opacity:0;pointer-events:none}
+body.locked{overflow:hidden}
+
+/* ===== 45+ featured course ===== */
+.feat45{border:1px solid var(--line);background:var(--surface);padding:clamp(26px,4vw,46px);margin-bottom:36px;position:relative}
+.feat45::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent)}
+.feat45-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.feat45 h3{font-family:var(--font-serif);font-weight:900;font-size:clamp(1.5rem,3.4vw,2.2rem);line-height:1.4;margin-bottom:10px}
+.feat45-sub{color:var(--muted);font-size:.95rem;margin-bottom:20px;letter-spacing:.04em}
+.feat45-pain{list-style:none;margin:0 0 20px;display:grid;gap:8px}
+.feat45-pain li{padding-left:22px;position:relative;color:var(--ink-2)}
+.feat45-pain li::before{content:"?";position:absolute;left:0;color:var(--accent);font-family:var(--font-mono);font-weight:700}
+.feat45-teacher{border-left:2px solid var(--accent);padding-left:16px;color:var(--ink-2);margin-bottom:22px}
+.feat45-lessons{list-style:none;margin:0 0 22px;padding:0;display:grid;gap:10px}
+.feat45-lessons li{display:flex;gap:12px;align-items:baseline;color:var(--ink-2);font-size:.96rem}
+.feat45-lessons b{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.06em;color:var(--accent);white-space:nowrap;font-weight:700}
+.feat45-promise{color:var(--muted);font-size:.92rem;margin-bottom:22px}
+.feat45-cta{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:22px}
+.feat45-price{display:flex;align-items:baseline;gap:12px}
+.feat45-price s{color:var(--faint);font-size:.9rem}
+.feat45-price b{font-family:var(--font-serif);font-weight:900;font-size:2rem;color:var(--accent)}
+.feat45-note{font-size:.85rem;color:var(--muted);flex:1 1 220px}
+/* ===== 站长改价入口 ===== */
+.price-admin{margin-top:14px;font-size:.8rem;color:var(--faint)}
+.price-admin a{color:var(--faint);border-bottom:1px dotted var(--faint);cursor:pointer}
+.price-admin-panel{margin-top:10px;font-size:.82rem;color:var(--muted);border:1px dashed var(--line);padding:12px 16px;max-width:660px;text-align:left}
+.price-admin-panel a{color:var(--accent);border-bottom:1px solid var(--accent-soft)}
+.price-admin-panel ol{margin:8px 0 0 20px;display:grid;gap:4px}
+/* ===== 海报栏 ===== */
+.poster-grid{display:grid;grid-template-columns:1.7fr 1fr;gap:28px;margin-top:6px;align-items:start}
+.poster{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.poster-frame{aspect-ratio:16/9;background:var(--surface-2);overflow:hidden}
+.poster-frame.tall{aspect-ratio:9/16}
+.poster-frame img{display:block;width:100%;height:100%;object-fit:contain}
+.poster figcaption{padding:16px 18px;font-size:.86rem;color:var(--muted);line-height:1.75}
+.poster figcaption b{color:var(--ink)}
+.poster .slot{display:inline-block;font-size:.72rem;letter-spacing:.14em;color:var(--accent);border:1px solid var(--line);border-radius:999px;padding:3px 12px;margin-bottom:10px}
+.poster .icode{font-family:var(--font-mono);font-size:1rem;letter-spacing:.18em;color:var(--accent);border:1px dashed var(--line);border-radius:8px;padding:4px 12px;margin:0 4px;white-space:nowrap}
+.poster .igo{display:inline-block;margin-top:10px;color:var(--ink);border-bottom:1px solid var(--accent)}
+@media(max-width:760px){.poster-grid{grid-template-columns:1fr}}
+/* syllabus */
+.syllabus{margin-top:34px;border:1px solid var(--line);border-radius:14px;padding:22px;background:var(--surface)}
+.syl-note{color:var(--muted);font-size:.88rem;margin:10px 0 18px;line-height:1.8}
+.syl-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.syl-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.syl-top h5{font-size:1.02rem}
+.syl-plan{font-size:.75rem;color:var(--accent);font-family:var(--font-mono)}
+.syl-lessons{list-style:none;display:grid;gap:8px;margin:0;padding:0}
+.syl-lessons li{display:flex;align-items:center;gap:10px;font-size:.88rem;border:1px solid var(--line);border-radius:10px;padding:9px 12px}
+.syl-lessons li b{font-family:var(--font-mono);font-size:.72rem;color:var(--muted);white-space:nowrap}
+.syl-lessons li span{flex:1;line-height:1.5}
+.syl-lessons li i{font-style:normal;font-size:.7rem;border-radius:999px;padding:2px 10px;white-space:nowrap}
+.syl-lessons li.done i{color:var(--accent);border:1px solid var(--accent)}
+.syl-lessons li.todo{opacity:.6}
+.syl-lessons li.todo i{color:var(--faint);border:1px dashed var(--line)}
+/* wall */
+.wall-empty{border:1px dashed var(--line);border-radius:14px;padding:46px 24px;text-align:center;background:var(--surface)}
+.wall-big{font-family:var(--font-serif);font-size:1.35rem;font-weight:800;margin:0 0 10px;color:var(--ink)}
+.wall-empty p{color:var(--muted);margin:0}
+.wall-empty .go-link{margin-top:16px}
+/* faq */
+.faq-list{display:grid;gap:10px;max-width:880px}
+.faq{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:0 18px}
+.faq summary{cursor:pointer;padding:15px 0;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--ink)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--font-mono);color:var(--accent);font-size:1.15rem;flex:none}
+.faq[open] summary::after{content:"–"}
+.faq p{color:var(--muted);font-size:.9rem;line-height:1.85;padding:0 0 16px;margin:0}
+@media(max-width:760px){.syl-grid{grid-template-columns:1fr}}
+/* ===== floating course promo video ===== */
+.promo-float{position:fixed;right:18px;bottom:18px;width:330px;max-width:calc(100vw - 36px);z-index:90;
+  background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);
+  overflow:hidden;transform:translateY(24px);opacity:0;pointer-events:none;transition:transform .5s var(--ease),opacity .5s var(--ease)}
+.promo-float.show{transform:none;opacity:1;pointer-events:auto}
+.promo-float video{display:block;width:100%;aspect-ratio:16/9;background:#000}
+.promo-body{padding:14px 16px 16px}
+.promo-kicker{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;color:var(--accent);margin:0 0 8px}
+.promo-title{font-size:1.02rem;font-weight:800;line-height:1.5;margin:0 0 6px;color:var(--ink)}
+.promo-sub{font-size:.82rem;color:var(--muted);line-height:1.7;margin:0 0 12px}
+.promo-cta{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--accent-ink);
+  font-size:13px;font-weight:700;letter-spacing:.06em;border-radius:8px;padding:10px 18px}
+.promo-close{position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;border:0;cursor:pointer;
+  background:rgba(0,0,0,.55);color:#fff;font-size:15px;line-height:1;display:flex;align-items:center;justify-content:center}
+.promo-sound{position:absolute;top:8px;left:8px;width:28px;height:28px;border-radius:50%;border:0;cursor:pointer;
+  background:rgba(0,0,0,.55);color:#fff;font-size:14px;line-height:1;display:flex;align-items:center;justify-content:center}
+@media(max-width:760px){.promo-float{right:12px;bottom:12px;left:12px;width:auto}}
+
+/* topics extra */
+.t-topbar{display:flex;align-items:center;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)}
+.t-topbar a{font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;color:var(--faint)}
+.t-topbar a:hover{color:var(--ink)}
+.t-hero{padding:56px 0 10px}
+.t-hero h1{font-family:var(--font-serif);font-weight:900;font-size:clamp(1.8rem,4vw,2.6rem);margin:12px 0}
+.t-hero p{color:var(--muted);max-width:640px;line-height:1.9}
+.t-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin:34px 0 60px}
+.t-card{border:1px solid var(--line);border-radius:14px;padding:26px 24px;display:flex;flex-direction:column;gap:10px}
+.t-card:hover{border-color:color-mix(in srgb,var(--accent) 50%,var(--line))}
+.t-card h3{font-size:1.25rem;font-weight:800}
+.t-card p{color:var(--muted);font-size:.92rem;line-height:1.8;flex:1}
+.t-card .n{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)}
+.t-art{border:1px solid var(--line-soft);border-radius:12px;margin:0 0 14px;overflow:hidden}
+.t-art summary{list-style:none;cursor:pointer}
+.t-art summary::-webkit-details-marker{display:none}
+.t-art summary .news-row{margin:0;border:none}
+.t-art[open] summary .arrow{transform:rotate(90deg)}
+.t-full{padding:6px 22px 22px;border-top:1px solid var(--line-soft)}
+.t-full p{color:var(--ink-2);line-height:2;margin:1.1em 0;font-size:.98rem}
+.t-foot{margin:50px 0 70px;padding-top:26px;border-top:1px solid var(--line);display:flex;gap:18px;flex-wrap:wrap}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+</style>
+</head>
+<body>
+
+<div class="wrap"><div class="t-topbar">
+<a href="../">← wswin 首页</a><a href="./">智库首页</a>
+</div></div>
+
+<div class="wrap"><div class="t-hero">
+<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 12 篇</span>
+<h1>AI 绘画</h1>
+<p>AI 生图、修图、设计：指哪画哪，创意落地</p>
+</div>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：不用云、不用学 PS：这个免费 App 让修图变">
+      <div class="thumb"><img src="../daily-20261019-04.webp" alt="不用云、不用学 PS：这个免费 App 让修图变成&quot;说话&quot;" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>不用云、不用学 PS：这个免费 App 让修图变成&quot;说话&quot;</h4>
+        <p class="exc">修图这事终于不用学 Photoshop 了。Kokon 是一个 Windows/Mac 桌面 App，打开一张照片，直接说&quot;把后面的人去掉&quot;&quot;改成黄昏的光&quot;，它自动搞定。想精修就用笔刷圈一块，选 Ch…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-10-19</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>修图这事终于不用学 Photoshop 了。Kokon 是一个 Windows/Mac 桌面 App，打开一张照片，直接说&quot;把后面的人去掉&quot;&quot;改成黄昏的光&quot;，它自动搞定。想精修就用笔刷圈一块，选 Change、Remove、Replace、Add，模型只动圈里的部分，照片其他地方纹丝不动。</p>
+      <p>它背后是国产开源模型 Qwen-Image 2.1，全部在你自己电脑上跑：一个安装包，没 Python、没 ComfyUI、没节点图，第一次打开自动检测你的显卡、下载约 12GB 的模型，之后断网也能用。没有账号、没有上传、没有云，照片不出电脑；还直接支持 iPhone 的 HEIC 照片，修完保持原尺寸输出。它甚至带了个 MCP 服务器，Claude、Cursor 这类 AI 编程工具能直接指挥它批量修图。</p>
+      <p>适用人群：做自媒体、电商、经常要修产品图生活照的人，以及对&quot;照片传云端&quot;不放心的人。硬件门槛：需要 12GB 显存以上的显卡（Mac 看统一内存），老电脑带不动。</p>
+      <p>避坑点：模型权重用的是 Qwen Research 许可——非商业用途，拿它修图发公众号、做自媒体内容没问题，但别拿去做商业交付。另外 Linux 版还没影，lora 和其他模型支持也在路上，尝鲜可以，等主力别指望。</p>
+      <p>普通人怎么用：去 GitHub 仓库下载安装包，装完先拿一张旅游照试&quot;去掉路人&quot;，再试&quot;换个晚霞天空&quot;。顺手了，就把你之前&quot;凑合用&quot;的在线修图网站删了——本地这套又快又不要钱。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：一句话做出获奖级网站：这个开源 skill 把 ">
+      <div class="thumb"><img src="../daily-20261019-05.webp" alt="一句话做出获奖级网站：这个开源 skill 把 AI 变成创意总监" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>一句话做出获奖级网站：这个开源 skill 把 AI 变成创意总监</h4>
+        <p class="exc">&quot;给我做个作品集，我叫 Julio。&quot;——就这一句，开源 skill「/awwwards」能让 AI 扮演创意总监、设计师和前端工程师，一口气做出获奖级水准的网站，还在真浏览器里自己检查一遍才交货。</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-10-19</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>&quot;给我做个作品集，我叫 Julio。&quot;——就这一句，开源 skill「/awwwards」能让 AI 扮演创意总监、设计师和前端工程师，一口气做出获奖级水准的网站，还在真浏览器里自己检查一遍才交货。</p>
+      <p>它解决的是 AI 做网站的老毛病：紫色渐变加大卡片，一看就是 AI 味。/awwwards 的流程是先出三套创意方向、打分定稿，再定配色字体写设计文档，最后动手写代码、截图自检。装法很简单，一行命令：`npx skills add juliobsz/skills -g`，它会自动识别你用的 Claude Code、Codex、Cursor、Gemini CLI 等工具；习惯 Claude Code 插件体系的，也可以用 `/plugin install awwwards --marketplace juliobsz/skills`。</p>
+      <p>适用人群：要做个人作品集、品牌官网、活动落地页的人，尤其是&quot;想要好看但请不起设计师&quot;的中小商家和自由职业者。普通人怎么用：开一个新的 AI 会话（必须新开，老会话里装了不生效），输入 `/awwwards` 或直接说&quot;我要做个网站&quot;，然后把你的内容（名字、作品、联系方式）甩给它。等它交出初版，多看三遍：错别字、电话号码、价格这些真实信息，AI 最容易编——改完再发布。</p>
+      <p>避坑点：你得先装好对应的 AI 编程工具（比如 Claude Code），skill 只是给 AI 的&quot;工作手册&quot;，不是独立软件。另外生成的网站动效多、文件大，发之前自己压一下图片，别让用户打开等半天。</p>
+      <p>普通人怎么用：这周就拿它给你的副业/小店做个单页官网：准备好三张产品图、一段介绍、一句行动号召，剩下的交给 AI。做完发到网站资讯区晒一晒——这就是&quot;AI 又能干什么了&quot;的活例子。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：有人用 AI 造了个免费版 Photoshop：">
+      <div class="thumb"><img src="../daily-20261018-02.webp" alt="有人用 AI 造了个免费版 Photoshop：16 天攒下 6 万星" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>有人用 AI 造了个免费版 Photoshop：16 天攒下 6 万星</h4>
+        <p class="exc">9 月底，GitHub 上突然冒出 7 个新仓库，作者只有一个人：亚特兰大的工程师 Brandon Thomas。他用 Claude Opus 5.5 带一队 AI 编程智能体，几周时间用 Rust …</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-10-18</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>9 月底，GitHub 上突然冒出 7 个新仓库，作者只有一个人：亚特兰大的工程师 Brandon Thomas。他用 Claude Opus 5.5 带一队 AI 编程智能体，几周时间用 Rust 从零写出了一整套 Adobe 平替——PhotoCraft 对标 Photoshop，VectorCraft 对标 Illustrator，FilmCraft 对标 Premiere，还有 Lightroom、AE、InDesign、Acrobat 的版本。10 月 7 日他又加了 5 个，连 Word 和 AutoCAD 的平替都做了出来。</p>
+      <p>数据很夸张：PhotoCraft 一个仓库 16 天拿到 64617 个星，安装包被下载约 168 万次。PSD 兼容是硬指标：309 个测试文件里 307 个能无损往返。图层、蒙版、调整图层、文字工具都有，Windows、macOS、Linux 和网页版全平台免费，Apache-2.0 开源协议。</p>
+      <p>冷水也要泼。项目自己在路线图里写得很实在：Photoshop 628 个菜单项它都有，但 68 个工具只做了 56 个；AI 功能完成度 10%，没有生成式填充；整体&quot;能干活&quot;的程度自评 45%。日常修图、做海报够用，指望它替代正版 Photoshop 干专业活，现在还不行。</p>
+      <p>普通人怎么用：学生、做自媒体的、偶尔 P 图的人，直接去 github.com/storytold/photocraft 的 Releases 页下载安装包，一分钟装好，PSD 文件双击就能开。专业设计师先当玩具试，别急着退订 Adobe。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：8G 显存就能跑的开源生图模型，年收入 500 ">
+      <div class="thumb"><img src="../daily-20261016-02.webp" alt="8G 显存就能跑的开源生图模型，年收入 500 万美元以下商用免费" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>8G 显存就能跑的开源生图模型，年收入 500 万美元以下商用免费</h4>
+        <p class="exc">Black Forest Labs 10 月 15 日发布了 FLUX 3 Image Klein：56 亿参数的开源文生图+修图模型，一次能塞 10 张参考图，原生输出 4K，支持画框定位（boun…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-10-16</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>Black Forest Labs 10 月 15 日发布了 FLUX 3 Image Klein：56 亿参数的开源文生图+修图模型，一次能塞 10 张参考图，原生输出 4K，支持画框定位（bounding box）——框住哪里改哪里，框外像素不动。</p>
+      <p>最实在的是门槛。INT8 量化版只要 8GB 显存就能跑，官方说 RTX 4070 上 9 秒出一张图，普通游戏卡直接本地用。许可证也大方：年收入低于 500 万美元的个人和公司，商用免费；超过才要付费。接法齐全：Hugging Face、GitHub、ComfyUI、Diffusers 即插即用，LoRA 微调第一天就有 Ostris AI Toolkit 和 NVIDIA NeMo 支持。不想折腾本地，BFL 官方 API 每千张图 0.009 美元。</p>
+      <p>注意这是 BFL 自己的说法：它在内部测试里拿了开源模型最高 Elo，还赢了 Ideogram V4.5 等闭源模型。厂商跑分听一半，实际效果等社区实测。</p>
+      <p>普通人怎么用：做海报、产品图、短视频封面的，先去 Hugging Face Spaces 的免费演示页试几张；效果满意再装 ComfyUI 本地跑。做独立站、小红书、带货图的个体户，年收入大概率在免费线内，等于白嫖一个顶级修图工具——改海报上某行字不用整图重画了，框住改就行。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：谷歌把 AI 生图价格砍了一半：Nano Ban">
+      <div class="thumb"><img src="../daily-20261014-05.webp" alt="谷歌把 AI 生图价格砍了一半：Nano Banana 2.1 上线，老模型 1" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>谷歌把 AI 生图价格砍了一半：Nano Banana 2.1 上线，老模型 10 月 29 日关停</h4>
+        <p class="exc">10 月 6 日，谷歌把 Nano Banana 2.1（模型 ID：gemini-nano-banana-2.1）转正。同时宣布：老版 gemini-3.1-flash-image（Nano Ban…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-10-14</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>10 月 6 日，谷歌把 Nano Banana 2.1（模型 ID：gemini-nano-banana-2.1）转正。同时宣布：老版 gemini-3.1-flash-image（Nano Banana 2）10 月 29 日关停。</p>
+      <p>价格直接腰斩：1K 图从 6.7 美分降到 3.36 美分，4K 图从 15.1 美分降到 7.56 美分。</p>
+      <p>想省钱的注意档位：Pro 版（gemini-3-pro-image）1K 图 13.4 美分，质量还是最好的；2.1 是&quot;便宜大碗&quot;的效率档。实测口径里，Pro 在复杂文字和精细质感上仍然明显更好，别指望 2.1 全面替代 Pro。</p>
+      <p>截止日期是硬的：10 月 29 日之后，老模型的 API 调用直接停掉。用了 Nano Banana 2 的开发者，现在就去把代码里的模型 ID 换掉，迁移指南在 Gemini API 文档里。</p>
+      <p>普通人怎么用：Gemini App、AI Studio 里直接用的就是新版；批量做图的人（商品图、封面图），切到 2.1 后成本减半、画质还涨了一截，值得第一时间换。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：不要钱的&quot;PS 平替&quot;来了：AI 亲手写的 7 ">
+      <div class="thumb"><img src="../daily-20261013-02.webp" alt="不要钱的&quot;PS 平替&quot;来了：AI 亲手写的 7 个 Adobe 克隆，GitHu" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>不要钱的&quot;PS 平替&quot;来了：AI 亲手写的 7 个 Adobe 克隆，GitHub 快 5 万星</h4>
+        <p class="exc">9 月底，一套叫 PhotoCraft 的开源软件上线，10 月中旬在 GitHub 冲到接近 **5 万星**。它长得像 Photoshop，用起来也像，但不要钱，不连 Adobe 服务器。</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-10-13</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>9 月底，一套叫 PhotoCraft 的开源软件上线，10 月中旬在 GitHub 冲到接近 **5 万星**。它长得像 Photoshop，用起来也像，但不要钱，不连 Adobe 服务器。</p>
+      <p>最有意思的是它的出生方式：前 storyteller.ai CEO Brandon Thomas 带团队，让多个 AI 智能体用 Claude Opus 5.5 写 Rust 代码，一口气交出 **7 个 Adobe 平替**：PhotoCraft 对标 Photoshop，VectorCraft 对标 Illustrator，FilmCraft 对标 Premiere，还有 Lightroom、AE、InDesign、PDF 工具的替代品。项目声明是 clean-room 实现：只看公开文档和软件行为重写，没碰 Adobe 一行代码。PSD 兼容测下来，309 个测试文件 **307 个**渲染一致。</p>
+      <p>作者自己在 ROADMAP 里很实在：跟真 Photoshop 的还原度还不到 **50%**，普通人常用功能 60%–70% 有了，能靠它吃饭的专业人士只有 25%–35%。项目 10 月 11 日还在更新。</p>
+      <p>普通人怎么用：为 PS 订阅肉疼、平时只做抠图调色加字的人，可以先装来试试；学生党、做自媒体封面的，它大概率够用了。专业修图师先别动，等它再长大一点。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：谷歌出图模型又升级：同一个人连出十张图，不再每张">
+      <div class="thumb"><img src="../daily-20261008-01.webp" alt="谷歌出图模型又升级：同一个人连出十张图，不再每张换一张脸" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>谷歌出图模型又升级：同一个人连出十张图，不再每张换一张脸</h4>
+        <p class="exc">做图的人都遇到过这个烦恼：第一张图里的人物挺满意，让 AI 换个背景再出一张，脸就变了。谷歌 10 月 7 日发布的 Nano Banana 2.1，专治这个问题。新版主打三件事：主体一致性更强，同一…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-10-08</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>做图的人都遇到过这个烦恼：第一张图里的人物挺满意，让 AI 换个背景再出一张，脸就变了。谷歌 10 月 7 日发布的 Nano Banana 2.1，专治这个问题。新版主打三件事：主体一致性更强，同一个人、同一件产品在多张图里能保持长相不变；蒙版编辑更准，你涂哪儿它改哪儿，没涂的地方不动；视觉设计和文字渲染也比上一版稳。</p>
+      <p>入口很现成：Gemini 应用、谷歌搜索的 AI 模式、Google AI Studio、Flow 都已逐步上线。开发者能直接调 API，模型 ID 是 gemini-nano-banana-2.1，文字、图片、音频、视频都能喂进去，出图最高 **4K** 分辨率。普通用户不用碰代码，打开 Gemini 就能试。</p>
+      <p>拿它干活的顺序建议这样：先拿一张你最满意的定妆图当锚点，后面每张图都带上它一起生成，别每张都从零写提示词。做产品图也一样，第一张定版，后续靠蒙版换场景，主体不容易跑偏。</p>
+      <p>避坑提醒：新版是逐步推送，你的账号没刷出来就再等等；人物一致性也不是百分百，长得像的两个人同框时仍可能串脸，重要商用图出完记得放大检查一遍。</p>
+      <p>普通人怎么用：先免费拿它改一张证件照背景、给家里老人修一张老照片，顺手就知道它顺不顺你的手，再决定要不要放进日常工作流。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：看中一张发型图不用再干截图：Pinterest ">
+      <div class="thumb"><img src="../daily-20261008-03.webp" alt="看中一张发型图不用再干截图：Pinterest 直接把它拆成能照着做的步骤" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>看中一张发型图不用再干截图：Pinterest 直接把它拆成能照着做的步骤</h4>
+        <p class="exc">很多人手机里存了一堆发型、美甲截图，真到理发店坐下，又说不清自己想要啥。Pinterest 新上线的 Beauty Guides 就是来接这一步的：你在 App 里点开一张发型或美甲图片，点「Get …</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-10-08</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>很多人手机里存了一堆发型、美甲截图，真到理发店坐下，又说不清自己想要啥。Pinterest 新上线的 Beauty Guides 就是来接这一步的：你在 App 里点开一张发型或美甲图片，点「Get the Guide」，它能把图看懂，拆出一份能直接用的指南——到店该怎么跟师傅描述、整个过程大概几步、有哪些相似造型可以比较、顺带列出用得上的产品，在家自己复刻也有分步说明。</p>
+      <p>它靠的是图像理解加语言模型的配合：先认出发型结构、发色、甲型和表面效果，再把这些视觉信息翻译成人话。目前先对美国区的 iOS 用户开放，后面会扩到更多地区和品类。</p>
+      <p>这个功能的价值不在技术多炫，在于把「看着好看」变成「知道下一步做什么」。Pinterest 给的数据是，它的美妆用户里 **85%** 的人说新潮流先在这里看到，近九成人对从平台下单买美妆产品有信心——流量入口已经有了，缺的就是从种草到动手的临门一脚，这个功能补的正是这一脚。</p>
+      <p>避坑提醒：国内暂时用不上，看到这条先别急着找入口；指南是 AI 生成的，染烫这类不可逆的操作，拿给师傅看时请师傅再用专业眼光确认一遍，别全盘照搬。</p>
+      <p>普通人怎么用：哪怕用不上这个功能，思路可以先偷过来——下次保存灵感图时顺手写一句「我想要的效果是……」，沟通成本立刻降一半。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：ChatGPT 生图时要插广告了：免费用户先遇上">
+      <div class="thumb"><img src="../daily-20261007-05.webp" alt="ChatGPT 生图时要插广告了：免费用户先遇上，商家多一个投放入口" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>ChatGPT 生图时要插广告了：免费用户先遇上，商家多一个投放入口</h4>
+        <p class="exc">OpenAI 10月5日给 ChatGPT 加了一种图片广告：你在 ChatGPT 里生成图片时，旁边会出现带明确广告标识的产品图，展示使用场景和卖点，跟你正在生成的那张图分开摆放。测试 **10月内…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-10-07</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>OpenAI 10月5日给 ChatGPT 加了一种图片广告：你在 ChatGPT 里生成图片时，旁边会出现带明确广告标识的产品图，展示使用场景和卖点，跟你正在生成的那张图分开摆放。测试 **10月内先在美国**跑，首批只邀请一部分广告主。OpenAI 同时补齐转化追踪、归因测量工具，还请了两家第三方来盯广告场合合不合适。</p>
+      <p>普通用户先搞清一件事：广告只出现在免费档和低价档，付费订阅不带广告。所以你要是发现生图界面开始推产品，不是中毒，是新功能上线了。介意的话，要么忍，要么升级，路就这两条。</p>
+      <p>做生意的人可以看另一面。ChatGPT 自称每周有 **12 亿**人使用，广告又长在用户正动手做图的时刻——给产品拍场景图、找灵感的人，购买意图通常不低。OpenAI 公布的早期案例里，有广告主的获客成本比其付费搜索基准低了 **15.3%**，这类数字目前全是平台和合作方口径，请先小预算试一周，用你自己后台的成交数据说话，别听汇报下单。</p>
+      <p>避坑提醒：OpenAI 承诺广告不影响回答内容、对话不给广告主看。投放时请把敏感话题排除干净，品牌安全工具该开的都开上。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：生图终于能&quot;指哪打哪&quot;：FLUX 3 Image">
+      <div class="thumb"><img src="../daily-20261003-02.webp" alt="生图终于能&quot;指哪打哪&quot;：FLUX 3 Image 支持 4K，还能按坐标排版" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>生图终于能&quot;指哪打哪&quot;：FLUX 3 Image 支持 4K，还能按坐标排版</h4>
+        <p class="exc">10 月 2 日，德国 Black Forest Labs 发布 FLUX 3 Image。这次最大的变化不是画质，是可控性——AI 生图终于从&quot;抽卡&quot;变成了&quot;排版&quot;。</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-10-03</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>10 月 2 日，德国 Black Forest Labs 发布 FLUX 3 Image。这次最大的变化不是画质，是可控性——AI 生图终于从&quot;抽卡&quot;变成了&quot;排版&quot;。</p>
+      <p>具体怎么控：它给了套归一化的 0–1000 坐标网格。你给每个元素指定编号、描述文字和精确边界框，比如 [y_min, x_min, y_max, x_max]，模型就把东西放到你指定的位置。单次生成最多塞进 10 张参考图，每张图里的对象还能单独指定出现在哪。</p>
+      <p>编辑能力也跟上了：只改你圈定的区域，其他像素原样不动，官方说法是像素级多轮编辑不走样。输出最高 4K 分辨率，放大看细节不糊。</p>
+      <p>价格和获取：现在是 BFL 的付费服务；好消息是开放权重的版本官方说&quot;数周内&quot;公开，白嫖党可以等等。</p>
+      <p>适合谁：做海报、电商主图、公众号封面的人。以前用 AI 生图最头疼的是构图靠运气，人物永远站不对位置；现在排版类需求——比如海报标题区预留、产品固定摆位——是它最擅长的。</p>
+      <p>避坑：坐标排版的写法要看官方文档学一下，乱写坐标等于没写。另外现在只有付费版，着急用的先小额度试，别一次充太多。</p>
+      <p>普通人怎么用：做图的人去 BFL 官网看一遍官方演示，重点看&quot;多参考图+坐标排版&quot;那段。等开源权重一出，第一时间本地部署试排版——这可能是今年对设计师最友好的生图更新。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：买衣服先让 AI 穿一遍：ChatGPT 上线虚">
+      <div class="thumb"><img src="../daily-20261003-03.webp" alt="买衣服先让 AI 穿一遍：ChatGPT 上线虚拟试穿，还能找明星同款" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>买衣服先让 AI 穿一遍：ChatGPT 上线虚拟试穿，还能找明星同款</h4>
+        <p class="exc">当地时间 10 月 1 日，OpenAI 给全球 ChatGPT 加了两个购物新功能：虚拟试穿和收藏。网购衣服&quot;看图猜上身效果&quot;的日子，可能要过去了。</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-10-03</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>当地时间 10 月 1 日，OpenAI 给全球 ChatGPT 加了两个购物新功能：虚拟试穿和收藏。网购衣服&quot;看图猜上身效果&quot;的日子，可能要过去了。</p>
+      <p>虚拟试穿玩起来很直接：上传一张自拍或全身照，在购物结果页点&quot;试穿&quot;按钮，AI 就生成你穿着这件衣服的效果图。你也可以反过来——上传商品图，让它模拟穿在模特身上的样子。底层是刚推出的 ChatGPT Images 2.5，官方说法是光线更自然、纹理更丰富，改图指令执行更稳，生成也更快。</p>
+      <p>收藏功能是配套的：看中的商品存进应用内资料库，和试穿图放在一起，纠结的时候翻出来对比。</p>
+      <p>还有两个顺手的功能：描述你想尝试的穿衣风格，让 ChatGPT 配齐一整套单品；上传明星街拍，让它找出能买到的&quot;明星同款&quot;。</p>
+      <p>适合谁：网购纠结党，尤其是买大衣、西装这种版型敏感的单品；做穿搭内容的博主，可以拿它批量出&quot;一件衣服 N 种穿法&quot;选题。</p>
+      <p>泼盆冷水：生成图终究是&quot;示意&quot;，真实版型、面料质感还得看买家秀和评价。它能帮你排除明显不合适的款，但别拿它当量体裁衣。</p>
+      <p>普通人怎么用：下次下单前，把商品图和自己的照片丢给 ChatGPT 试穿一轮，10 分钟排除掉三四个&quot;照骗&quot;款，退货率直接降一截。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：9.9 元一张的 AI 穿越照：景区排长队，这门">
+      <div class="thumb"><img src="../daily-20261001-04.webp" alt="9.9 元一张的 AI 穿越照：景区排长队，这门小生意普通人能抄吗" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>9.9 元一张的 AI 穿越照：景区排长队，这门小生意普通人能抄吗</h4>
+        <p class="exc">西安大唐不夜城，一台跟自动售货机差不多大的设备前面天天排长队：游客花 9.9 元，等 3 分钟，拿到一张&quot;穿越回盛唐&quot;的古风照。选模板、拍张脸，AI 把五官合成进汉服场景——汉服游园、骑马扬鞭，模板随…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-10-01</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>西安大唐不夜城，一台跟自动售货机差不多大的设备前面天天排长队：游客花 9.9 元，等 3 分钟，拿到一张&quot;穿越回盛唐&quot;的古风照。选模板、拍张脸，AI 把五官合成进汉服场景——汉服游园、骑马扬鞭，模板随便挑。</p>
+      <p>这不是西安独有。湖北 44 家景区开了 AI 出片提示站，丽江黑龙潭两张 19.9 元，贵州西江千户苗寨搞了体验馆，青海一个项目试运行一周就出了两三百单。从景区铺到商场，逻辑就三条：9.9 元没有决策成本，3 分钟出片不耽误行程，设备往那一摆就开张，不用请摄影师化妆师。</p>
+      <p>账怎么算？传统旅拍跟拍一天一两千，套餐三五千起；AI 这边一单 9.9，成本主要是设备折旧和电费。有招商公告提到，景区拿不低于 20% 的营业收入分成——景区多了二次消费，运营方赚了流水。拍完还能加价卖明信片、冰箱贴、纪念币，把客单价往上抬。</p>
+      <p>普通人能抄吗？两条路。重资产：找设备厂商谈，去本地景区、古镇、商场谈点位铺机，核心是点位谈判能力，不是技术。轻资产：线上接单做 AI 古风写真定制，小红书、抖音发对比视频引流，9.9 到 29.9 元一单，用即梦、可灵这类图生图工具出片，几乎零成本。</p>
+      <p>避坑三件套：别碰&quot;一键换脸&quot;擦边和真人恶搞，肖像权和治安处罚不是闹着玩的；AI 生成图按规定加内容标识；明星脸、动漫 IP 的模板别碰，版权雷区。</p>
+      <p>普通人怎么用：先别买设备。花一个周末，用手机加 AI 生图工具给朋友做 10 张古风照发小红书，测试有没有人问价——有咨询再谈下一步，这是成本最低的试水方式。</p>
+  </div>
+</details>
+<div class="t-foot">
+<a class="drill" href="./" style="display:inline-flex;align-items:center;border:1.5px solid var(--ink);color:var(--ink);font-weight:700;font-size:13px;padding:8px 18px;border-radius:999px">← 智库首页</a>
+<a class="drill" href="../" style="display:inline-flex;align-items:center;border:1.5px solid var(--ink);color:var(--ink);font-weight:700;font-size:13px;padding:8px 18px;border-radius:999px">wswin 首页</a>
+</div></div>
+</body></html>
