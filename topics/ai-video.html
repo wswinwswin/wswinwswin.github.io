@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>AI 视频智库 | wswin</title>
-<meta name="description" content="AI 视频生成、剪辑、配音：让静态变动态，短视频生产力。wswin AI 智库「AI 视频」主题聚合，共 13 篇，持续更新。" />
+<meta name="description" content="AI 视频生成、剪辑、配音：让静态变动态，短视频生产力。wswin AI 智库「AI 视频」主题聚合，共 16 篇，持续更新。" />
 <link rel="canonical" href="https://wswin.dpdns.org/topics/ai-video.html" />
 <meta property="og:title" content="AI 视频智库 | wswin" />
-<meta property="og:description" content="AI 视频生成、剪辑、配音：让静态变动态，短视频生产力。wswin AI 智库「AI 视频」主题聚合，共 13 篇，持续更新。" />
+<meta property="og:description" content="AI 视频生成、剪辑、配音：让静态变动态，短视频生产力。wswin AI 智库「AI 视频」主题聚合，共 16 篇，持续更新。" />
 <style>
 /* ============================================================
    WSWIN — dark editorial tech aesthetic
@@ -639,10 +639,74 @@ body.locked{overflow:hidden}
 </div></div>
 
 <div class="wrap"><div class="t-hero">
-<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 13 篇</span>
+<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 16 篇</span>
 <h1>AI 视频</h1>
 <p>AI 视频生成、剪辑、配音：让静态变动态，短视频生产力</p>
 </div>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：ElevenLabs 发了语音对语音模型：0.5">
+      <div class="thumb"><img src="../daily-20261022-02.webp" alt="ElevenLabs 发了语音对语音模型：0.57 秒开口，电话客服有着落了" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>ElevenLabs 发了语音对语音模型：0.57 秒开口，电话客服有着落了</h4>
+        <p class="exc">10 月 20 日，语音 AI 公司 ElevenLabs 发布了 Eleven Realtime，一个&quot;语音对语音&quot;模型家族，一口气两款：v1 Mini 和 v1 Max。</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-10-22</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>10 月 20 日，语音 AI 公司 ElevenLabs 发布了 Eleven Realtime，一个&quot;语音对语音&quot;模型家族，一口气两款：v1 Mini 和 v1 Max。</p>
+      <p>以前做语音助手是个组装活：语音识别、大语言模型、语音合成三件套各自为政，调通它们本身就是个项目。现在 ElevenLabs 把听、想、说塞进一个模型：你对它说话，它直接开口回答，中间没有拼接感。</p>
+      <p>两款分工写得很直白。Mini 便宜，管日常对话、教学、互动角色这类&quot;聊得顺就行&quot;的活；Max 带推理能力，干客服、潜客筛选、多步工具调用这种&quot;既要聊对、又要办成事&quot;的活。两款都支持 90 多种语言，音色库超过 17000 个。</p>
+      <p>数据来自第三方评测机构 Artificial Analysis，不是官方自吹。Big Bench Audio（一千道语音推理题）上，Max 答对 98.8%，Mini 75.9%；开口速度 Max 平均 0.57 秒，Mini 0.62 秒——打电话基本感觉不到延迟。考&quot;会不会好好聊天&quot;（打断、停顿、轮流说话）的 Full-Duplex-Bench 上，便宜的 Mini 反而以 95.8% 小胜 Max 的 94.1%。</p>
+      <p>接入有两条路：ElevenAgents 平台，或者 OpenAI 兼容的 Realtime API。原来接过 OpenAI 语音接口的团队，改两个地方就能迁移，试错成本很低。计费按分钟加 token，Max 更贵，具体价格发布时没公布。</p>
+      <p>三个坑提前说：第一，先去官网查价再算账，别拍脑袋；第二，走 WebRTC 接入的老项目要改成 WebSocket，问一句你的开发；第三，语音客服碰的是用户的声音和录音，上线前先想好合规——告诉对方这是机器，录音存哪、存多久写清楚。</p>
+      <p>普通人怎么用：做播客、有声内容、短视频配音的，17000 个音色直接拿来试；开小店、做本地服务的，想加个自动接电话的客服，先用 Mini 把流程跑通，单子复杂了再换 Max。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：宝玉开源 BaoCut：AI 剪片 Agent，">
+      <div class="thumb"><img src="../daily-20261022-04.webp" alt="宝玉开源 BaoCut：AI 剪片 Agent，字幕配音剪辑全在一条时间线上改" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>宝玉开源 BaoCut：AI 剪片 Agent，字幕配音剪辑全在一条时间线上改</h4>
+        <p class="exc">宝玉做了一个 AI 剪片 Agent，叫 BaoCut，代码开源了：github.com/JimLiu/baocut。BaoCut 的核心理念一句话：AI 替你干活，但视频永远保持可编辑——所有操作都…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-10-22</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>宝玉做了一个 AI 剪片 Agent，叫 BaoCut，代码开源了：github.com/JimLiu/baocut。BaoCut 的核心理念一句话：AI 替你干活，但视频永远保持可编辑——所有操作都落到一条时间线上，原片一根汗毛都不动。</p>
+      <p>从已有成片出发，它会这几手：转写，本地跑 Whisper large-v3 或 Qwen3-ASR，精确到词的时间轴；字幕，原语言、翻译、双语随你选；配音，先翻译、把人声和背景音分离，再按句用克隆音色合成；剪口播，&quot;嗯&quot;&quot;啊&quot;&quot;这个&quot;、长停顿、说错重来的片段自动标出来删掉。转写完还能一键出章节、总结、标题、博客稿、短视频切片，每句话都能溯源到原片的时间点。</p>
+      <p>从一句话出发也行：24 个场景模板（解说、产品发布、预告片、数据故事等），先定旁白再配画面，动效直接写代码生成，缺哪个镜头本地生一张图补上。</p>
+      <p>导出很实在：MP4（字幕烧进去或外挂）、SRT 字幕文件、.baocut 工程包——换台电脑打开接着剪。</p>
+      <p>要准备三样：应用本身（Windows 和 Mac 都有，Linux 只有源码版）；一个 Agent 引擎，Claude Code、Codex CLI 是验证过的；再加 ffmpeg。模型可以全跑本地，素材不出本机也行。许可叫 BaoCut Community License：拿它做视频、公司内部用没问题，想把代码本身拿去卖要另谈授权。</p>
+      <p>三个坑：Windows 安装包没签名，会被系统拦截，手动放行；Agent 引擎读你的素材时会把内容发给模型厂商，敏感成片切本地模型；Linux 用户目前只能源码跑。</p>
+      <p>普通人怎么用：口播视频的口头禅和长气口，一键剪干净；中文视频自动翻双语字幕、配音成英文，发海外多一份流量；一条长视频，章节和短视频切片一次拆完。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：一个人把抖音上千人围观的 AI 实时女主播复刻了">
+      <div class="thumb"><img src="../daily-20261021-01.webp" alt="一个人把抖音上千人围观的 AI 实时女主播复刻了：67 分钟烧了 191 块，还" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>一个人把抖音上千人围观的 AI 实时女主播复刻了：67 分钟烧了 191 块，还把整套工具开源了</h4>
+        <p class="exc">Gary 曹淦在 X 上发了一篇长文，把抖音上千人围观的 AI 实时女主播完整复刻了出来，还把整套&quot;场控&quot;工具用 MIT 协议扔进了开源仓库：github.com/garycaogan/ai-live…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-10-21</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>Gary 曹淦在 X 上发了一篇长文，把抖音上千人围观的 AI 实时女主播完整复刻了出来，还把整套&quot;场控&quot;工具用 MIT 协议扔进了开源仓库：github.com/garycaogan/ai-live-avatar。</p>
+      <p>先看成本账。主播本体用的是 Vidu 实时数字人，按秒计费，一小时约 169 元。Gary 一场 67 分钟直播，实付 191.47 元。他自研的不是主播本人，而是&quot;场控&quot;层：弹幕先过滤再排队、意图识别分发任务、换装靠拿整套完整底图重开一场（又快又稳）、100 个冷场话题待机池、OBS 拼画面加左下角真人小窗、画面常挂&quot;AI 实时生成画面&quot;标识。</p>
+      <p>但这条帖子最有价值的是三条翻车实录。第一，换背景时模型把主播的衣服画没了，紧急下播。文字弹幕可以用关键词拦，实时生成的画面拦不住，这是整个赛道眼下的真命门。第二，Vidu 断线约 3 分钟，靠左下角真人小窗硬撑。第三，从弹幕到开口延迟 10–20 秒、记忆短、唱歌和大幅动作做不了。另外平台边界摆在那：抖音要求 AI 内容打标识、真人在场互动，不鼓励无人直播挂机。</p>
+      <p>想玩的人，仓库里有不花钱的路：空跑模式不调用 Vidu，只演示过滤、排队和叠层逻辑，先把&quot;场控&quot;怎么工作看明白。做一个自己的角色要一张底图加几套完整衣服，声音可以挑系统音色或传 10–20 秒干净人声克隆。</p>
+      <p>普通人怎么用：先空跑看逻辑，算好每分钟的成本账，别指望无人挂机躺赚。想试水的，真人露脸+AI 助播起步，合规且稳。</p>
+  </div>
+</details>
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：乔木剪藏新版上架应用商店：微信视频号也能 AI ">

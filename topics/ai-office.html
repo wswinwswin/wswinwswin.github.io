@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>AI 办公智库 | wswin</title>
-<meta name="description" content="文档、表格、PPT、邮件：办公提效，少加班。wswin AI 智库「AI 办公」主题聚合，共 14 篇，持续更新。" />
+<meta name="description" content="文档、表格、PPT、邮件：办公提效，少加班。wswin AI 智库「AI 办公」主题聚合，共 16 篇，持续更新。" />
 <link rel="canonical" href="https://wswin.dpdns.org/topics/ai-office.html" />
 <meta property="og:title" content="AI 办公智库 | wswin" />
-<meta property="og:description" content="文档、表格、PPT、邮件：办公提效，少加班。wswin AI 智库「AI 办公」主题聚合，共 14 篇，持续更新。" />
+<meta property="og:description" content="文档、表格、PPT、邮件：办公提效，少加班。wswin AI 智库「AI 办公」主题聚合，共 16 篇，持续更新。" />
 <style>
 /* ============================================================
    WSWIN — dark editorial tech aesthetic
@@ -639,10 +639,49 @@ body.locked{overflow:hidden}
 </div></div>
 
 <div class="wrap"><div class="t-hero">
-<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 14 篇</span>
+<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 16 篇</span>
 <h1>AI 办公</h1>
 <p>文档、表格、PPT、邮件：办公提效，少加班</p>
 </div>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：Cloudflare 发了个&quot;不写字的模型&quot;：只">
+      <div class="thumb"><img src="../daily-20261021-04.webp" alt="Cloudflare 发了个&quot;不写字的模型&quot;：只返回数字和日期，发票报销从此有人" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>Cloudflare 发了个&quot;不写字的模型&quot;：只返回数字和日期，发票报销从此有人管</h4>
+        <p class="exc">Cloudflare 在 10 月 19 日推出了 Clairic，挂在 Workers AI 上预览，未来计划开放权重。它是个怪胎：大模型习惯一句话一句话往外写，它不写字，只返回值。</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-10-21</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>Cloudflare 在 10 月 19 日推出了 Clairic，挂在 Workers AI 上预览，未来计划开放权重。它是个怪胎：大模型习惯一句话一句话往外写，它不写字，只返回值。</p>
+      <p>它叫&quot;提取模型&quot;。你给一段文本加最多 4 张图，再列好字段类型，它直接回你类型化数据：数字、日期、时长、清单、估计值、预测值。发票的编号、金额、开票日期和到期日，一次请求全抽出来。不知道的字段不硬编，返回 null，外加一个&quot;猜测值&quot;告诉你它本来想填什么。估计类字段附中位数和 80% 预测区间。测试里，它对机场安检人数做了 21 天预测，平均误差 3.3%，17 天的真实值落在预测区间里。</p>
+      <p>价格很有杀气：每百万输入 token 0.10 美元，没有输出 token 费用——因为它根本不输出 token。官方称响应通常 1 秒内。</p>
+      <p>它和普通 LLM 不是替代关系，是流水线关系：Clairic 先抽数，Clef 这类决策模型做判断，最后 LLM 写回复文。发票识别、客服工单分拣、资料归档，这套组合比纯 LLM 又快又省。</p>
+      <p>普通人怎么用：做财务、采购、行政的，批量处理报销单、报价单、合同日期这类活，以前靠肉眼逐行看，现在丢给 Clairic 一次抽完。预览版免费，走 Cloudflare Workers AI 接入，先把你最烦的那类单据喂进去试一轮。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：Notion 的 AI 代理现在能干活超过一天了">
+      <div class="thumb"><img src="../daily-20261021-05.webp" alt="Notion 的 AI 代理现在能干活超过一天了：通宵不走神的那种" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>Notion 的 AI 代理现在能干活超过一天了：通宵不走神的那种</h4>
+        <p class="exc">Notion 公开了一套新的代理执行架构，核心变化一句话：单个任务能连续跑超过 24 小时。过去的上限约 5 分钟，从分钟级直接跳到天级。</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-10-21</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>Notion 公开了一套新的代理执行架构，核心变化一句话：单个任务能连续跑超过 24 小时。过去的上限约 5 分钟，从分钟级直接跳到天级。</p>
+      <p>新架构给每个任务配了专属执行空间和任务队列，重启或遇到临时错误能自动续跑，不会从头再来。长对话会被压缩，大型工具输出另存，减少每次重新读取的数据量。配套的额度也定了：Business 和 Enterprise 方案每月含 1500 点 Standard 点数（Notion 自选模型）加 500 点 Select 点数（用户自选模型或自建代理）。新客户先适用，老客户 11 月 2 日转换。统一管理支出上限和权限的 AI Command Center 还在路上。</p>
+      <p>这意味着什么？过去 Agent 只能干&quot;一次说完&quot;的小活，现在可以接&quot;通宵整理 500 条资料并逐条打标&quot;这种大活了。重启续跑的机制很关键：长任务最怕中途崩一次全白干，它把断点续传做进了架构里。</p>
+      <p>普通人怎么用：Notion 付费用户可以换个用法了——把重复性强、耗时长的整理类工作直接丢给代理，第二天收结果。先拿一次性小任务试手感，确认它干得靠谱，再慢慢放大任务时长。成本是点数制的，大活开跑前先看清额度。</p>
+  </div>
+</details>
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：免费办公套件 ONLYOFFICE 10.0：编">
