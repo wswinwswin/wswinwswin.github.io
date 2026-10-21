@@ -52,6 +52,9 @@
     .grid{display:grid;gap:16px}
     .metrics{grid-template-columns:repeat(4,1fr)}
     .card{background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:14px}
+    .film-card{padding:18px}
+    .film-card video{display:block;width:100%;height:auto;border-radius:10px;background:#07070c}
+    .film-note{margin:14px 4px 2px;color:var(--muted);font-size:14px}
     .metric{padding:22px 22px 20px;position:relative;overflow:hidden}
     .metric:after{content:"";position:absolute;right:-18px;bottom:-26px;width:76px;height:76px;border:14px solid var(--cyan-soft);border-radius:50%}
     .metric:nth-child(even):after{border-color:var(--orange-soft)}
@@ -244,7 +247,7 @@
       <a href="/" style="text-decoration:none;margin-right:14px"><span class="wswin-logo" style="display:inline-flex;align-items:center;gap:8px"><svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#c9f24e"/><text x="16" y="22.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="800" fill="#10130a">W</text></svg><span style="font-weight:800;letter-spacing:.02em;color:#eef2ee">wswin</span></span></a>
       <div class="nav-context">闭环能力 <span>演示总览</span></div>
       <div class="nav-links">
-        <a href="#vision">平台愿景</a><a href="#dashboard">数据看板</a><a href="#workflow">闭环流程</a><a href="#matrix">矩阵调度</a><a href="#studio">数字人直播</a><a href="#demo">产品演示</a><a href="#cooperation">厂家合作</a>
+        <a href="#vision">平台愿景</a><a href="#dashboard">数据看板</a><a href="#workflow">闭环流程</a><a href="#matrix">矩阵调度</a><a href="#studio">数字人直播</a><a href="#demo">产品演示</a><a href="#leads">获客演示</a><a href="#cooperation">厂家合作</a>
       </div>
     </nav>
   </header>
@@ -543,6 +546,14 @@
           <div class="recruit-cta">前往厂家合作区 →<span>查看合作模式与准入门槛</span></div>
         </a>
       </div>
+    </section>
+
+    <section id="leads" aria-labelledby="leads-title">
+      <div class="section-head"><div><p class="kicker">获客能力演示</p><h2 id="leads-title">AI 自动获客 · 流程演示</h2></div><p>商家要的不是流量，是找上门的人。AI 自动获客——大数据抓取精准客户：定条件、扫评论、识意向、成线索、交付跟进，全程自动跑完，19 秒看完一遍完整流程（片中数字为演示示例）。</p></div>
+      <article class="card film-card">
+        <video controls preload="none" poster="assets/huoke-poster.jpg" src="assets/huoke-demo.mp4" aria-label="AI 精准获客流程演示视频"></video>
+        <p class="film-note">五步流程：需求输入 → 评论扫描 → 意向识别 → 线索成表 → 交付跟进。线索带明确意向，交付商家后专人跟进对接。</p>
+      </article>
     </section>
 
     <section id="cooperation" aria-labelledby="cooperation-title">
