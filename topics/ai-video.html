@@ -31,7 +31,7 @@ html[data-theme="dark"]{
 }
 html[data-theme="light"]{
   color-scheme:light;
-  --bg:#f7f7f3; --bg-2:#fbfbF7; --surface:#ffffff; --surface-2:#f0f0ea;
+  --bg:#f7f7f3; --bg-2:#fbfbf7; --surface:#ffffff; --surface-2:#f0f0ea;
   --ink:#14171a; --ink-2:#3d434a; --muted:#6d747b; --faint:#a3a9b0;
   --line:rgba(16,20,24,.12); --line-soft:rgba(16,20,24,.06);
   --accent:#55750a; --accent-ink:#f7fbe9; --accent-soft:rgba(85,117,10,.1);
@@ -70,36 +70,41 @@ a{color:inherit;text-decoration:none}
 }
 .mast-inner{
   max-width:var(--wrap);margin:0 auto;padding:0 clamp(20px,4vw,48px);
-  display:flex;align-items:center;gap:28px;min-height:64px;
+  display:flex;align-items:center;gap:12px;min-height:64px;
 }
 .brand{display:flex;align-items:center;gap:10px;white-space:nowrap}
 .brand-mark{width:34px;height:34px;flex:none}
 .brand b{font-family:var(--font-serif);font-weight:900;font-size:21px;letter-spacing:.02em}
 .brand .sep{color:var(--faint);font-family:var(--font-mono);font-size:12px}
-.brand small{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--muted)}
-.nav{display:flex;gap:2px;margin-left:auto;font-size:13px}
+.brand small{display:none}
+.nav{display:flex;gap:0;margin-left:auto;font-size:13px}
 .nav a{
-  font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;color:var(--muted);
-  padding:8px 12px;position:relative;white-space:nowrap;transition:color .25s;
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.03em;color:var(--muted);
+  padding:8px 4px;position:relative;white-space:nowrap;transition:color .25s;
 }
-.nav a .idx{color:var(--faint);margin-right:5px;font-size:10px}
+.nav a .idx{color:var(--faint);margin-right:3px;font-size:10px}
 .nav a::after{
-  content:"";position:absolute;left:12px;right:12px;bottom:4px;height:1px;
+  content:"";position:absolute;left:4px;right:4px;bottom:4px;height:1px;
   background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease);
 }
 .nav a:hover{color:var(--ink)}
 .nav a:hover::after,.nav a.active::after{transform:scaleX(1)}
 .nav a.active{color:var(--ink)}
-.mast-ctl{display:flex;align-items:center;gap:14px;border-left:1px solid var(--line);padding-left:16px}
+.mast-ctl{display:flex;align-items:center;gap:10px;border-left:1px solid var(--line);padding-left:12px}
 .clock{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:.1em;white-space:nowrap}
 .theme-btn{
   display:flex;align-items:center;gap:7px;background:none;border:1px solid var(--line);
   color:var(--muted);font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;
-  padding:7px 12px;border-radius:100px;cursor:pointer;transition:all .25s;
+  padding:8px 13px;border-radius:100px;cursor:pointer;transition:all .25s;
 }
 .theme-btn:hover{border-color:var(--accent);color:var(--ink)}
-@media(max-width:900px){
+@media(max-width:1240px){
+  .mast-inner{gap:10px}
+  .mast-ctl{padding-left:8px;gap:6px}
+}
+@media(max-width:1100px){
   .mast-inner{flex-wrap:wrap;gap:6px 16px;padding-top:12px;padding-bottom:12px}
+  .mast-ctl{border-left:none;padding-left:0}
   .nav{order:3;width:100%;margin:0;flex-wrap:wrap}
   .nav a{padding:6px 10px 6px 0}
   .nav a::after{left:0;right:10px}
@@ -154,6 +159,8 @@ a{color:inherit;text-decoration:none}
   .stats{grid-template-columns:repeat(2,1fr)}
   .stat:nth-child(3)::before{display:none}
   .stat:nth-child(3),.stat:nth-child(4){border-top:1px solid var(--line)}
+  .kicker{align-items:flex-start}
+  .kicker .dot{margin-top:5px}
 }
 
 /* ============================================================
@@ -166,10 +173,10 @@ a{color:inherit;text-decoration:none}
 .invite-msg{font-size:.98rem;color:var(--ink-2);line-height:1.8;max-width:46em;margin:0}
 .invite-msg strong{color:var(--ink);font-weight:700}
 .invite-act{display:flex;align-items:center;gap:14px;flex:none}
-.invite-code{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:15px;letter-spacing:.18em;color:var(--ink);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:10px 16px;cursor:pointer}
+.invite-code{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:15px;letter-spacing:.18em;color:var(--ink);background:transparent;border:1px dashed var(--accent);border-radius:2px;padding:10px 16px;cursor:pointer}
 .invite-code:hover{border-style:solid}
 .invite-copyhint{font-size:11px;letter-spacing:.12em;color:var(--muted);border-left:1px solid var(--line);padding-left:10px}
-.invite-go{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--accent-ink);font-size:13px;font-weight:700;letter-spacing:.08em;border-radius:8px;padding:11px 20px;text-decoration:none}
+.invite-go{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--accent-ink);font-size:13px;font-weight:700;letter-spacing:.08em;border-radius:999px;padding:11px 20px;text-decoration:none}
 @media(max-width:760px){.invite-inner{flex-direction:column;align-items:flex-start}}
 
 /* ============================================================
@@ -177,7 +184,7 @@ a{color:inherit;text-decoration:none}
    ============================================================ */
 .section{padding:clamp(60px,8vw,104px) 0;border-top:1px solid var(--line)}
 .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:44px}
-.sec-idx{font-family:var(--font-mono);font-size:12px;letter-spacing:.2em;color:var(--faint);flex:none}
+.sec-idx{font-family:var(--font-mono);font-size:12px;letter-spacing:.2em;color:var(--muted);flex:none}
 .sec-title{font-family:var(--font-serif);font-weight:900;font-size:clamp(1.7rem,3.4vw,2.5rem);letter-spacing:.01em;white-space:nowrap}
 .sec-rule{flex:1;height:1px;background:var(--line);margin-bottom:8px}
 .sec-meta{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;color:var(--muted);text-align:right;white-space:nowrap}
@@ -206,17 +213,17 @@ a{color:inherit;text-decoration:none}
 .lead-body .tag{align-self:flex-start}
 .lead-body h3{font-family:var(--font-serif);font-weight:700;font-size:clamp(1.35rem,2.6vw,1.9rem);line-height:1.5;line-break:strict;text-wrap:pretty}
 .lead-body p{color:var(--muted);font-size:.95rem;line-height:1.85;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-break:strict}
-.card-meta{display:flex;align-items:center;gap:6px 16px;flex-wrap:wrap;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--faint);margin-top:auto;padding-top:4px}
-.card-meta a.demo-btn{display:inline-flex;align-items:center;background:var(--accent);color:var(--accent-ink);font-weight:800;font-size:16px;padding:12px 24px;border-radius:999px;letter-spacing:.02em;line-height:1.2}
+.card-meta{display:flex;align-items:center;gap:6px 16px;flex-wrap:wrap;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--muted);margin-top:auto;padding-top:4px}
+.card-meta a.demo-btn{display:inline-flex;align-items:center;font-family:var(--font-sans);background:var(--accent);color:var(--accent-ink);font-weight:800;font-size:16px;padding:12px 24px;border-radius:999px;letter-spacing:.02em;line-height:1.2}
 .card-meta a.demo-btn:hover{filter:brightness(1.06)}
-.card-meta a.drill{display:inline-flex;align-items:center;border:1.5px solid var(--ink);color:var(--ink);font-weight:700;font-size:13px;padding:8px 18px;border-radius:999px;letter-spacing:.02em;line-height:1.2}
+.card-meta a.drill{display:inline-flex;align-items:center;font-family:var(--font-sans);border:1.5px solid var(--ink);color:var(--ink);font-weight:700;font-size:13px;padding:10px 18px;border-radius:999px;letter-spacing:.02em;line-height:1.2}
 .card-meta a.drill:hover{background:var(--ink);color:var(--bg)}
 .card-meta .rm{color:var(--bg);background:var(--ink);font-weight:700;padding:3px 12px;border-radius:999px}
 
-.card-meta a{color:var(--faint)}
+.card-meta a{color:var(--muted)}
 .read-more{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;color:var(--ink);
   display:inline-flex;align-items:center;gap:10px;margin-top:2px;font-weight:700;
-  border:1.5px solid var(--ink);padding:8px 16px;border-radius:999px}
+  border:1.5px solid var(--ink);padding:10px 18px;border-radius:999px}
 .read-more i{font-style:normal;transition:transform .25s var(--ease)}
 .lead:hover .read-more i{transform:translateX(6px)}
 @media(max-width:760px){
@@ -257,16 +264,16 @@ a{color:inherit;text-decoration:none}
 }
 
 /* ---------- tutorial cards ---------- */
-.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:44px}
 .chip{
   font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;
   border:1px solid var(--line);background:transparent;color:var(--muted);
-  padding:9px 20px;border-radius:100px;cursor:pointer;transition:all .25s;
+  padding:10px 20px;border-radius:100px;cursor:pointer;transition:all .25s;
 }
 .chip .n{color:var(--faint);font-size:10.5px;margin-left:6px}
 .chip:hover{border-color:var(--accent);color:var(--ink)}
-.chip.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-.chip.on .n{color:var(--accent-ink);opacity:.65}
+.chip.on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.chip.on .n{color:var(--bg);opacity:.65}
 .tut-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
 .tut-card{
   border:1px solid var(--line);background:var(--surface);overflow:hidden;cursor:pointer;
@@ -282,10 +289,10 @@ a{color:inherit;text-decoration:none}
   position:absolute;left:16px;bottom:0;
   font-family:var(--font-mono);font-size:10.5px;letter-spacing:.16em;
   background:var(--bg);border:1px solid var(--line);border-bottom:none;color:var(--accent);
-  padding:7px 13px 5px;border-radius:3px 3px 0 0;
+  padding:7px 13px 5px;border-radius:2px 2px 0 0;
 }
-.tut-body{padding:26px 28px 24px;display:flex;flex-direction:column;gap:12px;flex:1}
-.tut-body h4{font-family:var(--font-serif);font-weight:700;font-size:1.22rem;line-height:1.5}
+.tut-body{padding:26px 28px;display:flex;flex-direction:column;gap:12px;flex:1}
+.tut-body h4{font-family:var(--font-serif);font-weight:700;font-size:1.22rem;line-height:1.5;line-break:strict;text-wrap:pretty}
 .tut-body .exc{color:var(--muted);font-size:.91rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .tut-body .card-meta{margin-top:14px;padding-top:16px;border-top:1px solid var(--line-soft)}
 @media(max-width:760px){.tut-grid{grid-template-columns:1fr}}
@@ -308,7 +315,7 @@ a{color:inherit;text-decoration:none}
 .live-plans{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
 .live-plan{background:var(--bg-2);padding:30px 28px;transition:background .3s}
 .live-plan:hover{background:var(--surface)}
-.live-plan .no{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;color:var(--faint);display:block;margin-bottom:14px}
+.live-plan .no{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;color:var(--muted);display:block;margin-bottom:14px}
 .live-plan h5{font-family:var(--font-serif);font-size:1.12rem;font-weight:700;margin-bottom:10px}
 .live-plan p{color:var(--muted);font-size:.88rem}
 @media(max-width:760px){.live-plans{grid-template-columns:1fr}}
@@ -347,14 +354,14 @@ a{color:inherit;text-decoration:none}
   font-family:var(--font-mono);font-size:10.5px;letter-spacing:.18em;
   color:var(--muted);border:1px solid var(--line);padding:6px 12px;border-radius:2px;
 }
-.price-code{font-size:10.5px;letter-spacing:.2em;color:var(--faint)}
+.price-code{font-size:10.5px;letter-spacing:.2em;color:var(--muted)}
 .price h3{font-family:var(--font-serif);font-weight:700;font-size:1.45rem;margin-bottom:10px}
 .price-sub{color:var(--muted);font-size:.95rem;margin-bottom:16px}
 .price-list{list-style:none;flex:1}
 .price-list li{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-top:1px solid var(--line-soft);font-size:.96rem}
 .price-list li i{font-style:normal;color:var(--accent);font-family:var(--font-mono);font-weight:500}
 .price-list li em{display:block;font-style:normal;font-size:.84rem;color:var(--muted);margin-top:4px}
-.price-list li b{margin-left:auto;font-weight:400;font-size:10.5px;letter-spacing:.1em;color:var(--faint);white-space:nowrap;padding-top:3px;font-family:var(--font-mono)}
+.price-list li b{margin-left:auto;font-weight:400;font-size:10.5px;letter-spacing:.1em;color:var(--muted);white-space:nowrap;padding-top:3px;font-family:var(--font-mono)}
 .price-foot{margin-top:26px;padding-top:24px;border-top:1px solid var(--line)}
 .price-foot p{font-size:.9rem;color:var(--muted);margin-bottom:16px}
 .price-foot .go-link{margin-bottom:0}
@@ -363,7 +370,7 @@ a{color:inherit;text-decoration:none}
 .track{margin-top:10px}
 .track+.track{margin-top:30px}
 .track-head{display:flex;align-items:baseline;gap:14px;margin-bottom:4px}
-.track-idx{font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;color:var(--faint);flex:none}
+.track-idx{font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;color:var(--muted);flex:none}
 .track-head h4{font-family:var(--font-serif);font-weight:900;font-size:1.26rem;white-space:nowrap}
 .track-rule{flex:1;height:1px;background:var(--line);margin-bottom:5px}
 .tier{padding:21px 0 23px;border-top:1px solid var(--line-soft)}
@@ -391,52 +398,50 @@ a{color:inherit;text-decoration:none}
 .combo-inc{font-size:.92rem;color:var(--ink-2);line-height:1.8}
 .combo-price{display:flex;align-items:baseline;gap:12px;white-space:nowrap;flex:none}
 .combo-price b{font-family:var(--font-serif);font-weight:900;font-size:1.68rem;color:var(--accent)}
-.combo-price s{font-family:var(--font-mono);font-size:11.5px;color:var(--faint)}
+.combo-price s{font-family:var(--font-mono);font-size:11.5px;color:var(--muted)}
 .combo-price .save{
   font-family:var(--font-mono);font-size:10.5px;letter-spacing:.12em;font-weight:500;
   color:var(--accent-ink);background:var(--accent);padding:4px 10px;border-radius:2px;
 }
-.price-basis{margin-top:26px;font-size:.8rem;color:var(--faint);line-height:1.95}
+.price-basis{margin-top:26px;font-size:.8rem;color:var(--muted);line-height:1.95}
 .price-basis .bk{
   font-family:var(--font-mono);font-size:10.5px;letter-spacing:.16em;color:var(--muted);
   border:1px solid var(--line);padding:3px 11px;border-radius:2px;margin-right:10px;white-space:nowrap;
 }
 @media(max-width:520px){
   .tier-price{font-size:1.42rem}
+  .tier-row{flex-wrap:wrap}
   .combo-row{flex-direction:column;align-items:flex-start;gap:12px}
+  .fact{padding:16px 18px}
+  .about-facts .foot{padding:18px}
 }
 @media(max-width:860px){.price-grid{grid-template-columns:1fr}}
 
 /* ---------- FOLLOW ---------- */
 .follow{margin-top:72px}
 .follow-head{display:flex;align-items:baseline;gap:18px;margin-bottom:30px}
-.follow-kicker{font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;color:var(--faint);flex:none}
+.follow-kicker{font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;color:var(--muted);flex:none}
 .follow-title{font-family:var(--font-serif);font-weight:900;font-size:clamp(1.4rem,2.8vw,1.9rem);white-space:nowrap}
 .follow-rule{flex:1;height:1px;background:var(--line);margin-bottom:8px}
 .plat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
 .plat{background:var(--surface);padding:26px;display:flex;align-items:center;gap:18px;transition:background .3s}
 a.plat:hover{background:var(--surface-2)}
 .plat-ic{
-  width:46px;height:46px;border:1px solid var(--line);border-radius:12px;
+  width:46px;height:46px;border:1px solid var(--line);border-radius:2px;
   display:flex;align-items:center;justify-content:center;color:var(--ink);flex:none;
   transition:all .3s;
 }
 .plat-ic svg{width:22px;height:22px;display:block}
 a.plat:hover .plat-ic{border-color:var(--accent);color:var(--accent)}
-.plat.soon .plat-ic{color:var(--faint)}
 .plat-tx{min-width:0}
 .plat-tx b{display:block;font-size:.98rem;font-weight:700}
 .plat-sub{
   display:block;font-family:var(--font-mono);font-size:11px;letter-spacing:.02em;
   color:var(--muted);margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
-.soon-tag{
-  display:inline-block;margin-top:8px;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.14em;
-  color:var(--faint);border:1px solid var(--line);border-radius:100px;padding:4px 12px;
-}
 .plat-arr{margin-left:auto;font-family:var(--font-mono);color:var(--faint);font-size:17px;flex:none;transition:all .3s var(--ease)}
 a.plat:hover .plat-arr{color:var(--accent);transform:translate(2px,-2px)}
-.follow-note{margin-top:22px;font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;color:var(--faint)}
+.follow-note{margin-top:22px;font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;color:var(--muted)}
 /* wechat card: icon + QR + caption */
 .wechat-card{
   display:flex;align-items:center;gap:22px;
@@ -445,7 +450,7 @@ a.plat:hover .plat-arr{color:var(--accent);transform:translate(2px,-2px)}
 }
 .wechat-card .plat-tx b{font-size:1.05rem}
 .wechat-qrcode{margin-left:auto;flex:none;text-align:center}
-.wechat-qrcode img{width:158px;height:auto;border:1px solid var(--line);border-radius:6px;background:#fff}
+.wechat-qrcode img{width:158px;height:auto;border:1px solid var(--line);border-radius:2px;background:#fff}
 .wechat-cap{display:block;margin-top:10px;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.16em;color:var(--muted)}
 @media(max-width:560px){
   .wechat-card{flex-wrap:wrap}
@@ -453,27 +458,23 @@ a.plat:hover .plat-arr{color:var(--accent);transform:translate(2px,-2px)}
   .wechat-qrcode img{width:190px}
 }
 @media(max-width:900px){.plat-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:520px){.plat{padding:18px 16px;gap:13px}.plat-ic{width:40px;height:40px;border-radius:10px}.plat-ic svg{width:19px;height:19px}}
+@media(max-width:520px){.plat{padding:18px 16px;gap:13px}.plat-ic{width:40px;height:40px}.plat-ic svg{width:19px;height:19px}}
 
 /* ---------- FOOTER ---------- */
 .footer{border-top:1px solid var(--line);padding:36px 0 48px}
-.foot-soc{
+.foot-soc,.foot-stats{
   display:flex;align-items:center;gap:8px 18px;flex-wrap:wrap;
   font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;
   margin-bottom:24px;padding-bottom:22px;border-bottom:1px solid var(--line);
 }
-.foot-soc-k{color:var(--faint);letter-spacing:.2em}
+.foot-soc-k,.foot-stats-k{color:var(--muted);letter-spacing:.2em}
 .foot-soc a{color:var(--ink-2);transition:color .25s}
 .foot-soc a:hover{color:var(--accent)}
 .foot-soc .pending{color:var(--faint)}
-.foot-stats{
-  display:flex;align-items:center;gap:8px 18px;flex-wrap:wrap;
-  font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;
-  margin-bottom:24px;padding-bottom:22px;border-bottom:1px solid var(--line);color:var(--ink-2)}
-.foot-stats-k{color:var(--faint);letter-spacing:.2em}
+.foot-stats{color:var(--ink-2)}
 .foot-stats b{color:var(--accent);font-weight:700}
 .foot-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
-.foot-inner p{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--faint)}
+.foot-inner p{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--muted)}
 
 /* ============================================================
    READER
@@ -517,7 +518,7 @@ a.plat:hover .plat-arr{color:var(--accent);transform:translate(2px,-2px)}
   padding:12px 18px;cursor:pointer;max-width:46%;text-align:left;transition:all .25s;
   display:flex;flex-direction:column;gap:6px;
 }
-.rnav-btn small{font-size:10px;letter-spacing:.16em;color:var(--faint)}
+.rnav-btn small{font-size:10px;letter-spacing:.16em;color:var(--muted)}
 .rnav-btn span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--font-sans);font-size:.9rem}
 .rnav-btn:hover{border-color:var(--accent)}
 .rnav-btn.next{text-align:right;align-items:flex-end}
@@ -525,7 +526,7 @@ a.plat:hover .plat-arr{color:var(--accent);transform:translate(2px,-2px)}
 body.locked{overflow:hidden}
 
 /* ===== 45+ featured course ===== */
-.feat45{border:1px solid var(--line);background:var(--surface);padding:clamp(26px,4vw,46px);margin-bottom:36px;position:relative}
+.feat45{border:1px solid var(--line);background:var(--surface);padding:clamp(26px,4vw,46px);margin-bottom:44px;position:relative}
 .feat45::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent)}
 .feat45-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
 .feat45 h3{font-family:var(--font-serif);font-weight:900;font-size:clamp(1.5rem,3.4vw,2.2rem);line-height:1.4;margin-bottom:10px}
@@ -540,36 +541,35 @@ body.locked{overflow:hidden}
 .feat45-promise{color:var(--muted);font-size:.92rem;margin-bottom:22px}
 .feat45-cta{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:22px}
 .feat45-price{display:flex;align-items:baseline;gap:12px}
-.feat45-price s{color:var(--faint);font-size:.9rem}
+.feat45-price s{color:var(--muted);font-size:.9rem}
 .feat45-price b{font-family:var(--font-serif);font-weight:900;font-size:2rem;color:var(--accent)}
 .feat45-note{font-size:.85rem;color:var(--muted);flex:1 1 220px}
 /* ===== 站长改价入口 ===== */
-.price-admin{margin-top:14px;font-size:.8rem;color:var(--faint)}
-.price-admin a{color:var(--faint);border-bottom:1px dotted var(--faint);cursor:pointer}
+.price-admin{margin-top:14px;font-size:.8rem;color:var(--muted)}
+.price-admin a{color:var(--muted);border-bottom:1px dotted var(--muted);cursor:pointer}
 .price-admin-panel{margin-top:10px;font-size:.82rem;color:var(--muted);border:1px dashed var(--line);padding:12px 16px;max-width:660px;text-align:left}
 .price-admin-panel a{color:var(--accent);border-bottom:1px solid var(--accent-soft)}
 .price-admin-panel ol{margin:8px 0 0 20px;display:grid;gap:4px}
 /* ===== 海报栏 ===== */
-.poster-grid{display:grid;grid-template-columns:1.7fr 1fr;gap:28px;margin-top:6px;align-items:start}
-.poster{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.poster-grid{display:grid;grid-template-columns:1.7fr 1fr;gap:22px;align-items:start}
+.poster{margin:0;background:var(--surface);border:1px solid var(--line);overflow:hidden}
 .poster-frame{aspect-ratio:16/9;background:var(--surface-2);overflow:hidden}
 .poster-frame.tall{aspect-ratio:9/16}
 .poster-frame img{display:block;width:100%;height:100%;object-fit:contain}
+.poster-empty{display:flex;align-items:center;justify-content:center;height:100%;font-family:var(--font-mono);font-size:12px;letter-spacing:.34em;text-indent:.34em;color:var(--muted);white-space:nowrap}
 .poster figcaption{padding:16px 18px;font-size:.86rem;color:var(--muted);line-height:1.75}
 .poster figcaption b{color:var(--ink)}
-.poster .slot{display:inline-block;font-size:.72rem;letter-spacing:.14em;color:var(--accent);border:1px solid var(--line);border-radius:999px;padding:3px 12px;margin-bottom:10px}
-.poster .icode{font-family:var(--font-mono);font-size:1rem;letter-spacing:.18em;color:var(--accent);border:1px dashed var(--line);border-radius:8px;padding:4px 12px;margin:0 4px;white-space:nowrap}
-.poster .igo{display:inline-block;margin-top:10px;color:var(--ink);border-bottom:1px solid var(--accent)}
+.poster .slot{display:inline-block;font-size:.72rem;letter-spacing:.14em;color:var(--accent);border:1px solid var(--line);border-radius:999px;padding:3px 12px}
 @media(max-width:760px){.poster-grid{grid-template-columns:1fr}}
 /* syllabus */
-.syllabus{margin-top:34px;border:1px solid var(--line);border-radius:14px;padding:22px;background:var(--surface)}
+.syllabus{margin-top:34px;border:1px solid var(--line);padding:22px;background:var(--surface)}
 .syl-note{color:var(--muted);font-size:.88rem;margin:10px 0 18px;line-height:1.8}
 .syl-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
 .syl-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:12px;flex-wrap:wrap}
 .syl-top h5{font-size:1.02rem}
 .syl-plan{font-size:.75rem;color:var(--accent);font-family:var(--font-mono)}
 .syl-lessons{list-style:none;display:grid;gap:8px;margin:0;padding:0}
-.syl-lessons li{display:flex;align-items:center;gap:10px;font-size:.88rem;border:1px solid var(--line);border-radius:10px;padding:9px 12px}
+.syl-lessons li{display:flex;align-items:center;gap:10px;font-size:.88rem;border:1px solid var(--line);border-radius:2px;padding:9px 12px}
 .syl-lessons li b{font-family:var(--font-mono);font-size:.72rem;color:var(--muted);white-space:nowrap}
 .syl-lessons li span{flex:1;line-height:1.5}
 .syl-lessons li i{font-style:normal;font-size:.7rem;border-radius:999px;padding:2px 10px;white-space:nowrap}
@@ -577,13 +577,13 @@ body.locked{overflow:hidden}
 .syl-lessons li.todo{opacity:.6}
 .syl-lessons li.todo i{color:var(--faint);border:1px dashed var(--line)}
 /* wall */
-.wall-empty{border:1px dashed var(--line);border-radius:14px;padding:46px 24px;text-align:center;background:var(--surface)}
+.wall-empty{border:1px dashed var(--line);padding:46px 24px;text-align:center;background:var(--surface)}
 .wall-big{font-family:var(--font-serif);font-size:1.35rem;font-weight:800;margin:0 0 10px;color:var(--ink)}
 .wall-empty p{color:var(--muted);margin:0}
 .wall-empty .go-link{margin-top:16px}
 /* faq */
 .faq-list{display:grid;gap:10px;max-width:880px}
-.faq{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:0 18px}
+.faq{border:1px solid var(--line);background:var(--surface);padding:0 18px}
 .faq summary{cursor:pointer;padding:15px 0;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--ink)}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:"+";font-family:var(--font-mono);color:var(--accent);font-size:1.15rem;flex:none}
@@ -592,7 +592,7 @@ body.locked{overflow:hidden}
 @media(max-width:760px){.syl-grid{grid-template-columns:1fr}}
 /* ===== floating course promo video ===== */
 .promo-float{position:fixed;right:18px;bottom:18px;width:330px;max-width:calc(100vw - 36px);z-index:90;
-  background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);
+  background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);
   overflow:hidden;transform:translateY(24px);opacity:0;pointer-events:none;transition:transform .5s var(--ease),opacity .5s var(--ease)}
 .promo-float.show{transform:none;opacity:1;pointer-events:auto}
 .promo-float video{display:block;width:100%;aspect-ratio:16/9;background:#000}
@@ -601,7 +601,7 @@ body.locked{overflow:hidden}
 .promo-title{font-size:1.02rem;font-weight:800;line-height:1.5;margin:0 0 6px;color:var(--ink)}
 .promo-sub{font-size:.82rem;color:var(--muted);line-height:1.7;margin:0 0 12px}
 .promo-cta{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--accent-ink);
-  font-size:13px;font-weight:700;letter-spacing:.06em;border-radius:8px;padding:10px 18px}
+  font-size:13px;font-weight:700;letter-spacing:.06em;border-radius:999px;padding:10px 18px}
 .promo-close{position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;border:0;cursor:pointer;
   background:rgba(0,0,0,.55);color:#fff;font-size:15px;line-height:1;display:flex;align-items:center;justify-content:center}
 .promo-sound{position:absolute;top:8px;left:8px;width:28px;height:28px;border-radius:50%;border:0;cursor:pointer;
@@ -646,7 +646,7 @@ body.locked{overflow:hidden}
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：ElevenLabs 发了语音对语音模型：0.5">
-      <div class="thumb"><img src="../daily-20261022-02.webp" alt="ElevenLabs 发了语音对语音模型：0.57 秒开口，电话客服有着落了" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div class="thumb"><img src="../thumb-daily-20261022-02.webp" alt="ElevenLabs 发了语音对语音模型：0.57 秒开口，电话客服有着落了" width="700" height="440" loading="lazy" decoding="async" /></div>
       <div>
         <h4>ElevenLabs 发了语音对语音模型：0.57 秒开口，电话客服有着落了</h4>
         <p class="exc">10 月 20 日，语音 AI 公司 ElevenLabs 发布了 Eleven Realtime，一个&quot;语音对语音&quot;模型家族，一口气两款：v1 Mini 和 v1 Max。</p>
@@ -668,7 +668,7 @@ body.locked{overflow:hidden}
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：宝玉开源 BaoCut：AI 剪片 Agent，">
-      <div class="thumb"><img src="../daily-20261022-04.webp" alt="宝玉开源 BaoCut：AI 剪片 Agent，字幕配音剪辑全在一条时间线上改" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div class="thumb"><img src="../thumb-daily-20261022-04.webp" alt="宝玉开源 BaoCut：AI 剪片 Agent，字幕配音剪辑全在一条时间线上改" width="700" height="440" loading="lazy" decoding="async" /></div>
       <div>
         <h4>宝玉开源 BaoCut：AI 剪片 Agent，字幕配音剪辑全在一条时间线上改</h4>
         <p class="exc">宝玉做了一个 AI 剪片 Agent，叫 BaoCut，代码开源了：github.com/JimLiu/baocut。BaoCut 的核心理念一句话：AI 替你干活，但视频永远保持可编辑——所有操作都…</p>
@@ -690,7 +690,7 @@ body.locked{overflow:hidden}
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：一个人把抖音上千人围观的 AI 实时女主播复刻了">
-      <div class="thumb"><img src="../daily-20261021-01.webp" alt="一个人把抖音上千人围观的 AI 实时女主播复刻了：67 分钟烧了 191 块，还" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div class="thumb"><img src="../thumb-daily-20261021-01.webp" alt="一个人把抖音上千人围观的 AI 实时女主播复刻了：67 分钟烧了 191 块，还" width="700" height="440" loading="lazy" decoding="async" /></div>
       <div>
         <h4>一个人把抖音上千人围观的 AI 实时女主播复刻了：67 分钟烧了 191 块，还把整套工具开源了</h4>
         <p class="exc">Gary 曹淦在 X 上发了一篇长文，把抖音上千人围观的 AI 实时女主播完整复刻了出来，还把整套&quot;场控&quot;工具用 MIT 协议扔进了开源仓库：github.com/garycaogan/ai-live…</p>
@@ -710,7 +710,7 @@ body.locked{overflow:hidden}
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：乔木剪藏新版上架应用商店：微信视频号也能 AI ">
-      <div class="thumb"><img src="../daily-20261018-03.webp" alt="乔木剪藏新版上架应用商店：微信视频号也能 AI 解读、下载了" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div class="thumb"><img src="../thumb-daily-20261018-03.webp" alt="乔木剪藏新版上架应用商店：微信视频号也能 AI 解读、下载了" width="700" height="440" loading="lazy" decoding="async" /></div>
       <div>
         <h4>乔木剪藏新版上架应用商店：微信视频号也能 AI 解读、下载了</h4>
         <p class="exc">向阳乔木 10 月 17 日在 X 上宣布：Qiaomu Clipper 新版要上架应用商店了。这次更新补上了一块关键拼图——微信视频号的 AI 解读、学习和下载。</p>
@@ -729,7 +729,7 @@ body.locked{overflow:hidden}
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：ElevenLabs 五折只剩最后一天：走 Op">
-      <div class="thumb"><img src="../daily-20261018-04.webp" alt="ElevenLabs 五折只剩最后一天：走 OpenRouter 通道，10 月" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div class="thumb"><img src="../thumb-daily-20261018-04.webp" alt="ElevenLabs 五折只剩最后一天：走 OpenRouter 通道，10 月" width="700" height="440" loading="lazy" decoding="async" /></div>
       <div>
         <h4>ElevenLabs 五折只剩最后一天：走 OpenRouter 通道，10 月 19 日截止</h4>
         <p class="exc">OpenRouter 官方博客挂着一条限时优惠：平台上线的全部 ElevenLabs 模型一律半价，截止到 10 月 19 日早上 8 点（太平洋时间），也就是北京时间 10 月 19 日晚上 11 …</p>
@@ -748,7 +748,7 @@ body.locked{overflow:hidden}
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：可灵 4.0 完整版 10 月上线：一次生成 3">
-      <div class="thumb"><img src="../daily-20261016-03.webp" alt="可灵 4.0 完整版 10 月上线：一次生成 30 秒，还能钉住 10 个关键帧" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div class="thumb"><img src="../thumb-daily-20261016-03.webp" alt="可灵 4.0 完整版 10 月上线：一次生成 30 秒，还能钉住 10 个关键帧" width="700" height="440" loading="lazy" decoding="async" /></div>
       <div>
         <h4>可灵 4.0 完整版 10 月上线：一次生成 30 秒，还能钉住 10 个关键帧</h4>
         <p class="exc">快手可灵 9 月 28 日官宣的 Kling 4.0，完整版按官方时间表在 10 月上线，发布日历已把它记进 10 月 15 日这批新模型。这一代的升级方向官方总结成三个词：真实、可控、专业。</p>
@@ -767,7 +767,7 @@ body.locked{overflow:hidden}
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：爆款视频不用再&quot;借鉴&quot;了：Pollo Recas">
-      <div class="thumb"><img src="../daily-20261015-01.webp" alt="爆款视频不用再&quot;借鉴&quot;了：Pollo Recast 让你拿自己的产品翻拍一条" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div class="thumb"><img src="../thumb-daily-20261015-01.webp" alt="爆款视频不用再&quot;借鉴&quot;了：Pollo Recast 让你拿自己的产品翻拍一条" width="700" height="440" loading="lazy" decoding="async" /></div>
       <div>
         <h4>爆款视频不用再&quot;借鉴&quot;了：Pollo Recast 让你拿自己的产品翻拍一条</h4>
         <p class="exc">Pollo AI 在 10 月 14 日上线了 Pollo Recast，玩法很直接：上传一条你看中的参考视频，再给几张自己的图片——人物、产品、吉祥物都行，AI 会按原片的动作、节奏和运镜，把整条片…</p>
@@ -787,7 +787,7 @@ body.locked{overflow:hidden}
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：一句话干一件活：三个新 Skill 把 Clau">
-      <div class="thumb"><img src="../daily-20261015-02.webp" alt="一句话干一件活：三个新 Skill 把 Claude 变成剪辑师、省钱搭子和排版" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div class="thumb"><img src="../thumb-daily-20261015-02.webp" alt="一句话干一件活：三个新 Skill 把 Claude 变成剪辑师、省钱搭子和排版" width="700" height="440" loading="lazy" decoding="async" /></div>
       <div>
         <h4>一句话干一件活：三个新 Skill 把 Claude 变成剪辑师、省钱搭子和排版工</h4>
         <p class="exc">Claude 的 Skill 生态这周又冒出三个&quot;干活型&quot;的，个个都能直接装：</p>
@@ -808,7 +808,7 @@ body.locked{overflow:hidden}
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：配音不用再交 API 税：开源工具 yovoic">
-      <div class="thumb"><img src="../daily-20261014-04.webp" alt="配音不用再交 API 税：开源工具 yovoice 把整套声音工作室装进电脑" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div class="thumb"><img src="../thumb-daily-20261014-04.webp" alt="配音不用再交 API 税：开源工具 yovoice 把整套声音工作室装进电脑" width="700" height="440" loading="lazy" decoding="async" /></div>
       <div>
         <h4>配音不用再交 API 税：开源工具 yovoice 把整套声音工作室装进电脑</h4>
         <p class="exc">每次给视频配音，要么忍云端 API 的延迟和账单，要么折腾 Python 环境和各种 WebUI。开源项目 yovoice（github.com/leemysw/yovoice）换了个思路：把配音工作…</p>
@@ -828,7 +828,7 @@ body.locked{overflow:hidden}
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：AI 学会&quot;逆向&quot;剪映了：喂给它工程文件，27 ">
-      <div class="thumb"><img src="../daily-20261013-03.webp" alt="AI 学会&quot;逆向&quot;剪映了：喂给它工程文件，27 分钟自动剪完一段视频" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div class="thumb"><img src="../thumb-daily-20261013-03.webp" alt="AI 学会&quot;逆向&quot;剪映了：喂给它工程文件，27 分钟自动剪完一段视频" width="700" height="440" loading="lazy" decoding="async" /></div>
       <div>
         <h4>AI 学会&quot;逆向&quot;剪映了：喂给它工程文件，27 分钟自动剪完一段视频</h4>
         <p class="exc">剪映是国民级剪辑软件，但 AI 一直拿它没办法——它是个手机/桌面 App，没有开放 API，AI 想剪视频，只能隔着屏幕&quot;看图点按钮&quot;，又慢又容易点错。这两天，中文 AI 圈找到了一条野路子，而且已…</p>
@@ -847,7 +847,7 @@ body.locked{overflow:hidden}
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：可灵AI要去香港上市了：先选好三家投行，最早明年">
-      <div class="thumb"><img src="../daily-20261007-02.webp" alt="可灵AI要去香港上市了：先选好三家投行，最早明年挂牌" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div class="thumb"><img src="../thumb-daily-20261007-02.webp" alt="可灵AI要去香港上市了：先选好三家投行，最早明年挂牌" width="700" height="440" loading="lazy" decoding="async" /></div>
       <div>
         <h4>可灵AI要去香港上市了：先选好三家投行，最早明年挂牌</h4>
         <p class="exc">10月6日多家媒体引用彭博社消息：快手旗下的可灵 AI 已经选定中金、高盛和瑞银三家投行筹备香港 IPO，计划募资至少 **10 亿美元**，目标最早明年完成上市。可灵方面暂时没有回应，消息人士也提醒…</p>
@@ -866,7 +866,7 @@ body.locked{overflow:hidden}
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：Google Vids更新Omni 1.1：AI">
-      <div class="thumb"><img src="../daily-20261005-03.webp" alt="Google Vids更新Omni 1.1：AI视频从&quot;抽卡&quot;变&quot;导演&quot;，免费就" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div class="thumb"><img src="../thumb-daily-20261005-03.webp" alt="Google Vids更新Omni 1.1：AI视频从&quot;抽卡&quot;变&quot;导演&quot;，免费就" width="700" height="440" loading="lazy" decoding="async" /></div>
       <div>
         <h4>Google Vids更新Omni 1.1：AI视频从&quot;抽卡&quot;变&quot;导演&quot;，免费就能用</h4>
         <p class="exc">做 AI 视频最烦的是什么？提示词写得再细，出来的东西还是开盲盒。Google Vids 这次推的 Omni 1.1，就是来治这个的。Google 产品经理 Jennifer Harris 的原话：&quot;…</p>
@@ -885,7 +885,7 @@ body.locked{overflow:hidden}
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：从&quot;卖剧&quot;到&quot;卖做剧的工具&quot;：中国 AI 视频模">
-      <div class="thumb"><img src="../daily-20261004-03.webp" alt="从&quot;卖剧&quot;到&quot;卖做剧的工具&quot;：中国 AI 视频模型打进好莱坞制作链" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div class="thumb"><img src="../thumb-daily-20261004-03.webp" alt="从&quot;卖剧&quot;到&quot;卖做剧的工具&quot;：中国 AI 视频模型打进好莱坞制作链" width="700" height="440" loading="lazy" decoding="async" /></div>
       <div>
         <h4>从&quot;卖剧&quot;到&quot;卖做剧的工具&quot;：中国 AI 视频模型打进好莱坞制作链</h4>
         <p class="exc">过去中国影视出海，是把一部部作品送出去。现在玩法变了：把&quot;做作品的工具&quot;一起送出去。</p>
@@ -905,7 +905,7 @@ body.locked{overflow:hidden}
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：配音和 BGM 一次生成：Suno 新功能把短视">
-      <div class="thumb"><img src="../daily-20261003-05.webp" alt="配音和 BGM 一次生成：Suno 新功能把短视频配音流程砍掉一半" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div class="thumb"><img src="../thumb-daily-20261003-05.webp" alt="配音和 BGM 一次生成：Suno 新功能把短视频配音流程砍掉一半" width="700" height="440" loading="lazy" decoding="async" /></div>
       <div>
         <h4>配音和 BGM 一次生成：Suno 新功能把短视频配音流程砍掉一半</h4>
         <p class="exc">10 月 1 日，Suno 发布了 Speech（beta）：配音和背景音乐一次生成，混成一条音轨。网页端和手机 App 全量公测，这是 Suno 第一次走出&quot;做歌&quot;这个老本行。</p>
@@ -927,7 +927,7 @@ body.locked{overflow:hidden}
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：Opus 5.5做视频刷屏了：剪映会员还香吗">
-      <div class="thumb"><img src="../daily-20261002-02.webp" alt="Opus 5.5做视频刷屏了：剪映会员还香吗" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div class="thumb"><img src="../thumb-daily-20261002-02.webp" alt="Opus 5.5做视频刷屏了：剪映会员还香吗" width="700" height="440" loading="lazy" decoding="async" /></div>
       <div>
         <h4>Opus 5.5做视频刷屏了：剪映会员还香吗</h4>
         <p class="exc">这两天中文AI圈被Opus 5.5做视频刷屏了。歸藏用它做了条44秒的榫卯科普视频，质量被夸&quot;很牛批&quot;；有人做了60秒武侠动作片，一招一式看着很自然；Kin更绝，一句话让它生成了&quot;AI是人类潘多拉魔盒…</p>
@@ -947,7 +947,7 @@ body.locked{overflow:hidden}
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：Kling 4.0 来了：30 秒一镜到底，AI">
-      <div class="thumb"><img src="../daily-20261001-02.webp" alt="Kling 4.0 来了：30 秒一镜到底，AI 视频终于能讲完整故事了" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div class="thumb"><img src="../thumb-daily-20261001-02.webp" alt="Kling 4.0 来了：30 秒一镜到底，AI 视频终于能讲完整故事了" width="700" height="440" loading="lazy" decoding="async" /></div>
       <div>
         <h4>Kling 4.0 来了：30 秒一镜到底，AI 视频终于能讲完整故事了</h4>
         <p class="exc">快手 9 月 28 日发布 Kling 4.0，这次是动真格的：单次生成从 15 秒拉到 30 秒，另带一个实验性 120 秒长视频模式（1080p）。以前做 AI 短剧最痛苦的就是 5 秒、10 秒…</p>
