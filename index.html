@@ -662,10 +662,12 @@ body.locked{overflow:hidden}
 .promo-sub{font-size:.82rem;color:var(--muted);line-height:1.7;margin:0 0 12px}
 .promo-cta{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--accent-ink);
   font-size:13px;font-weight:700;letter-spacing:.06em;border-radius:999px;padding:10px 18px}
-.promo-close{position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;border:0;cursor:pointer;
+.promo-close{position:absolute;top:2px;right:2px;width:44px;height:44px;border-radius:50%;border:0;cursor:pointer;z-index:3;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+  background:rgba(0,0,0,.55);color:#fff;font-size:17px;line-height:1;display:flex;align-items:center;justify-content:center}
+.promo-sound{position:absolute;top:2px;left:2px;width:44px;height:44px;border-radius:50%;border:0;cursor:pointer;z-index:3;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
   background:rgba(0,0,0,.55);color:#fff;font-size:15px;line-height:1;display:flex;align-items:center;justify-content:center}
-.promo-sound{position:absolute;top:8px;left:8px;width:28px;height:28px;border-radius:50%;border:0;cursor:pointer;
-  background:rgba(0,0,0,.55);color:#fff;font-size:14px;line-height:1;display:flex;align-items:center;justify-content:center}
 @media(max-width:760px){.promo-float{right:12px;bottom:12px;left:12px;width:auto}}
 </style>
 <script type="text/javascript">
@@ -1786,16 +1788,23 @@ function initPromoFloat(){
       if (p && p.catch) p.catch(function(){ /* 自动播放被拦截时保持海报图 */ });
     } catch(e){}
   }
+  var closed = false;
   function show(){
-    if (shown) return;
+    if (shown || closed) return;
     shown = true; box.classList.add("show"); tryPlay();
+  }
+  function closePromo(){
+    if (closed) return;
+    closed = true;
+    box.classList.remove("show");
+    try { sessionStorage.setItem("promoClosed", "1"); } catch(e){}
+    if (vid) { try { vid.pause(); vid.removeAttribute("src"); vid.load(); } catch(e){} }
   }
   window.addEventListener("scroll", function(){ if (window.scrollY > 500) show(); }, {passive:true});
   setTimeout(show, 6000);
-  document.getElementById("promoClose").addEventListener("click", function(){
-    box.classList.remove("show");
-    sessionStorage.setItem("promoClosed", "1");
-  });
+  var closeBtn = document.getElementById("promoClose");
+  closeBtn.addEventListener("pointerdown", function(e){ e.preventDefault(); closePromo(); });
+  closeBtn.addEventListener("click", closePromo);
   box.querySelector(".promo-cta").addEventListener("click", function(){
     box.classList.remove("show");
   });
@@ -1846,7 +1855,7 @@ if (document.readyState === "loading") {
 <aside class="promo-float" id="promoFloat" aria-label="课程推荐">
   <button class="promo-close" id="promoClose" aria-label="关闭">✕</button>
   <button class="promo-sound" id="promoSound" aria-label="声音开关">🔇</button>
-  <video id="promoVideo" src="promo-45plus.mp4" poster="promo-45plus-poster.jpg" muted loop playsinline webkit-playsinline="true" x5-playsinline="true" x5-video-player-type="h5" preload="none" aria-label="45岁以上AI视频课程宣传片"></video>
+  <video id="promoVideo" src="promo-45plus-m.mp4" poster="promo-45plus-poster.jpg" muted loop playsinline webkit-playsinline="true" x5-playsinline="true" x5-video-player-type="h5" preload="none" aria-label="45岁以上AI视频课程宣传片"></video>
   <div class="promo-body">
     <p class="promo-kicker">45+ · AI 零基础可学</p>
     <p class="promo-title">同龄人都在学 AI，你还在等什么？</p>
