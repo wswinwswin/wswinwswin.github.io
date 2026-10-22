@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>warm touch 层级知识库（演示版）</title>
+<style>
+  :root{--bg:#FFF9F0;--primary:#B03A2E;--ink:#333;--muted:#8a8175;--line:#EAD9C2;
+    --ok:#2E7D4F;--warn:#C08A1E;--high:#C2571B;--danger:#B3352B;--sage:#43795F}
+  *{box-sizing:border-box}
+  body{margin:0;background:#EDE6DA;font-family:"Noto Serif SC","Songti SC",serif;color:var(--ink)}
+  .phone{max-width:430px;margin:0 auto;background:var(--bg);min-height:100vh;padding:22px 18px 60px;box-shadow:0 0 24px rgba(0,0,0,.12)}
+  .bar{font-size:13px;color:var(--muted);letter-spacing:.2em;margin-bottom:6px}
+  h1{font-size:23px;margin:0 0 4px;color:var(--primary)}
+  .hint{font-size:15px;color:var(--muted);margin:0 0 18px}
+  .crumb{font-size:15px;color:var(--muted);margin-bottom:14px}
+  .crumb b{color:var(--primary);font-weight:600}
+  .back{font-size:17px;color:var(--primary);cursor:pointer;margin-bottom:14px;display:inline-block}
+  .cat{display:flex;gap:14px;align-items:center;background:#fff;border-radius:16px;padding:18px 16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(120,80,40,.08);cursor:pointer}
+  .cat .ic{width:52px;height:52px;flex:0 0 52px;border-radius:14px;background:#FDEBD0;display:flex;align-items:center;justify-content:center;font-size:27px}
+  .cat h3{margin:0 0 3px;font-size:22px}
+  .cat p{margin:0;font-size:15.5px;color:#6d6558;line-height:1.5}
+  .cat .cnt{margin-left:auto;text-align:center;color:var(--muted);font-size:13px;line-height:1.3}
+  .cat .cnt b{display:block;font-size:22px;color:var(--primary)}
+  .card{display:flex;gap:12px;align-items:flex-start;background:#fff;border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(120,80,40,.08);cursor:pointer}
+  .num{width:36px;height:36px;flex:0 0 36px;border-radius:50%;background:#FDEBD0;color:var(--primary);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:18px}
+  .card h3{margin:0 0 4px;font-size:21px}
+  .card p{margin:0;font-size:16.5px;color:#6d6558;line-height:1.55}
+  .tag{display:inline-block;font-size:12.5px;color:#fff;background:var(--sage);border-radius:999px;padding:1px 10px;margin-left:8px;vertical-align:2px}
+  .arrow{margin-left:auto;color:#ccc;font-size:24px;line-height:1}
+  .d-title{font-size:26px;margin:0 0 6px;color:#222}
+  .d-cat{font-size:14px;color:#fff;background:var(--sage);display:inline-block;padding:2px 12px;border-radius:999px;margin-bottom:10px}
+  .d-sum{font-size:18px;line-height:1.7;margin:0 0 6px}
+  .d-aud{font-size:15.5px;color:var(--muted);margin:0 0 22px}
+  h2{font-size:21px;color:var(--primary);margin:30px 0 12px}
+  .units{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .unit{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 12px}
+  .unit i{font-style:normal;font-size:12px;color:var(--sage);letter-spacing:.1em}
+  .unit b{display:block;font-size:17px;margin:2px 0}
+  .unit span{font-size:14.5px;color:#5c5546;line-height:1.5;display:block}
+  .rule{display:flex;gap:11px;background:#fff;border-radius:12px;padding:13px 14px;margin-bottom:9px;font-size:17.5px;line-height:1.65}
+  .rule .n{width:28px;height:28px;flex:0 0 28px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px}
+  .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}
+  .step{background:#fff;border:1px solid var(--line);border-radius:11px;padding:10px 8px;text-align:center}
+  .step b{display:block;color:var(--primary);font-size:19px;margin-bottom:4px}
+  .step span{font-size:13.5px;line-height:1.5;color:#5c5546;display:block}
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;font-size:16.5px}
+  td,th{border-bottom:1px solid #F0E4D2;padding:10px 12px;text-align:left;vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  .dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:7px}
+  .quiz{background:#fff;border-radius:12px;padding:6px 16px}
+  .q{padding:13px 0;border-bottom:1px solid #F0E4D2}
+  .q:last-child{border-bottom:0}
+  .q p{margin:0 0 8px;font-size:17.5px}
+  .q button{font-family:inherit;font-size:15.5px;background:var(--primary);color:#fff;border:0;border-radius:999px;padding:7px 18px;cursor:pointer}
+  .q .a{display:none;margin-top:9px;background:#FBF3E4;border-left:4px solid var(--warn);padding:9px 12px;font-size:16px;line-height:1.65;border-radius:0 9px 9px 0}
+  .q.open .a{display:block}
+  .practice{background:#FBF0D3;border:1px dashed var(--warn);border-radius:12px;padding:15px 17px;font-size:17.5px;line-height:1.7}
+  .redline{background:#FDF0EE;border:1px solid #EFC4BE;border-radius:12px;padding:14px 17px;font-size:16px;line-height:1.7}
+  .redline b{color:var(--danger)}
+  .cta{display:block;width:100%;margin-top:26px;background:var(--primary);color:#fff;font-size:20px;border:0;border-radius:999px;padding:15px 0;cursor:pointer;font-family:inherit}
+  .body-text{font-size:18.5px;line-height:2.05;white-space:pre-wrap;background:#fff;border-radius:12px;padding:18px}
+  .foot{margin-top:34px;font-size:13.5px;color:var(--muted);line-height:1.7}
+  .hidden{display:none}
+</style>
+</head>
+<body>
+<div class="phone">
+
+  <!-- 一级：分类 -->
+  <div id="catView">
+    <p class="bar">WARM TOUCH · 健 康</p>
+    <h1>📖 健康知识库</h1>
+    <p class="hint">先选一类，再挑一条 · 大字版</p>
+    <div id="cats"></div>
+    <p class="foot">层级结构：分类 → 条目 → 详情。教程每做完一课，就按分类挂进这里，越攒越厚，不改结构。</p>
+  </div>
+
+  <!-- 二级：分类下的条目 -->
+  <div id="listView" class="hidden">
+    <span class="back" onclick="showCats()">‹ 返回分类</span>
+    <p class="crumb">知识库 › <b id="crumbCat"></b></p>
+    <h1 id="listTitle"></h1>
+    <p class="hint" id="listDesc"></p>
+    <div id="cards"></div>
+  </div>
+
+  <!-- 三级：条目详情 -->
+  <div id="detailView" class="hidden">
+    <span class="back" id="backToList">‹ 返回条目</span>
+    <p class="crumb">知识库 › <span id="crumbCat2"></span> › <b id="crumbItem"></b></p>
+    <div id="detail"></div>
+  </div>
+
+</div>
+
+<script>
+const CHEAT_COLORS={ok:'#2E7D4F',warn:'#C08A1E',high:'#C2571B',danger:'#B3352B'};
+
+const BP={title:'血压计与血压数字',structured:true,
+summary:'14 个基本单元、4 条规则，学会测得准、看得懂、记得清。',
+audience:'家里有血压计、看数字心里没底的人',
+units:[
+['数字','高压（收缩压）','心脏挤血那一下的压力，读数里大的那个'],['数字','低压（舒张压）','心脏放松时的压力，读数里小的那个'],
+['数字','mmHg','血压的单位，口头就说「一百二、八十」'],['数字','心率','血压计顺带测的脉搏，一分钟跳多少下'],
+['工具','上臂式血压计','绑胳膊的比绑手腕的准，家里用选它'],['工具','袖带','下缘离肘窝两三厘米，松紧能塞进一两根手指'],
+['动作','测前静坐 5 分钟','刚走完路、刚生完气，测了也不算数'],['动作','姿势四平','背靠椅背、脚平放、手臂平放与心脏同高、不隔衣服'],
+['动作','测时不说话','不聊天、不翘二郎腿，腿一翘数字就偏'],['动作','连测两次取平均','间隔一两分钟，两次差太多就再测一次'],
+['动作','第一次测两臂','左右都测一次，往后以高的那侧为准'],['时间','早晚两个点','晨起一小时内（吃药、吃饭前）和晚上睡前'],
+['记录','血压本','日期、时间、高压、低压、心率，五样记全'],['红线','180 / 110','高压到 180 或低压到 110，或伴胸闷头痛，及时就医']],
+rules:['就高不就低：高压、低压分属两档时，按高的那档算。','在家标准低 5 个点：诊室 140/90 是线，在家自测 135/85 就是线。','一次不算数：确诊不看单次，看非同日多次；在家看一周平均。','趋势比单点重要：某天高一次别慌，连着一周往上走，才值得拿本子去问医生。'],
+steps:[['歇','坐下歇 5 分钟，上完厕所再测'],['绑','袖带绑上臂，不隔衣服'],['正','背靠、脚平、手臂放桌上与心脏同高'],['静','按开关后不说话、不动'],['记','连测两次取平均，马上记下来']],
+cheat:[['< 120 / 80','正常','ok','保持习惯，每周测一两次留个底'],['120–134 / 80–84','正常高值','warn','少盐、多走动，测勤一点看趋势'],['135–159 / 85–99','偏高','high','连测一周记满，带记录去给医生看'],['≥ 160 / 100','明显偏高','danger','尽快就医咨询，别自己加药减药'],['≥ 180 / 110 或难受','危险线','danger','立即就医或打 120']],
+quiz:[['今早在家测了 142/88，算确诊高血压吗？','不算。一次读数只说明这次偏高，要连测一周看平均，再带记录让医生判断。在家线是 135/85，这次在偏高区。'],
+['袖带隔着毛衣绑，测出来会怎么样？','不准，多数时候偏高。袖带要贴皮肤或只隔一层薄衣，袖子撸上去别勒住胳膊。'],
+['刚爬完五楼到家，能马上测吗？','不能。先坐下歇满 5 分钟，喘匀了再测。']],
+practice:'现在按五步给自己测一次，连测两次取平均，把日期、时间、高压、低压、心率记到健康记录本里。',
+disclaimer:'本页用于健康科普，不代替医生诊断；用药调整请遵医嘱。',
+review:'依据：家庭血压自测通行标准（家测线 135/85、诊室线 140/90）｜核对：wswin · 2026-10-23',
+action:'去记录今天的血压'};
+
+const PLAIN=[
+{t:'高血压日常管理',s:'固定时间量、盐不过 5 克、药不能自己停。',b:'高血压是老年人的常见病，控制得好完全可以正常生活。\n\n一、每天固定时间量血压，早上起床后、晚上睡前各一次，记在本子上，复诊时带给医生看。\n\n二、盐每天不超过5克，就是一个啤酒瓶盖的量。酱油、咸菜、腊肉里的盐也要算进去。\n\n三、降压药不能自己停。血压正常了是药在起作用，停药会反弹，有不舒服先问医生。\n\n四、情绪别激动，生气、着急都会让血压往上窜。\n\n记住：高血压不可怕，可怕的是不当回事。'},
+{t:'糖尿病饮食注意',s:'粗细搭配、顺序对、甜食饮料尽量不碰。',b:'得了糖尿病，管住嘴比吃药还重要。\n\n一、主食要粗细搭配，白米白面换成一半粗粮，燕麦、玉米、红薯都很好。\n\n二、吃饭顺序：先吃菜，再吃肉，最后吃主食，这样血糖升得慢。\n\n三、甜食、含糖饮料尽量不碰，水果选在两餐之间吃，每天一小份。\n\n四、少食多餐，一天5顿比3顿更稳。\n\n五、定期测血糖，空腹和饭后两小时都要测，记下来给医生看。\n\n饮食控制好了，很多人的药量都能减下来。'},
+{t:'老年人睡眠改善',s:'午睡别过半小时，睡前一小时放下手机。',b:'年纪大了觉少是正常的，但整夜睡不着就得调一调。\n\n一、白天别睡太久，午睡控制在半小时以内，下午三点后就别睡了。\n\n二、睡前一小时别看手机，蓝光会赶走睡意。可以听听戏、广播。\n\n三、卧室保持安静、稍凉，被子别太厚。\n\n四、睡前喝半杯温牛奶，泡泡脚，都有帮助。\n\n五、别依赖安眠药，长期吃会有依赖，真睡不着去看医生。\n\n记住：睡不着别硬躺，起来坐一会儿，有困意再睡。'},
+{t:'居家跌倒预防',s:'卫生间扶手防滑垫，起身慢三步。',b:'老人跌倒不是小事，髋部骨折有"人生最后一次骨折"的说法。\n\n一、卫生间装扶手，地面铺防滑垫，这是最重要的。\n\n二、起床、起身要慢：醒来先坐半分钟，站起来再站半分钟，走路前确认不晕。\n\n三、拖鞋换成包跟防滑的，人字拖、塑料拖鞋最容易滑倒。\n\n四、家里电线、门槛、小地毯收好，夜间留一盏小夜灯。\n\n五、骨质疏松要补钙，多晒太阳，遵医嘱吃钙片。\n\n防跌倒，胜过治跌倒。'},
+{t:'冬季保健要点',s:'保暖头脚、晨起慢、勤量血压。',b:'冬天是老年人最难熬的季节，心脑血管病高发。\n\n一、保暖从头脚做起，出门戴帽子、围巾，寒冷会让血管收缩。\n\n二、早上别起太早太猛，赖床几分钟再慢慢起，避开清晨最冷的时候出门。\n\n三、多喝温水，冬天不觉得渴也要喝，防止血液黏稠。\n\n四、有高血压、心脏病的，冬天要更勤量血压，药不能断。\n\n五、房间通风和保暖兼顾，每天开窗两三次，每次十几分钟。\n\n安稳过冬，春天就来了。'},
+{t:'合理用药常识',s:'时间固定、不混吃、不用别人的药。',b:'老人常年吃药，这几点一定要记住。\n\n一、吃药时间固定，和三餐、睡觉绑定就不容易忘。可以用咱们的用药提醒功能。\n\n二、药别混着吃，保健品、中药、西药一起吃可能打架，开新药时把正在吃的都告诉医生。\n\n三、看不懂说明书就问，别猜。药店的药师、社区医生都可以问。\n\n四、过期药、变色变味的药直接扔掉，别心疼。\n\n五、别人吃着好的药，不一定适合你，千万别跟风吃别人的处方药。\n\n是药三分毒，对症才是好药。'}];
+
+const CATS=[
+ {name:'心脑血管',icon:'❤️',desc:'血压、血管，还有过冬的保暖',items:[BP,PLAIN[0],PLAIN[4]]},
+ {name:'血糖与饮食',icon:'🍚',desc:'吃什么、怎么吃，血糖才稳',items:[PLAIN[1]]},
+ {name:'睡眠',icon:'🌙',desc:'睡个安稳觉的办法',items:[PLAIN[2]]},
+ {name:'居家安全',icon:'🏠',desc:'防跌倒，护周全',items:[PLAIN[3]]},
+ {name:'用药安全',icon:'💊',desc:'药吃对了才是宝',items:[PLAIN[5]]}
+];
+
+let curCat=0;
+const $=function(id){return document.getElementById(id);};
+function hideAll(){$('catView').classList.add('hidden');$('listView').classList.add('hidden');$('detailView').classList.add('hidden');}
+function showCats(){hideAll();$('catView').classList.remove('hidden');window.scrollTo(0,0);}
+function showList(ci){
+  curCat=ci; const c=CATS[ci];
+  $('crumbCat').textContent=c.name; $('listTitle').textContent=c.name; $('listDesc').textContent=c.desc;
+  $('cards').innerHTML=c.items.map(function(a,i){
+    return '<div class="card" onclick="showItem('+i+')"><div class="num">'+(i+1)+'</div><div><h3>'+(a.t||a.title)+'</h3><p>'+(a.s||a.summary)+'</p></div><div class="arrow">›</div></div>';
+  }).join('');
+  hideAll();$('listView').classList.remove('hidden');window.scrollTo(0,0);
+}
+function toggleQ(el){el.parentNode.classList.toggle('open');}
+function showItem(ii){
+  const c=CATS[curCat], a=c.items[ii];
+  $('crumbCat2').textContent=c.name; $('crumbItem').textContent=a.t||a.title;
+  $('backToList').onclick=function(){showList(curCat);};
+  let h='';
+  if(a.structured){
+    h='<h2 class="d-title" style="margin-top:0;color:#222">'+a.title+'<span class="tag">结构化新版</span></h2>'
+      +'<p class="d-sum">'+a.summary+'</p><p class="d-aud">适合：'+a.audience+'</p>';
+    h+='<h2>基本单元</h2><div class="units">'+a.units.map(function(u){return '<div class="unit"><i>'+u[0]+'</i><b>'+u[1]+'</b><span>'+u[2]+'</span></div>';}).join('')+'</div>';
+    h+='<h2>组合规则</h2>'+a.rules.map(function(r,i){return '<div class="rule"><div class="n">'+(i+1)+'</div><div>'+r+'</div></div>';}).join('');
+    h+='<h2>测对五步</h2><div class="steps">'+a.steps.map(function(s){return '<div class="step"><b>'+s[0]+'</b><span>'+s[1]+'</span></div>';}).join('')+'</div>';
+    h+='<h2>速查表</h2><table><tr><th>读数</th><th>属于</th><th>怎么办</th></tr>'+a.cheat.map(function(x){return '<tr><td>'+x[0]+'</td><td><span class="dot" style="background:'+CHEAT_COLORS[x[2]]+'"></span>'+x[1]+'</td><td>'+x[3]+'</td></tr>';}).join('')+'</table>';
+    h+='<h2>自测</h2><div class="quiz">'+a.quiz.map(function(q){return '<div class="q"><p>'+q[0]+'</p><button onclick="toggleQ(this)">看答案</button><div class="a">'+q[1]+'</div></div>';}).join('')+'</div>';
+    h+='<h2>立即练习</h2><div class="practice">'+a.practice+'</div>';
+    h+='<h2>红线与说明</h2><div class="redline"><b>红线：</b>高压到 180 或低压到 110，或伴胸闷头痛，别等，及时就医。<br>'+a.disclaimer+'<br><span style="color:#8a8175;font-size:14.5px">'+a.review+'</span></div>';
+    h+='<button class="cta">'+a.action+'</button>';
+  }else{
+    h='<h2 class="d-title" style="margin-top:0;color:#222">'+a.t+'</h2><div class="body-text">'+a.b+'</div>';
+  }
+  $('detail').innerHTML=h;
+  hideAll();$('detailView').classList.remove('hidden');window.scrollTo(0,0);
+}
+
+$('cats').innerHTML=CATS.map(function(c,i){
+  return '<div class="cat" onclick="showList('+i+')"><div class="ic">'+c.icon+'</div><div><h3>'+c.name+'</h3><p>'+c.desc+'</p></div><div class="cnt"><b>'+c.items.length+'</b>条</div></div>';
+}).join('');
+</script>
+</body>
+</html>
