@@ -437,15 +437,15 @@ function renderCheckout(){
       <div style="font-size:14px;color:var(--mid)">商城商品送到这个地址；食堂送餐也用它。</div></div>`:''}
     <div class="fgroup"><div class="ft">付款方式</div>
       <div class="opt ${state.payMethod==='balance'?'on':''}" onclick="state.payMethod='balance';renderCheckout()"><span>🍲</span><span class="grow">食堂余额付款（余额 ${fmt(state.balance)}）</span></div>
-      <div class="opt ${state.payMethod==='wechat'?'on':''}" onclick="state.payMethod='wechat';renderCheckout()"><span>💬</span><span class="grow">微信支付</span><span style="color:var(--mid);font-size:14px">注册开通后可用</span></div>
-      <div class="opt ${state.payMethod==='alipay'?'on':''}" onclick="state.payMethod='alipay';renderCheckout()"><span>🅰️</span><span class="grow">支付宝</span><span style="color:var(--mid);font-size:14px">注册开通后可用</span></div></div>
+      <div class="opt ${state.payMethod==='wechat'?'on':''}" onclick="state.payMethod='wechat';renderCheckout()"><span>💬</span><span class="grow">微信支付</span></div>
+      <div class="opt ${state.payMethod==='alipay'?'on':''}" onclick="state.payMethod='alipay';renderCheckout()"><span>🅰️</span><span class="grow">支付宝</span></div></div>
     <button class="bigbtn" onclick="placeOrder()">确认下单 · ${fmt(total)}</button>
     <div style="height:20px"></div>`;
 }
 function placeOrder(){
   const total = cartTotal();
   if(!state.cart.length) return;
-  if(state.payMethod!=='balance'){ showToast('支付通道等平台注册完成后开通，先用食堂余额试试'); return; }
+  if(state.payMethod!=='balance'){ showToast('请先使用食堂余额完成支付'); return; }
   if(state.balance < total){ showToast('食堂余额不够，去「我的」充值后再下单'); return; }
   const addrIn = document.getElementById('addr-in');
   if(addrIn){ state.addr = addrIn.value.trim(); }
