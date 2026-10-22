@@ -463,6 +463,38 @@ a.plat:hover .plat-ic{border-color:var(--accent);color:var(--accent)}
 .plat-arr{margin-left:auto;font-family:var(--font-mono);color:var(--faint);font-size:17px;flex:none;transition:all .3s var(--ease)}
 a.plat:hover .plat-arr{color:var(--accent);transform:translate(2px,-2px)}
 .follow-note{margin-top:22px;font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;color:var(--muted)}
+/* enroll section */
+.enroll-lede{font-size:1.06rem;line-height:1.75;color:var(--muted);max-width:46em;margin-bottom:30px}
+.enroll-lede strong{color:var(--ink)}
+.enroll-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:22px;align-items:stretch}
+.enroll-steps{display:flex;flex-direction:column}
+.estep{display:flex;gap:20px;padding:22px 2px;border-top:1px solid var(--line)}
+.estep:first-child{border-top:none;padding-top:4px}
+.eno{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;color:var(--muted);padding-top:5px;flex:none}
+.etx b{font-size:1.08rem;display:block;margin-bottom:6px}
+.etx p{color:var(--muted);line-height:1.75;font-size:.98rem}
+.etx p strong{color:var(--ink)}
+.etx a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.enroll-card{border:1px solid var(--line);padding:28px 24px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.enroll-card-t{font-size:1.1rem;margin-bottom:18px}
+.enroll-card .wechat-qrcode{margin:0 auto}
+.enroll-card .wechat-qrcode img{width:172px}
+.enroll-card-note{margin-top:16px;color:var(--muted);font-size:.9rem}
+.enroll-fit{margin-top:26px;border-top:1px solid var(--line);padding-top:24px;display:flex;gap:22px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.enroll-fit p{color:var(--muted);line-height:1.75;max-width:52em}
+.enroll-fit p b{color:var(--ink)}
+.btn-ink{display:inline-block;background:var(--ink);color:var(--bg);font-weight:600;font-size:.92rem;padding:11px 22px;border-radius:999px;white-space:nowrap}
+.nav a.enroll-pill{background:var(--accent);color:var(--accent-ink);font-weight:700;border-radius:999px;padding:8px 15px;margin-left:10px;align-self:center}
+.nav a.enroll-pill::after{display:none}
+.nav a.enroll-pill:hover{color:var(--accent-ink)}
+@media(max-width:860px){
+  .enroll-grid{grid-template-columns:1fr}
+  .enroll-card{order:-1}
+}
+@media(max-width:1100px){
+  .nav a.enroll-pill{margin-left:0}
+}
+
 /* wechat card: icon + QR + caption */
 .wechat-card{
   display:flex;align-items:center;gap:22px;
@@ -664,12 +696,13 @@ body.locked{overflow:hidden}
       <a href="#live"><span class="idx">04</span>直播</a>
       <a href="#platforms"><span class="idx">05</span>平台演示</a>
       <a href="#pricing"><span class="idx">06</span>定价</a>
-      <a href="#about"><span class="idx">07</span>关于我</a>
-      <a href="#posters"><span class="idx">08</span>海报栏</a>
-      <a href="#wall"><span class="idx">09</span>学员评价</a>
-      <a href="#faq"><span class="idx">10</span>常见问题</a>
-      <a href="member.html"><span class="idx">11</span>会员专区</a>
-      <a href="topics/"><span class="idx">12</span>智库</a>
+      <a class="enroll-pill" href="#enroll">报名</a>
+      <a href="#about"><span class="idx">08</span>关于我</a>
+      <a href="#posters"><span class="idx">09</span>海报栏</a>
+      <a href="#wall"><span class="idx">10</span>学员评价</a>
+      <a href="#faq"><span class="idx">11</span>常见问题</a>
+      <a href="member.html"><span class="idx">12</span>会员专区</a>
+      <a href="topics/"><span class="idx">13</span>智库</a>
     </nav>
     <div class="mast-ctl">
       <span class="clock" id="clock" aria-hidden="true">--:--:--</span>
@@ -908,7 +941,7 @@ body.locked{overflow:hidden}
   </div>
 </section>
 
-<!-- ============ 05 PRICING ============ -->
+<!-- ============ 05 PLATFORMS ============ -->
 <section class="section" id="platforms">
   <div class="wrap">
     <div class="sec-head">
@@ -941,10 +974,11 @@ body.locked{overflow:hidden}
   </div>
 </section>
 
+<!-- ============ 06 PRICING ============ -->
 <section class="section" id="pricing">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-idx">10</span>
+      <span class="sec-idx">06</span>
       <h2 class="sec-title">定价</h2>
       <span class="sec-rule"></span>
       <span class="sec-meta">FREE · 永久免费 / PRO · 正式开售</span>
@@ -974,7 +1008,7 @@ body.locked{overflow:hidden}
       <div class="feat45-cta">
         <div class="feat45-price"><s data-price-orig="ai1_orig">原价 ¥99</s><b data-price="ai1">¥29.9</b></div>
         <p class="feat45-note">还不到一顿早饭钱。扫码加微信，免费先听第 1 课，听完再决定。</p>
-        <a class="go-link" href="#about">↓ 加微信免费试听</a>
+        <a class="go-link" href="#enroll">↓ 加微信免费试听</a>
       </div>
     </div>
 
@@ -1107,7 +1141,7 @@ body.locked{overflow:hidden}
 
         <div class="price-foot">
           <p>报名、咨询统一走微信：下方「全平台关注」区扫码添加顺理成章。</p>
-          <a class="go-link" href="#about">↓ 加微信咨询报名</a>
+          <a class="go-link" href="#enroll">↓ 加微信咨询报名</a>
           <a class="go-link" href="member.html">→ 已付费学员进入会员专区</a>
         </div>
         <p class="price-basis"><span class="bk">定价依据</span>影视飓风 AI 实战课 ¥49（B站 / 抖音 · 10 万+份）、影视飓风剪辑课 ¥49（10 万+份）、小报童提示词专栏 ¥39、AI 训练营 ¥1580～¥3980、线下短视频训练营 ¥1980。</p>
@@ -1149,11 +1183,43 @@ body.locked{overflow:hidden}
   </div>
 </section>
 
-<!-- ============ 06 ABOUT ============ -->
+<!-- ============ 07 ENROLL ============ -->
+<section class="section" id="enroll">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-idx">07</span>
+      <h2 class="sec-title">学员报名</h2>
+      <span class="sec-rule"></span>
+      <span class="sec-meta">ENROLL · 三步开通会员课</span>
+    </div>
+    <p class="enroll-lede">想学 AI、做短视频，先看这里。两门入门课都从零基础起步：一部手机、跟着步骤做，不讲英文、不背概念。</p>
+    <div class="enroll-grid">
+      <div class="enroll-steps">
+        <div class="estep"><span class="eno">01</span><div class="etx"><b>选课</b><p>剪映问候语视频课 <strong>19.9 元起</strong>：从 10 秒早安视频起步，学到批量生产；AI 入门课 <strong>39.9 元起</strong>：写作、做图、短视频、办公提效全走一遍。进阶档在定价区，价格都写明了。</p></div></div>
+        <div class="estep"><span class="eno">02</span><div class="etx"><b>加微信报名</b><p>扫右边的二维码加微信，说一句想学哪门课。微信付款即完成报名——付款记录就是你的身份核验，不用再注册账号、记密码。</p></div></div>
+        <div class="estep"><span class="eno">03</span><div class="etx"><b>拿会员码开课</b><p>付款后发你专属会员码，去 <a href="member.html">会员专区</a> 输码就能学。第 1–3 课已上线，4–8 课持续更新，会员期内更新免费跟学；手机、电脑都能看。</p></div></div>
+      </div>
+      <aside class="enroll-card" aria-label="微信报名二维码">
+        <b class="enroll-card-t">微信报名</b>
+        <div class="wechat-qrcode">
+          <img src="img-14.jpg" alt="wswin 个人微信二维码（昵称：顺理成章），打开微信扫一扫添加好友报名" width="888" height="1140" loading="lazy" decoding="async" />
+          <span class="wechat-cap">扫码加微信 · 昵称：顺理成章</span>
+        </div>
+        <p class="enroll-card-note">付款前先聊，确认适合再报。</p>
+      </aside>
+    </div>
+    <div class="enroll-fit">
+      <p><b>适合谁：</b>零基础、想用 AI 做短视频的 45+ 朋友。拿不准先别付款——教程区 8 篇实战教程全免费，先跟着做一篇，跟得上再报名。</p>
+      <a class="btn-ink" href="#tutorials">先看免费教程 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 ABOUT ============ -->
 <section class="section" id="about">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-idx">06</span>
+      <span class="sec-idx">08</span>
       <h2 class="sec-title">关于我</h2>
       <span class="sec-rule"></span>
       <span class="sec-meta">PROFILE</span>
@@ -1219,10 +1285,11 @@ body.locked{overflow:hidden}
   </div>
 </section>
 
+<!-- ============ 09 POSTERS ============ -->
 <section class="section" id="posters">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-idx">07</span>
+      <span class="sec-idx">09</span>
       <h2 class="sec-title">海报栏</h2>
       <span class="sec-rule"></span>
       <span class="sec-meta">POSTERS</span>
@@ -1242,11 +1309,11 @@ body.locked{overflow:hidden}
   </div>
 </section>
 
-<!-- ============ 08 WALL ============ -->
+<!-- ============ 10 WALL ============ -->
 <section class="section" id="wall">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-idx">08</span>
+      <span class="sec-idx">10</span>
       <h2 class="sec-title">学员评价</h2>
       <span class="sec-rule"></span>
       <span class="sec-meta">WALL</span>
@@ -1259,11 +1326,11 @@ body.locked{overflow:hidden}
   </div>
 </section>
 
-<!-- ============ 09 FAQ ============ -->
+<!-- ============ 11 FAQ ============ -->
 <section class="section" id="faq">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-idx">09</span>
+      <span class="sec-idx">11</span>
       <h2 class="sec-title">常见问题</h2>
       <span class="sec-rule"></span>
       <span class="sec-meta">FAQ</span>
