@@ -162,6 +162,17 @@
     .takeaway{background:var(--paper-soft);padding:.75rem .9rem;border-radius:10px;font-weight:700;color:var(--green-2)}
     .knowledge-note{margin:1rem 0 0;padding:1rem 1.1rem;background:var(--paper-soft);border-radius:12px;color:var(--muted);font-size:.87rem}
     .knowledge-note a{color:var(--green-2);font-weight:700;text-underline-offset:3px}
+    .lecture{margin:0 0 1.5rem;padding:1.4rem;background:var(--paper);border:1.5px solid var(--green-2);border-radius:18px}
+    .lecture-head{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;margin:0 0 .4rem}
+    .lecture-head h3{font-family:"Noto Serif SC",serif;font-size:1.6rem;margin:0;color:var(--green-2)}
+    .lecture-tag{background:var(--green-2);color:#fff;font-size:.8rem;font-weight:700;padding:.28rem .7rem;border-radius:999px}
+    .lecture-intro{color:var(--muted);margin:0 0 1rem;max-width:44rem}
+    .lecture-video{position:relative;border-radius:14px;overflow:hidden;background:#101315}
+    .lecture-video video{display:block;width:100%;aspect-ratio:16/9}
+    .lecture-meta{display:flex;gap:.75rem;flex-wrap:wrap;align-items:baseline;margin:.85rem 0 0}
+    .lecture-meta strong{font-size:1.05rem}
+    .lecture-meta span{color:var(--muted);font-size:.9rem}
+    .lecture-expert{margin:1rem 0 0;padding:.85rem 1rem;border:1.5px dashed var(--green-2);border-radius:12px;color:var(--green-2);font-weight:700;background:var(--paper-soft)}
     .health-links{display:flex;gap:.75rem;flex-wrap:wrap;align-items:center}
     .wechat{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:1.7rem;margin-bottom:5rem}
     .wechat-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.2rem}
@@ -354,6 +365,13 @@
           <p class="knowledge-intro">新版知识库按分类分层：先选一类，再挑一条，最后一层是能照着做的内容。字大、段落短，遇到拿不准的情况，及时问医生或药师。</p>
           <div class="health-links" style="margin-top:1rem"><a class="linkbtn" href="knowledge.html">打开层级知识库（新版）→</a></div>
         </div>
+      </div>
+      <div class="lecture" aria-label="健康讲座">
+        <div class="lecture-head"><span class="lecture-tag">每日更新</span><h3>健康讲座 · 晚晚每日健康讲座</h3></div>
+        <p class="lecture-intro">每天一讲，三五分钟，健康知识和健康故事轮着讲。在家打开就能听，子女也能陪爸妈一起看。</p>
+        <div class="lecture-video"><video controls preload="none" poster="lecture-01-poster.jpg" src="lecture-01-bp.mp4" aria-label="晚晚每日健康讲座第一讲：血压数字怎么看"></video></div>
+        <p class="lecture-meta"><strong>第一讲 · 血压数字怎么看</strong><span>晚晚 主讲 · 3 分 47 秒</span></p>
+        <p class="lecture-expert">专家讲座席位预留中：接下来会请医生、营养师、康复师来开讲，把专业的事讲成人人听得懂的话。</p>
       </div>
       <div class="knowledge-grid">
         <details class="article-card">
