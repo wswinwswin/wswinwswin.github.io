@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>防骗安全智库 | wswin</title>
-<meta name="description" content="AI 诈骗、水印、隐私：别被 AI 骗了。wswin AI 智库「防骗安全」主题聚合，共 9 篇，持续更新。" />
+<meta name="description" content="AI 诈骗、水印、隐私：别被 AI 骗了。wswin AI 智库「防骗安全」主题聚合，共 10 篇，持续更新。" />
 <link rel="canonical" href="https://wswin.dpdns.org/topics/security.html" />
 <meta property="og:title" content="防骗安全智库 | wswin" />
-<meta property="og:description" content="AI 诈骗、水印、隐私：别被 AI 骗了。wswin AI 智库「防骗安全」主题聚合，共 9 篇，持续更新。" />
+<meta property="og:description" content="AI 诈骗、水印、隐私：别被 AI 骗了。wswin AI 智库「防骗安全」主题聚合，共 10 篇，持续更新。" />
 <style>
 /* ============================================================
    WSWIN — dark editorial tech aesthetic
@@ -411,11 +411,13 @@ a{color:inherit;text-decoration:none}
 @media(max-width:520px){
   .tier-price{font-size:1.42rem}
   .tier-row{flex-wrap:wrap}
+  .track-head{flex-wrap:wrap}
+  .track-head h4{white-space:normal}
   .combo-row{flex-direction:column;align-items:flex-start;gap:12px}
   .fact{padding:16px 18px}
   .about-facts .foot{padding:18px}
 }
-@media(max-width:860px){.price-grid{grid-template-columns:1fr}}
+@media(max-width:860px){.price-grid{grid-template-columns:minmax(0,1fr)}.price{min-width:0}}
 
 /* ---------- FOLLOW ---------- */
 .follow{margin-top:72px}
@@ -442,6 +444,44 @@ a.plat:hover .plat-ic{border-color:var(--accent);color:var(--accent)}
 .plat-arr{margin-left:auto;font-family:var(--font-mono);color:var(--faint);font-size:17px;flex:none;transition:all .3s var(--ease)}
 a.plat:hover .plat-arr{color:var(--accent);transform:translate(2px,-2px)}
 .follow-note{margin-top:22px;font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;color:var(--muted)}
+/* enroll section */
+.enroll-lede{font-size:1.06rem;line-height:1.75;color:var(--muted);max-width:46em;margin-bottom:30px}
+.enroll-lede strong{color:var(--ink)}
+.enroll-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:22px;align-items:stretch}
+.enroll-steps{display:flex;flex-direction:column}
+.estep{display:flex;gap:20px;padding:22px 2px;border-top:1px solid var(--line)}
+.estep:first-child{border-top:none;padding-top:4px}
+.eno{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;color:var(--muted);padding-top:5px;flex:none}
+.etx b{font-size:1.08rem;display:block;margin-bottom:6px}
+.etx p{color:var(--muted);line-height:1.75;font-size:.98rem}
+.etx p strong{color:var(--ink)}
+.etx a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.enroll-card{border:1px solid var(--line);padding:28px 24px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.enroll-card-t{font-size:1.1rem;margin-bottom:18px}
+.enroll-card .wechat-qrcode{margin:0 auto}
+.enroll-card .wechat-qrcode img{width:172px}
+.enroll-card-note{margin-top:16px;color:var(--muted);font-size:.9rem}
+.enroll-fit{margin-top:26px;border-top:1px solid var(--line);padding-top:24px;display:flex;gap:22px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.enroll-fit p{color:var(--muted);line-height:1.75;max-width:52em}
+.enroll-fit p b{color:var(--ink)}
+.btn-ink{display:inline-block;background:var(--ink);color:var(--bg);font-weight:600;font-size:.92rem;padding:11px 22px;border-radius:999px;white-space:nowrap}
+.nav a.enroll-pill{background:var(--accent);color:var(--accent-ink);font-weight:700;border-radius:999px;padding:8px 15px;margin-left:10px;align-self:center}
+.nav a.enroll-pill::after{display:none}
+.nav a.enroll-pill:hover{color:var(--accent-ink)}
+@media(max-width:860px){
+  .enroll-grid{grid-template-columns:1fr}
+  .enroll-card{order:-1}
+}
+@media(max-width:1100px){
+  .nav a.enroll-pill{margin-left:0}
+}
+
+.sub-links{margin-top:14px;padding-top:12px;border-top:1px solid var(--line,rgba(128,128,128,.25));display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:13.5px}
+.sub-links a{color:var(--ink2);text-decoration:none}
+.sub-links a:hover{color:var(--ink)}
+.sub-links .sep{opacity:.45}
+.soon-tag{color:#ff8a4c;font-weight:600;letter-spacing:.35em;font-size:15px;white-space:nowrap}
+html[data-theme="light"] .soon-tag{color:#c2530f}
 /* wechat card: icon + QR + caption */
 .wechat-card{
   display:flex;align-items:center;gap:22px;
@@ -458,6 +498,7 @@ a.plat:hover .plat-arr{color:var(--accent);transform:translate(2px,-2px)}
   .wechat-qrcode img{width:190px}
 }
 @media(max-width:900px){.plat-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.plat-grid{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:520px){.plat{padding:18px 16px;gap:13px}.plat-ic{width:40px;height:40px}.plat-ic svg{width:19px;height:19px}}
 
 /* ---------- FOOTER ---------- */
@@ -602,10 +643,12 @@ body.locked{overflow:hidden}
 .promo-sub{font-size:.82rem;color:var(--muted);line-height:1.7;margin:0 0 12px}
 .promo-cta{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--accent-ink);
   font-size:13px;font-weight:700;letter-spacing:.06em;border-radius:999px;padding:10px 18px}
-.promo-close{position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;border:0;cursor:pointer;
+.promo-close{position:absolute;top:2px;right:2px;width:44px;height:44px;border-radius:50%;border:0;cursor:pointer;z-index:3;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+  background:rgba(0,0,0,.55);color:#fff;font-size:17px;line-height:1;display:flex;align-items:center;justify-content:center}
+.promo-sound{position:absolute;top:2px;left:2px;width:44px;height:44px;border-radius:50%;border:0;cursor:pointer;z-index:3;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
   background:rgba(0,0,0,.55);color:#fff;font-size:15px;line-height:1;display:flex;align-items:center;justify-content:center}
-.promo-sound{position:absolute;top:8px;left:8px;width:28px;height:28px;border-radius:50%;border:0;cursor:pointer;
-  background:rgba(0,0,0,.55);color:#fff;font-size:14px;line-height:1;display:flex;align-items:center;justify-content:center}
 @media(max-width:760px){.promo-float{right:12px;bottom:12px;left:12px;width:auto}}
 
 /* topics extra */
@@ -639,10 +682,28 @@ body.locked{overflow:hidden}
 </div></div>
 
 <div class="wrap"><div class="t-hero">
-<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 9 篇</span>
+<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 10 篇</span>
 <h1>防骗安全</h1>
 <p>AI 诈骗、水印、隐私：别被 AI 骗了</p>
 </div>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：">
+      <div class="thumb"><img src="../thumb-daily-20261023-02.webp" alt="" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4></h4>
+        <p class="exc">10 月 21 日，ServiceNow 和英伟达把企业 AI 助手 Arc 正式推向市场（5 月先亮过相）。这是一款&quot;长跑型&quot;个人助手：帮你处理邮件、Teams 消息这类日常杂活，越用越顺手，还会自…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-10-23</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>10 月 21 日，ServiceNow 和英伟达把企业 AI 助手 Arc 正式推向市场（5 月先亮过相）。这是一款&quot;长跑型&quot;个人助手：帮你处理邮件、Teams 消息这类日常杂活，越用越顺手，还会自己长记性、学新技能。</p>
+      <p>最值得看的不是功能，是它怎么管住自己。Arc 装了三层保险：ServiceNow 的&quot;超级智能控制塔&quot;盯着它的一举一动——查它碰了哪些数据、防提示词注入、给表现打分；英伟达开源的运行时 OpenShell 在底层执行政策，不对劲直接拦；还有个 AI Passport，事先规定好这个助手能进哪扇门、能调哪个接口。数据尽量留在本地，实在搞不定的复杂活才交给大模型。Mac 版先上，Windows 版还在做，可以跑在员工自己电脑上，也能跑在英伟达 RTX Spark 这类小设备上。</p>
+      <p>**普通人怎么用**：你给 AI 助手开权限之前，学一下这套思路——先想清楚它能看什么、能动什么，动钱动文件前要不要你点头。权限清单写在纸上，比事后救火便宜得多。以后选 AI 助手类产品，先问它有没有&quot;操作前请示&quot;和&quot;权限开关&quot;，没有的直接 pass。</p>
+  </div>
+</details>
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：这家澳洲公司专让 AI 去&quot;挨骗&quot;：250 万次">

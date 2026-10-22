@@ -411,11 +411,13 @@ a{color:inherit;text-decoration:none}
 @media(max-width:520px){
   .tier-price{font-size:1.42rem}
   .tier-row{flex-wrap:wrap}
+  .track-head{flex-wrap:wrap}
+  .track-head h4{white-space:normal}
   .combo-row{flex-direction:column;align-items:flex-start;gap:12px}
   .fact{padding:16px 18px}
   .about-facts .foot{padding:18px}
 }
-@media(max-width:860px){.price-grid{grid-template-columns:1fr}}
+@media(max-width:860px){.price-grid{grid-template-columns:minmax(0,1fr)}.price{min-width:0}}
 
 /* ---------- FOLLOW ---------- */
 .follow{margin-top:72px}
@@ -442,6 +444,44 @@ a.plat:hover .plat-ic{border-color:var(--accent);color:var(--accent)}
 .plat-arr{margin-left:auto;font-family:var(--font-mono);color:var(--faint);font-size:17px;flex:none;transition:all .3s var(--ease)}
 a.plat:hover .plat-arr{color:var(--accent);transform:translate(2px,-2px)}
 .follow-note{margin-top:22px;font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;color:var(--muted)}
+/* enroll section */
+.enroll-lede{font-size:1.06rem;line-height:1.75;color:var(--muted);max-width:46em;margin-bottom:30px}
+.enroll-lede strong{color:var(--ink)}
+.enroll-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:22px;align-items:stretch}
+.enroll-steps{display:flex;flex-direction:column}
+.estep{display:flex;gap:20px;padding:22px 2px;border-top:1px solid var(--line)}
+.estep:first-child{border-top:none;padding-top:4px}
+.eno{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;color:var(--muted);padding-top:5px;flex:none}
+.etx b{font-size:1.08rem;display:block;margin-bottom:6px}
+.etx p{color:var(--muted);line-height:1.75;font-size:.98rem}
+.etx p strong{color:var(--ink)}
+.etx a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.enroll-card{border:1px solid var(--line);padding:28px 24px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.enroll-card-t{font-size:1.1rem;margin-bottom:18px}
+.enroll-card .wechat-qrcode{margin:0 auto}
+.enroll-card .wechat-qrcode img{width:172px}
+.enroll-card-note{margin-top:16px;color:var(--muted);font-size:.9rem}
+.enroll-fit{margin-top:26px;border-top:1px solid var(--line);padding-top:24px;display:flex;gap:22px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.enroll-fit p{color:var(--muted);line-height:1.75;max-width:52em}
+.enroll-fit p b{color:var(--ink)}
+.btn-ink{display:inline-block;background:var(--ink);color:var(--bg);font-weight:600;font-size:.92rem;padding:11px 22px;border-radius:999px;white-space:nowrap}
+.nav a.enroll-pill{background:var(--accent);color:var(--accent-ink);font-weight:700;border-radius:999px;padding:8px 15px;margin-left:10px;align-self:center}
+.nav a.enroll-pill::after{display:none}
+.nav a.enroll-pill:hover{color:var(--accent-ink)}
+@media(max-width:860px){
+  .enroll-grid{grid-template-columns:1fr}
+  .enroll-card{order:-1}
+}
+@media(max-width:1100px){
+  .nav a.enroll-pill{margin-left:0}
+}
+
+.sub-links{margin-top:14px;padding-top:12px;border-top:1px solid var(--line,rgba(128,128,128,.25));display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:13.5px}
+.sub-links a{color:var(--ink2);text-decoration:none}
+.sub-links a:hover{color:var(--ink)}
+.sub-links .sep{opacity:.45}
+.soon-tag{color:#ff8a4c;font-weight:600;letter-spacing:.35em;font-size:15px;white-space:nowrap}
+html[data-theme="light"] .soon-tag{color:#c2530f}
 /* wechat card: icon + QR + caption */
 .wechat-card{
   display:flex;align-items:center;gap:22px;
@@ -458,6 +498,7 @@ a.plat:hover .plat-arr{color:var(--accent);transform:translate(2px,-2px)}
   .wechat-qrcode img{width:190px}
 }
 @media(max-width:900px){.plat-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.plat-grid{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:520px){.plat{padding:18px 16px;gap:13px}.plat-ic{width:40px;height:40px}.plat-ic svg{width:19px;height:19px}}
 
 /* ---------- FOOTER ---------- */
@@ -602,10 +643,12 @@ body.locked{overflow:hidden}
 .promo-sub{font-size:.82rem;color:var(--muted);line-height:1.7;margin:0 0 12px}
 .promo-cta{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--accent-ink);
   font-size:13px;font-weight:700;letter-spacing:.06em;border-radius:999px;padding:10px 18px}
-.promo-close{position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;border:0;cursor:pointer;
+.promo-close{position:absolute;top:2px;right:2px;width:44px;height:44px;border-radius:50%;border:0;cursor:pointer;z-index:3;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+  background:rgba(0,0,0,.55);color:#fff;font-size:17px;line-height:1;display:flex;align-items:center;justify-content:center}
+.promo-sound{position:absolute;top:2px;left:2px;width:44px;height:44px;border-radius:50%;border:0;cursor:pointer;z-index:3;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
   background:rgba(0,0,0,.55);color:#fff;font-size:15px;line-height:1;display:flex;align-items:center;justify-content:center}
-.promo-sound{position:absolute;top:8px;left:8px;width:28px;height:28px;border-radius:50%;border:0;cursor:pointer;
-  background:rgba(0,0,0,.55);color:#fff;font-size:14px;line-height:1;display:flex;align-items:center;justify-content:center}
 @media(max-width:760px){.promo-float{right:12px;bottom:12px;left:12px;width:auto}}
 
 /* topics extra */
@@ -645,7 +688,7 @@ body.locked{overflow:hidden}
 </div>
 <div class="t-grid">
 <div class="t-card">
-<span class="n">16 篇 · 持续更新</span>
+<span class="n">17 篇 · 持续更新</span>
 <h3>AI 视频</h3>
 <p>AI 视频生成、剪辑、配音：让静态变动态，短视频生产力</p>
 <a class="drill" href="ai-video.html" style="display:inline-flex;align-items:center;border:1.5px solid var(--ink);color:var(--ink);font-weight:700;font-size:13px;padding:8px 18px;border-radius:999px;align-self:flex-start">进入主题 →</a>
@@ -657,13 +700,13 @@ body.locked{overflow:hidden}
 <a class="drill" href="ai-image.html" style="display:inline-flex;align-items:center;border:1.5px solid var(--ink);color:var(--ink);font-weight:700;font-size:13px;padding:8px 18px;border-radius:999px;align-self:flex-start">进入主题 →</a>
 </div>
 <div class="t-card">
-<span class="n">16 篇 · 持续更新</span>
+<span class="n">18 篇 · 持续更新</span>
 <h3>AI 办公</h3>
 <p>文档、表格、PPT、邮件：办公提效，少加班</p>
 <a class="drill" href="ai-office.html" style="display:inline-flex;align-items:center;border:1.5px solid var(--ink);color:var(--ink);font-weight:700;font-size:13px;padding:8px 18px;border-radius:999px;align-self:flex-start">进入主题 →</a>
 </div>
 <div class="t-card">
-<span class="n">29 篇 · 持续更新</span>
+<span class="n">32 篇 · 持续更新</span>
 <h3>AI 智能体</h3>
 <p>Agent、Claude Code、Computer Use：让 AI 替你办事</p>
 <a class="drill" href="ai-agent.html" style="display:inline-flex;align-items:center;border:1.5px solid var(--ink);color:var(--ink);font-weight:700;font-size:13px;padding:8px 18px;border-radius:999px;align-self:flex-start">进入主题 →</a>
@@ -675,13 +718,13 @@ body.locked{overflow:hidden}
 <a class="drill" href="models.html" style="display:inline-flex;align-items:center;border:1.5px solid var(--ink);color:var(--ink);font-weight:700;font-size:13px;padding:8px 18px;border-radius:999px;align-self:flex-start">进入主题 →</a>
 </div>
 <div class="t-card">
-<span class="n">24 篇 · 持续更新</span>
+<span class="n">25 篇 · 持续更新</span>
 <h3>AI 搞钱</h3>
 <p>副业、免费额度、薅羊毛：普通人怎么用 AI 赚钱省钱</p>
 <a class="drill" href="ai-money.html" style="display:inline-flex;align-items:center;border:1.5px solid var(--ink);color:var(--ink);font-weight:700;font-size:13px;padding:8px 18px;border-radius:999px;align-self:flex-start">进入主题 →</a>
 </div>
 <div class="t-card">
-<span class="n">9 篇 · 持续更新</span>
+<span class="n">10 篇 · 持续更新</span>
 <h3>防骗安全</h3>
 <p>AI 诈骗、水印、隐私：别被 AI 骗了</p>
 <a class="drill" href="security.html" style="display:inline-flex;align-items:center;border:1.5px solid var(--ink);color:var(--ink);font-weight:700;font-size:13px;padding:8px 18px;border-radius:999px;align-self:flex-start">进入主题 →</a>

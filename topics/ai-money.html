@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>AI 搞钱智库 | wswin</title>
-<meta name="description" content="副业、免费额度、薅羊毛：普通人怎么用 AI 赚钱省钱。wswin AI 智库「AI 搞钱」主题聚合，共 24 篇，持续更新。" />
+<meta name="description" content="副业、免费额度、薅羊毛：普通人怎么用 AI 赚钱省钱。wswin AI 智库「AI 搞钱」主题聚合，共 25 篇，持续更新。" />
 <link rel="canonical" href="https://wswin.dpdns.org/topics/ai-money.html" />
 <meta property="og:title" content="AI 搞钱智库 | wswin" />
-<meta property="og:description" content="副业、免费额度、薅羊毛：普通人怎么用 AI 赚钱省钱。wswin AI 智库「AI 搞钱」主题聚合，共 24 篇，持续更新。" />
+<meta property="og:description" content="副业、免费额度、薅羊毛：普通人怎么用 AI 赚钱省钱。wswin AI 智库「AI 搞钱」主题聚合，共 25 篇，持续更新。" />
 <style>
 /* ============================================================
    WSWIN — dark editorial tech aesthetic
@@ -411,11 +411,13 @@ a{color:inherit;text-decoration:none}
 @media(max-width:520px){
   .tier-price{font-size:1.42rem}
   .tier-row{flex-wrap:wrap}
+  .track-head{flex-wrap:wrap}
+  .track-head h4{white-space:normal}
   .combo-row{flex-direction:column;align-items:flex-start;gap:12px}
   .fact{padding:16px 18px}
   .about-facts .foot{padding:18px}
 }
-@media(max-width:860px){.price-grid{grid-template-columns:1fr}}
+@media(max-width:860px){.price-grid{grid-template-columns:minmax(0,1fr)}.price{min-width:0}}
 
 /* ---------- FOLLOW ---------- */
 .follow{margin-top:72px}
@@ -442,6 +444,44 @@ a.plat:hover .plat-ic{border-color:var(--accent);color:var(--accent)}
 .plat-arr{margin-left:auto;font-family:var(--font-mono);color:var(--faint);font-size:17px;flex:none;transition:all .3s var(--ease)}
 a.plat:hover .plat-arr{color:var(--accent);transform:translate(2px,-2px)}
 .follow-note{margin-top:22px;font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;color:var(--muted)}
+/* enroll section */
+.enroll-lede{font-size:1.06rem;line-height:1.75;color:var(--muted);max-width:46em;margin-bottom:30px}
+.enroll-lede strong{color:var(--ink)}
+.enroll-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:22px;align-items:stretch}
+.enroll-steps{display:flex;flex-direction:column}
+.estep{display:flex;gap:20px;padding:22px 2px;border-top:1px solid var(--line)}
+.estep:first-child{border-top:none;padding-top:4px}
+.eno{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;color:var(--muted);padding-top:5px;flex:none}
+.etx b{font-size:1.08rem;display:block;margin-bottom:6px}
+.etx p{color:var(--muted);line-height:1.75;font-size:.98rem}
+.etx p strong{color:var(--ink)}
+.etx a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.enroll-card{border:1px solid var(--line);padding:28px 24px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.enroll-card-t{font-size:1.1rem;margin-bottom:18px}
+.enroll-card .wechat-qrcode{margin:0 auto}
+.enroll-card .wechat-qrcode img{width:172px}
+.enroll-card-note{margin-top:16px;color:var(--muted);font-size:.9rem}
+.enroll-fit{margin-top:26px;border-top:1px solid var(--line);padding-top:24px;display:flex;gap:22px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.enroll-fit p{color:var(--muted);line-height:1.75;max-width:52em}
+.enroll-fit p b{color:var(--ink)}
+.btn-ink{display:inline-block;background:var(--ink);color:var(--bg);font-weight:600;font-size:.92rem;padding:11px 22px;border-radius:999px;white-space:nowrap}
+.nav a.enroll-pill{background:var(--accent);color:var(--accent-ink);font-weight:700;border-radius:999px;padding:8px 15px;margin-left:10px;align-self:center}
+.nav a.enroll-pill::after{display:none}
+.nav a.enroll-pill:hover{color:var(--accent-ink)}
+@media(max-width:860px){
+  .enroll-grid{grid-template-columns:1fr}
+  .enroll-card{order:-1}
+}
+@media(max-width:1100px){
+  .nav a.enroll-pill{margin-left:0}
+}
+
+.sub-links{margin-top:14px;padding-top:12px;border-top:1px solid var(--line,rgba(128,128,128,.25));display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:13.5px}
+.sub-links a{color:var(--ink2);text-decoration:none}
+.sub-links a:hover{color:var(--ink)}
+.sub-links .sep{opacity:.45}
+.soon-tag{color:#ff8a4c;font-weight:600;letter-spacing:.35em;font-size:15px;white-space:nowrap}
+html[data-theme="light"] .soon-tag{color:#c2530f}
 /* wechat card: icon + QR + caption */
 .wechat-card{
   display:flex;align-items:center;gap:22px;
@@ -458,6 +498,7 @@ a.plat:hover .plat-arr{color:var(--accent);transform:translate(2px,-2px)}
   .wechat-qrcode img{width:190px}
 }
 @media(max-width:900px){.plat-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.plat-grid{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:520px){.plat{padding:18px 16px;gap:13px}.plat-ic{width:40px;height:40px}.plat-ic svg{width:19px;height:19px}}
 
 /* ---------- FOOTER ---------- */
@@ -602,10 +643,12 @@ body.locked{overflow:hidden}
 .promo-sub{font-size:.82rem;color:var(--muted);line-height:1.7;margin:0 0 12px}
 .promo-cta{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--accent-ink);
   font-size:13px;font-weight:700;letter-spacing:.06em;border-radius:999px;padding:10px 18px}
-.promo-close{position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;border:0;cursor:pointer;
+.promo-close{position:absolute;top:2px;right:2px;width:44px;height:44px;border-radius:50%;border:0;cursor:pointer;z-index:3;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+  background:rgba(0,0,0,.55);color:#fff;font-size:17px;line-height:1;display:flex;align-items:center;justify-content:center}
+.promo-sound{position:absolute;top:2px;left:2px;width:44px;height:44px;border-radius:50%;border:0;cursor:pointer;z-index:3;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
   background:rgba(0,0,0,.55);color:#fff;font-size:15px;line-height:1;display:flex;align-items:center;justify-content:center}
-.promo-sound{position:absolute;top:8px;left:8px;width:28px;height:28px;border-radius:50%;border:0;cursor:pointer;
-  background:rgba(0,0,0,.55);color:#fff;font-size:14px;line-height:1;display:flex;align-items:center;justify-content:center}
 @media(max-width:760px){.promo-float{right:12px;bottom:12px;left:12px;width:auto}}
 
 /* topics extra */
@@ -639,10 +682,30 @@ body.locked{overflow:hidden}
 </div></div>
 
 <div class="wrap"><div class="t-hero">
-<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 24 篇</span>
+<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 25 篇</span>
 <h1>AI 搞钱</h1>
 <p>副业、免费额度、薅羊毛：普通人怎么用 AI 赚钱省钱</p>
 </div>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：">
+      <div class="thumb"><img src="../thumb-daily-20261023-03.webp" alt="" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4></h4>
+        <p class="exc">做短视频最烧钱的环节之一是配音。这周出现了一个搅局者。</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-10-23</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>做短视频最烧钱的环节之一是配音。这周出现了一个搅局者。</p>
+      <p>HeyGen 自研的语音模型 HeyGen Voice，10 月初在 Artificial Analysis 的盲测榜（Controlled Voice Arena）上拿了第一，Elo 1200 分出头，压过 Qwen 的语音模型和 ElevenLabs v4。领先幅度不大，但第一就是第一。</p>
+      <p>更狠的是价格。极速版 Voice Turbo 在 OpenRouter 上按每百万字符 **4 美元**计费——ElevenLabs v4 是 80 美元，20 倍差价。支持 39 种语言、44.1kHz 音质，单次最多 5000 字符，拿一段录音就能克隆你自己的声音。官方还给了个 Turbo Free 档：给测试和小用量准备的，公告写到 11 月 30 日免费，不用绑卡，在 Claude Code、Codex 或 Cursor 里贴一段提示词就能调公开音色出声。</p>
+      <p>两个坑：第一，免费档是共享容量，人多就排队，429 报错是常态；第二，榜单的盲测主要是英文，中文语感、播客味够不够，自己拿文案实测一轮再定，别直接all in。</p>
+      <p>**普通人怎么用**：正在做口播、解说类视频的，先去免费档跑一遍你的固定开场白，对比现在用的配音，耳朵收货再决定换不换。省下的配音钱，够多买两条推广。</p>
+  </div>
+</details>
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：DeepSeek 新版 Flash 双榜登顶开源">
