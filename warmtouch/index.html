@@ -77,6 +77,11 @@ main{flex:1;overflow-y:auto;padding:16px 16px 96px}
 .tag{display:inline-block;background:var(--green3);color:var(--green);font-size:13px;border-radius:6px;padding:2px 8px;margin-right:6px}
 .tag.warn{background:#FDEBD2;color:#9A6206}
 .dish .ds{font-size:14px;color:var(--gray);margin-top:4px}
+.story{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:12px;margin-bottom:14px}
+.story .st{font-size:17px;font-weight:700;margin:2px 4px 10px;display:flex;align-items:center;gap:8px}
+.story .st span{font-size:13px;font-weight:600;background:var(--amber);color:#fff;padding:2px 10px;border-radius:999px}
+.story video{width:100%;max-height:70vh;border-radius:12px;background:#000;display:block}
+.story .sd{font-size:14px;color:var(--gray);margin:8px 4px 2px}
 .notice{background:#FFF8E8;border:1.5px solid #F0DFAE;border-radius:12px;padding:12px 14px;font-size:15px;color:#7A5A12;margin-bottom:14px}
 /* ── 购物车/结算行 ── */
 .citem{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:13px 14px;margin-bottom:11px;display:flex;gap:12px;align-items:center}
@@ -188,6 +193,11 @@ nav.bnav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(5
     <!-- 食堂 -->
     <section class="screen" id="s-canteen">
       <div class="notice">📍 社区食堂 · 一楼东侧 &nbsp;|&nbsp; 营业：早 7:00 · 午 11:00 · 晚 17:00<br>订餐后凭订单号到食堂取餐，也可送餐到家（本小区免费）。</div>
+      <div class="story">
+        <div class="st"><span>食堂小剧场</span>今天不做饭了</div>
+        <video src="canteen-story.mp4" poster="canteen-story-poster.jpg" controls playsinline preload="none"></video>
+        <div class="sd">老两口在家用手机点了有机时蔬、牛肉丸子汤、五谷大馒头，送餐到家。39 秒，点开有声音。</div>
+      </div>
       <div class="meal-tabs" id="meal-tabs"></div>
       <div id="dish-list"></div>
     </section>
@@ -274,6 +284,9 @@ const DISHES = [
   {id:'b2', meal:'breakfast', name:'鲜肉小馄饨', desc:'皮薄馅大，汤里加紫菜虾皮，鲜香不腻。', price:6, icon:'🍲', bg:'#FFF6E0', tags:['高蛋白']},
   {id:'b3', meal:'breakfast', name:'豆浆 + 菜肉包', desc:'现磨豆浆一杯，菜肉包两个，经典搭配。', price:5.5, icon:'🥛', bg:'#FFF6E0', tags:['经典']},
   {id:'b4', meal:'breakfast', name:'燕麦牛奶 + 全麦面包', desc:'燕麦牛奶热饮，配全麦面包两片，膳食纤维足。', price:6.5, icon:'🍞', bg:'#FFF6E0', tags:['高纤维']},
+  {id:'l6', meal:'lunch', name:'清炒有机时蔬', desc:'当天到货的有机青菜，少油快炒，脆嫩爽口。', price:8, icon:'🥬', bg:'#E3F1E3', tags:['有机','少油']},
+  {id:'l7', meal:'lunch', name:'牛肉丸子汤', desc:'手打牛肉丸，冬瓜清汤慢炖，软嫩好嚼，好消化。', price:12, icon:'🍲', bg:'#FDEBD2', tags:['好消化','高蛋白']},
+  {id:'l8', meal:'lunch', name:'五谷杂粮大馒头', desc:'小米、玉米、燕麦面老面发酵，暄软有嚼劲，两个一份。', price:3, icon:'🥯', bg:'#FFF6E0', tags:['粗细搭配']},
   {id:'l1', meal:'lunch', name:'番茄炖牛腩饭', desc:'牛腩炖得软烂入味，番茄开胃，配时蔬和米饭。', price:15, icon:'🍛', bg:'#FDEBD2', tags:['软烂','高蛋白']},
   {id:'l2', meal:'lunch', name:'清蒸鲈鱼套餐', desc:'鲈鱼清蒸少油，配青菜、米饭和一碗例汤。', price:16, icon:'🐟', bg:'#FDEBD2', tags:['低脂','护心脑']},
   {id:'l3', meal:'lunch', name:'香菇滑鸡饭', desc:'鸡腿肉去骨切块，香菇提鲜，少盐少油。', price:13, icon:'🍗', bg:'#FDEBD2', tags:['少盐']},
