@@ -82,6 +82,8 @@ main{flex:1;overflow-y:auto;padding:16px 16px 96px}
 .story .st span{font-size:13px;font-weight:600;background:var(--amber);color:#fff;padding:2px 10px;border-radius:999px}
 .story video{width:100%;max-height:70vh;border-radius:12px;background:#000;display:block}
 .story .sd{font-size:14px;color:var(--gray);margin:8px 4px 2px}
+.slogan{background:linear-gradient(135deg,#C77B2A,#E09A3E);color:#fff;border-radius:var(--r);padding:16px 18px;margin-bottom:14px;font-size:21px;font-weight:800;line-height:1.4;box-shadow:var(--shadow)}
+.slogan small{display:block;font-size:14.5px;font-weight:500;opacity:.92;margin-top:4px}
 .sim{background:#FFF1D6;color:#8A5300;font-size:13.5px;text-align:center;padding:6px 10px;border-bottom:1px solid #F0D9A8}
 .promise{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
 .promise div{background:#fff;border-radius:12px;box-shadow:var(--shadow);text-align:center;padding:10px 4px;font-size:13.5px;color:var(--gray);line-height:1.35}
@@ -164,7 +166,7 @@ nav.bnav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(5
     <div class="brand-fallback">🌿</div>
     <div class="bt">
       <div class="n">warm touch 有机社区食堂</div>
-      <div class="s">有机食堂 · 有机好物 · 送到家门口</div>
+      <div class="s">不用下楼不用出门，安全饭菜送到家</div>
     </div>
     <button class="back" id="btn-back" onclick="goBack()">‹ 返回</button>
   </header>
@@ -173,6 +175,7 @@ nav.bnav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(5
     <!-- 首页 -->
     <section class="screen" id="s-home">
       <div class="hello" id="hello-line">您好，今天想办点啥？</div>
+      <div class="slogan">🚲 不用下楼，不用出门<br>安全饭菜送到家<small>有机食材 · 每日溯源 · 少盐少油 · 本小区免费送</small></div>
       <div class="promise"><div><b>🌱</b>有机食材</div><div><b>🔎</b>每日溯源</div><div><b>🧂</b>少盐少油</div><div><b>🚲</b>送餐到家</div></div>
       <div class="entry-grid">
         <button class="entry shop" onclick="nav('shop')">
