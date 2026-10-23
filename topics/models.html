@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>模型动态智库 | wswin</title>
-<meta name="description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 25 篇，持续更新。" />
+<meta name="description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 27 篇，持续更新。" />
 <link rel="canonical" href="https://wswin.dpdns.org/topics/models.html" />
 <meta property="og:title" content="模型动态智库 | wswin" />
-<meta property="og:description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 25 篇，持续更新。" />
+<meta property="og:description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 27 篇，持续更新。" />
 <style>
 /* ============================================================
    WSWIN — dark editorial tech aesthetic
@@ -682,10 +682,50 @@ body.locked{overflow:hidden}
 </div></div>
 
 <div class="wrap"><div class="t-hero">
-<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 25 篇</span>
+<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 27 篇</span>
 <h1>模型动态</h1>
 <p>新模型发布、降价、开源：模型圈速览，选型不踩坑</p>
 </div>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：讯飞星火 X2.6 发布：国产算力训出来，调用价">
+      <div class="thumb"><img src="../thumb-daily-20261024-01.webp" alt="讯飞星火 X2.6 发布：国产算力训出来，调用价格先打 4 折" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>讯飞星火 X2.6 发布：国产算力训出来，调用价格先打 4 折</h4>
+        <p class="exc">10 月 22 日，科大讯飞在 1024 开发者节上发布星火 X2.6。这次发布会最抓眼球的不是参数，而是训练底座：讯飞说，这是业内唯一全程用国产算力训练的大模型。</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-10-24</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>10 月 22 日，科大讯飞在 1024 开发者节上发布星火 X2.6。这次发布会最抓眼球的不是参数，而是训练底座：讯飞说，这是业内唯一全程用国产算力训练的大模型。</p>
+      <p>参数先摆出来：MoE 架构，总参数 **2930 亿**，激活 **300 亿**，上下文拉到 **100 万 tokens**。一次塞进去一整本售后手册，模型能跨章节拼出退换货规则——IT 之家的现场报道里举的就是这个例子。</p>
+      <p>讯飞还公布了一组自家数据：国产芯片上的训练效率做到 4 倍，推理效率 4.5 倍；端侧能独立完成的任务占比从 12.8% 涨到 **40% 以上**。这些都是厂商口径，听个方向就行。</p>
+      <p>对普通开发者真正有用的是价格和开源。X2.6 同步开源了端侧小模型 Spark X2.6-4B；云端 API 限时 4 折后，输入 **0.9 元**/百万 tokens，输出 **3.6 元**/百万 tokens，缓存命中输入只要 0.08 元。这个价位，写代码、跑 Agent 这类高频调用场景，成本直接砍了一大截。</p>
+      <p>普通人怎么用：官网已经能免费试用。做中文 Agent、长文档问答的，可以拿它跟 DeepSeek、Qwen 对比测一轮再定技术栈；端侧 4B 开源版适合塞进手机、车机这类没网或弱网的场景。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：可灵 4.0 API 开放：一次生成 30 秒长">
+      <div class="thumb"><img src="../thumb-daily-20261024-02.webp" alt="可灵 4.0 API 开放：一次生成 30 秒长镜头，关键帧能定 10 个" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>可灵 4.0 API 开放：一次生成 30 秒长镜头，关键帧能定 10 个</h4>
+        <p class="exc">快手可灵团队的新一代视频模型 Kling 4.0，10 月 22 日正式开放 API，先面向企业客户和开发者逐步开放。</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-10-24</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>快手可灵团队的新一代视频模型 Kling 4.0，10 月 22 日正式开放 API，先面向企业客户和开发者逐步开放。</p>
+      <p>三个硬指标值得做视频的人记住：单次原生生成最长 **30 秒**，一次生成里可以定 **10 个关键帧**做分镜级控制，还支持 Omni Reference——最多 **15 个**图片、视频、声音、人物参考一起喂进去。另外原生支持双声道立体声，口型同步更准。</p>
+      <p>30 秒意味着什么？以前的视频模型一次只能出 5–10 秒，一个完整镜头要拼好几段，人物一换段就&quot;变脸&quot;。30 秒一镜加关键帧控制，等于把&quot;导演分镜&quot;的活交给了提示词：开头什么景、中间推到哪、结尾落在哪，一次写清楚。</p>
+      <p>怎么用得上：个人创作者现在就能在 SelfyzAI 这类首批接入的平台里选到 Kling 4.0（按积分扣费）；有开发能力的团队可以直接调 API。做口播、产品演示、剧情短片的，可以拿一条旧脚本重跑一遍，对比下和 Seedance 一代的成片差异再决定主力管线。</p>
+      <p>普通人怎么用：没技术背景就去 SelfyzAI 的工作台，模型选择器里切到 Kling 4.0，把原来分三段拼的镜头改成一段 30 秒直出，先看人物一致性有没有肉眼可见的提升，再决定要不要换管线。</p>
+  </div>
+</details>
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：DeepSeek 新版 Flash 双榜登顶开源">
