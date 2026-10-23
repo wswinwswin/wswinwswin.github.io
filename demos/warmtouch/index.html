@@ -173,6 +173,9 @@
     .lecture-meta strong{font-size:1.05rem}
     .lecture-meta span{color:var(--muted);font-size:.9rem}
     .lecture-expert{margin:1rem 0 0;padding:.85rem 1rem;border:1.5px dashed var(--green-2);border-radius:12px;color:var(--green-2);font-weight:700;background:var(--paper-soft)}
+    .community-video{margin-top:.9rem}
+    .community-video .cv-title{margin:0 0 .5rem;font-size:.92rem}
+    .community-video video{display:block;width:100%;max-width:300px;aspect-ratio:9/16;border-radius:14px;background:#000;object-fit:cover}
     .health-links{display:flex;gap:.75rem;flex-wrap:wrap;align-items:center}
     .wechat{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:1.7rem;margin-bottom:5rem}
     .wechat-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.2rem}
@@ -319,8 +322,12 @@
           </div>
           <h3>社区智联</h3>
           <p>把社区通知、活动报名、邻里互助和上门服务汇成一个入口。</p>
-          <ul class="entry-list"><li>社区公告</li><li>兴趣活动</li><li>邻里互助</li><li>便民服务</li></ul>
-          <button class="linkbtn open-info" data-service="社区智联">查看接通条件 →</button>
+          <ul class="entry-list"><li>社区公告</li><li>兴趣活动</li><li>邻里互助</li><li>便民服务</li><li>社区食堂</li></ul>
+          <div class="community-video">
+            <p class="cv-title"><strong>宣传短视频 · 食堂小剧场《今天不做饭了》</strong>（39 秒）</p>
+            <video controls playsinline preload="none" poster="../../warmtouch/canteen-story-poster.jpg" src="../../warmtouch/canteen-story.mp4" aria-label="社区食堂宣传短视频：今天不做饭了"></video>
+          </div>
+          <div class="health-links"><a class="linkbtn" href="../../warmtouch/index.html">打开社区食堂 App →</a><button class="linkbtn open-info" data-service="社区智联">查看接通条件 →</button></div>
         </article>
 
         <article class="service" id="chat">
