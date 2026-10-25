@@ -538,6 +538,10 @@ html[data-theme="light"] .soon-tag{color:#c2530f}
 
 /* touch: cards must answer a single tap on touch devices (iPad Safari does not reliably synthesize a click on these cards) */
 .lead,.news-row,.tut-card{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+a.card-link{display:block;color:inherit;text-decoration:none}
+a.card-link.hide{display:none}
+.tut-grid>a{display:block}
+.tut-grid .tut-card{height:100%}
 
 /* ============================================================
    READER
@@ -769,7 +773,7 @@ body.locked{overflow:hidden}
       <span class="sec-meta">10-25 · 每日更新 · 本期 5 篇</span>
     </div>
 
-    <article class="lead" data-open="art-n1" data-type="news" tabindex="0" role="button" aria-label="阅读：AI 没有手，怎么替你操作电脑？">
+    <a class="card-link" href="articles/art-n1.html"><article class="lead" data-open="art-n1" data-type="news" aria-label="阅读：AI 没有手，怎么替你操作电脑？">
       <div class="lead-img"><img src="daily-20261025-01.jpg" alt="AI 没有手，怎么替你操作电脑？" width="1400" height="933" loading="lazy" decoding="async" /></div>
       <div class="lead-body">
         <span class="tag">今日头条</span>
@@ -778,10 +782,10 @@ body.locked{overflow:hidden}
         <div class="card-meta"><span>2026-10-25</span></div>
         <span class="read-more">阅读全文 <i>→</i></span>
       </div>
-    </article>
+    </article></a>
 
     <div class="news-list">
-      <article class="news-row" data-open="art-n2" data-type="news" tabindex="0" role="button" aria-label="阅读：Kimi K3.1 Pro 上线：开源大模型离顶">
+      <a class="card-link" href="articles/art-n2.html"><article class="news-row" data-open="art-n2" data-type="news" aria-label="阅读：Kimi K3.1 Pro 上线：开源大模型离顶">
         <div class="thumb"><img src="thumb-daily-20261025-02.jpg" alt="Kimi K3.1 Pro 上线：开源大模型离顶级只差 3 分？" width="700" height="440" loading="lazy" decoding="async" /></div>
         <div>
           <h4>Kimi K3.1 Pro 上线：开源大模型离顶级只差 3 分？</h4>
@@ -789,9 +793,9 @@ body.locked{overflow:hidden}
           <div class="card-meta" style="margin-top:12px"><span>2026-10-25</span></div>
         </div>
         <span class="arrow">→</span>
-      </article>
+      </article></a>
 
-      <article class="news-row" data-open="art-n3" data-type="news" tabindex="0" role="button" aria-label="阅读：英伟达 4GB 小模型：旧显卡也能跑会说话的 A">
+      <a class="card-link" href="articles/art-n3.html"><article class="news-row" data-open="art-n3" data-type="news" aria-label="阅读：英伟达 4GB 小模型：旧显卡也能跑会说话的 A">
         <div class="thumb"><img src="thumb-daily-20261025-03.jpg" alt="英伟达 4GB 小模型：旧显卡也能跑会说话的 AI 助手" width="700" height="440" loading="lazy" decoding="async" /></div>
         <div>
           <h4>英伟达 4GB 小模型：旧显卡也能跑会说话的 AI 助手</h4>
@@ -799,9 +803,9 @@ body.locked{overflow:hidden}
           <div class="card-meta" style="margin-top:12px"><span>2026-10-25</span></div>
         </div>
         <span class="arrow">→</span>
-      </article>
+      </article></a>
 
-      <article class="news-row" data-open="art-n4" data-type="news" tabindex="0" role="button" aria-label="阅读：美国大银行动手了：不许没批准的 AI 助手进你账">
+      <a class="card-link" href="articles/art-n4.html"><article class="news-row" data-open="art-n4" data-type="news" aria-label="阅读：美国大银行动手了：不许没批准的 AI 助手进你账">
         <div class="thumb"><img src="thumb-daily-20261025-04.jpg" alt="美国大银行动手了：不许没批准的 AI 助手进你账户" width="700" height="440" loading="lazy" decoding="async" /></div>
         <div>
           <h4>美国大银行动手了：不许没批准的 AI 助手进你账户</h4>
@@ -809,9 +813,9 @@ body.locked{overflow:hidden}
           <div class="card-meta" style="margin-top:12px"><span>2026-10-25</span></div>
         </div>
         <span class="arrow">→</span>
-      </article>
+      </article></a>
 
-      <article class="news-row" data-open="art-n5" data-type="news" tabindex="0" role="button" aria-label="阅读：一个开源工具把 61 家 AI 免费额度接到 C">
+      <a class="card-link" href="articles/art-n5.html"><article class="news-row" data-open="art-n5" data-type="news" aria-label="阅读：一个开源工具把 61 家 AI 免费额度接到 C">
         <div class="thumb"><img src="thumb-daily-20261025-05.jpg" alt="一个开源工具把 61 家 AI 免费额度接到 Claude Code 里" width="700" height="440" loading="lazy" decoding="async" /></div>
         <div>
           <h4>一个开源工具把 61 家 AI 免费额度接到 Claude Code 里</h4>
@@ -819,7 +823,7 @@ body.locked{overflow:hidden}
           <div class="card-meta" style="margin-top:12px"><span>2026-10-25</span></div>
         </div>
         <span class="arrow">→</span>
-      </article>
+      </article></a>
 
     </div>
   </div>
@@ -842,77 +846,77 @@ body.locked{overflow:hidden}
     </div>
 
     <div class="tut-grid">
-      <article class="tut-card" data-cat="ai" data-open="art-t1" data-type="tutorial" tabindex="0" role="button" aria-label="阅读：提示词不会写？这 37 个短语先抄下来">
+      <a class="card-link" href="articles/art-t1.html"><article class="tut-card" data-cat="ai" data-open="art-t1" data-type="tutorial" aria-label="阅读：提示词不会写？这 37 个短语先抄下来">
         <div class="tut-img"><img src="img-06.jpg" alt="提示词写作：魔法棒与键盘插画" width="640" height="400"  loading="lazy" decoding="async" /><span class="tut-cat">AI · 提示词</span></div>
         <div class="tut-body">
           <h4>提示词不会写？这 37 个短语先抄下来</h4>
           <p class="exc">指令的最后一句决定回答下限。"超人级思考"模式的本质是给模型思考预算：方法论先装脑子里，清单再慢慢攒。</p>
           <div class="card-meta"><span>2026-09-30</span><span>约 5 分钟</span><span class="rm">阅读全文 →</span></div>
         </div>
-      </article>
+      </article></a>
 
-      <article class="tut-card" data-cat="sv" data-open="art-t2" data-type="tutorial" tabindex="0" role="button" aria-label="阅读：一句话提示词，做出 AE 级动效">
+      <a class="card-link" href="articles/art-t2.html"><article class="tut-card" data-cat="sv" data-open="art-t2" data-type="tutorial" aria-label="阅读：一句话提示词，做出 AE 级动效">
         <div class="tut-img"><img src="img-07.jpg" alt="AI 视频制作：动效插画" width="640" height="400"  loading="lazy" decoding="async" /><span class="tut-cat">短视频 · AI 视频</span></div>
         <div class="tut-body">
           <h4>一句话提示词，做出 AE 级动效：Opus 5.5 正在改写视频制作规则</h4>
           <p class="exc">一张户型图变出全套图纸与 3D 效果图，一句话提示词生成带 BGM 卡点的动态图形——视频制作的门槛，从"会软件"变成了"会说话"。</p>
           <div class="card-meta"><span>2026-09-30</span><span>约 5 分钟</span><span class="rm">阅读全文 →</span></div>
         </div>
-      </article>
+      </article></a>
 
-      <article class="tut-card" data-cat="sv" data-open="art-t3" data-type="tutorial" tabindex="0" role="button" aria-label="阅读：AI 配音全免费：本地跑，不花一分钱">
+      <a class="card-link" href="articles/art-t3.html"><article class="tut-card" data-cat="sv" data-open="art-t3" data-type="tutorial" aria-label="阅读：AI 配音全免费：本地跑，不花一分钱">
         <div class="tut-img"><img src="img-08.jpg" alt="AI 配音：本地语音合成插画" width="640" height="400"  loading="lazy" decoding="async" /><span class="tut-cat">短视频 · 配音</span></div>
         <div class="tut-body">
           <h4>AI 配音全免费：本地跑，不花一分钱</h4>
           <p class="exc">手机端 yovoice 本地离线配音，开源的 ElevenLabs 替代品自己跑模型——配音 + 出镜 + 剪辑可以串成一条全免费流水线。</p>
           <div class="card-meta"><span>2026-09-30</span><span>约 5 分钟</span><span class="rm">阅读全文 →</span></div>
         </div>
-      </article>
+      </article></a>
 
-      <article class="tut-card" data-cat="ai" data-open="art-t4" data-type="tutorial" tabindex="0" role="button" aria-label="阅读：Gemini 修图加本地生图实测">
+      <a class="card-link" href="articles/art-t4.html"><article class="tut-card" data-cat="ai" data-open="art-t4" data-type="tutorial" aria-label="阅读：Gemini 修图加本地生图实测">
         <div class="tut-img"><img src="img-09.jpg" alt="AI 修图：图像编辑插画" width="640" height="400"  loading="lazy" decoding="async" /><span class="tut-cat">AI · 修图生图</span></div>
         <div class="tut-body">
           <h4>手机修图师要失业了？Gemini 修图 + 本地生图实测</h4>
           <p class="exc">保真、风格、范围——三句话写全翻车率大减。加上 Qwen-Image 本地部署，不上传、不排队，隐私也守得住。</p>
           <div class="card-meta"><span>2026-09-30</span><span>约 5 分钟</span><span class="rm">阅读全文 →</span></div>
         </div>
-      </article>
+      </article></a>
 
-      <article class="tut-card" data-cat="ai" data-open="art-t5" data-type="tutorial" tabindex="0" role="button" aria-label="阅读：Skill 生态正在爆发">
+      <a class="card-link" href="articles/art-t5.html"><article class="tut-card" data-cat="ai" data-open="art-t5" data-type="tutorial" aria-label="阅读：Skill 生态正在爆发">
         <div class="tut-img"><img src="img-10.jpg" alt="Agent Skill 生态插画" width="640" height="400"  loading="lazy" decoding="async" /><span class="tut-cat">AI · Agent</span></div>
         <div class="tut-body">
           <h4>Agent 的"应用商店"来了：Skill 生态正在爆发</h4>
           <p class="exc">SkillNet 索引几十万开源技能，随取随用。与其收藏 100 个提示词，不如给 Agent 装 10 个靠谱的 skill——能力可以外挂。</p>
           <div class="card-meta"><span>2026-09-30</span><span>约 5 分钟</span><span class="rm">阅读全文 →</span></div>
         </div>
-      </article>
+      </article></a>
 
-      <article class="tut-card" data-cat="ai" data-open="art-t6" data-type="tutorial" tabindex="0" role="button" aria-label="阅读：个人 AI 助理开战">
+      <a class="card-link" href="articles/art-t6.html"><article class="tut-card" data-cat="ai" data-open="art-t6" data-type="tutorial" aria-label="阅读：个人 AI 助理开战">
         <div class="tut-img"><img src="img-11.jpg" alt="个人 AI 助理对比插画" width="640" height="400"  loading="lazy" decoding="async" /><span class="tut-cat">AI · 智能体</span></div>
         <div class="tut-body">
           <h4>个人 AI 助理开战：Muse、Manus Cue、Grok Bot，谁更像你的管家？</h4>
           <p class="exc">Cue 想给你一群"数字员工"，Muse 想给你一个"数字管家"，Grok Bot 想给你一个"调度台"——先想清你最想甩掉哪件重复性工作。</p>
           <div class="card-meta"><span>2026-09-30</span><span>约 5 分钟</span><span class="rm">阅读全文 →</span></div>
         </div>
-      </article>
+      </article></a>
 
-      <article class="tut-card" data-cat="ai" data-open="art-t7" data-type="tutorial" tabindex="0" role="button" aria-label="阅读：把 AI 装进微信和日历">
+      <a class="card-link" href="articles/art-t7.html"><article class="tut-card" data-cat="ai" data-open="art-t7" data-type="tutorial" aria-label="阅读：把 AI 装进微信和日历">
         <div class="tut-img"><img src="img-12.jpg" alt="AI 接入微信与日历插画" width="640" height="400"  loading="lazy" decoding="async" /><span class="tut-cat">AI · 生活流</span></div>
         <div class="tut-body">
           <h4>把 AI 装进微信和日历：这才是 AI 融入生活的正确姿势</h4>
           <p class="exc">AI 接入微信、邮箱、日历，定时推送定时整理，人睡觉 AI 干活。AI 真正融入生活的标志，是你"想不起"它。</p>
           <div class="card-meta"><span>2026-09-30</span><span>约 5 分钟</span><span class="rm">阅读全文 →</span></div>
         </div>
-      </article>
+      </article></a>
 
-      <article class="tut-card" data-cat="ai" data-open="art-t8" data-type="tutorial" tabindex="0" role="button" aria-label="阅读：普通人靠 AI 搞钱的几条路">
+      <a class="card-link" href="articles/art-t8.html"><article class="tut-card" data-cat="ai" data-open="art-t8" data-type="tutorial" aria-label="阅读：普通人靠 AI 搞钱的几条路">
         <div class="tut-img"><img src="img-13.jpg" alt="AI 变现实思路插画" width="640" height="400"  loading="lazy" decoding="async" /><span class="tut-cat">AI · 变现</span></div>
         <div class="tut-body">
           <h4>普通人靠 AI 搞钱的几条路</h4>
           <p class="exc">出海网站、卖服务、搭收款基建、定小目标倒推——四条路共同点都是"AI 降本 + 信息差变现"，先选一条跑通最小闭环。</p>
           <div class="card-meta"><span>2026-09-30</span><span>约 5 分钟</span><span class="rm">阅读全文 →</span></div>
         </div>
-      </article>
+      </article></a>
     </div>
   </div>
 </section>
@@ -1654,7 +1658,10 @@ body.locked{overflow:hidden}
       c.setAttribute("aria-selected", on ? "true" : "false");
     });
     cards.forEach(function(card){
-      card.classList.toggle("hide", f !== "all" && card.getAttribute("data-cat") !== f);
+      var hide = f !== "all" && card.getAttribute("data-cat") !== f;
+      card.classList.toggle("hide", hide);
+      var link = card.parentElement;
+      if (link && link.tagName === "A") link.classList.toggle("hide", hide);
     });
   }
   chips.forEach(function(c){ c.addEventListener("click", function(){ applyFilter(c.getAttribute("data-f")); }); });
@@ -1741,7 +1748,7 @@ body.locked{overflow:hidden}
   rNext.addEventListener("click", function(){ var n = ORDER[curType][curIdx+1]; if (n) openArticle(curType, n); });
 
   Array.prototype.slice.call(document.querySelectorAll("[data-open]")).forEach(function(el){
-    el.addEventListener("click", function(){ openArticle(el.getAttribute("data-type"), el.getAttribute("data-open")); });
+    el.addEventListener("click", function(e){ e.preventDefault(); openArticle(el.getAttribute("data-type"), el.getAttribute("data-open")); });
     el.addEventListener("keydown", function(e){
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openArticle(el.getAttribute("data-type"), el.getAttribute("data-open")); }
     });
