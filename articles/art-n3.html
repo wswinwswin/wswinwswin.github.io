@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>英伟达 4GB 小模型：旧显卡也能跑会说话的 AI 助手 · wswin</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#F7F3EC;color:#222;font-family:"Songti SC","Noto Serif SC",serif;line-height:1.9;padding:24px 20px 64px}
+  .wrap{max-width:680px;margin:0 auto}
+  .crumb{font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.14em;color:#8A7D6B;margin-bottom:18px}
+  .crumb a{color:#8A7D6B;text-decoration:none}
+  .tag{display:inline-block;background:#1F3D2B;color:#F7F3EC;font-size:11px;letter-spacing:.14em;padding:5px 12px;border-radius:2px;margin-bottom:16px}
+  h1{font-size:1.7rem;line-height:1.5;margin-bottom:14px}
+  .meta{font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.1em;color:#8A7D6B;padding-bottom:20px;border-bottom:1px solid #E2D9C8;margin-bottom:26px}
+  .heroimg{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;margin-bottom:30px}
+  .body p{margin-bottom:1.5em;text-align:justify}
+  .nav{display:flex;flex-wrap:wrap;gap:12px;margin-top:44px;padding-top:26px;border-top:1px solid #E2D9C8}
+  .pill{display:inline-flex;align-items:center;border:1.5px solid #222;color:#222;font-weight:700;font-size:13px;padding:9px 18px;border-radius:999px;text-decoration:none;font-family:system-ui,sans-serif}
+  .pill.home{margin-left:auto}
+  @media(max-width:640px){h1{font-size:1.4rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="crumb"><a href="../index.html">wswin 首页</a> / AI 资讯</p>
+  <span class="tag">AI 资讯</span>
+  <h1>英伟达 4GB 小模型：旧显卡也能跑会说话的 AI 助手</h1>
+  <p class="meta">2026-10-25 · 约 2 分钟 · WSWIN</p>
+  <img class="heroimg" src="../daily-20261025-03.jpg" alt="英伟达 4GB 小模型：旧显卡也能跑会说话的 AI 助手" />
+  <div class="body">
+<p>英伟达在 10 月 23 日发布 Nemotron 3.5 Bolt E4B 4GB。名字里的 4GB 就是它的卖点：跑起来大约只占 4GB 显存，一块几年前的游戏显卡、或者一块 8GB 的 Jetson Orin Nano 开发板就能带动。</p>
+  <p>模型底子是谷歌的 Gemma 4 E4B，英伟达在上面加了自己的训练：总参数 80 亿，实际生效 40 亿，上下文 6.4 万 tokens，支持 35 种语言。它会聊天，也会在一轮轮对话里调用工具办事，还能在简短语音回复和深度思考两种模式之间切换。发布演示里，一台 8GB 的 Jetson Orin Nano 带动 Reachy Mini 小机器人，一边聊天一边转头，全程没有联网跑云端。</p>
+  <p>获取门槛也不高。权重在 Hugging Face 免费下载，用 OpenMDW-1.1 协议，允许商用，量化文件 6.18GB，装 Ollama 或 llama.cpp 就能跑，显存准备 4 到 5GB 就够。这个体积适合三类场景：家里常开的语音助手、游戏里会接话的角色、店面或机器人上的本地客服，数据不出设备，断网也能用。</p>
+  <p>小模型也有边界。英伟达自己的对比里，它在多轮挑战上赢了同体积的 Gemma 4 E4B，但翻译和复杂工具调用上弱于 Qwen3.5 4B。普通人怎么用：先在旧显卡上用 Ollama 跑起来，测语音助手和文档问答这两类任务；写代码、做复杂推理这类重活，还是交给云端大模型，小模型只负责它跑得动的部分。</p>
+  </div>
+  <div class="nav">
+  <a class="pill" href="art-n2.html">← 上一篇：Kimi K3.1 Pro 上线：开源大模型离顶级只差 3 分？</a>
+  <a class="pill home" href="../index.html">回首页</a>
+  <a class="pill" href="art-n4.html">下一篇：美国大银行动手了：不许没批准的 AI 助手进你账户 →</a>
+  </div>
+</div>
+</body>
+</html>

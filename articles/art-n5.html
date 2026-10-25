@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>一个开源工具把 61 家 AI 免费额度接到 Claude Code 里 · wswin</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#F7F3EC;color:#222;font-family:"Songti SC","Noto Serif SC",serif;line-height:1.9;padding:24px 20px 64px}
+  .wrap{max-width:680px;margin:0 auto}
+  .crumb{font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.14em;color:#8A7D6B;margin-bottom:18px}
+  .crumb a{color:#8A7D6B;text-decoration:none}
+  .tag{display:inline-block;background:#1F3D2B;color:#F7F3EC;font-size:11px;letter-spacing:.14em;padding:5px 12px;border-radius:2px;margin-bottom:16px}
+  h1{font-size:1.7rem;line-height:1.5;margin-bottom:14px}
+  .meta{font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.1em;color:#8A7D6B;padding-bottom:20px;border-bottom:1px solid #E2D9C8;margin-bottom:26px}
+  .heroimg{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;margin-bottom:30px}
+  .body p{margin-bottom:1.5em;text-align:justify}
+  .nav{display:flex;flex-wrap:wrap;gap:12px;margin-top:44px;padding-top:26px;border-top:1px solid #E2D9C8}
+  .pill{display:inline-flex;align-items:center;border:1.5px solid #222;color:#222;font-weight:700;font-size:13px;padding:9px 18px;border-radius:999px;text-decoration:none;font-family:system-ui,sans-serif}
+  .pill.home{margin-left:auto}
+  @media(max-width:640px){h1{font-size:1.4rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="crumb"><a href="../index.html">wswin 首页</a> / AI 资讯</p>
+  <span class="tag">AI 资讯</span>
+  <h1>一个开源工具把 61 家 AI 免费额度接到 Claude Code 里</h1>
+  <p class="meta">2026-10-25 · 约 1 分钟 · WSWIN</p>
+  <img class="heroimg" src="../daily-20261025-05.jpg" alt="一个开源工具把 61 家 AI 免费额度接到 Claude Code 里" />
+  <div class="body">
+<p>开源项目 free-claude-code 的做法很取巧：它不在你电脑上换一个新工具，而是把 Claude Code 发出的请求截下来，翻译成各家模型服务商能听懂的格式，再把回答翻回去。项目页列出 61 家服务商，包括 NVIDIA NIM、OpenRouter、Groq、Together AI、GitHub Copilot 和本地 Ollama，项目页自称每月能汇总超过 13 亿 tokens 的免费额度。</p>
+  <p>用法是：本机跑一个代理服务，启动器把 Claude Code、Codex 等 11 个编程工具指向这个代理，在模型选择器里挑一家额度还够用的模型。一次请求失败后，它会自动换下一家重试；项目页还提供省 tokens 开关，自称最多能省 90%。</p>
+  <p>免费背后有三处成本要先算清。第一，各家免费额度的规则随时会变，今天能用不代表下周还能用。第二，一次失败重试可能在多家服务商那里都消耗额度。第三，你的代码会经过代理发给第三方服务商，免费档的数据处理条款各家不同，敏感项目不适合这么跑。</p>
+  <p>普通人怎么用：先拿一个不含密钥、不连生产库的练手项目试，挑一家额度稳定的服务商跑通一轮完整任务，再决定要不要长期用。公司代码、含客户数据的项目，别走这类免费代理。免费额度是用来练手和做小项目的，不是用来扛正式交付的。</p>
+  </div>
+  <div class="nav">
+  <a class="pill" href="art-n4.html">← 上一篇：美国大银行动手了：不许没批准的 AI 助手进你账户</a>
+  <a class="pill home" href="../index.html">回首页</a>
+  </div>
+</div>
+</body>
+</html>
