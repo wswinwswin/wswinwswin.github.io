@@ -536,6 +536,9 @@ html[data-theme="light"] .soon-tag{color:#c2530f}
 .foot-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
 .foot-inner p{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--muted)}
 
+/* touch: cards must answer a single tap on touch devices (iPad Safari does not reliably synthesize a click on these cards) */
+.lead,.news-row,.tut-card{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+
 /* ============================================================
    READER
    ============================================================ */
@@ -1742,6 +1745,18 @@ body.locked{overflow:hidden}
     el.addEventListener("keydown", function(e){
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openArticle(el.getAttribute("data-type"), el.getAttribute("data-open")); }
     });
+    /* touch fallback: open on tap-release even if the browser never synthesizes a click (iPad); ignore swipes so scrolling over a card does not open it */
+    var tsX = 0, tsY = 0;
+    el.addEventListener("touchstart", function(e){
+      var t = e.changedTouches[0]; tsX = t.clientX; tsY = t.clientY;
+    }, {passive:true});
+    el.addEventListener("touchend", function(e){
+      var t = e.changedTouches[0];
+      if (Math.abs(t.clientX - tsX) < 12 && Math.abs(t.clientY - tsY) < 12) {
+        e.preventDefault();
+        openArticle(el.getAttribute("data-type"), el.getAttribute("data-open"));
+      }
+    }, {passive:false});
   });
 })();
 
