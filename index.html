@@ -1747,44 +1747,10 @@ body.locked{overflow:hidden}
   rPrev.addEventListener("click", function(){ var p = ORDER[curType][curIdx-1]; if (p) openArticle(curType, p); });
   rNext.addEventListener("click", function(){ var n = ORDER[curType][curIdx+1]; if (n) openArticle(curType, n); });
 
-  /* tap guarantee for elderly iPad users: a tap must either open the reader
-     (when JS + reader truly work) or fall through to the real article link.
-     Never swallow a tap: if openArticle throws OR the reader does not end up
-     visibly open, do not preventDefault, so the browser navigates. */
-  function readerReallyOpen(){
-    var r = document.getElementById("reader");
-    if (!r || !r.classList.contains("open")) return false;
-    try { return window.getComputedStyle(r).display !== "none"; } catch(e){ return true; }
-  }
-  function tryOpenArticle(type, id){
-    try {
-      openArticle(type, id);
-      return readerReallyOpen();
-    } catch(e){ return false; }
-  }
-  Array.prototype.slice.call(document.querySelectorAll("[data-open]")).forEach(function(el){
-    el.addEventListener("click", function(e){
-      if (tryOpenArticle(el.getAttribute("data-type"), el.getAttribute("data-open"))) e.preventDefault();
-      /* else: let the <a class="card-link"> navigate to the article page */
-    });
-    el.addEventListener("keydown", function(e){
-      if (e.key === "Enter" || e.key === " ") {
-        if (tryOpenArticle(el.getAttribute("data-type"), el.getAttribute("data-open"))) e.preventDefault();
-      }
-    });
-    /* touch fallback: open on tap-release even if the browser never synthesizes a click (iPad); ignore swipes so scrolling over a card does not open it */
-    var tsX = 0, tsY = 0;
-    el.addEventListener("touchstart", function(e){
-      var t = e.changedTouches[0]; tsX = t.clientX; tsY = t.clientY;
-    }, {passive:true});
-    el.addEventListener("touchend", function(e){
-      var t = e.changedTouches[0];
-      if (Math.abs(t.clientX - tsX) < 12 && Math.abs(t.clientY - tsY) < 12) {
-        if (tryOpenArticle(el.getAttribute("data-type"), el.getAttribute("data-open"))) e.preventDefault();
-        /* else: do not preventDefault, so the tap still becomes a click and the link navigates */
-      }
-    }, {passive:false});
-  });
+  /* Cards are pure links now (2026-10-25): no JS intercepts a card tap at all.
+     The <a class="card-link"> navigates to the article page exactly like any
+     other site's link, on every browser, with or without JS. The reader
+     overlay code above stays for in-reader prev/next only. */
 })();
 
 /* 站长自助改价：读取 prices.json，用配置价格覆盖页面默认价格 */
