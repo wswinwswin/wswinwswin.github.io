@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>AI 智能体智库 | wswin</title>
-<meta name="description" content="Agent、Claude Code、Computer Use：让 AI 替你办事。wswin AI 智库「AI 智能体」主题聚合，共 36 篇，持续更新。" />
+<meta name="description" content="Agent、Claude Code、Computer Use：让 AI 替你办事。wswin AI 智库「AI 智能体」主题聚合，共 37 篇，持续更新。" />
 <link rel="canonical" href="https://wswin.dpdns.org/topics/ai-agent.html" />
 <meta property="og:title" content="AI 智能体智库 | wswin" />
-<meta property="og:description" content="Agent、Claude Code、Computer Use：让 AI 替你办事。wswin AI 智库「AI 智能体」主题聚合，共 36 篇，持续更新。" />
+<meta property="og:description" content="Agent、Claude Code、Computer Use：让 AI 替你办事。wswin AI 智库「AI 智能体」主题聚合，共 37 篇，持续更新。" />
 <style>
 /* ============================================================
    WSWIN — dark editorial tech aesthetic
@@ -517,6 +517,13 @@ html[data-theme="light"] .soon-tag{color:#c2530f}
 .foot-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
 .foot-inner p{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--muted)}
 
+/* touch: cards must answer a single tap on touch devices (iPad Safari does not reliably synthesize a click on these cards) */
+.lead,.news-row,.tut-card{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+a.card-link{display:block;color:inherit;text-decoration:none}
+a.card-link.hide{display:none}
+.tut-grid>a{display:block}
+.tut-grid .tut-card{height:100%}
+
 /* ============================================================
    READER
    ============================================================ */
@@ -682,10 +689,29 @@ body.locked{overflow:hidden}
 </div></div>
 
 <div class="wrap"><div class="t-hero">
-<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 36 篇</span>
+<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 37 篇</span>
 <h1>AI 智能体</h1>
 <p>Agent、Claude Code、Computer Use：让 AI 替你办事</p>
 </div>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：演示一遍，微软新工具把你的重复操作变成 AI 技">
+      <div class="thumb"><img src="../thumb-daily-20261026-01.jpg" alt="演示一遍，微软新工具把你的重复操作变成 AI 技能" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>演示一遍，微软新工具把你的重复操作变成 AI 技能</h4>
+        <p class="exc">微软开源工具 Skill Recorder 在 10 月 24 日推到 0.7.0 版，思路很直白：教 AI 干活不一定非得写提示词，演示一遍也行。你在电脑上做一次操作，工具把点击、切换窗口、执行命令…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-10-26</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>微软开源工具 Skill Recorder 在 10 月 24 日推到 0.7.0 版，思路很直白：教 AI 干活不一定非得写提示词，演示一遍也行。你在电脑上做一次操作，工具把点击、切换窗口、执行命令录下来，交给 GitHub Copilot 分析操作过程，提炼出任务目标和执行步骤，自动写成一份 SKILL.md，或者排成定时执行的 Automation。</p>
+      <p>新版加了一个实用功能：生成之前先给你看完整 SKILL.md 预览。你确认指令没写错再导出，不用重新调用模型再生成一遍。平时那种每天重复三五遍的活很适合拿它试：比如固定格式整理文件、固定步骤打开几个应用核对数据，录一遍，往后让 Agent 照着技能跑。</p>
+      <p>门槛要先说清楚，四条都得对上才跑得动。0.7.0 只有源码发行，没有现成安装包，得自己从源码构建；系统只支持 Windows 11、macOS 和 Ubuntu，Windows 10 不在列表里；分析要走 GitHub Copilot，得有 Copilot 权限；录制文件存在本地，但点分析后数据会发往 GitHub 云端处理，密码、验证码、会员信息这类敏感内容千万别录进去。</p>
+      <p>普通人怎么用：先别贪多，挑一个你每周至少做三遍、步骤固定、不碰敏感信息的操作，录一遍、预览一遍、确认无误再导出。Windows 10 的机器先记下这条，等新机到位再动手。</p>
+  </div>
+</details>
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：AI 没有手，怎么替你操作电脑？">

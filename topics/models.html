@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>模型动态智库 | wswin</title>
-<meta name="description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 29 篇，持续更新。" />
+<meta name="description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 31 篇，持续更新。" />
 <link rel="canonical" href="https://wswin.dpdns.org/topics/models.html" />
 <meta property="og:title" content="模型动态智库 | wswin" />
-<meta property="og:description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 29 篇，持续更新。" />
+<meta property="og:description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 31 篇，持续更新。" />
 <style>
 /* ============================================================
    WSWIN — dark editorial tech aesthetic
@@ -517,6 +517,13 @@ html[data-theme="light"] .soon-tag{color:#c2530f}
 .foot-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
 .foot-inner p{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--muted)}
 
+/* touch: cards must answer a single tap on touch devices (iPad Safari does not reliably synthesize a click on these cards) */
+.lead,.news-row,.tut-card{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+a.card-link{display:block;color:inherit;text-decoration:none}
+a.card-link.hide{display:none}
+.tut-grid>a{display:block}
+.tut-grid .tut-card{height:100%}
+
 /* ============================================================
    READER
    ============================================================ */
@@ -682,10 +689,48 @@ body.locked{overflow:hidden}
 </div></div>
 
 <div class="wrap"><div class="t-hero">
-<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 29 篇</span>
+<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 31 篇</span>
 <h1>模型动态</h1>
 <p>新模型发布、降价、开源：模型圈速览，选型不踩坑</p>
 </div>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：不用转文字，Block 的新语音模型直接听声音说">
+      <div class="thumb"><img src="../thumb-daily-20261026-03.jpg" alt="不用转文字，Block 的新语音模型直接听声音说话" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>不用转文字，Block 的新语音模型直接听声音说话</h4>
+        <p class="exc">你现在用的语音助手大多走三段接力：先把你的话转成文字，文字模型想好回答，再用语音合成念出来。Block 在 10 月 23 日发布的 Dessa 把中间这段省了：声音进、声音出，不经过文字，也就没有转…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-10-26</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>你现在用的语音助手大多走三段接力：先把你的话转成文字，文字模型想好回答，再用语音合成念出来。Block 在 10 月 23 日发布的 Dessa 把中间这段省了：声音进、声音出，不经过文字，也就没有转文字那一步。</p>
+      <p>Dessa 叫全双工，就是边说边听。对方说话时它能插话、应一声“嗯”“对”，能听出语气、笑声和停顿，Block 的说法是，文字管线会把这些情绪信息丢掉，Dessa 从真实对话录音里学来，所以听起来更像人在聊天。训练也走了一条少见的路：Block 说 Dessa 从零开始，只用人类的对话录音训练，没用文本、没用现成模型，训练只用了一台英伟达 GB200 机架。推理端更轻：Block 说它在 M4 Max 的 MacBook Pro 上本地跑，速度快于实时。</p>
+      <p>先把现状讲清，免得你去找下载链接扑空。Dessa 现在是研究预览，挂着候补名单，早期名额先给一小批 AI 安全研究员。Block 没公布参数量、API、价格、权重和评测成绩，目前能看到的证据只有它自己放出的演示对话，演示里也有偶尔听错名字的小毛病。</p>
+      <p>普通人怎么用：做客服、口播、陪聊产品的人，先去听 Block 放出的演示，重点听打断和应声自然不自然，再判断全双工值不值得等。普通用户不用急着排队，等它开放、价格和评测都出来再试不迟。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：微软 AI 学医生问诊：先问病史再开检查，复杂病">
+      <div class="thumb"><img src="../thumb-daily-20261026-04.jpg" alt="微软 AI 学医生问诊：先问病史再开检查，复杂病例胜过医生两倍多" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>微软 AI 学医生问诊：先问病史再开检查，复杂病例胜过医生两倍多</h4>
+        <p class="exc">多数医疗 AI 的做法是一次性看完所有资料再给答案：症状、化验、影像全摊开，一次出诊断。微软研究团队换了一个做法，登在《科学》杂志上的研究里叫诊断编排器：模型先模拟一群临床专家协作，决定先问病人什么病…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-10-26</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>多数医疗 AI 的做法是一次性看完所有资料再给答案：症状、化验、影像全摊开，一次出诊断。微软研究团队换了一个做法，登在《科学》杂志上的研究里叫诊断编排器：模型先模拟一群临床专家协作，决定先问病人什么病史、体格检查看什么，再根据回答决定开哪些检查，看完结果再决定下一步，边查边更新自己的判断。</p>
+      <p>路透社 10 月 25 日报道了这项研究的结果。研究团队出了 300 多道特别疑难、容易混淆的病例，编排器在完成问诊和定诊断上，准确率比用教科书和联网资料的普通医生高两倍多。在一个大型急诊入院数据库的病例上，它也胜过医生。研究者还说，编排器设计的检查方案花钱更少，衡量的不只是答对没有，还有检查开得节不节制。</p>
+      <p>下一步已经排好：研究团队要和波士顿的贝斯以色列女执事医疗中心合作，先在急诊候诊分诊上测试这套工具。</p>
+      <p>普通人怎么用：这不是一个能拿来自诊的工具，别把症状输进去当诊断用。能学的是它问诊的顺序：去看病之前，把症状出现的时间、变化、已经做过的检查按顺序写清楚，医生问起来不用现想，问诊效率和准确率都高一截。</p>
+  </div>
+</details>
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：Kimi K3.1 Pro 上线：开源大模型离顶">

@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>AI 办公智库 | wswin</title>
-<meta name="description" content="文档、表格、PPT、邮件：办公提效，少加班。wswin AI 智库「AI 办公」主题聚合，共 18 篇，持续更新。" />
+<meta name="description" content="文档、表格、PPT、邮件：办公提效，少加班。wswin AI 智库「AI 办公」主题聚合，共 19 篇，持续更新。" />
 <link rel="canonical" href="https://wswin.dpdns.org/topics/ai-office.html" />
 <meta property="og:title" content="AI 办公智库 | wswin" />
-<meta property="og:description" content="文档、表格、PPT、邮件：办公提效，少加班。wswin AI 智库「AI 办公」主题聚合，共 18 篇，持续更新。" />
+<meta property="og:description" content="文档、表格、PPT、邮件：办公提效，少加班。wswin AI 智库「AI 办公」主题聚合，共 19 篇，持续更新。" />
 <style>
 /* ============================================================
    WSWIN — dark editorial tech aesthetic
@@ -517,6 +517,13 @@ html[data-theme="light"] .soon-tag{color:#c2530f}
 .foot-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
 .foot-inner p{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--muted)}
 
+/* touch: cards must answer a single tap on touch devices (iPad Safari does not reliably synthesize a click on these cards) */
+.lead,.news-row,.tut-card{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+a.card-link{display:block;color:inherit;text-decoration:none}
+a.card-link.hide{display:none}
+.tut-grid>a{display:block}
+.tut-grid .tut-card{height:100%}
+
 /* ============================================================
    READER
    ============================================================ */
@@ -682,10 +689,29 @@ body.locked{overflow:hidden}
 </div></div>
 
 <div class="wrap"><div class="t-hero">
-<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 18 篇</span>
+<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 19 篇</span>
 <h1>AI 办公</h1>
 <p>文档、表格、PPT、邮件：办公提效，少加班</p>
 </div>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：文章读完记不住一句具体话？三步先把 AI 味圈出">
+      <div class="thumb"><img src="../thumb-daily-20261026-05.jpg" alt="文章读完记不住一句具体话？三步先把 AI 味圈出来再改" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>文章读完记不住一句具体话？三步先把 AI 味圈出来再改</h4>
+        <p class="exc">Haosen 在 10 月 25 日的长文里点了一个常见毛病：文章写得很顺，读完记不住一句具体话。表现通常是三样凑齐：宏大开头、段段强调意义、结尾替读者总结一遍。他给的去 AI 味方法只有三步，顺序不…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-10-26</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>Haosen 在 10 月 25 日的长文里点了一个常见毛病：文章写得很顺，读完记不住一句具体话。表现通常是三样凑齐：宏大开头、段段强调意义、结尾替读者总结一遍。他给的去 AI 味方法只有三步，顺序不能乱。</p>
+      <p>第一步先查清哪里不好读：让工具圈出具体句子，解释每处的问题，再决定改不改。正常术语、必要步骤、作者原来的语气不用为去味一律删掉。第二步改稿先保住事实：数字、引用、判断的轻重、原来的语气都不动，一次只用一套规则改一段，验过原意没变再处理全文。第三步让以后的稿子更接近自己的表达：别只写一句“自然一点”，把自己改过的前后版本留下来，让风格要求有实际依据。</p>
+      <p>长文还附了一份 22 个工具名的清单，分自查、检测、改写、文风校准几类，19 个给了具体 GitHub 实现。清单要用得小心两点：检测分数不能当成作者身份的判决；有 3 个工具作者明言只凭名称没法确认实现，只算检索线索，别照单安装。</p>
+      <p>普通人怎么用：下次改稿别直接让 AI 重写全文。先让它圈出有问题的句子并说明理由，你逐条点头后再改，改完对照原文核一遍数字和判断有没有走样。改过的前后版本存下来，下次直接拿它当风格样本，比空喊“自然一点”管用。</p>
+  </div>
+</details>
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：">

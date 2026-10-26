@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>AI 视频智库 | wswin</title>
-<meta name="description" content="AI 视频生成、剪辑、配音：让静态变动态，短视频生产力。wswin AI 智库「AI 视频」主题聚合，共 18 篇，持续更新。" />
+<meta name="description" content="AI 视频生成、剪辑、配音：让静态变动态，短视频生产力。wswin AI 智库「AI 视频」主题聚合，共 19 篇，持续更新。" />
 <link rel="canonical" href="https://wswin.dpdns.org/topics/ai-video.html" />
 <meta property="og:title" content="AI 视频智库 | wswin" />
-<meta property="og:description" content="AI 视频生成、剪辑、配音：让静态变动态，短视频生产力。wswin AI 智库「AI 视频」主题聚合，共 18 篇，持续更新。" />
+<meta property="og:description" content="AI 视频生成、剪辑、配音：让静态变动态，短视频生产力。wswin AI 智库「AI 视频」主题聚合，共 19 篇，持续更新。" />
 <style>
 /* ============================================================
    WSWIN — dark editorial tech aesthetic
@@ -517,6 +517,13 @@ html[data-theme="light"] .soon-tag{color:#c2530f}
 .foot-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
 .foot-inner p{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--muted)}
 
+/* touch: cards must answer a single tap on touch devices (iPad Safari does not reliably synthesize a click on these cards) */
+.lead,.news-row,.tut-card{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+a.card-link{display:block;color:inherit;text-decoration:none}
+a.card-link.hide{display:none}
+.tut-grid>a{display:block}
+.tut-grid .tut-card{height:100%}
+
 /* ============================================================
    READER
    ============================================================ */
@@ -682,10 +689,29 @@ body.locked{overflow:hidden}
 </div></div>
 
 <div class="wrap"><div class="t-hero">
-<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 18 篇</span>
+<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 19 篇</span>
 <h1>AI 视频</h1>
 <p>AI 视频生成、剪辑、配音：让静态变动态，短视频生产力</p>
 </div>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：AI 视频选题不用自己刷了：有人每天扫 2000">
+      <div class="thumb"><img src="../thumb-daily-20261026-02.jpg" alt="AI 视频选题不用自己刷了：有人每天扫 2000 多条给你归好类" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>AI 视频选题不用自己刷了：有人每天扫 2000 多条给你归好类</h4>
+        <p class="exc">做 AI 视频最耗时间的不是剪辑，是选题。Gary 曹淦搭了一个免费情报站，公开页每天早上 6 点多更新，不用登录就能看。站点每天扫 B站、YouTube、抖音、TikTok、小红书、X，再加 Git…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-10-26</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>做 AI 视频最耗时间的不是剪辑，是选题。Gary 曹淦搭了一个免费情报站，公开页每天早上 6 点多更新，不用登录就能看。站点每天扫 B站、YouTube、抖音、TikTok、小红书、X，再加 GitHub、Hugging Face 和 AI 资讯站，10 月 24 日那期扫了 2273 条，归出 16 个视频题材、14 个 X 热议、9 个开源项目。</p>
+      <p>站点的判断规则比清单本身更值钱。题材分四档：新起、升温、持续、观察。新起要两条独立信号同时成立才标，比如当天头条“Claude 改造电视突然冒头”：YouTube 上对得上的 17 条全是近 10 天发的，来自 6 个不同账号，一个 3940 粉的号单条跑出 86.2 万播放，两条信号都立住了才算新起。新起和升温题材还会往回翻两年，写清最早从哪来、怎么传开、现在到哪一步，帮你判断是刚冒头还是已经卷了。</p>
+      <p>免费指的是看公开页免费。代码用 MIT 协议开源在 GitHub，想自己部署要准备 TikHub key 和一个 OpenAI 格式的模型接口，作者实测一期成本约 TikHub 0.18 美元加模型不到 0.4 元人民币，一个月五六十块。</p>
+      <p>普通人怎么用：每天花 5 分钟，只看新起那一档，看到跟自己赛道沾边的题材，先记下它的判断依据和两年回溯，再决定跟不跟。自己部署先放一放，白嫖公开页就够了。</p>
+  </div>
+</details>
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：可灵 4.0 API 开放：一次生成 30 秒长">

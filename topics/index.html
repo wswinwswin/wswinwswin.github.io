@@ -517,6 +517,13 @@ html[data-theme="light"] .soon-tag{color:#c2530f}
 .foot-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
 .foot-inner p{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--muted)}
 
+/* touch: cards must answer a single tap on touch devices (iPad Safari does not reliably synthesize a click on these cards) */
+.lead,.news-row,.tut-card{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+a.card-link{display:block;color:inherit;text-decoration:none}
+a.card-link.hide{display:none}
+.tut-grid>a{display:block}
+.tut-grid .tut-card{height:100%}
+
 /* ============================================================
    READER
    ============================================================ */
@@ -688,7 +695,7 @@ body.locked{overflow:hidden}
 </div>
 <div class="t-grid">
 <div class="t-card">
-<span class="n">18 篇 · 持续更新</span>
+<span class="n">19 篇 · 持续更新</span>
 <h3>AI 视频</h3>
 <p>AI 视频生成、剪辑、配音：让静态变动态，短视频生产力</p>
 <a class="drill" href="ai-video.html" style="display:inline-flex;align-items:center;border:1.5px solid var(--ink);color:var(--ink);font-weight:700;font-size:13px;padding:8px 18px;border-radius:999px;align-self:flex-start">进入主题 →</a>
@@ -700,19 +707,19 @@ body.locked{overflow:hidden}
 <a class="drill" href="ai-image.html" style="display:inline-flex;align-items:center;border:1.5px solid var(--ink);color:var(--ink);font-weight:700;font-size:13px;padding:8px 18px;border-radius:999px;align-self:flex-start">进入主题 →</a>
 </div>
 <div class="t-card">
-<span class="n">18 篇 · 持续更新</span>
+<span class="n">19 篇 · 持续更新</span>
 <h3>AI 办公</h3>
 <p>文档、表格、PPT、邮件：办公提效，少加班</p>
 <a class="drill" href="ai-office.html" style="display:inline-flex;align-items:center;border:1.5px solid var(--ink);color:var(--ink);font-weight:700;font-size:13px;padding:8px 18px;border-radius:999px;align-self:flex-start">进入主题 →</a>
 </div>
 <div class="t-card">
-<span class="n">36 篇 · 持续更新</span>
+<span class="n">37 篇 · 持续更新</span>
 <h3>AI 智能体</h3>
 <p>Agent、Claude Code、Computer Use：让 AI 替你办事</p>
 <a class="drill" href="ai-agent.html" style="display:inline-flex;align-items:center;border:1.5px solid var(--ink);color:var(--ink);font-weight:700;font-size:13px;padding:8px 18px;border-radius:999px;align-self:flex-start">进入主题 →</a>
 </div>
 <div class="t-card">
-<span class="n">29 篇 · 持续更新</span>
+<span class="n">31 篇 · 持续更新</span>
 <h3>模型动态</h3>
 <p>新模型发布、降价、开源：模型圈速览，选型不踩坑</p>
 <a class="drill" href="models.html" style="display:inline-flex;align-items:center;border:1.5px solid var(--ink);color:var(--ink);font-weight:700;font-size:13px;padding:8px 18px;border-radius:999px;align-self:flex-start">进入主题 →</a>
