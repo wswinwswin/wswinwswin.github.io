@@ -444,7 +444,7 @@ a{color:inherit;text-decoration:none}
 .follow-kicker{font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;color:var(--muted);flex:none}
 .follow-title{font-family:var(--font-serif);font-weight:900;font-size:clamp(1.4rem,2.8vw,1.9rem);white-space:nowrap}
 .follow-rule{flex:1;height:1px;background:var(--line);margin-bottom:8px}
-.plat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.plat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
 .plat{background:var(--surface);padding:26px;display:flex;align-items:center;gap:18px;transition:background .3s}
 a.plat:hover{background:var(--surface-2)}
 .plat-ic{
@@ -507,6 +507,9 @@ html[data-theme="light"] .soon-tag{color:#c2530f}
   border:1px solid var(--line);background:var(--surface);
   padding:clamp(24px,3.5vw,32px);margin-bottom:22px;
 }
+.wechat-row{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:22px}
+.wechat-row .wechat-card{margin-bottom:0}
+@media(max-width:700px){.wechat-row{grid-template-columns:1fr}}
 .wechat-card .plat-tx b{font-size:1.05rem}
 .wechat-qrcode{margin-left:auto;flex:none;text-align:center}
 .wechat-qrcode img{width:158px;height:auto;border:1px solid var(--line);border-radius:2px;background:#fff}
@@ -1281,6 +1284,7 @@ body.locked{overflow:hidden}
         <h3 class="follow-title">全平台关注</h3>
         <span class="follow-rule"></span>
       </div>
+      <div class="wechat-row">
       <div class="wechat-card">
         <span class="plat-ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.3 2.8a6 6 0 1 1 0 12 6 6 0 1 1 0-12zM16.9 10.2a3.9 3.9 0 1 1 0 7.8 3.9 3.9 0 1 1 0-7.8zM6.3 13.3L4.6 16.9L8.6 14.9zM15.4 16.9L14 19.7L17.3 18zM6.9 8.55a.95.95 0 1 0 0-1.9.95.95 0 1 0 0 1.9zM9.7 8.55a.95.95 0 1 0 0-1.9.95.95 0 1 0 0 1.9zM15.8 14.2a.8.8 0 1 0 0-1.6.8.8 0 1 0 0 1.6zM17.9 14.2a.8.8 0 1 0 0-1.6.8.8 0 1 0 0 1.6z"/></svg></span>
         <span class="plat-tx"><b>微信</b><span class="plat-sub">顺理成章 · 个人微信</span></span>
@@ -1297,6 +1301,7 @@ body.locked{overflow:hidden}
           <span class="wechat-cap">扫码关注视频号</span>
         </div>
       </div>
+      </div>
       <div class="plat-grid">
         <a class="plat" href="#about" aria-label="微信公众号 wswin.code，回到关于我区">
           <span class="plat-ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.3 2.8a6 6 0 1 1 0 12 6 6 0 1 1 0-12zM16.9 10.2a3.9 3.9 0 1 1 0 7.8 3.9 3.9 0 1 1 0-7.8zM6.3 13.3L4.6 16.9L8.6 14.9zM15.4 16.9L14 19.7L17.3 18zM6.9 8.55a.95.95 0 1 0 0-1.9.95.95 0 1 0 0 1.9zM9.7 8.55a.95.95 0 1 0 0-1.9.95.95 0 1 0 0 1.9zM15.8 14.2a.8.8 0 1 0 0-1.6.8.8 0 1 0 0 1.6zM17.9 14.2a.8.8 0 1 0 0-1.6.8.8 0 1 0 0 1.6z"/></svg></span>
@@ -1310,6 +1315,11 @@ body.locked{overflow:hidden}
         <a class="plat" href="https://www.xiaohongshu.com/user/profile/61bb3396000000001000bb08" target="_blank" rel="noopener" aria-label="小红书 老克勒日记，在新标签页打开">
           <span class="plat-ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="4" fill="#ff2442"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#fff" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg></span>
           <span class="plat-tx"><b>小红书</b><span class="plat-sub">老克勒日记 · 小红书号 1492801457</span></span>
+          <span class="plat-arr">↗</span>
+        </a>
+        <a class="plat" href="https://www.douyin.com/search/89104585999" target="_blank" rel="noopener" aria-label="抖音 微羽悟道，在新标签页打开">
+          <span class="plat-ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 18V6l10-2v11"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="15" r="2.5"/></svg></span>
+          <span class="plat-tx"><b>抖音</b><span class="plat-sub">微羽🪶悟道 · 抖音号 89104585999</span></span>
           <span class="plat-arr">↗</span>
         </a>
       </div>
