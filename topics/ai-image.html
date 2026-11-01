@@ -425,7 +425,7 @@ a{color:inherit;text-decoration:none}
 .follow-kicker{font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;color:var(--muted);flex:none}
 .follow-title{font-family:var(--font-serif);font-weight:900;font-size:clamp(1.4rem,2.8vw,1.9rem);white-space:nowrap}
 .follow-rule{flex:1;height:1px;background:var(--line);margin-bottom:8px}
-.plat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.plat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
 .plat{background:var(--surface);padding:26px;display:flex;align-items:center;gap:18px;transition:background .3s}
 a.plat:hover{background:var(--surface-2)}
 .plat-ic{
@@ -488,6 +488,9 @@ html[data-theme="light"] .soon-tag{color:#c2530f}
   border:1px solid var(--line);background:var(--surface);
   padding:clamp(24px,3.5vw,32px);margin-bottom:22px;
 }
+.wechat-row{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:22px}
+.wechat-row .wechat-card{margin-bottom:0}
+@media(max-width:700px){.wechat-row{grid-template-columns:1fr}}
 .wechat-card .plat-tx b{font-size:1.05rem}
 .wechat-qrcode{margin-left:auto;flex:none;text-align:center}
 .wechat-qrcode img{width:158px;height:auto;border:1px solid var(--line);border-radius:2px;background:#fff}
