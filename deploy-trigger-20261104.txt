@@ -1,0 +1,1 @@
+Redeploy trigger for 2026-11-04 news images (daily-20261104 jpg files). This file is temporary and will be removed after the deployment verifies.
