@@ -1766,10 +1766,16 @@ body.locked{overflow:hidden}
   rPrev.addEventListener("click", function(){ var p = ORDER[curType][curIdx-1]; if (p) openArticle(curType, p); });
   rNext.addEventListener("click", function(){ var n = ORDER[curType][curIdx+1]; if (n) openArticle(curType, n); });
 
-  /* Cards are pure links now (2026-10-25): no JS intercepts a card tap at all.
-     The <a class="card-link"> navigates to the article page exactly like any
-     other site's link, on every browser, with or without JS. The reader
-     overlay code above stays for in-reader prev/next only. */
+  /* News cards (lead + rows) open the reader overlay. Tutorial cards stay
+     pure <a class="card-link"> links and are intentionally NOT bound here,
+     otherwise a tap would both navigate and open the overlay. */
+  Array.prototype.slice.call(document.querySelectorAll('article[data-type="news"][data-open]')).forEach(function(card){
+    var id = card.getAttribute("data-open");
+    card.addEventListener("click", function(){ openArticle("news", id); });
+    card.addEventListener("keydown", function(e){
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openArticle("news", id); }
+    });
+  });
 })();
 
 /* 站长自助改价：读取 prices.json，用配置价格覆盖页面默认价格 */
