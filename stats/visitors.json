@@ -1,11 +1,11 @@
 {
- "updated": "2026-11-02T06:58:53+08:00",
+ "updated": "2026-11-05T06:58:52+08:00",
  "latest": {
-  "date": "2026-11-01",
+  "date": "2026-11-04",
   "period": "过去24小时",
   "sessions": 1,
   "users": 1,
-  "activeMinutes": 0,
+  "activeMinutes": 34,
   "byChannel": {},
   "byDevice": {
    "PC": 1
@@ -22,7 +22,7 @@
   },
   "topPages": [
    {
-    "url": "http://wswin.dpdns.org/",
+    "url": "https://wswin.dpdns.org/",
     "visits": 1
    }
   ],
@@ -52,15 +52,15 @@
     "count": 0,
     "sessionsPct": 0
    },
-   "avgScrollDepth": 7
+   "avgScrollDepth": 14
   },
   "pageDetails": [
    {
-    "url": "http://wswin.dpdns.org/",
+    "url": "https://wswin.dpdns.org/",
     "sessions": 1,
     "users": 1,
-    "activeTime": 0,
-    "scrollDepth": 7,
+    "activeTime": 34,
+    "scrollDepth": 14,
     "deadClicks": 0,
     "rageClicks": 0,
     "errorClicks": 0,
@@ -71,11 +71,6 @@
   ]
  },
  "history": [
-  {
-   "date": "2026-10-04",
-   "sessions": 0,
-   "users": 0
-  },
   {
    "date": "2026-10-06",
    "sessions": 5,
@@ -208,6 +203,21 @@
   },
   {
    "date": "2026-11-01",
+   "sessions": 1,
+   "users": 1
+  },
+  {
+   "date": "2026-11-02",
+   "sessions": 1,
+   "users": 1
+  },
+  {
+   "date": "2026-11-03",
+   "sessions": 0,
+   "users": 0
+  },
+  {
+   "date": "2026-11-04",
    "sessions": 1,
    "users": 1
   }
