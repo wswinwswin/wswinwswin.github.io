@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>模型动态智库 | wswin</title>
-<meta name="description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 51 篇，持续更新。" />
+<meta name="description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 53 篇，持续更新。" />
 <link rel="canonical" href="https://wswin.dpdns.org/topics/models.html" />
 <meta property="og:title" content="模型动态智库 | wswin" />
-<meta property="og:description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 51 篇，持续更新。" />
+<meta property="og:description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 53 篇，持续更新。" />
 <style>
 /* ============================================================
    WSWIN — dark editorial tech aesthetic
@@ -692,10 +692,46 @@ body.locked{overflow:hidden}
 </div></div>
 
 <div class="wrap"><div class="t-hero">
-<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 51 篇</span>
+<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 53 篇</span>
 <h1>模型动态</h1>
 <p>新模型发布、降价、开源：模型圈速览，选型不踩坑</p>
 </div>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：64G 内存跑 2840 亿参数大模型？先别急着">
+      <div class="thumb"><img src="../thumb-daily-20261109-04.jpg" alt="64G 内存跑 2840 亿参数大模型？先别急着买内存条" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>64G 内存跑 2840 亿参数大模型？先别急着买内存条</h4>
+        <p class="exc">Hacker News 上 11 月 8 日最热的一条帖子很抓眼球：一个叫 llama-modchip 的 llama.cpp 分支，号称不用显卡，只用 64G 内存就能跑 2840 亿参数的 Dee…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-11-09</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>Hacker News 上 11 月 8 日最热的一条帖子很抓眼球：一个叫 llama-modchip 的 llama.cpp 分支，号称不用显卡，只用 64G 内存就能跑 2840 亿参数的 DeepSeek-V4-Flash。开发者给出的数据：模型从 76.87 GiB 压到磁盘 56.56 GiB，内存峰值 57.61 GiB；16 核 Zen 5 处理器上，生成速度每秒 **9.1 个 token**，加推测解码能到 11.5 到 14.7 个。16G 内存的机器也能跑 300 亿参数的模型。</p>
+      <p>听着很美，但先泼一盆冷水：这些数字全是开发者自己报的，评论区已经有人跑不通——有人按说明装 DeepSeek 直接报错，有人怀疑这个仓库本身就是 AI 生成的，实测效果跟原版 llama.cpp 差不多。独立复现还没出现。</p>
+      <p>普通人怎么用：先别买内存条，别为这个升级机器。手头正好有 64G 内存的台式机，可以等独立评测出来再试；只有 16G 的笔记本更不用折腾，300 亿参数的模型在上面也只能慢慢爬。等有人真正跑通、晒出实测再说。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：OpenAI 的 API 价砍了一半：Sol 两">
+      <div class="thumb"><img src="../thumb-daily-20261109-05.jpg" alt="OpenAI 的 API 价砍了一半：Sol 两块，Luna 一毛" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>OpenAI 的 API 价砍了一半：Sol 两块，Luna 一毛</h4>
+        <p class="exc">OpenAI 在 11 月初把两款 API 模型的价砍了一半。GPT-6 Sol 输入每百万 token 从 4 美元降到 **2 美元**，输出从 20 美元降到 10 美元；GPT-6 Luna …</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-11-09</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>OpenAI 在 11 月初把两款 API 模型的价砍了一半。GPT-6 Sol 输入每百万 token 从 4 美元降到 **2 美元**，输出从 20 美元降到 10 美元；GPT-6 Luna 输入每百万 token **0.10 美元**，输出 0.50 美元，输出比原来便宜了约 58%。两款都是纯 API 模型，没有开源权重。</p>
+      <p>三档怎么分：旗舰 Astra 输入 10 美元、输出 50 美元，最贵也最强；中间新出的 Terra 输入 1 美元、输出 5 美元，正好是 Sol 的一半；Luna 最便宜，适合量大、任务简单的活，比如分类、抽取、摘要、翻译。不着急的任务还能再省一半：Batch API 和 Flex 处理都是标准价的五折，代价是结果晚点到，最长等 24 小时。</p>
+      <p>普通人怎么用：如果你在调 OpenAI 的 API，先查一下代码里写的是哪个模型名。简单任务从 Sol 换到 Luna，账单直接少一大截；能等的批量任务走 Batch，等于在半价上再打五折。只用 ChatGPT 聊天的，这次降价跟你没关系，省的是开发者的钱。</p>
+  </div>
+</details>
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：Inkling 2 Small：5940 亿参数">
