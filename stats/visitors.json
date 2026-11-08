@@ -1,7 +1,7 @@
 {
- "updated": "2026-11-08T06:58:50+08:00",
+ "updated": "2026-11-09T06:58:47+08:00",
  "latest": {
-  "date": "2026-11-07",
+  "date": "2026-11-08",
   "period": "过去24小时",
   "sessions": 0,
   "users": 0,
@@ -44,11 +44,6 @@
   "pageDetails": []
  },
  "history": [
-  {
-   "date": "2026-10-09",
-   "sessions": 0,
-   "users": 0
-  },
   {
    "date": "2026-10-10",
    "sessions": 1,
@@ -191,6 +186,11 @@
   },
   {
    "date": "2026-11-07",
+   "sessions": 0,
+   "users": 0
+  },
+  {
+   "date": "2026-11-08",
    "sessions": 0,
    "users": 0
   }
