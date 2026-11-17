@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>模型动态智库 | wswin</title>
-<meta name="description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 64 篇，持续更新。" />
+<meta name="description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 67 篇，持续更新。" />
 <link rel="canonical" href="https://wswin.dpdns.org/topics/models.html" />
 <meta property="og:title" content="模型动态智库 | wswin" />
-<meta property="og:description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 64 篇，持续更新。" />
+<meta property="og:description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 67 篇，持续更新。" />
 <style>
 /* ============================================================
    WSWIN — dark editorial tech aesthetic
@@ -692,10 +692,69 @@ body.locked{overflow:hidden}
 </div></div>
 
 <div class="wrap"><div class="t-hero">
-<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 64 篇</span>
+<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 67 篇</span>
 <h1>模型动态</h1>
 <p>新模型发布、降价、开源：模型圈速览，选型不踩坑</p>
 </div>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：微软一次放出七个自研模型，写代码便宜了九成多">
+      <div class="thumb"><img src="../thumb-daily-20261118-02.jpg" alt="微软一次放出七个自研模型，写代码便宜了九成多" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>微软一次放出七个自研模型，写代码便宜了九成多</h4>
+        <p class="exc">11 月 17 日的 Ignite 大会上，微软一次端出七个自研模型，主角是写代码的 MAI Code 2。微软跑分说：日常编程任务上，Code 2 有 GPT-6.1 Sol **98%** 的本事…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-11-18</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>11 月 17 日的 Ignite 大会上，微软一次端出七个自研模型，主角是写代码的 MAI Code 2。微软跑分说：日常编程任务上，Code 2 有 GPT-6.1 Sol **98%** 的本事，价格只要 **40%**；对上 Claude Opus 5.5 是 **96%** 的本事、**5%** 的价格。Code 2 Flash 对上 GPT-6 Luna 和 Haiku 5.5，价格六成多和两成。</p>
+      <p>管决策的 Decision 1.1 也正式可用，比 GPT-6.1 Sol 快 **50 倍**、便宜 **79 倍**，专接路由、分类、排优先级、验结果这些小决策，让贵模型只干难的活。管安全的 MAI Cyber 2 Flash 在 CyberGym 里超过 GPT-6 Astra，单个任务成本不到 **2%**。修图模型 MAI Image 2.7 拿了图像编辑第一，价格五分之一。</p>
+      <p>数字都出自微软自己的测试篮子，换之前先在自己的项目上实测一把。</p>
+      <p>普通人怎么用：写代码的在 GitHub Copilot 的模型选择器里切到 Code 2，改 bug、写注释、多文件改动先用它；做智能体的把 Decision 1.1 放前面当分流器，大模型只接疑难杂症。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：7B 参数只用 1B 干活：这台小模型 8G 显">
+      <div class="thumb"><img src="../thumb-daily-20261118-04.jpg" alt="7B 参数只用 1B 干活：这台小模型 8G 显存就能跑" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>7B 参数只用 1B 干活：这台小模型 8G 显存就能跑</h4>
+        <p class="exc">11 月 17 日，法国云厂商 OVHcloud 发布了首个大模型家族 Olala，打头的是 Olala mini 7A1B。名字就是规格：总共 **70 亿**参数，每次只激活 **10 亿**，一…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-11-18</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>11 月 17 日，法国云厂商 OVHcloud 发布了首个大模型家族 Olala，打头的是 Olala mini 7A1B。名字就是规格：总共 **70 亿**参数，每次只激活 **10 亿**，一层 **256** 个专家，谁擅长谁上。</p>
+      <p>小是最大卖点：**8G** 显存的显卡就能跑，CPU 也能跑；上下文现在 **3.2 万** token，年底 1.1 版扩到 **12.8 万**。模型从零训起，用的是三台欧洲公共超算——德国 Jupiter、卢森堡 MeluXina、法国 Jean Zay。协议 Apache 2.0，权重、技术报告、合规文档一起公开，搜索引擎 Qwant 已拿它做快问快答。</p>
+      <p>正式发布在 **11 月 19** 日的 OVHcloud AI 峰会，权重计划上架 Hugging Face——截至 17 日仓库还没影。</p>
+      <p>老实说：发布稿没给公开跑分，速度数字也是 OVHcloud 自测，质量怎么样，得等权重放出来实测，先别急着换手头的模型。</p>
+      <p>普通人怎么用：家里有 8G 显存以上的显卡，19 日之后去 Hugging Face 搜 Olala mini，下下来本地跑写作、翻译小助手，不联网、不花钱；先当备用模型跑几天，跟手头的 Qwen、Llama 小模型比一比再决定。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：六个开源模型一次放全：权重、数据、训练代码全公开">
+      <div class="thumb"><img src="../thumb-daily-20261118-05.jpg" alt="六个开源模型一次放全：权重、数据、训练代码全公开" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>六个开源模型一次放全：权重、数据、训练代码全公开</h4>
+        <p class="exc">11 月中旬，阿布扎比的 IFM 把 K2-Horizon 的全套东西放了出来，一口气六个模型，从 **0.9B** 的小个子到 **375B** 激活 **23B** 的旗舰，中间还有 3.7B、7…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-11-18</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>11 月中旬，阿布扎比的 IFM 把 K2-Horizon 的全套东西放了出来，一口气六个模型，从 **0.9B** 的小个子到 **375B** 激活 **23B** 的旗舰，中间还有 3.7B、7B、32B 和 36B 激活 4B，专攻写代码和智能体任务。</p>
+      <p>放模型不新鲜，新鲜的是放的程度：每个模型的权重、训练代码、中间检查点、数据配方甚至训练数据全公开。几个大模型共用一套 **22 万亿** token 语料，其中约 **10 万亿** token 合成数据的生产管线也一起放了出来。论文挂在 arXiv，编号 2611.21003，细节在 ifm.ai/k2 上。</p>
+      <p>IFM 管这套做法叫玻璃盒子，不是黑盒子：别人开源多半只给权重，训练过程还是谜；K2-Horizon 把底牌全摊在桌上，谁都能复现、微调、接着改。</p>
+      <p>别被 375B 的旗舰吓住，那是给企业机房的。个人上手 0.9B 和 7B 两个小号，本地电脑就能跑；32B 适合当本地编码助手的底座。</p>
+      <p>普通人怎么用：想搭本地助手，或想弄明白大模型是怎么训出来的，去 ifm.ai/k2 挑个小模型下下来，权重、数据、代码全在手里，照着跑一遍比看十篇教程都管用。</p>
+  </div>
+</details>
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：DeepSeek 免费版开始限额：长对话、单次输">
