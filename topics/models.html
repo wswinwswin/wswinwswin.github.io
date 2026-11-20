@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>模型动态智库 | wswin</title>
-<meta name="description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 71 篇，持续更新。" />
+<meta name="description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 74 篇，持续更新。" />
 <link rel="canonical" href="https://wswin.dpdns.org/topics/models.html" />
 <meta property="og:title" content="模型动态智库 | wswin" />
-<meta property="og:description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 71 篇，持续更新。" />
+<meta property="og:description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 74 篇，持续更新。" />
 <style>
 /* ============================================================
    WSWIN — dark editorial tech aesthetic
@@ -692,10 +692,64 @@ body.locked{overflow:hidden}
 </div></div>
 
 <div class="wrap"><div class="t-hero">
-<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 71 篇</span>
+<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 74 篇</span>
 <h1>模型动态</h1>
 <p>新模型发布、降价、开源：模型圈速览，选型不踩坑</p>
 </div>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：腾讯开源四个看视频的模型：画面加声音一起读，最小">
+      <div class="thumb"><img src="../thumb-daily-20261121-03.jpg" alt="腾讯开源四个看视频的模型：画面加声音一起读，最小的 2B 就能跑" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>腾讯开源四个看视频的模型：画面加声音一起读，最小的 2B 就能跑</h4>
+        <p class="exc">腾讯微信视觉团队 11 月 19 日开源了 WeMM-Video，一组能同时看画面、听声音的视频理解模型。四个尺寸：2B、4B、9B 和 35B-A3B，35B 是总量 350 亿参数、每次只激活约 …</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-11-21</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>腾讯微信视觉团队 11 月 19 日开源了 WeMM-Video，一组能同时看画面、听声音的视频理解模型。四个尺寸：2B、4B、9B 和 35B-A3B，35B 是总量 350 亿参数、每次只激活约 30 亿的混合专家模型。它把视频帧和配乐放在同一个推理过程里读，能讲清画面里发生了什么、转写台词、再根据看到听到的内容做推理，中英文都行。</p>
+      <p>这组模型用约 1.2 万亿 token 训练，权重、代码和评测流程一起公开，Apache 2.0 协议，商用也没问题。最小的 2B 有量化版，**8G 显存**的电脑就能跑。腾讯自己的说法是，35B 在开源视频理解榜单上拿了第一，9B 胜过了 Qwen3-Omni-30B-A3B-Instruct，这些数字是厂商自测，还没有第三方验证。</p>
+      <p>我会怎么用：做短视频、做素材库、做视频搜索的团队，先拿 2B 量化版试手：给一段视频打标签、按台词搜镜头、批量生成字幕，跑得动再往上加尺寸。跑分看看就好，拿自己的视频实测一遍再决定上不上生产。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：一个接口调遍 Claude、GPT、Gemini">
+      <div class="thumb"><img src="../thumb-daily-20261121-04.jpg" alt="一个接口调遍 Claude、GPT、Gemini：Perplexity 把自家路" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>一个接口调遍 Claude、GPT、Gemini：Perplexity 把自家路由层开放了</h4>
+        <p class="exc">接多个大模型最烦的不是写代码，是每家都要注册、签合同、走账单，宕机还得自己写重试。Perplexity 11 月 17 日推出 Orchestrator API，一个接口收进 OpenAI、Anthr…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-11-21</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>接多个大模型最烦的不是写代码，是每家都要注册、签合同、走账单，宕机还得自己写重试。Perplexity 11 月 17 日推出 Orchestrator API，一个接口收进 OpenAI、Anthropic、谷歌、xAI 和开源权重模型。OpenAI 的开发包改一行地址就能用：https://api.perplexity.ai/orchestrator/v1。</p>
+      <p>故障转移最实在：同一模型在 Anthropic 挂了，自动切到 AWS Bedrock 继续跑，模型和价格都不变。账单按回答模型的公开价收，没有平台费。开通按累计充值分档：0 美元档用谷歌、xAI 和开源模型；**50 美元**解锁 OpenAI 和大部分 Anthropic 模型；**250 美元**档才开 Opus 和 Fable 系列。预览中的 perplexity/auto 能按大白话规则自动选模型。注意：不能自带 key，也不能自己指定走哪个服务商部署。</p>
+      <p>我会怎么用：开发多模型应用、被某家 API 宕机坑过的人值得试，先从 0 美元档起步，只改 key 和地址就能跑。重度用户再算一笔账：省下的平台费值不值失去的控制权。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：苹果开源视频模型：一帧 36 毫秒，边生成边改镜">
+      <div class="thumb"><img src="../thumb-daily-20261121-05.jpg" alt="苹果开源视频模型：一帧 36 毫秒，边生成边改镜头" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>苹果开源视频模型：一帧 36 毫秒，边生成边改镜头</h4>
+        <p class="exc">视频生成最磨人的不是画质，是等。苹果和康奈尔 11 月 16 日开源的 FastFrames，就是冲着这个等字去的：两个文生视频模型，FastFrames-S 13 亿参数，FastFrames-L …</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-11-21</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>视频生成最磨人的不是画质，是等。苹果和康奈尔 11 月 16 日开源的 FastFrames，就是冲着这个等字去的：两个文生视频模型，FastFrames-S 13 亿参数，FastFrames-L 140 亿参数，一帧只要 **36 毫秒**，5 秒的片段 3 秒不到就生成完，边播边改镜头成为可能。</p>
+      <p>快来自三处省下来的时间：去噪从多步压到两步，KV 缓存只留有用的部分，解码器换成轻量的像素头。论文里算过一笔账：以前每帧 271 毫秒里，扩散采样只占三成，剩下的时间都耗在解码和缓存刷新上。输出是 480p、每秒 16 帧，每次生成 81 帧，约 5 秒，支持接着往下续。代码和权重都公开，仓库在 GitHub 上。注意许可证：模型只限研究使用，不能直接拿去商用；跑起来要 Linux 加英伟达显卡和 CUDA 12.8。</p>
+      <p>我会怎么用：普通用户现在用不上，这是一套研究代码，不是开箱即用的产品。做视频工具、虚拟拍摄、游戏的朋友可以先看它的思路：想实时改镜头，别只盯着扩散步数，解码器和缓存才是大头。商用先别碰，等有商业授权的版本。</p>
+  </div>
+</details>
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：DeepSeek 改了计费：模型里调搜索，不再单">
