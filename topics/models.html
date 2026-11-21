@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>模型动态智库 | wswin</title>
-<meta name="description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 74 篇，持续更新。" />
+<meta name="description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 75 篇，持续更新。" />
 <link rel="canonical" href="https://wswin.dpdns.org/topics/models.html" />
 <meta property="og:title" content="模型动态智库 | wswin" />
-<meta property="og:description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 74 篇，持续更新。" />
+<meta property="og:description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 75 篇，持续更新。" />
 <style>
 /* ============================================================
    WSWIN — dark editorial tech aesthetic
@@ -692,10 +692,29 @@ body.locked{overflow:hidden}
 </div></div>
 
 <div class="wrap"><div class="t-hero">
-<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 74 篇</span>
+<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 75 篇</span>
 <h1>模型动态</h1>
 <p>新模型发布、降价、开源：模型圈速览，选型不踩坑</p>
 </div>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：26B 模型塞进 20GB，普通笔记本就能离线跑">
+      <div class="thumb"><img src="../thumb-daily-20261122-01.jpg" alt="26B 模型塞进 20GB，普通笔记本就能离线跑编程助手" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>26B 模型塞进 20GB，普通笔记本就能离线跑编程助手</h4>
+        <p class="exc">Thinking Machines Lab 11 月 20 日发布 Inkling 2 Mini，一个 26.4B 参数的开源权重模型，整份权重只有 **20GB** 左右，32GB 内存的 MacB…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-11-22</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>Thinking Machines Lab 11 月 20 日发布 Inkling 2 Mini，一个 26.4B 参数的开源权重模型，整份权重只有 **20GB** 左右，32GB 内存的 MacBook Pro 就能离线跑。秘诀是循环结构：24 层里中间 12 层每生成一个词跑三遍，参数没变，算力翻了倍。</p>
+      <p>成绩单写在官方博客和模型卡上：SWE-bench Verified **79.2%**，DeepSWE v1.1 **48.2%**，同体量开源模型里排头。上下文窗口 100 万词，能看文字也能看图，输出文字。许可证 Apache 2.0，权重挂在 Hugging Face，Ollama、MLX、SGLang 当天就接上了。官方演示是断网状态下让它在 MacBook 上几分钟搭出一个能玩的飞行模拟器。</p>
+      <p>短板官方自己也写了：多轮对话偏弱，中文输出偶尔断句、重复。用之前先看清这两条。</p>
+      <p>我会怎么用：手头有 32GB 以上内存的 Mac 或带大显存的台式机，直接从 Hugging Face 拉 GGUF 量化版，用 Ollama 跑起来当本地编程副手，断网也能写代码、改代码。内存不够的机器别硬上，先走它家 Tinker 的托管接口，输入每百万词 0.15 美元。</p>
+  </div>
+</details>
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：腾讯开源四个看视频的模型：画面加声音一起读，最小">

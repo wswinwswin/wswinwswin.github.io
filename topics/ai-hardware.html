@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>AI 硬件智库 | wswin</title>
-<meta name="description" content="AI 硬件、机器人、智能家居：摸得着的 AI。wswin AI 智库「AI 硬件」主题聚合，共 25 篇，持续更新。" />
+<meta name="description" content="AI 硬件、机器人、智能家居：摸得着的 AI。wswin AI 智库「AI 硬件」主题聚合，共 27 篇，持续更新。" />
 <link rel="canonical" href="https://wswin.dpdns.org/topics/ai-hardware.html" />
 <meta property="og:title" content="AI 硬件智库 | wswin" />
-<meta property="og:description" content="AI 硬件、机器人、智能家居：摸得着的 AI。wswin AI 智库「AI 硬件」主题聚合，共 25 篇，持续更新。" />
+<meta property="og:description" content="AI 硬件、机器人、智能家居：摸得着的 AI。wswin AI 智库「AI 硬件」主题聚合，共 27 篇，持续更新。" />
 <style>
 /* ============================================================
    WSWIN — dark editorial tech aesthetic
@@ -692,10 +692,48 @@ body.locked{overflow:hidden}
 </div></div>
 
 <div class="wrap"><div class="t-hero">
-<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 25 篇</span>
+<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 27 篇</span>
 <h1>AI 硬件</h1>
 <p>AI 硬件、机器人、智能家居：摸得着的 AI</p>
 </div>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：26B 模型塞进 20GB，普通笔记本就能离线跑">
+      <div class="thumb"><img src="../thumb-daily-20261122-01.jpg" alt="26B 模型塞进 20GB，普通笔记本就能离线跑编程助手" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>26B 模型塞进 20GB，普通笔记本就能离线跑编程助手</h4>
+        <p class="exc">Thinking Machines Lab 11 月 20 日发布 Inkling 2 Mini，一个 26.4B 参数的开源权重模型，整份权重只有 **20GB** 左右，32GB 内存的 MacB…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-11-22</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>Thinking Machines Lab 11 月 20 日发布 Inkling 2 Mini，一个 26.4B 参数的开源权重模型，整份权重只有 **20GB** 左右，32GB 内存的 MacBook Pro 就能离线跑。秘诀是循环结构：24 层里中间 12 层每生成一个词跑三遍，参数没变，算力翻了倍。</p>
+      <p>成绩单写在官方博客和模型卡上：SWE-bench Verified **79.2%**，DeepSWE v1.1 **48.2%**，同体量开源模型里排头。上下文窗口 100 万词，能看文字也能看图，输出文字。许可证 Apache 2.0，权重挂在 Hugging Face，Ollama、MLX、SGLang 当天就接上了。官方演示是断网状态下让它在 MacBook 上几分钟搭出一个能玩的飞行模拟器。</p>
+      <p>短板官方自己也写了：多轮对话偏弱，中文输出偶尔断句、重复。用之前先看清这两条。</p>
+      <p>我会怎么用：手头有 32GB 以上内存的 Mac 或带大显存的台式机，直接从 Hugging Face 拉 GGUF 量化版，用 Ollama 跑起来当本地编程副手，断网也能写代码、改代码。内存不够的机器别硬上，先走它家 Tinker 的托管接口，输入每百万词 0.15 美元。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：4 千多美元一台小主机，在家跑 120B 大模型">
+      <div class="thumb"><img src="../thumb-daily-20261122-05.jpg" alt="4 千多美元一台小主机，在家跑 120B 大模型" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>4 千多美元一台小主机，在家跑 120B 大模型</h4>
+        <p class="exc">英伟达 11 月 18 日把 RTX Spark 芯片装进台式小主机，华硕、戴尔、微星三家同时在美国开卖。芯片还是那颗 N1X 超级芯片：20 核 Grace 处理器配 6,144 个 CUDA 核心…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-11-22</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>英伟达 11 月 18 日把 RTX Spark 芯片装进台式小主机，华硕、戴尔、微星三家同时在美国开卖。芯片还是那颗 N1X 超级芯片：20 核 Grace 处理器配 6,144 个 CUDA 核心的 Blackwell 显卡，共用最高 **128GB** 统一内存，官方标称 1 petaflop AI 算力。</p>
+      <p>卖点就一句：在自己桌上跑 120B 参数的大模型，数据不用出门。最便宜的微星 EdgeMesa N AI+ **4,399.99 美元**起，64GB 内存、1TB 硬盘；华硕 ProArt GR1X **4,499 美元**起；128GB 顶配要 7,499.99 美元。微软的 Surface RTX Spark 开发机 5,999.99 美元，接受预订。</p>
+      <p>先泼两盆冷水：这只是开卖，还没有第三方实测，英伟达说的 120B 能跑，只代表装得下，不代表跑得快；显存带宽这块，媒体估算在 273–307 GB/s 左右，低于苹果 M5 Max 的 614 GB/s。另外目前只在美国卖，没有其他国家的价格。</p>
+      <p>我会怎么用：普通用户别碰，这价钱买的是开发机。天天跑本地大模型、挂全天候智能体的开发者可以算一笔账：一次付清硬件，换掉按量计费的云端调用，数据还留在自己手里。</p>
+  </div>
+</details>
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：7B 参数只用 1B 干活：这台小模型 8G 显">
