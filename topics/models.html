@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>模型动态智库 | wswin</title>
-<meta name="description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 75 篇，持续更新。" />
+<meta name="description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 77 篇，持续更新。" />
 <link rel="canonical" href="https://wswin.dpdns.org/topics/models.html" />
 <meta property="og:title" content="模型动态智库 | wswin" />
-<meta property="og:description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 75 篇，持续更新。" />
+<meta property="og:description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 77 篇，持续更新。" />
 <style>
 /* ============================================================
    WSWIN — dark editorial tech aesthetic
@@ -692,10 +692,50 @@ body.locked{overflow:hidden}
 </div></div>
 
 <div class="wrap"><div class="t-hero">
-<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 75 篇</span>
+<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 77 篇</span>
 <h1>模型动态</h1>
 <p>新模型发布、降价、开源：模型圈速览，选型不踩坑</p>
 </div>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：Qwen4-Max 上线：2.4 万亿参数，干活">
+      <div class="thumb"><img src="../thumb-daily-20261123-02.jpg" alt="Qwen4-Max 上线：2.4 万亿参数，干活便宜六成" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>Qwen4-Max 上线：2.4 万亿参数，干活便宜六成</h4>
+        <p class="exc">阿里巴巴 11 月 16 日发布 Qwen4-Max，Qwen 4 系列第一款旗舰模型。参数表很唬人：总参数 2.4 万亿，每次只激活 710 亿，另加 3280 亿参数的 n-gram 记忆层。上下…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-11-23</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>阿里巴巴 11 月 16 日发布 Qwen4-Max，Qwen 4 系列第一款旗舰模型。参数表很唬人：总参数 2.4 万亿，每次只激活 710 亿，另加 3280 亿参数的 n-gram 记忆层。上下文窗口 100 万词，文字、图片、视频、PDF 都能直接喂进去。</p>
+      <p>阿里巴巴自己的 Work360 评测覆盖 721 个行业任务，Qwen4-Max 得 52.69 分，前代 Qwen3.8-Max 是 47.74 分；官方说法是同样任务平均成本降了约六成，推理用词少了 35%。这些是厂商自己的评测，看看就好，重点在价格。</p>
+      <p>价格写在 QwenCloud 上：输入每百万词 1.50 美元，输出 4.50 美元，缓存命中输入只要 0.075 美元。比前代同档便宜四分之一左右。</p>
+      <p>注意两点：这是闭源模型，只有 API，没有权重可下载；小尺寸开源版阿里巴巴说随后放出，还没给时间。API 兼容 OpenAI 和 Anthropic 的格式，老代码改个地址就能接。</p>
+      <p>我会怎么用：手里已有项目在跑 Qwen3.8-Max 的，直接换 qwen4-max 试一轮，重点看长文档和跨多步的代理任务；普通用户不用碰 API，去 QwenWork 或 QwenStudio 里直接用。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：Gemini 4 Neon 来了：中档价，跑旗舰">
+      <div class="thumb"><img src="../thumb-daily-20261123-03.jpg" alt="Gemini 4 Neon 来了：中档价，跑旗舰活" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>Gemini 4 Neon 来了：中档价，跑旗舰活</h4>
+        <p class="exc">Google DeepMind 11 月 18 日发布 Gemini 4 Neon，Gemini 4 家族的中档型号。定位夹在中间：Carbon 啃最难的长周期项目，Hydrogen 跑日常快活，Ne…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-11-23</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>Google DeepMind 11 月 18 日发布 Gemini 4 Neon，Gemini 4 家族的中档型号。定位夹在中间：Carbon 啃最难的长周期项目，Hydrogen 跑日常快活，Neon 在两者之间找平衡——深度够、速度不慢。</p>
+      <p>价格每百万词输入 3 美元、输出 15 美元，缓存输入 0.15 美元，上下文窗口 100 万词。官方给的成绩：Artificial Analysis 智能指数 61 分，在编程智能体榜单上排第一。</p>
+      <p>发布当天就进了 Gemini API、Google AI Studio，付费的 Pro 和 Ultra 用户在 Gemini App 和 Antigravity 里也能选到。</p>
+      <p>挑型号有个现成标尺：Hydrogen 每百万词 1.50/7.50 美元，Neon 3/15 美元，Carbon 11 月 30 日前促销价 2/10 美元、12 月 1 日起恢复 4/20 美元——Neon 从 12 月起比 Carbon 便宜四分之一。</p>
+      <p>我会怎么用：写代码智能体、啃长文档、做研究类任务，先拿 Neon 跑，跑不动再升 Carbon；日常问答继续用 Hydrogen，别为用不上的深度多花钱。</p>
+  </div>
+</details>
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：26B 模型塞进 20GB，普通笔记本就能离线跑">
