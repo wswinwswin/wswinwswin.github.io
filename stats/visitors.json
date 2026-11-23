@@ -1,32 +1,18 @@
 {
- "updated": "2026-11-22T06:58:44+08:00",
+ "updated": "2026-11-23T06:58:45+08:00",
  "latest": {
-  "date": "2026-11-21",
+  "date": "2026-11-22",
   "period": "过去24小时",
-  "sessions": 2,
-  "users": 1,
-  "activeMinutes": 8,
+  "sessions": 0,
+  "users": 0,
+  "activeMinutes": 0,
   "byChannel": {},
-  "byDevice": {
-   "Mobile": 2
-  },
-  "byCountry": {
-   "Japan": 1,
-   "Singapore": 1
-  },
+  "byDevice": {},
+  "byCountry": {},
   "bySource": {},
-  "byBrowser": {
-   "MobileSafari": 2
-  },
-  "byOS": {
-   "IOS": 2
-  },
-  "topPages": [
-   {
-    "url": "https://wswin.dpdns.org/",
-    "visits": 2
-   }
-  ],
+  "byBrowser": {},
+  "byOS": {},
+  "topPages": [],
   "referrers": [],
   "issues": {
    "deadClicks": {
@@ -53,30 +39,11 @@
     "count": 0,
     "sessionsPct": 0
    },
-   "avgScrollDepth": 7
+   "avgScrollDepth": null
   },
-  "pageDetails": [
-   {
-    "url": "https://wswin.dpdns.org/",
-    "sessions": 2,
-    "users": 1,
-    "activeTime": 8,
-    "scrollDepth": 7,
-    "deadClicks": 0,
-    "rageClicks": 0,
-    "errorClicks": 0,
-    "quickbackClicks": 0,
-    "scriptErrors": 0,
-    "excessiveScroll": 0
-   }
-  ]
+  "pageDetails": []
  },
  "history": [
-  {
-   "date": "2026-10-23",
-   "sessions": 1,
-   "users": 1
-  },
   {
    "date": "2026-10-24",
    "sessions": 4,
@@ -221,6 +188,11 @@
    "date": "2026-11-21",
    "sessions": 2,
    "users": 1
+  },
+  {
+   "date": "2026-11-22",
+   "sessions": 0,
+   "users": 0
   }
  ]
 }
