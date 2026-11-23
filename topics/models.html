@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>模型动态智库 | wswin</title>
-<meta name="description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 77 篇，持续更新。" />
+<meta name="description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 80 篇，持续更新。" />
 <link rel="canonical" href="https://wswin.dpdns.org/topics/models.html" />
 <meta property="og:title" content="模型动态智库 | wswin" />
-<meta property="og:description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 77 篇，持续更新。" />
+<meta property="og:description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 80 篇，持续更新。" />
 <style>
 /* ============================================================
    WSWIN — dark editorial tech aesthetic
@@ -692,10 +692,70 @@ body.locked{overflow:hidden}
 </div></div>
 
 <div class="wrap"><div class="t-hero">
-<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 77 篇</span>
+<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 80 篇</span>
 <h1>模型动态</h1>
 <p>新模型发布、降价、开源：模型圈速览，选型不踩坑</p>
 </div>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：蚂蚁把医疗 AI 开源了：看报告、看皮肤，模型自">
+      <div class="thumb"><img src="../thumb-daily-20261124-02.jpg" alt="蚂蚁把医疗 AI 开源了：看报告、看皮肤，模型自己能干" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>蚂蚁把医疗 AI 开源了：看报告、看皮肤，模型自己能干</h4>
+        <p class="exc">11 月 23 日，蚂蚁 AI 健康应用 Afu 发布 LingSante 医疗健康 AI 模型家族，两个核心模型直接开源，权重挂在 Hugging Face 上，MIT 协议。Afu 背后是 1.5…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-11-24</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>11 月 23 日，蚂蚁 AI 健康应用 Afu 发布 LingSante 医疗健康 AI 模型家族，两个核心模型直接开源，权重挂在 Hugging Face 上，MIT 协议。Afu 背后是 1.5 亿用户，每天处理近 2000 万次健康咨询。</p>
+      <p>分工不同：air-VL 是轻量多模态款，总参数 1240 亿，每次激活 55 亿，文字图片视频都能看，能读医学影像、看皮肤、评饮食、解读体检报告，适合个人和小机构部署；flash 是专业推理款，总参数 5600 亿，激活约 250 亿，上下文 100 万词，啃复杂病例、临床推理。</p>
+      <p>另外三个专项模型：Pulse 评估 150 多种疾病风险，MedGuard 专盯医疗安全、合规和伦理风险，Live 实时视频问诊。蚂蚁的 InclusionMed 榜单把 flash 排开源医疗模型第一，这是它自家榜单，还没第三方复核。</p>
+      <p>模型卡写明，输出可能不完整、不准确，不能替代专业医疗建议、诊断、治疗。官方说的 100 万词上下文，跟仓库 262,144 配置对不上，以模型卡为准。</p>
+      <p>我会怎么用：普通人不用自己部署，去 Afu App 直接用问诊和报告解读；做医疗应用开发的，去 Hugging Face 拉 air-VL 的权重，在本地搭个看报告、看皮肤的助手，先评估再上线。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：GLM-5.4：同一组层跑两遍，模型不用变大也能">
+      <div class="thumb"><img src="../thumb-daily-20261124-03.jpg" alt="GLM-5.4：同一组层跑两遍，模型不用变大也能变聪明" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>GLM-5.4：同一组层跑两遍，模型不用变大也能变聪明</h4>
+        <p class="exc">11 月 23 日，智谱 Z.ai 发布 GLM-5.4，旗舰第一次用上 Loop Transformer 架构。思路简单：普通模型每层只跑一遍，GLM-5.4 把中间 28 层拿出来，每生成一个词跑…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-11-24</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>11 月 23 日，智谱 Z.ai 发布 GLM-5.4，旗舰第一次用上 Loop Transformer 架构。思路简单：普通模型每层只跑一遍，GLM-5.4 把中间 28 层拿出来，每生成一个词跑两遍，同一组权重循环用，不用变大，深度上去了。</p>
+      <p>规模约 7500 亿参数，智谱说智能水平相当于 2 到 3 万亿参数的模型——先记成厂商说法，旗舰跑分表没公布，独立验证还没法做。能确认的有三点：视觉能力加回来了，能看截图和图片；上下文 100 万词；复杂数学科学任务上，输出词数少 10% 到 14%，省时间也省 token。</p>
+      <p>速度官方给了数：闲时最高每秒 200 词，高峰 70 到 80 词。GLM Coding Plan 订阅用户今天就能选，Lite 每月 12.6 美元，Pro 56 美元，Max 117.6 美元，ZCode、Z.ai Chat 里都有，API 和开源权重随后放出。</p>
+      <p>智谱自己交代了一个毛病：模型有时会陷入超长思考循环，反复自我纠正，慢下来。遇上复杂逻辑链，先看它是不是在原地打转。</p>
+      <p>我会怎么用：在用 GLM Coding Plan 写代码的，直接切到 glm-5.4 跑一周，重点看长代码库和带截图的视觉编程；没订阅的等 API 和权重出来再比价，不急着为没跑分的说法掏钱。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：中国电信开源 2850 亿参数大模型：全程没用英">
+      <div class="thumb"><img src="../thumb-daily-20261124-05.jpg" alt="中国电信开源 2850 亿参数大模型：全程没用英伟达芯片" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>中国电信开源 2850 亿参数大模型：全程没用英伟达芯片</h4>
+        <p class="exc">11 月 23 日，中国电信星辰 AGI 实验室在 Hugging Face 开源了 Xing4.1-Preview：总参数 2850 亿，每次只激活约 170 亿，混合专家架构，100 万词原生上下…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-11-24</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>11 月 23 日，中国电信星辰 AGI 实验室在 Hugging Face 开源了 Xing4.1-Preview：总参数 2850 亿，每次只激活约 170 亿，混合专家架构，100 万词原生上下文，Apache 2.0 协议。</p>
+      <p>这次开源最值得说的不是参数，是它怎么训出来的：8192 块国产昇腾 910C 芯片，华为 MindSpore 框架，自研训练系统，从芯片到软件全程国产栈，架构就是按这套加速器的特点设计的。定位很明确：智能体编程和长流程智能体任务。</p>
+      <p>普通人用不上权重本身，BF16 权重就有 521GB，约需 8 块 80GB 显卡才能跑起来。能直接用的是天翼 AI 开放平台上的 API，兼容 OpenAI 格式，单次请求最多 89.6 万词输入、12.8 万词输出。另有 FP8 和 NVFP4 量化版，NVFP4 版约 190GB 显存就能跑。</p>
+      <p>先泼一盆冷水：官方还没公布任何跑分，模型卡写明完整成绩随技术报告发布，第三方先流传的数字别信。没有跑分，这就是一套权重和一个 API，不是榜单上的名次。</p>
+      <p>我会怎么用：做智能体开发的，先拿天翼平台的 API 跑自己的长流程任务，跟手头的模型比一比；有算力的团队拉 NVFP4 版本地测，重点看 100 万词上下文在真实长任务里稳不稳。</p>
+  </div>
+</details>
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：Qwen4-Max 上线：2.4 万亿参数，干活">
