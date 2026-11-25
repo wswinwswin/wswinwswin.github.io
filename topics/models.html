@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>模型动态智库 | wswin</title>
-<meta name="description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 81 篇，持续更新。" />
+<meta name="description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 82 篇，持续更新。" />
 <link rel="canonical" href="https://wswin.dpdns.org/topics/models.html" />
 <meta property="og:title" content="模型动态智库 | wswin" />
-<meta property="og:description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 81 篇，持续更新。" />
+<meta property="og:description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 82 篇，持续更新。" />
 <style>
 /* ============================================================
    WSWIN — dark editorial tech aesthetic
@@ -692,10 +692,29 @@ body.locked{overflow:hidden}
 </div></div>
 
 <div class="wrap"><div class="t-hero">
-<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 81 篇</span>
+<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 82 篇</span>
 <h1>模型动态</h1>
 <p>新模型发布、降价、开源：模型圈速览，选型不踩坑</p>
 </div>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：27B 的大模型塞进 5.9GB，普通显卡就能跑">
+      <div class="thumb"><img src="../thumb-daily-20261126-05.jpg" alt="27B 的大模型塞进 5.9GB，普通显卡就能跑" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>27B 的大模型塞进 5.9GB，普通显卡就能跑</h4>
+        <p class="exc">11 月 24 日，PrismML 发布了 Ternary Bonsai 2.5 27B。27B 参数的模型，整个文件只有 5.9GB。做法是把权重压成三值：每个权重只剩 -1、0、+1，平均 1.7…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-11-26</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>11 月 24 日，PrismML 发布了 Ternary Bonsai 2.5 27B。27B 参数的模型，整个文件只有 5.9GB。做法是把权重压成三值：每个权重只剩 -1、0、+1，平均 1.76 比特，体积从 53.8GB 砍到 5.93GB，26.2 万 token 上下文完整保留。</p>
+      <p>压缩成这样，能力掉得不多。SWE-bench Verified 75.6 分，满血版 Qwen3.8 27B 是 80.6 分，上一代 Bonsai 2 只有 60.8 分。AppWorld 90.5 分，离满血版 93.2 分只差一点。工具调用几乎没掉，77.7 分变 77.2 分。弱项也有：纯写代码从 60.5 分掉到 54.2 分，重度编程还是满血版更稳。速度：RTX 4090 每秒 204 token，H100 上 291 个。</p>
+      <p>不挑机器：NVIDIA 和 Intel 显卡走 llama.cpp，Mac、iPhone、iPad 走 MLX。权重按 Apache 2.0 开源。提醒一句：最小那个文件要 Prism 自家的 llama.cpp 分支才能跑，标准版用 b11556 以上的 Q2_0 文件。</p>
+      <p>我会怎么用：手头有消费级显卡、又不想把私有代码传上云的人，拿它在本地搭编程助手，改私有仓库、翻本地文档，数据不出自己的电脑。</p>
+  </div>
+</details>
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：ChatGPT 日常聊天换上 GPT-6.2 S">
