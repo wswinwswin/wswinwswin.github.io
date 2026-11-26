@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>模型动态智库 | wswin</title>
-<meta name="description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 82 篇，持续更新。" />
+<meta name="description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 86 篇，持续更新。" />
 <link rel="canonical" href="https://wswin.dpdns.org/topics/models.html" />
 <meta property="og:title" content="模型动态智库 | wswin" />
-<meta property="og:description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 82 篇，持续更新。" />
+<meta property="og:description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 86 篇，持续更新。" />
 <style>
 /* ============================================================
    WSWIN — dark editorial tech aesthetic
@@ -692,10 +692,90 @@ body.locked{overflow:hidden}
 </div></div>
 
 <div class="wrap"><div class="t-hero">
-<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 82 篇</span>
+<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 86 篇</span>
 <h1>模型动态</h1>
 <p>新模型发布、降价、开源：模型圈速览，选型不踩坑</p>
 </div>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：百度把 2800 亿参数大模型权重公开了，上下文">
+      <div class="thumb"><img src="../thumb-daily-20261127-02.jpg" alt="百度把 2800 亿参数大模型权重公开了，上下文能装 100 万 token" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>百度把 2800 亿参数大模型权重公开了，上下文能装 100 万 token</h4>
+        <p class="exc">11 月 23 日，百度把 ERNIE 5.5 Flash Preview 的权重放到了 Hugging Face，Apache 2.0 协议，商用、改动、再分发都放行。</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-11-27</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>11 月 23 日，百度把 ERNIE 5.5 Flash Preview 的权重放到了 Hugging Face，Apache 2.0 协议，商用、改动、再分发都放行。</p>
+      <p>模型总参数 2800 亿，每次只激活 140 亿，上下文窗口 100 万 token——差不多能把一整套几十万字的资料一次塞进去。百度把它定位在需要长时间、多步骤调用工具的活上：写代码、做 3D 建模、处理专业文档、做视频。</p>
+      <p>三个权重版本：默认版约 166GB，FP8 版约 302GB，BF16 版约 600GB。最小的那个也得一块 288GB 显存的 Blackwell 显卡才装得下，普通电脑别想本地跑。跑不起来的话，OpenRouter 上有免费 API 可以直接调。</p>
+      <p>冷水也得泼一盆：百度自己说了，这只是训练没做完的中间版本，能力还可能变；20 项基准成绩是百度自己报的，没经过独立复现；llama.cpp 和 Mac 端现在还不支持。</p>
+      <p>我会怎么用：个人用户直接走 OpenRouter 免费 API，试试用长上下文一次处理几十万字的大文档；想本地部署的团队先算好显存账，别下载了 166GB 才发现装不下。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：Perplexity 给 AI 装了台时光机：能">
+      <div class="thumb"><img src="../thumb-daily-20261127-03.jpg" alt="Perplexity 给 AI 装了台时光机：能回到一年前任何一天的互联网" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>Perplexity 给 AI 装了台时光机：能回到一年前任何一天的互联网</h4>
+        <p class="exc">11 月 25 日，Perplexity CEO Aravind Srinivas 宣布，Search API 和 Context API 里多了个 Time Machine。意思很直白：让 AI 回…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-11-27</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>11 月 25 日，Perplexity CEO Aravind Srinivas 宣布，Search API 和 Context API 里多了个 Time Machine。意思很直白：让 AI 回到过去的某一天上网。</p>
+      <p>Perplexity 的爬虫每次抓网页都会留一份带日期的存档，Time Machine 就是拿这份存档当快照。你指定一年内的任何一个日期，AI 看到的就是那天的互联网——那天的新闻、那天的股价、那天的比分，之后发生的事它一概不知道。</p>
+      <p>这东西是给开发预测类智能体的团队准备的：以前没法假装模型不知道未来，现在把时间冻在某一天，让它预测，再拿真实结果打分。xAI 三位联合创始人刚成立的 Epochal，前一天也发布了类似的 Time Portal。</p>
+      <p>价格跟正常调用一样，不用额外付费、不用另做设置：Search 请求每 1000 次 5 美元，Context 取网页每 1000 次 1 美元。已有的 API 用户直接就能用。</p>
+      <p>我会怎么用：普通人用不上这个接口，但它点出了一个实在的用法——以后判断一个 AI 预测靠不靠谱，可以要求它先在历史数据上跑一遍分，拿得出成绩再信。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：商汤开源机器人视觉模型：机械臂自己决定该动手还是">
+      <div class="thumb"><img src="../thumb-daily-20261127-04.jpg" alt="商汤开源机器人视觉模型：机械臂自己决定该动手还是该写代码" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>商汤开源机器人视觉模型：机械臂自己决定该动手还是该写代码</h4>
+        <p class="exc">11 月 25 日，商汤发布了面向机器人操作的视觉语言模型 SenseNova-RoboRSI-27B 正式版，并且开源。比起预览版，这次最大的变化不是参数变大，而是模型会自己拿主意了。</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-11-27</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>11 月 25 日，商汤发布了面向机器人操作的视觉语言模型 SenseNova-RoboRSI-27B 正式版，并且开源。比起预览版，这次最大的变化不是参数变大，而是模型会自己拿主意了。</p>
+      <p>以前的机器人模型干活是一条道走到黑：视觉语言动作模型（VLA）接管一切，错了也不回头。正式版不一样，它会自己判断：这个动作交给 VLA 做，还是直接写代码控制机械臂更靠谱；干着干着发现不对，还能根据实际反馈改策略。按物体朝向抓东西、侧推 T 形块、双臂对准衣摆这些精细活，现在能直接跑通。</p>
+      <p>成绩单也摆出来了：RoboDojo 榜单上，27B 的模型拿了 34.7 分，预览版只有 10 分，翻了三倍多，还超过了 GPT-6 Astra。商汤的算盘很清楚：靠自己视觉上的积累，把机器人操作的门槛打下来，让中小团队不用从零搭视觉体系，直接在这个底座上做场景微调。</p>
+      <p>提醒一句：榜单分是商汤报的，到自己的机器人、自己的场景上表现如何，还得实测。</p>
+      <p>我会怎么用：做机器人、做自动化产线的团队，可以先拿这个模型当底座跑自己的场景，比从零训一个视觉模型省事得多；普通读者就看个趋势——机器人离真正进家里干活又近了一步。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：OpenAI 出了个专打网络安全的模型，一般人还">
+      <div class="thumb"><img src="../thumb-daily-20261127-05.jpg" alt="OpenAI 出了个专打网络安全的模型，一般人还用不上" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>OpenAI 出了个专打网络安全的模型，一般人还用不上</h4>
+        <p class="exc">11 月 26 日，OpenAI 发布了 GPT-5.6-Cyber，一个专门干网络安全活的模型，通过 Daybreak Red 渠道提供。普通 ChatGPT 用户现在还碰不到它。</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-11-27</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>11 月 26 日，OpenAI 发布了 GPT-5.6-Cyber，一个专门干网络安全活的模型，通过 Daybreak Red 渠道提供。普通 ChatGPT 用户现在还碰不到它。</p>
+      <p>这个模型是干什么的？帮防守方找漏洞、堵漏洞。OpenAI 的说法是：它处理高级网络安全任务时拒绝得更少，内部测试里比自家通用模型表现更好。早期合作方包括 SpecterOps、SentinelOne 和 Palo Alto Networks，都是安全圈里的大公司。</p>
+      <p>结合 OpenAI 和思科 11 月 25 日发布的 Shirudo 一起看：给 Linux 系统临时加一层&quot;防护罩&quot;，在正式补丁出来之前先挡住攻击，演示里用 Codex 堵住了一个针对 Elasticsearch 的 Java4Shell 漏洞。</p>
+      <p>另一面也得当心：防守用的安全模型越强，攻击方手里的工具也会越强。个人能做的事没变：补丁及时打，不明链接别点，重要账号开双重验证。</p>
+      <p>我会怎么用：不做安全的普通人不用追这个模型；做企业安全、运维的人可以留意 Daybreak 的开放节奏，等它放开再评估要不要接进自己的防守流程。</p>
+  </div>
+</details>
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：27B 的大模型塞进 5.9GB，普通显卡就能跑">
