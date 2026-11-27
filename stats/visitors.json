@@ -1,7 +1,7 @@
 {
- "updated": "2026-11-27T07:31:33+08:00",
+ "updated": "2026-11-28T06:58:56+08:00",
  "latest": {
-  "date": "2026-11-26",
+  "date": "2026-11-27",
   "period": "过去24小时",
   "sessions": 0,
   "users": 0,
@@ -41,28 +41,9 @@
    },
    "avgScrollDepth": null
   },
-  "pageDetails": [
-   {
-    "url": "https://wswin.dpdns.org/",
-    "sessions": 0,
-    "users": 0,
-    "activeTime": 0,
-    "scrollDepth": null,
-    "deadClicks": null,
-    "rageClicks": null,
-    "errorClicks": null,
-    "quickbackClicks": null,
-    "scriptErrors": null,
-    "excessiveScroll": null
-   }
-  ]
+  "pageDetails": []
  },
  "history": [
-  {
-   "date": "2026-10-28",
-   "sessions": 6,
-   "users": 1
-  },
   {
    "date": "2026-10-29",
    "sessions": 1,
@@ -205,6 +186,11 @@
   },
   {
    "date": "2026-11-26",
+   "sessions": 0,
+   "users": 0
+  },
+  {
+   "date": "2026-11-27",
    "sessions": 0,
    "users": 0
   }
