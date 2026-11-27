@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>AI 智能体智库 | wswin</title>
-<meta name="description" content="Agent、Claude Code、Computer Use：让 AI 替你办事。wswin AI 智库「AI 智能体」主题聚合，共 81 篇，持续更新。" />
+<meta name="description" content="Agent、Claude Code、Computer Use：让 AI 替你办事。wswin AI 智库「AI 智能体」主题聚合，共 84 篇，持续更新。" />
 <link rel="canonical" href="https://wswin.dpdns.org/topics/ai-agent.html" />
 <meta property="og:title" content="AI 智能体智库 | wswin" />
-<meta property="og:description" content="Agent、Claude Code、Computer Use：让 AI 替你办事。wswin AI 智库「AI 智能体」主题聚合，共 81 篇，持续更新。" />
+<meta property="og:description" content="Agent、Claude Code、Computer Use：让 AI 替你办事。wswin AI 智库「AI 智能体」主题聚合，共 84 篇，持续更新。" />
 <style>
 /* ============================================================
    WSWIN — dark editorial tech aesthetic
@@ -692,10 +692,67 @@ body.locked{overflow:hidden}
 </div></div>
 
 <div class="wrap"><div class="t-hero">
-<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 81 篇</span>
+<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 84 篇</span>
 <h1>AI 智能体</h1>
 <p>Agent、Claude Code、Computer Use：让 AI 替你办事</p>
 </div>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：小活直接给答案：JetBrains 开源编程模型">
+      <div class="thumb"><img src="../thumb-daily-20261128-02.jpg" alt="小活直接给答案：JetBrains 开源编程模型 Mellum2.1，本地就能跑" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>小活直接给答案：JetBrains 开源编程模型 Mellum2.1，本地就能跑</h4>
+        <p class="exc">11 月 25 日，JetBrains 发布了开源编程模型 Mellum2.1 Instruct。10 月发布的 Mellum2.1 Thinking 是个爱琢磨的模型，动手之前先把思路写一遍；新出的…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-11-28</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>11 月 25 日，JetBrains 发布了开源编程模型 Mellum2.1 Instruct。10 月发布的 Mellum2.1 Thinking 是个爱琢磨的模型，动手之前先把思路写一遍；新出的 Instruct 是它的快手兄弟，跳过思考过程，直接给答案。</p>
+      <p>写代码的日常活里，大半是小修小补、跑个命令、问一句代码是什么意思，这些活不需要长篇思考，思考反而拖慢速度。数据是，Instruct 每个任务只花 5600 个 token，Thinking 要花 10100 个，省了 45%。SWE-bench Verified 得分 40.4%，比上一代翻了一倍。</p>
+      <p>模型一共 12B 参数，每次只激活 2.5B，Apache 2.0 协议挂在 Hugging Face 上免费下载，还有 GGUF 版，自己的电脑就能跑。</p>
+      <p>我会怎么用：本机装一个 GGUF 版，配给编程助手当干杂活的副手——改个小 bug、查个函数用法都交给它，难啃的算法题再换 Thinking。同场对比里 Qwen3.5 9B 的 SWE-bench 分更高，Instruct 赢的是速度和省 token，不是全能。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：语音助手不再抢话：亚马逊新模型听完一整句才接，错">
+      <div class="thumb"><img src="../thumb-daily-20261128-03.jpg" alt="语音助手不再抢话：亚马逊新模型听完一整句才接，错词少 14%" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>语音助手不再抢话：亚马逊新模型听完一整句才接，错词少 14%</h4>
+        <p class="exc">11 月 25 日，亚马逊把新一代语音转文字模型 Transcribe Turbo 放进公开预览。老模型听人说话只认静音：你顿一下，它就以为你说完了。新模型多了一招语义接话——结合你说的内容和语气判断…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-11-28</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>11 月 25 日，亚马逊把新一代语音转文字模型 Transcribe Turbo 放进公开预览。老模型听人说话只认静音：你顿一下，它就以为你说完了。新模型多了一招语义接话——结合你说的内容和语气判断这句话到底说完没有，615 毫秒左右就能接上，打断率 5%，短答不用再傻等静音超时。</p>
+      <p>准确度也提了：流式转写的错词率比现款模型低 14%，电话号码、日期、金额的格式准确率涨了 20 多个点，(212) 555-0182 这种格式直接写对，不用后期再洗一遍。还有个顺手的功能叫实时识别提示，提前告诉模型这通电话可能问什么、要听哪类信息，客服菜单的路由准确率从 87% 提到 97%。</p>
+      <p>流式支持英、葡、法、意、德、西六种语言，批量转写里英文已经全面可用，中日韩等九种语言还在预览。两个语音助手功能都不另收费，现有接口不用改代码。</p>
+      <p>我会怎么用：做电话客服或者会议记录的语音助手，先把语义接话打开，再把菜单选项当提示喂给模型，抢话和听错菜单这两件最招人烦的事一次少掉大半。注意：流式预览只在美国东部（俄亥俄）区域，语音助手那两个新功能目前只支持英文，其他语言要等 12 月底。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：说句话就画出零件：Claude 接上免费 CAD">
+      <div class="thumb"><img src="../thumb-daily-20261128-05.jpg" alt="说句话就画出零件：Claude 接上免费 CAD，还能顺手做强度验算" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>说句话就画出零件：Claude 接上免费 CAD，还能顺手做强度验算</h4>
+        <p class="exc">11 月 27 日，一个叫 FreeCAD-MCP 的开源项目在 3D 论坛 Foro3D 上发布：让 Claude Desktop 这类助手直接操作免费 CAD 软件 FreeCAD。你在对话框里说…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-11-28</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>11 月 27 日，一个叫 FreeCAD-MCP 的开源项目在 3D 论坛 Foro3D 上发布：让 Claude Desktop 这类助手直接操作免费 CAD 软件 FreeCAD。你在对话框里说一句“画个 50×30×20 的盒子”，FreeCAD 里就真的多出一个零件。</p>
+      <p>接法分两段：FreeCAD 里装一个 MCP 插件，打开本地 RPC 服务；助手那边用一条 uvx freecad-mcp 命令启动桥接。接通之后，助手能建改删零件、从零件库取标准件、在 FreeCAD 里跑 Python 脚本，还能截屏给你看结果。最实在的是有限元分析：调 CalculiX 求解器跑一遍，直接报回最大应力和最大位移，零件扛不扛得住当场见分晓。</p>
+      <p>项目是 GitHub 用户 neka-nat 写的，MIT 协议免费。装之前要备好 FreeCAD 1.x、Python 3.12 和 uv。</p>
+      <p>我会怎么用：画 3D 打印的小零件、改个支架尺寸，先让它出初版，再逐项核对尺寸和强度。两件事别省：它跑的 Python 代码权限很大，只接自己信得过的客户端；算出的零件也可能看着对、受力不对，承重件定稿前必须人工复核。</p>
+  </div>
+</details>
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：Perplexity 给 AI 装了台时光机：能">

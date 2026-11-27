@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>模型动态智库 | wswin</title>
-<meta name="description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 86 篇，持续更新。" />
+<meta name="description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 88 篇，持续更新。" />
 <link rel="canonical" href="https://wswin.dpdns.org/topics/models.html" />
 <meta property="og:title" content="模型动态智库 | wswin" />
-<meta property="og:description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 86 篇，持续更新。" />
+<meta property="og:description" content="新模型发布、降价、开源：模型圈速览，选型不踩坑。wswin AI 智库「模型动态」主题聚合，共 88 篇，持续更新。" />
 <style>
 /* ============================================================
    WSWIN — dark editorial tech aesthetic
@@ -692,10 +692,48 @@ body.locked{overflow:hidden}
 </div></div>
 
 <div class="wrap"><div class="t-hero">
-<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 86 篇</span>
+<span class="n" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint)">WIKI · 主题聚合 · 88 篇</span>
 <h1>模型动态</h1>
 <p>新模型发布、降价、开源：模型圈速览，选型不踩坑</p>
 </div>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：小活直接给答案：JetBrains 开源编程模型">
+      <div class="thumb"><img src="../thumb-daily-20261128-02.jpg" alt="小活直接给答案：JetBrains 开源编程模型 Mellum2.1，本地就能跑" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>小活直接给答案：JetBrains 开源编程模型 Mellum2.1，本地就能跑</h4>
+        <p class="exc">11 月 25 日，JetBrains 发布了开源编程模型 Mellum2.1 Instruct。10 月发布的 Mellum2.1 Thinking 是个爱琢磨的模型，动手之前先把思路写一遍；新出的…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-11-28</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>11 月 25 日，JetBrains 发布了开源编程模型 Mellum2.1 Instruct。10 月发布的 Mellum2.1 Thinking 是个爱琢磨的模型，动手之前先把思路写一遍；新出的 Instruct 是它的快手兄弟，跳过思考过程，直接给答案。</p>
+      <p>写代码的日常活里，大半是小修小补、跑个命令、问一句代码是什么意思，这些活不需要长篇思考，思考反而拖慢速度。数据是，Instruct 每个任务只花 5600 个 token，Thinking 要花 10100 个，省了 45%。SWE-bench Verified 得分 40.4%，比上一代翻了一倍。</p>
+      <p>模型一共 12B 参数，每次只激活 2.5B，Apache 2.0 协议挂在 Hugging Face 上免费下载，还有 GGUF 版，自己的电脑就能跑。</p>
+      <p>我会怎么用：本机装一个 GGUF 版，配给编程助手当干杂活的副手——改个小 bug、查个函数用法都交给它，难啃的算法题再换 Thinking。同场对比里 Qwen3.5 9B 的 SWE-bench 分更高，Instruct 赢的是速度和省 token，不是全能。</p>
+  </div>
+</details>
+<details class="t-art">
+  <summary>
+    <article class="news-row" aria-label="阅读：42% 对 41% 就敢说赢了？看模型跑分先查这">
+      <div class="thumb"><img src="../thumb-daily-20261128-04.jpg" alt="42% 对 41% 就敢说赢了？看模型跑分先查这三件事" width="700" height="440" loading="lazy" decoding="async" /></div>
+      <div>
+        <h4>42% 对 41% 就敢说赢了？看模型跑分先查这三件事</h4>
+        <p class="exc">11 月 27 日，Mistral 发了一段 17 秒的短片，庆祝自家开源模型 Large 4 在 Dense200 视觉定位测试里拿了 42%，比 GPT-6 Astra 的 41% 高 1 分。标…</p>
+        <div class="card-meta" style="margin-top:12px"><span>2026-11-28</span></div>
+      </div>
+      <span class="arrow">→</span>
+    </article>
+  </summary>
+  <div class="t-full">
+      <p>11 月 27 日，Mistral 发了一段 17 秒的短片，庆祝自家开源模型 Large 4 在 Dense200 视觉定位测试里拿了 42%，比 GPT-6 Astra 的 41% 高 1 分。标题看着像赢了，数字本身却不太经得起细看。</p>
+      <p>先看小数点：Mistral 官网图表里的实际数字是 42.0 对 41.5，差距只有半分。Dense200 一共 200 道题，半分就是一道题的差距，一道题的胜负，换一批题可能就反过来了。而且这组数是 Mistral 自己跑的，只跑了这一个榜。</p>
+      <p>再看独立榜单：Roboflow 的 Vision Evals 在 11 月 19 日测了 73 个模型，Large 4 平均分 56.8%，排第 51；GPT-6 Astra 83.4%，排第 9。同一项能力，换个榜单名次完全反过来——两个榜测的东西不一样，Dense200 只考框出图里指定的东西，Vision Evals 还考数数、认字、识图和推理。</p>
+      <p>我会怎么用：以后看到“某某模型超过 GPT”的标题，先查三件事：谁跑的、题量多少、有没有独立榜单印证。三件缺一件，就当厂商广告看，别当选型依据。</p>
+  </div>
+</details>
 <details class="t-art">
   <summary>
     <article class="news-row" aria-label="阅读：百度把 2800 亿参数大模型权重公开了，上下文">
